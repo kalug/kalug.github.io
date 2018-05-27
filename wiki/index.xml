@@ -2,28 +2,28 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Wikis on Kaohsiung Linux User Group</title>
-    <link>http://kalug.github.io/wiki/</link>
+    <link>https://kalug.github.io/wiki/</link>
     <description>Recent content in Wikis on Kaohsiung Linux User Group</description>
     <generator>Hugo -- gohugo.io</generator>
     
-	<atom:link href="http://kalug.github.io/wiki/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kalug.github.io/wiki/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title></title>
-      <link>http://kalug.github.io/wiki/home/</link>
+      <link>https://kalug.github.io/wiki/home/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kalug.github.io/wiki/home/</guid>
+      <guid>https://kalug.github.io/wiki/home/</guid>
       <description>Kaohsiung Linux User Group KaLUG 是由一群熱愛 Open Source 的 朋友 所組成的團體. 歡迎參加我們的 聚會 ，Topic 題目不限，好玩就好。 歡迎加入我們的 KaLUG 星球 ！請留下你的網址在 kalug 星球</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://kalug.github.io/wiki/test/</link>
+      <link>https://kalug.github.io/wiki/test/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://kalug.github.io/wiki/test/</guid>
+      <guid>https://kalug.github.io/wiki/test/</guid>
       <description>aa KKK</description>
     </item>
     
