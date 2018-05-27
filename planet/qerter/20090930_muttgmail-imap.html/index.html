@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>使用Mutt收GMail IMAP電子郵件, Part 1 基礎設定篇</title>
+  <meta property="og:title" content="使用Mutt收GMail IMAP電子郵件, Part 1 基礎設定篇" />
+  <meta name="twitter:title" content="使用Mutt收GMail IMAP電子郵件, Part 1 基礎設定篇" />
+  <meta name="description" content="為響應Richard Stallman 2008年9月在英國衛報反對使用者投入雲端運算的懷抱(Cloud computing is a trap, warns GNU founder Richard Stallman)，我決定改變收電子郵">
+  <meta property="og:description" content="為響應Richard Stallman 2008年9月在英國衛報反對使用者投入雲端運算的懷抱(Cloud computing is a trap, warns GNU founder Richard Stallman)，我決定改變收電子郵">
+  <meta name="twitter:description" content="為響應Richard Stallman 2008年9月在英國衛報反對使用者投入雲端運算的懷抱(Cloud computing is a trap, warns GNU founder Richard Stallman)，我決定改變收電子郵">
+  <meta name="author" content=""/>
+  <link href='http://kalug.github.io/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="http://kalug.github.io/img/kalug.png" />
+  <meta name="twitter:image" content="http://kalug.github.io/img/kalug.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="http://kalug.github.io/planet/qerter/20090930_muttgmail-imap.html/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kaohsiung Linux User Group" />
+
+  <meta name="generator" content="Hugo 0.41" />
+  <link rel="canonical" href="http://kalug.github.io/planet/qerter/20090930_muttgmail-imap.html/" />
+  <link rel="alternate" href="http://kalug.github.io/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://kalug.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://kalug.github.io/css/highlight.min.css" /><link rel="stylesheet" href="http://kalug.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://kalug.github.io">Kaohsiung Linux User Group</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Planet" href="/planet/">Planet</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Wiki" href="/wiki/">Wiki</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Kaohsiung Linux User Group" href="http://kalug.github.io">
+            <img class="avatar-img" src="http://kalug.github.io/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="blog-heading">
+              <h1>使用Mutt收GMail IMAP電子郵件, Part 1 基礎設定篇</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>為響應Richard Stallman 2008年9月在英國衛報反對使用者投入雲端運算的懷抱(<a href="http://www.guardian.co.uk/technology/2008/sep/29/cloud.computing.richard.stallman">Cloud computing is a trap, warns GNU founder Richard Stallman</a>)，我決定改變收電子郵件的習慣。我個人最依賴的雲端服務當為Google的GMail服務。而馬上離開不使用GMail不是件易事，我構思分階段實行降低對GMail依賴程度。<br /><br /><ul><li>第一階段：降低對GMail Web的依賴程度</li></ul>第一階段可以做的就是使用一般收信軟體，如evolution, 雷鳥與Mutt等相關軟體，將GMail信件利用POP3與IMAP收信協定，將電子郵件收到本機端閱讀，並且利用SMTP送信協定寄送電子郵件。<br /><br />我挑選<a href="http://www.cyut.edu.tw/%7Eckhung/a/c013.php">軟體耦合度最低</a>同時也十分輕巧的Mutt，來當我平時收發電子郵件的軟體。使用Mutt的好處是：<br /><ol><li>收信的工作交給fetchmail(支援POP3、IMAP等收信協定)<br /></li><li>寄信的工作交給msmtp(支援SMTP等寄信協定)</li><li>寫信的工作交給Vim(這個不用解釋了吧！)</li><li>通訊錄的工作可以交給Abook（但不支援vCard格式匯入）</li></ol>那Mutt要幹嘛？它幫我把收好的信件以thread/date的方式排序，方便閱讀與回信。fetchmail、msmtp與Mutt配合的設定，可參考<a href="http://qerter.wiki.ptt.cc/-Mutt+Fetchmail+Msmtp+GnuPG">這篇</a>的設定，在此不贅述。<br /><br />設定fetchmail之後就要開始把GMail的信收到電腦本機。我使用IMAPS協定。不收還好，一收就得收全部的信下來。我花了四個多小時才把我信箱裡面的八千多封信通通收下來=.=。不過GMail只會下載之前WebMail上的未讀信件。<br /><br />用Mutt收信一段時間以後，總覺得要看信之前才執行fetchmail太不經濟了，用Command Line就是要自動化才夠爽阿阿阿！<br /><br />參考<a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/index.html">Bash Guide for Beginners</a>寫了一個bash script，執行fetchmail時計算新信件有幾封順便使用notify-send提醒。不過使用crontab去執行時，卻發生一點問題。參考這篇<a href="http://gnome-hacks.org/hacks.html?id=82">Notify from cronjob</a>，抄DBUS_SESSION_BUS_ADDRESS寫法，就ok了。將script命名為getmail.sh，使用crontab 30分鐘執行一次即可。<br /><br />Script如下給有需要的人參考：<br /><br /><code><br />#!/bin/bash<br /><br />########################################################################################<br /># This scripts is just using fetchmail command to get new mails and notify by notify-send <br /># command <br />#######################################################################################<br /><br />USER=<code>whoami</code><br />PIDS=<code>pgrep -u $USER gnome-session</code><br /><br /><br />#Get new mails and count them<br />NEW_MAILS_COUNT=$(fetchmail |grep -c octets)<br /><br />#Only show notified message when get new mails<br />if [ $NEW_MAILS_COUNT != 0 ]<br />then<br /><br />for pid in $PIDS; do<br /># find DBUS session bus for this session<br />DBUS_SESSION_BUS_ADDRESS=<code>grep -z DBUS_SESSION_BUS_ADDRESS \&lt;br /&gt;/proc/$pid/environ | sed -e 's/DBUS_SESSION_BUS_ADDRESS=//'</code><br /># use it<br />DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS &lt;br /&gt;notify-send &ldquo;新郵件提示&rdquo; &ldquo;$NEW_MAILS_COUNT 封新郵件&rdquo;<br />done<br />fi<br /><br /></code><br /><br />這個Script還蠻簡陋的，目前僅能做到定時提醒而已，但是只要彈出那一瞬間有事離開電腦沒看見，就不知道了。未來希望能夠以Tray ICON形式在工具列，定期輪詢，有新信時彈出提醒訊息，並且變換圖示為新信件。</p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=http%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20090930_muttgmail-imap.html%2f&amp;text=%e4%bd%bf%e7%94%a8Mutt%e6%94%b6GMail%20IMAP%e9%9b%bb%e5%ad%90%e9%83%b5%e4%bb%b6%2c%20Part%201%20%e5%9f%ba%e7%a4%8e%e8%a8%ad%e5%ae%9a%e7%af%87&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=http%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20090930_muttgmail-imap.html%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20090930_muttgmail-imap.html%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=http%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20090930_muttgmail-imap.html%2f&amp;title=%e4%bd%bf%e7%94%a8Mutt%e6%94%b6GMail%20IMAP%e9%9b%bb%e5%ad%90%e9%83%b5%e4%bb%b6%2c%20Part%201%20%e5%9f%ba%e7%a4%8e%e8%a8%ad%e5%ae%9a%e7%af%87" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20090930_muttgmail-imap.html%2f&amp;title=%e4%bd%bf%e7%94%a8Mutt%e6%94%b6GMail%20IMAP%e9%9b%bb%e5%ad%90%e9%83%b5%e4%bb%b6%2c%20Part%201%20%e5%9f%ba%e7%a4%8e%e8%a8%ad%e5%ae%9a%e7%af%87" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20090930_muttgmail-imap.html%2f&amp;title=%e4%bd%bf%e7%94%a8Mutt%e6%94%b6GMail%20IMAP%e9%9b%bb%e5%ad%90%e9%83%b5%e4%bb%b6%2c%20Part%201%20%e5%9f%ba%e7%a4%8e%e8%a8%ad%e5%ae%9a%e7%af%87" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=http%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20090930_muttgmail-imap.html%2f&amp;description=%e4%bd%bf%e7%94%a8Mutt%e6%94%b6GMail%20IMAP%e9%9b%bb%e5%ad%90%e9%83%b5%e4%bb%b6%2c%20Part%201%20%e5%9f%ba%e7%a4%8e%e8%a8%ad%e5%ae%9a%e7%af%87" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="http://kalug.github.io/planet/qerter/20091020_muttgmail-imap-part-2-procmail.html/" data-toggle="tooltip" data-placement="top" title="使用Mutt收GMail IMAP電子郵件, Part 2 Procmail篇">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="http://kalug.github.io/planet/qerter/20081102_blog-post.html/" data-toggle="tooltip" data-placement="top" title="[第貳期] 自由軟體四大自由">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "shawn111" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://www.facebook.com/groups/kalug.tw" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalug" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/joinchat/Bqbim0F9EuW-GMUbYg9geA" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="http://kalug.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          0001
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="http://kalug.github.io">Kaohsiung Linux User Group</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.41</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="http://kalug.github.io/js/main.js"></script>
+<script src="http://kalug.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="http://kalug.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>用 Nginx 來架設線上即時縮圖機</title>
+  <meta property="og:title" content="用 Nginx 來架設線上即時縮圖機" />
+  <meta name="twitter:title" content="用 Nginx 來架設線上即時縮圖機" />
+  <meta name="description" content="在更早以前我們怎麼實現縮圖機制，當使用者上傳一張檔案，後端會固定將圖片縮圖成各種前端網頁需要的大小，不管前端頁面是否有使用，後端都會先產生好">
+  <meta property="og:description" content="在更早以前我們怎麼實現縮圖機制，當使用者上傳一張檔案，後端會固定將圖片縮圖成各種前端網頁需要的大小，不管前端頁面是否有使用，後端都會先產生好">
+  <meta name="twitter:description" content="在更早以前我們怎麼實現縮圖機制，當使用者上傳一張檔案，後端會固定將圖片縮圖成各種前端網頁需要的大小，不管前端頁面是否有使用，後端都會先產生好">
+  <meta name="author" content=""/>
+  <link href='http://kalug.github.io/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="http://kalug.github.io/img/kalug.png" />
+  <meta name="twitter:image" content="http://kalug.github.io/img/kalug.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="http://kalug.github.io/planet/appleboy/20180317_nginx-reverse-proxy-image-resizing/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kaohsiung Linux User Group" />
+
+  <meta name="generator" content="Hugo 0.41" />
+  <link rel="canonical" href="http://kalug.github.io/planet/appleboy/20180317_nginx-reverse-proxy-image-resizing/" />
+  <link rel="alternate" href="http://kalug.github.io/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://kalug.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://kalug.github.io/css/highlight.min.css" /><link rel="stylesheet" href="http://kalug.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://kalug.github.io">Kaohsiung Linux User Group</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Planet" href="/planet/">Planet</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Wiki" href="/wiki/">Wiki</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Kaohsiung Linux User Group" href="http://kalug.github.io">
+            <img class="avatar-img" src="http://kalug.github.io/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="blog-heading">
+              <h1>用 Nginx 來架設線上即時縮圖機</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p><a href="https://www.flickr.com/photos/appleboy/26946324088/in/dateposted-public/" title="Screen Shot 2018-03-15 at 10.21.38 AM"><img alt="Screen Shot 2018-03-15 at 10.21.38 AM" src="https://i0.wp.com/farm1.staticflickr.com/790/26946324088_93725a917b_z.jpg?w=840&#038;ssl=1" /></a></p>
+
+<p>在更早以前我們怎麼實現縮圖機制，當使用者上傳一張檔案，後端會固定將圖片縮圖成各種前端網頁需要的大小，不管前端頁面是否有使用，後端都會先產生好，這有什麼缺陷？</p>
+
+<ol>
+<li>佔用硬碟空間大小</li>
+<li>前端又需要另外一種格式的縮圖?</li>
+</ol>
+
+<p>第二個問題比較麻煩，當前端需要另一種縮圖格式，後端就要開始掃描系統的全部圖片，再重新產生一次。非常耗費後端系統效能。後來才改成透過 URL 定義長寬來決定即時縮圖，在 <a href="https://golang.org">Go 語言</a>內可以選擇使用 <a href="https://github.com/thoas/picfit">picfit</a> 來當作後端即時的縮圖機。本篇則是要提供另一種解法，就是使用 <a href="http://nginx.org">Nginx</a> 搭配 <a href="http://nginx.org/en/docs/http/ngx_http_image_filter_module.html">image_filter</a> 外掛來達成即時縮圖機制。</p>
+
+<p><span id="more-6977"></span></p>
+
+<h2>使用 image_filter</h2>
+
+<p>來看看縮圖網址</p>
+
+<pre class="brush: plain; title: ; notranslate">
+http://foobar.org/image_width/bucket_name/image_name
+</pre>
+
+<ul>
+<li><strong>image_width</strong>: 圖片 width</li>
+<li><strong>bucket_name</strong>: 圖片目錄或 AWS S3 bucket</li>
+<li><strong>image_width</strong>: 圖片檔名</li>
+</ul>
+
+<p>其中 bucket 可以是 <a href="https://aws.amazon.com/tw/s3/">AWS S3</a>。底下是 Nginx 的簡單設定:</p>
+
+<pre class="brush: plain; title: ; notranslate">
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+  server_name ${NGINX_HOST};
+
+  location ~ ^/([0-9]+)/(.*)$ {
+    set $width $1;
+    set $path $2;
+    rewrite ^ /$path break;
+    proxy_pass ${IMAGE_HOST};
+    image_filter resize $width -;
+    image_filter_buffer 100M;
+    image_filter_jpeg_quality ${JPG_QUALITY};
+    expires ${EXPIRE_TIME};
+  }
+}
+</pre>
+
+<p>我們可以設定 expires 來讓使用這存在瀏覽器端，這樣下次瀏覽網頁的時候都可以使用快取機制。可以看到 <code>IMAGE_HOST</code> 可以是 AWS S3 URL。</p>
+
+<ol>
+<li>先從 <code>IMAGE_HOST</code> 下載圖片</li>
+<li>Nginx 執行縮圖</li>
+<li>儲存圖片在使用者 browser 端</li>
+</ol>
+
+<p><a href="https://www.flickr.com/photos/appleboy/40809061222/in/dateposted-public/" title="Snip20180317_2"><img alt="Snip20180317_2" src="https://i1.wp.com/farm1.staticflickr.com/817/40809061222_088e694426_z.jpg?w=840&#038;ssl=1" /></a></p>
+
+<p>到這邊會有個問題，假設有一萬個使用者在不同的地方同時連線，Nginx 就需要處理 1 萬次，可以直接用 <a href="https://github.com/tsenart/vegeta">vegeta</a> 來 Benchmark 試試看</p>
+
+<pre class="brush: plain; title: ; notranslate">
+$ echo "GET http://localhost:8002/310/test/26946324088_5b3f0b1464_o.png" | vegeta attack -rate=100 -connections=1 -duration=1s | tee results.bin | vegeta report
+Requests      [total, rate]            100, 101.01
+Duration      [total, attack, wait]    8.258454731s, 989.999ms, 7.268455731s
+Latencies     [mean, 50, 95, 99, max]  3.937031678s, 4.079690985s, 6.958110121s, 7.205018428s, 7.268455731s
+Bytes In      [total, mean]            4455500, 44555.00
+Bytes Out     [total, mean]            0, 0.00
+Success       [ratio]                  100.00%
+Status Codes  [code:count]             200:100
+Error Set:
+</pre>
+
+<p>上面數據顯示每秒打 100 次連線，ngix 需要花費 8 秒多才能執行結束。而延遲時間也高達 3 秒多。</p>
+
+<h2>加入 proxy cache 機制</h2>
+
+<p>透過 proxy cache 機制可以讓 nginx 只產生一次縮圖，並且放到 cache 目錄內可以減少短時間的不同連線。但是 image_filter 無法跟 proxy cache 同時處理，所以必須要拆成兩個 host 才可以達到此目的，如果沒有透過 proxy cache，你也可以用 <a href="https://www.cloudflare.com/cdn/">cloudflare CDN</a> 來達成此目的。請參考<a href="https://github.com/appleboy/nginx-image-resizer/blob/ab1e460de8774eccc4cae06a5c7e37536899126e/default.conf#L1-L44">線上設定</a></p>
+
+<pre class="brush: plain; title: ; notranslate">
+proxy_cache_path /data keys_zone=cache_zone:10m;
+
+server {
+  # Internal image resizing server.
+  server_name localhost;
+  listen 8888;
+
+  # Clean up the headers going to and from S3.
+  proxy_hide_header "x-amz-id-2";
+  proxy_hide_header "x-amz-request-id";
+  proxy_hide_header "x-amz-storage-class";
+  proxy_hide_header "Set-Cookie";
+  proxy_ignore_headers "Set-Cookie";
+
+  location ~ ^/([0-9]+)/(.*)$ {
+    set $width $1;
+    set $path $2;
+    rewrite ^ /$path break;
+    proxy_pass ${IMAGE_HOST};
+    image_filter resize $width -;
+    image_filter_buffer 100M;
+    image_filter_jpeg_quality ${JPG_QUALITY};
+  }
+}
+
+
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+  server_name ${NGINX_HOST};
+
+  location ~ ^/([0-9]+)/(.*)$ {
+    set $width $1;
+    set $path $2;
+    rewrite ^ /$path break;
+    proxy_pass http://127.0.0.1:8888/$width/$path;
+    proxy_cache cache_zone;
+    proxy_cache_key $uri;
+    proxy_cache_valid 200 302 24h;
+    proxy_cache_valid 404 1m;
+    # expire time for browser
+    expires ${EXPIRE_TIME};
+  }
+}
+</pre>
+
+<h2>測試數據</h2>
+
+<p>這邊使用 <a href="https://minio.io/">minio</a> 來當作 S3 儲存空間，再搭配 Nginx 1.3.9 版本來測試上面設定效能。底下是 <a href="https://docs.docker.com/compose/">docker-compose</a> 一鍵啟動</p>
+
+<pre class="brush: plain; title: ; notranslate">
+version: &#039;2&#039;
+
+services:
+  minio:
+    image: minio/minio
+    container_name: minio
+    ports:
+      - "9000:9000"
+    volumes:
+      - minio-data:/data
+    environment:
+      MINIO_ACCESS_KEY: YOUR_MINIO_ACCESS_KEY
+      MINIO_SECRET_KEY: YOUR_MINIO_SECRET_KEY
+    command: server /data
+
+  image-resizer:
+    image: appleboy/nginx-image-resizer
+    container_name: image-resizer
+    ports:
+      - "8002:80"
+    environment:
+      IMAGE_HOST: http://minio:9000
+      NGINX_HOST: localhost
+
+volumes:
+  minio-data:
+</pre>
+
+<p>用 docker-compose up 可以將 nginx 及 minio 服務同時啟動，接著打開 <a href="http://localhost:9000">http://localhost:9000</a> 上傳圖片，再透過 <a href="https://github.com/tsenart/vegeta">vegeta</a> 測試數據:</p>
+
+<pre class="brush: plain; title: ; notranslate">
+$ echo "GET http://localhost:8002/310/test/26946324088_5b3f0b1464_o.png" | vegeta attack -rate=100 -connections=1 -duration=1s | tee results.bin | vegeta report
+Requests      [total, rate]            100, 101.01
+Duration      [total, attack, wait]    993.312255ms, 989.998ms, 3.314255ms
+Latencies     [mean, 50, 95, 99, max]  3.717219ms, 3.05486ms, 8.891027ms, 12.488937ms, 12.520428ms
+Bytes In      [total, mean]            4455500, 44555.00
+Bytes Out     [total, mean]            0, 0.00
+Success       [ratio]                  100.00%
+Status Codes  [code:count]             200:100
+Error Set:
+</pre>
+
+<p>執行時間變成 <code>993.312255ms</code>，Latency 也降到 <code>3.717219ms</code>，效能提升了很多。透過簡單的 <a href="https://www.docker.com">docker</a> 指令就可以在任意機器架設此縮圖機。詳細步驟請參考 <a href="https://github.com/appleboy/nginx-image-resizer">nginx-image-resizer</a></p>
+
+<pre class="brush: plain; title: ; notranslate">
+$ docker run -e NGINX_PORT=8081 \
+  -e NGINX_HOST=localhost \
+  -e IMAGE_HOST="http://localhost:9000" \
+  appleboy/nginx-image-resizer
+</pre>
+
+<p><h1>程式碼請參考 <a href="https://github.com/appleboy/nginx-image-resizer">nginx-image-resizer</a></h1>
+<div class="wp_rp_wrap  wp_rp_plain"><div class="wp_rp_content"><h3 class="related_post_title">Related View</h3><ul class="related_post wp_rp"><li><a class="wp_rp_title" href="https://blog.wu-boy.com/2012/11/nginx-check-if-file-exists/">Nginx 判斷檔案是否存在</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li><a class="wp_rp_title" href="https://blog.wu-boy.com/2013/06/force-phpmyadmin-ssl-with-nginx/">Nginx + phpMyAdmin 搭配 SSL 設定</a><small class="wp_rp_comments_count"> (2)</small><br /></li><li><a class="wp_rp_title" href="https://blog.wu-boy.com/2014/06/ngnix-php5-fpm-sock-failed-permission-denied/">Ngnix 搭配 PHP-FPM 噴 php5-fpm.sock failed (13: Permission denied)</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li><a class="wp_rp_title" href="https://blog.wu-boy.com/2017/11/migrate-nginx-to-caddy/">從 Nginx 換到 Caddy</a><small class="wp_rp_comments_count"> (5)</small><br /></li><li><a class="wp_rp_title" href="https://blog.wu-boy.com/2017/04/1-line-letsencrypt-https-servers-in-golang/">在 Go 語言用一行程式碼自動化安裝且更新 Let’s Encrypt 憑證</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li><a class="wp_rp_title" href="https://blog.wu-boy.com/2012/05/php-fastcgi-with-nginx-on-ubuntu-10-10-maverick/">在 Ubuntu 10.10 (Maverick) 架設 Nginx + PHP FastCGI</a><small class="wp_rp_comments_count"> (3)</small><br /></li><li><a class="wp_rp_title" href="https://blog.wu-boy.com/2013/11/jenkins-nginx-auth/">Jenkins + Nginx User Auth</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li><a class="wp_rp_title" href="https://blog.wu-boy.com/2016/10/website-support-http2-using-letsencrypt/">申請 Let&#8217;s Encrypt 免費憑證讓網站支援 HTTP2</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li><a class="wp_rp_title" href="https://blog.wu-boy.com/2013/04/install-nginx-spdy-module-on-ubuntu-or-debian/">Install Nginx + spdy module on Ubuntu or Debian</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li><a class="wp_rp_title" href="https://blog.wu-boy.com/2013/04/nginx-1-4-0-support-spdy-module/">nginx 1.4.0 釋出並支援 SPDY</a><small class="wp_rp_comments_count"> (4)</small><br /></li></ul></div></div></p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=http%3a%2f%2fkalug.github.io%2fplanet%2fappleboy%2f20180317_nginx-reverse-proxy-image-resizing%2f&amp;text=%e7%94%a8%20Nginx%20%e4%be%86%e6%9e%b6%e8%a8%ad%e7%b7%9a%e4%b8%8a%e5%8d%b3%e6%99%82%e7%b8%ae%e5%9c%96%e6%a9%9f&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=http%3a%2f%2fkalug.github.io%2fplanet%2fappleboy%2f20180317_nginx-reverse-proxy-image-resizing%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fkalug.github.io%2fplanet%2fappleboy%2f20180317_nginx-reverse-proxy-image-resizing%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=http%3a%2f%2fkalug.github.io%2fplanet%2fappleboy%2f20180317_nginx-reverse-proxy-image-resizing%2f&amp;title=%e7%94%a8%20Nginx%20%e4%be%86%e6%9e%b6%e8%a8%ad%e7%b7%9a%e4%b8%8a%e5%8d%b3%e6%99%82%e7%b8%ae%e5%9c%96%e6%a9%9f" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fkalug.github.io%2fplanet%2fappleboy%2f20180317_nginx-reverse-proxy-image-resizing%2f&amp;title=%e7%94%a8%20Nginx%20%e4%be%86%e6%9e%b6%e8%a8%ad%e7%b7%9a%e4%b8%8a%e5%8d%b3%e6%99%82%e7%b8%ae%e5%9c%96%e6%a9%9f" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fkalug.github.io%2fplanet%2fappleboy%2f20180317_nginx-reverse-proxy-image-resizing%2f&amp;title=%e7%94%a8%20Nginx%20%e4%be%86%e6%9e%b6%e8%a8%ad%e7%b7%9a%e4%b8%8a%e5%8d%b3%e6%99%82%e7%b8%ae%e5%9c%96%e6%a9%9f" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=http%3a%2f%2fkalug.github.io%2fplanet%2fappleboy%2f20180317_nginx-reverse-proxy-image-resizing%2f&amp;description=%e7%94%a8%20Nginx%20%e4%be%86%e6%9e%b6%e8%a8%ad%e7%b7%9a%e4%b8%8a%e5%8d%b3%e6%99%82%e7%b8%ae%e5%9c%96%e6%a9%9f" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+          
+            <li class="next">
+              <a href="http://kalug.github.io/planet/appleboy/20180310_simple-queue-with-optimistic-concurrency-in-go/" data-toggle="tooltip" data-placement="top" title="用 Go 語言實現單一或多重 Queue 搭配 optimistic concurrency">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "shawn111" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://www.facebook.com/groups/kalug.tw" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalug" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/joinchat/Bqbim0F9EuW-GMUbYg9geA" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="http://kalug.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          0001
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="http://kalug.github.io">Kaohsiung Linux User Group</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.41</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="http://kalug.github.io/js/main.js"></script>
+<script src="http://kalug.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="http://kalug.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

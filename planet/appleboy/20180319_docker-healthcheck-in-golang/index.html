@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Go 語言搭配 Docker Healthy Check 檢查</title>
+  <meta property="og:title" content="Go 語言搭配 Docker Healthy Check 檢查" />
+  <meta name="twitter:title" content="Go 語言搭配 Docker Healthy Check 檢查" />
+  <meta name="description" content="在 Docker 1.12 版本後，提供了 HEALTHCHECK 指令，通過指定的一行命令來判斷容器內的服務是否正常運作。在此之前大部分都是透過判斷程式是否 Crash 來決定容器是否存活，但是這">
+  <meta property="og:description" content="在 Docker 1.12 版本後，提供了 HEALTHCHECK 指令，通過指定的一行命令來判斷容器內的服務是否正常運作。在此之前大部分都是透過判斷程式是否 Crash 來決定容器是否存活，但是這">
+  <meta name="twitter:description" content="在 Docker 1.12 版本後，提供了 HEALTHCHECK 指令，通過指定的一行命令來判斷容器內的服務是否正常運作。在此之前大部分都是透過判斷程式是否 Crash 來決定容器是否存活，但是這">
+  <meta name="author" content=""/>
+  <link href='http://kalug.github.io/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="http://kalug.github.io/img/kalug.png" />
+  <meta name="twitter:image" content="http://kalug.github.io/img/kalug.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="http://kalug.github.io/planet/appleboy/20180319_docker-healthcheck-in-golang/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kaohsiung Linux User Group" />
+
+  <meta name="generator" content="Hugo 0.41" />
+  <link rel="canonical" href="http://kalug.github.io/planet/appleboy/20180319_docker-healthcheck-in-golang/" />
+  <link rel="alternate" href="http://kalug.github.io/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://kalug.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="http://kalug.github.io/css/highlight.min.css" /><link rel="stylesheet" href="http://kalug.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://kalug.github.io">Kaohsiung Linux User Group</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Planet" href="/planet/">Planet</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Wiki" href="/wiki/">Wiki</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Kaohsiung Linux User Group" href="http://kalug.github.io">
+            <img class="avatar-img" src="http://kalug.github.io/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="blog-heading">
+              <h1>Go 語言搭配 Docker Healthy Check 檢查</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p><a href="https://www.flickr.com/photos/appleboy/39050902230/in/dateposted-public/" title="Screen Shot 2018-03-17 at 11.40.12 PM"><img alt="Screen Shot 2018-03-17 at 11.40.12 PM" src="https://i2.wp.com/farm1.staticflickr.com/805/39050902230_b1d91bc120_z.jpg?w=840&#038;ssl=1" /></a></p>
+
+<p>在 <a href="https://www.docker.com">Docker</a> 1.12 版本後，提供了 <code>HEALTHCHECK</code> 指令，通過指定的一行命令來判斷容器內的服務是否正常運作。在此之前大部分都是透過判斷程式是否 Crash 來決定容器是否存活，但是這地方有點風險的是，假設服務並非 crash，而是沒辦法退出容器，造成無法接受新的請求，這就確保容器存活。現在呢我們可以透過在 <code>Dockerfile</code> 內指定 <code>HEALTHCHECK</code> 指令來確保服務是否正常。而用 <a href="https://golang.org">Go 語言</a>開發的 Web 服務該如何來實現呢？</p>
+
+<p><span id="more-6982"></span></p>
+
+<h2>建立 /healthz 路由</h2>
+
+<p>透過簡單的路由 <code>/healthz</code> 直接回傳 200 status code 即可 (使用 <a href="https://github.com/gin-gonic/gin">Gin</a> 當例子)。</p>
+
+<pre class="brush: go; title: ; notranslate">
+func heartbeatHandler(c *gin.Context) {
+    c.AbortWithStatus(http.StatusOK)
+}
+</pre>
+
+<p>透過瀏覽器 <code><a href="http://localhost:8080/healthz">http://localhost:8080/healthz</a></code> 可以得到空白網頁，但是打開 console 可以看到正確回傳值。</p>
+
+<p><a href="https://www.flickr.com/photos/appleboy/26990632808/in/dateposted-public/" title="Snip20180317_4"><img alt="Snip20180317_4" src="https://i1.wp.com/farm5.staticflickr.com/4774/26990632808_d800bc3800_z.jpg?w=840&#038;ssl=1" /></a></p>
+
+<h2>建立 ping 指令</h2>
+
+<p>透過 <code>net/http</code> 套件可以快速寫個驗證接口的函式</p>
+
+<pre class="brush: go; title: ; notranslate">
+func pinger() error {
+    resp, err := http.Get("http://localhost:8080/healthz")
+    if err != nil {
+        return err
+    }
+    defer resp.Body.Close()
+    if resp.StatusCode != 200 {
+        return fmt.Errorf("server returned non-200 status code")
+    }
+    return nil
+}
+</pre>
+
+<h2>增加 HEALTHCHECK 指令</h2>
+
+<p>在 <code>Dockerfile</code> 內增加底下內容:</p>
+
+<pre class="brush: plain; title: ; notranslate">
+HEALTHCHECK --start-period=2s --interval=10s --timeout=5s \
+  CMD ["/bin/gorush", "--ping"]
+</pre>
+
+<ul>
+<li><strong>&#8211;start-period</strong>: 容器啟動後需要等待幾秒，預設為 0 秒</li>
+<li><strong>&#8211;interval</strong>: 偵測間隔時間，預設為 30 秒</li>
+<li><strong>&#8211;timeout</strong>: 檢查超時時間</li>
+</ul>
+
+<p>重新編譯容器，並且啟動容器，會看到初始狀態為 <code>(health: starting)</code></p>
+
+<p><a href="https://www.flickr.com/photos/appleboy/40861013721/in/dateposted-public/" title="Snip20180317_5"><img alt="Snip20180317_5" src="https://i2.wp.com/farm1.staticflickr.com/788/40861013721_d7327500f9_z.jpg?w=840&#038;ssl=1" /></a></p>
+
+<p>經過 10 秒後，就會執行指定的指令，就可以知道容器健康與否，最後狀態為 <code>(healtyy)</code>。</p>
+
+<p><a href="https://www.flickr.com/photos/appleboy/39051186800/in/dateposted-public/" title="Snip20180317_6"><img alt="Snip20180317_6" src="https://i1.wp.com/farm1.staticflickr.com/783/39051186800_ee9a838403_z.jpg?w=840&#038;ssl=1" /></a></p>
+
+<p>最後可以透過 <code>docker inspect</code> 指令來知道容器的狀態列表 (JSON 格式)</p>
+
+<pre class="brush: plain; title: ; notranslate">
+$ docker inspect --format &#039;{{json .State.Health}}&#039; gorush | jq
+</pre>
+
+<p><a href="https://www.flickr.com/photos/appleboy/40861130401/in/dateposted-public/" title="Snip20180318_8"><img alt="Snip20180318_8" src="https://i1.wp.com/farm5.staticflickr.com/4781/40861130401_08ca9e2cce_z.jpg?w=840&#038;ssl=1" /></a></p>
+
+<p>從上圖可以知道每隔 10 秒 Docker 就會自動偵測一次。有了上述這些資料，就可以來寫系統報警通知了。如果對 Go 語言有興趣，可以參考<a href="http://bit.ly/intro-golang">線上課程</a>。
+<div class="wp_rp_wrap  wp_rp_plain"><div class="wp_rp_content"><h3 class="related_post_title">Related View</h3><ul class="related_post wp_rp"><li><a class="wp_rp_title" href="https://blog.wu-boy.com/2017/11/gorush-a-push-notification-server-written-in-go/">Gorush 輕量級手機訊息發送服務</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li><a class="wp_rp_title" href="https://blog.wu-boy.com/2016/11/send-line-notification-using-docker-written-in-golang/">用 Docker 發送 Line 訊息</a><small class="wp_rp_comments_count"> (5)</small><br /></li><li><a class="wp_rp_title" href="https://blog.wu-boy.com/2017/09/drone-on-kubernetes-on-aws/">用 Kubernetes 將 Drone CI/CD 架設在 AWS</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li><a class="wp_rp_title" href="https://blog.wu-boy.com/2016/09/drone-ci-server-integrate-atlassian-bitbucket-server/">Drone CI Server 搭配 Atlassian Bitbucket Server (前身 Stash)</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li><a class="wp_rp_title" href="https://blog.wu-boy.com/2017/06/how-to-schedule-builds-in-drone/">Cronjob 搭配 Drone 服務</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li><a class="wp_rp_title" href="https://blog.wu-boy.com/2017/08/2017-coscup-introduction-to-gitea-drone/">2017 COSCUP 研討會: Gitea + Drone 介紹</a><small class="wp_rp_comments_count"> (4)</small><br /></li><li><a class="wp_rp_title" href="https://blog.wu-boy.com/2017/09/why-i-choose-drone-as-ci-cd-tool/">為什麼我用 Drone 取代 Jenkins 及 GitLab CI</a><small class="wp_rp_comments_count"> (10)</small><br /></li><li><a class="wp_rp_title" href="https://blog.wu-boy.com/2017/09/deploy-go-app-to-zeit-now/">部署 Go 語言 App 到 Now.sh</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li><a class="wp_rp_title" href="https://blog.wu-boy.com/2017/06/gopher-day-in-taipei/">台灣第一屆 GoPher 大會</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li><a class="wp_rp_title" href="https://blog.wu-boy.com/2017/08/microservice-in-go/">用 Go 語言打造微服務架構</a><small class="wp_rp_comments_count"> (0)</small><br /></li></ul></div></div></p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=http%3a%2f%2fkalug.github.io%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f&amp;text=Go%20%e8%aa%9e%e8%a8%80%e6%90%ad%e9%85%8d%20Docker%20Healthy%20Check%20%e6%aa%a2%e6%9f%a5&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=http%3a%2f%2fkalug.github.io%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fkalug.github.io%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=http%3a%2f%2fkalug.github.io%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e6%90%ad%e9%85%8d%20Docker%20Healthy%20Check%20%e6%aa%a2%e6%9f%a5" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fkalug.github.io%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e6%90%ad%e9%85%8d%20Docker%20Healthy%20Check%20%e6%aa%a2%e6%9f%a5" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fkalug.github.io%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e6%90%ad%e9%85%8d%20Docker%20Healthy%20Check%20%e6%aa%a2%e6%9f%a5" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=http%3a%2f%2fkalug.github.io%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f&amp;description=Go%20%e8%aa%9e%e8%a8%80%e6%90%ad%e9%85%8d%20Docker%20Healthy%20Check%20%e6%aa%a2%e6%9f%a5" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="http://kalug.github.io/planet/appleboy/20180419_init-func-in-golang/" data-toggle="tooltip" data-placement="top" title="Go 語言的 init 函式">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="http://kalug.github.io/planet/appleboy/20180329_golang-introduction-video/" data-toggle="tooltip" data-placement="top" title="Go 語言基礎實戰教學影片上線了">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "shawn111" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://www.facebook.com/groups/kalug.tw" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalug" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/joinchat/Bqbim0F9EuW-GMUbYg9geA" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="http://kalug.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          0001
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="http://kalug.github.io">Kaohsiung Linux User Group</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.41</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="http://kalug.github.io/js/main.js"></script>
+<script src="http://kalug.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="http://kalug.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+
