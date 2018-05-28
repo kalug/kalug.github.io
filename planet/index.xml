@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Planets on Kaohsiung Linux User Group</title>
+    <title>Kaohsiung Linux User Group</title>
     <link>https://kalug.github.io/planet/</link>
-    <description>Recent content in Planets on Kaohsiung Linux User Group</description>
+    <description>Recent content on Kaohsiung Linux User Group</description>
     <generator>Hugo -- gohugo.io</generator>
     
 	<atom:link href="https://kalug.github.io/planet/index.xml" rel="self" type="application/rss+xml" />

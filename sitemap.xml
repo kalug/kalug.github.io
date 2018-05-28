@@ -3,11 +3,15 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://kalug.github.io/page/about/</loc>
+    <loc>https://kalug.github.io/meetups/</loc>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/wiki/home/</loc>
+    <loc>https://kalug.github.io/meetups/others/debconf18/</loc>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/planet/</loc>
   </url>
   
   <url>
@@ -15,16 +19,15 @@
   </url>
   
   <url>
-    <loc>https://kalug.github.io/event/2018-3-17-1803%E8%81%9A%E6%9C%83%E4%B8%BB%E9%A1%8C-%E9%96%8B%E6%BA%90%E8%88%87%E5%A4%A9%E6%96%87-%E5%9C%B0%E9%BB%9E-%E6%A9%8B%E9%A0%AD%E7%B3%96%E5%BB%A0%E5%8D%9A%E7%89%A9%E9%A4%A8-%E7%B3%96%E5%BB%A0%E5%92%96%E5%95%A1/</loc>
+    <loc>https://kalug.github.io/meetups/1803/</loc>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/page/about/</loc>
   </url>
   
   <url>
     <loc>https://kalug.github.io/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/event/</loc>
     <priority>0</priority>
   </url>
   
@@ -45,60 +48,59 @@
   </url>
   
   <url>
-    <loc>https://kalug.github.io/event/2016-5-28-kalug-1605-%E8%81%9A%E6%9C%83/</loc>
+    <loc>https://kalug.github.io/meetups/1605/</loc>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/event/2016-6-25-kalug-1606-%E8%81%9A%E6%9C%83-1-%E7%94%A8lxd-&#43;-zfs-%E7%A7%92%E7%94%9Fcontainer--2python-&#43;-webrtc/</loc>
+    <loc>https://kalug.github.io/meetups/1606/</loc>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/event/2016-7-23-kalug-1607-%E8%81%9A%E6%9C%83-%E5%87%8D%E4%BB%81%E5%8F%B0%E5%8C%97%E6%AD%A1%E9%80%81%E6%9C%83/</loc>
+    <loc>https://kalug.github.io/meetups/1607/</loc>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/event/2016-12-17-kalug-1612-%E8%81%9A%E6%9C%83-%E6%AD%B2%E6%9C%ABparty/</loc>
+    <loc>https://kalug.github.io/meetups/1612/</loc>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/event/2017-1-30-kalug-1701-%E8%81%9A%E6%9C%83-%E5%88%9D%E4%B8%89-kalug%E5%9C%98-/</loc>
+    <loc>https://kalug.github.io/meetups/1701/</loc>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/event/2017-3-18-kalug-1703-%E8%81%9A%E6%9C%83-%E6%AF%8F%E6%9C%88%E5%AE%9A%E6%9C%9F%E8%81%9A%E6%9C%83-%E4%B8%BB%E9%A1%8C-%E5%9C%B0%E9%BB%9E-%E6%A9%8B%E9%A0%AD%E7%B3%96%E5%BB%A0-%E7%8E%AB%E7%91%B0%E7%9B%92%E5%AD%90/</loc>
+    <loc>https://kalug.github.io/meetups/1703/</loc>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/event/2017-6-24-kalug-1706-%E6%AF%8F%E6%9C%88%E5%AE%9A%E6%9C%9F%E8%81%9A%E6%9C%83-%E5%9C%B0%E9%BB%9E-%E6%A9%8B%E9%A0%AD%E7%B3%96%E5%BB%A0-%E7%B3%96%E5%BB%A0%E5%92%96%E5%95%A1/</loc>
+    <loc>https://kalug.github.io/meetups/1706/</loc>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/event/2017-11-18-kalug-1711-ubuntu-17.10-release-party--taiwan-%E9%AB%98%E9%9B%84%E5%A0%B4--%E5%9C%B0%E9%BB%9E-%E6%A9%8B%E9%A0%AD%E7%B3%96%E5%BB%A0-%E7%B3%96%E5%BB%A0%E5%92%96%E5%95%A1/</loc>
+    <loc>https://kalug.github.io/meetups/1711/</loc>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/event/2017-12-30-kalug-1712-%E9%86%AB%E7%99%82%E7%94%A8linux_%E5%9C%A8%E5%AE%B6%E5%B7%A5%E4%BD%9C%E7%B6%93%E9%A9%97%E5%88%86%E4%BA%AB-%E5%9C%B0%E9%BB%9E-%E6%A9%8B%E9%A0%AD%E7%B3%96%E5%BB%A0%E5%8D%9A%E7%89%A9%E9%A4%A8-%E7%B3%96%E5%BB%A0%E5%92%96%E5%95%A1/</loc>
+    <loc>https://kalug.github.io/meetups/1712/</loc>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/event/2018-4-14-kalug-1804%E8%81%9A%E6%9C%83-1.-emacs%E7%9A%84org-modegtd-2.katacoda-%E9%96%8B%E9%96%8B%E5%BF%83%E5%BF%83%E5%AD%B8k8s/</loc>
+    <loc>https://kalug.github.io/meetups/1804/</loc>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/event/2018-5-26-kalug-1805%E8%81%9A%E6%9C%83-%E6%8E%A5%E7%BA%8C%E6%97%A9%E4%B8%8A-%E9%AB%98%E9%9B%84go--&#43;-coscup%E7%A7%91%E6%8A%80%E6%94%BF%E7%AD%96%E8%A6%8F%E5%8A%83workshop-%E8%A8%8E%E8%AB%96/</loc>
+    <loc>https://kalug.github.io/meetups/1805/</loc>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/event/2008-3-29-kalug-%E4%B8%89%E6%9C%88%E4%BB%BD%E8%81%9A%E6%9C%83/</loc>
+    <loc>https://kalug.github.io/meetups/1806/</loc>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/event/2017-4-15-kalugx%E7%B6%AD%E5%9F%BA%E7%99%BE%E7%A7%91xopenstreemap-1704-%E8%81%9A%E6%9C%83-%E6%A9%8B%E9%A0%AD%E7%B3%96%E5%BB%A0-%E6%8D%B7%E9%81%8Br22a-2%E8%99%9F%E5%87%BA%E5%8F%A3-%E7%8E%AB%E7%91%B0%E7%9B%92%E5%AD%90/</loc>
+    <loc>https://kalug.github.io/meetups/0803/</loc>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/</loc>
-    <priority>0</priority>
+    <loc>https://kalug.github.io/meetups/1704/</loc>
   </url>
   
   <url>
@@ -107,11 +109,6 @@
   
   <url>
     <loc>https://kalug.github.io/page/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/planet/</loc>
     <priority>0</priority>
   </url>
   
@@ -175,6 +172,10 @@
   
   <url>
     <loc>https://kalug.github.io/planet/appleboy/20180317_nginx-reverse-proxy-image-resizing/</loc>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/</loc>
   </url>
   
 </urlset>
