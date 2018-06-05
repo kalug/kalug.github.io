@@ -3,23 +3,188 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://kalug.github.io/meetups/</loc>
+    <loc>https://kalug.github.io/meetups/1807/</loc>
+    <lastmod>2018-07-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/meetups/others/debconf18/</loc>
+    <loc>https://kalug.github.io/meetups/1806/</loc>
+    <lastmod>2018-06-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/</loc>
+    <loc>https://kalug.github.io/planet/appleboy/20180605_drone-kubernetes-with-golang/</loc>
+    <lastmod>2018-06-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/wiki/test/</loc>
+    <loc>https://kalug.github.io/meetups/1805/</loc>
+    <lastmod>2018-05-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/planet/appleboy/20180514_how-to-write-testing-in-golang/</loc>
+    <lastmod>2018-05-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/planet/appleboy/20180505_what-is-vendor-in-golang/</loc>
+    <lastmod>2018-05-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/planet/appleboy/20180419_init-func-in-golang/</loc>
+    <lastmod>2018-04-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/planet/appleboy/20180415_how-to-use-filter-in-drone/</loc>
+    <lastmod>2018-04-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/meetups/1804/</loc>
+    <lastmod>2018-04-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/planet/appleboy/20180412_how-to-use-golang-flag-package/</loc>
+    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/planet/appleboy/20180329_golang-introduction-video/</loc>
+    <lastmod>2018-03-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/planet/appleboy/20180319_docker-healthcheck-in-golang/</loc>
+    <lastmod>2018-03-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://kalug.github.io/meetups/1803/</loc>
+    <lastmod>2018-03-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/planet/appleboy/20180317_nginx-reverse-proxy-image-resizing/</loc>
+    <lastmod>2018-03-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/planet/appleboy/20180310_simple-queue-with-optimistic-concurrency-in-go/</loc>
+    <lastmod>2018-03-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/planet/appleboy/20180228_simply-output-go-html-template-execution-to-strings/</loc>
+    <lastmod>2018-02-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/meetups/1712/</loc>
+    <lastmod>2017-12-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/meetups/1711/</loc>
+    <lastmod>2017-11-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/meetups/1706/</loc>
+    <lastmod>2017-06-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/meetups/1704/</loc>
+    <lastmod>2017-04-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/meetups/1703/</loc>
+    <lastmod>2017-03-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/meetups/1701/</loc>
+    <lastmod>2017-01-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/meetups/1612/</loc>
+    <lastmod>2016-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/meetups/1607/</loc>
+    <lastmod>2016-07-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/meetups/1606/</loc>
+    <lastmod>2016-06-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/meetups/1605/</loc>
+    <lastmod>2016-05-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/planet/qerter/20100516_muttgmail-imap-part-3.html/</loc>
+    <lastmod>2010-05-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/planet/qerter/20091020_muttgmail-imap-part-2-procmail.html/</loc>
+    <lastmod>2009-10-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/planet/qerter/20090930_muttgmail-imap.html/</loc>
+    <lastmod>2009-09-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/planet/qerter/20090830_linux.html/</loc>
+    <lastmod>2009-08-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/planet/qerter/20090120_debian-sarge-asus-eee-box.html/</loc>
+    <lastmod>2009-01-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/planet/qerter/20081102_blog-post.html/</loc>
+    <lastmod>2008-11-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/planet/qerter/20081101_digg-like-free-software-daily.html/</loc>
+    <lastmod>2008-11-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/meetups/0803/</loc>
+    <lastmod>2008-03-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/planet/qerter/20060817_mysql-big5utf-8.html/</loc>
+    <lastmod>2006-08-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/meetups/</loc>
+    <lastmod>2018-07-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/planet/</loc>
+    <lastmod>2018-06-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -29,82 +194,6 @@
   <url>
     <loc>https://kalug.github.io/categories/</loc>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180329_golang-introduction-video/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180319_docker-healthcheck-in-golang/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180419_init-func-in-golang/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180505_what-is-vendor-in-golang/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/meetups/1605/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/meetups/1606/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/meetups/1607/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/meetups/1612/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/meetups/1701/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/meetups/1703/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/meetups/1706/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/meetups/1711/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/meetups/1712/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/meetups/1804/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/meetups/1805/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/meetups/1806/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/meetups/0803/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/meetups/1704/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/planet/qerter/20060817_mysql-big5utf-8.html/</loc>
   </url>
   
   <url>
@@ -118,64 +207,8 @@
   </url>
   
   <url>
-    <loc>https://kalug.github.io/wiki/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180415_how-to-use-filter-in-drone/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/planet/qerter/20090120_debian-sarge-asus-eee-box.html/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/planet/qerter/20081101_digg-like-free-software-daily.html/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/planet/qerter/20081102_blog-post.html/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/planet/qerter/20090930_muttgmail-imap.html/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/planet/qerter/20091020_muttgmail-imap-part-2-procmail.html/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/planet/qerter/20100516_muttgmail-imap-part-3.html/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180412_how-to-use-golang-flag-package/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180514_how-to-write-testing-in-golang/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180228_simply-output-go-html-template-execution-to-strings/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/planet/qerter/20090830_linux.html/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180310_simple-queue-with-optimistic-concurrency-in-go/</loc>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180317_nginx-reverse-proxy-image-resizing/</loc>
-  </url>
-  
-  <url>
     <loc>https://kalug.github.io/</loc>
+    <lastmod>2018-07-28T00:00:00+00:00</lastmod>
   </url>
   
 </urlset>

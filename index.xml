@@ -5,35 +5,324 @@
     <link>https://kalug.github.io/</link>
     <description>Recent content in 高雄Linux使用者協會 on Kaohsiung Linux User Group</description>
     <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 28 Jul 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kalug.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title></title>
-      <link>https://kalug.github.io/meetups/others/debconf18/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>KaLUG 1807聚會</title>
+      <link>https://kalug.github.io/meetups/1807/</link>
+      <pubDate>Sat, 28 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/meetups/others/debconf18/</guid>
-      <description>新竹</description>
+      <guid>https://kalug.github.io/meetups/1807/</guid>
+      <description>時間：2018/07/28 14:00(+0800)</description>
     </item>
     
     <item>
-      <title></title>
-      <link>https://kalug.github.io/wiki/test/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>KaLUG 1806聚會</title>
+      <link>https://kalug.github.io/meetups/1806/</link>
+      <pubDate>Sat, 23 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/wiki/test/</guid>
-      <description>aa KKK</description>
+      <guid>https://kalug.github.io/meetups/1806/</guid>
+      <description>時間：2018/06/23 14:00(+0800)</description>
+    </item>
+    
+    <item>
+      <title>Drone 搭配 Kubernetes 部署 Go 語言項目</title>
+      <link>https://kalug.github.io/planet/appleboy/20180605_drone-kubernetes-with-golang/</link>
+      <pubDate>Tue, 05 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/appleboy/20180605_drone-kubernetes-with-golang/</guid>
+      <description>在之前寫過一篇『Drone 搭配 Kubernetes 升級應用程式版本』，裡面內容最主要介紹 honestbee 撰寫的 drone 外掛: drone-kubernetes，但是此外掛並非用 Go 語</description>
+    </item>
+    
+    <item>
+      <title>KaLUG 1805聚會: 接續早上 高雄Go  &#43; COSCUP科技政策規劃Workshop 討論</title>
+      <link>https://kalug.github.io/meetups/1805/</link>
+      <pubDate>Sat, 26 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/meetups/1805/</guid>
+      <description>時間：2018/05/26 14:00(+0800) 地點：【高雄】Aroma caf&amp;rsquo;e live 香氣現場 / 前金區長生街25號</description>
+    </item>
+    
+    <item>
+      <title>如何在 Go 專案內寫測試</title>
+      <link>https://kalug.github.io/planet/appleboy/20180514_how-to-write-testing-in-golang/</link>
+      <pubDate>Mon, 14 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/appleboy/20180514_how-to-write-testing-in-golang/</guid>
+      <description>相信大家都知道專案內不導入測試，未來越來越多功能，技術債就會越來越多，接手的人罵聲連連，而寫測試的簡單與否決定專案初期是否要先導入。為什麼專</description>
+    </item>
+    
+    <item>
+      <title>Go 語言的 vendor 目錄</title>
+      <link>https://kalug.github.io/planet/appleboy/20180505_what-is-vendor-in-golang/</link>
+      <pubDate>Sat, 05 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/appleboy/20180505_what-is-vendor-in-golang/</guid>
+      <description>很多朋友剛入門 Go 語言時，第一個會遇到的問題是，該如何設定專案配置，讓專案可以正常執行，在個人電腦該如何開發多個專案，這邊就會遇到該如何設定 $</description>
+    </item>
+    
+    <item>
+      <title>Go 語言的 init 函式</title>
+      <link>https://kalug.github.io/planet/appleboy/20180419_init-func-in-golang/</link>
+      <pubDate>Thu, 19 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/appleboy/20180419_init-func-in-golang/</guid>
+      <description>本篇會帶大家認識 Go 語言的 init 函式，在了解 init func 之前，大家應該都知道在同一個 Package 底下是不可以有重複的變數或者是函式名稱，但是唯獨 init() 可以在同一個 package 內宣</description>
+    </item>
+    
+    <item>
+      <title>[影片教學] 使用 Filter 將專案跑在特定 Drone Agent 服務</title>
+      <link>https://kalug.github.io/planet/appleboy/20180415_how-to-use-filter-in-drone/</link>
+      <pubDate>Sun, 15 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/appleboy/20180415_how-to-use-filter-in-drone/</guid>
+      <description>Drone 是一套用 Go 語言撰寫的 CI/CD 開源專案，是由一個 Server 跟多個 Agent 所組成，Agent 上面必須安裝好 Dokcer 才可以順利測試及部署，但是團隊內會出現一個狀況，每個專</description>
+    </item>
+    
+    <item>
+      <title>KaLUG 1804聚會: 1. Emacs的org-mode&amp;&amp;GTD 2.katacoda 開開心心學k8s</title>
+      <link>https://kalug.github.io/meetups/1804/</link>
+      <pubDate>Sat, 14 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/meetups/1804/</guid>
+      <description>時間：2018/04/14 14:00(+0800)~16:40 地點：橋頭糖廠博物館 的 糖廠咖啡 / 高雄市橋頭區橋南里糖廠路24號 橋頭糖廠博物館</description>
+    </item>
+    
+    <item>
+      <title>如何使用 Go 語言 Flag 套件 (影片教學)</title>
+      <link>https://kalug.github.io/planet/appleboy/20180412_how-to-use-golang-flag-package/</link>
+      <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/appleboy/20180412_how-to-use-golang-flag-package/</guid>
+      <description>之前寫過一篇『用 Golang 寫 Command line 工具』教學，作者我錄了一個教學影片，教大家如何使用 Go 語言的 Flag 套件，套件用法很簡單，相信看了底下的影片教學馬上就會了，</description>
+    </item>
+    
+    <item>
+      <title>Go 語言基礎實戰教學影片上線了</title>
+      <link>https://kalug.github.io/planet/appleboy/20180329_golang-introduction-video/</link>
+      <pubDate>Thu, 29 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/appleboy/20180329_golang-introduction-video/</guid>
+      <description>購買連結 去年在台灣推廣 Drone 這套由 Go 語言所撰寫的開源專案，身為維護者之一，也將 Drone 跟 Gitea 完成整合。如果對於從開發到部署整個流程，還不是很了解的朋友，</description>
+    </item>
+    
+    <item>
+      <title>Go 語言搭配 Docker Healthy Check 檢查</title>
+      <link>https://kalug.github.io/planet/appleboy/20180319_docker-healthcheck-in-golang/</link>
+      <pubDate>Mon, 19 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/appleboy/20180319_docker-healthcheck-in-golang/</guid>
+      <description>在 Docker 1.12 版本後，提供了 HEALTHCHECK 指令，通過指定的一行命令來判斷容器內的服務是否正常運作。在此之前大部分都是透過判斷程式是否 Crash 來決定容器是否存活，但是這</description>
     </item>
     
     <item>
       <title>1803聚會主題: 開源與天文 地點 橋頭糖廠博物館 糖廠咖啡</title>
       <link>https://kalug.github.io/meetups/1803/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 17 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kalug.github.io/meetups/1803/</guid>
       <description>時間：2018/03/17 14:00(+0800)~16:40 地點：橋頭糖廠博物館 的 糖廠咖啡 / 高雄市橋頭區橋南里糖廠路24號 橋頭糖廠博物館</description>
+    </item>
+    
+    <item>
+      <title>用 Nginx 來架設線上即時縮圖機</title>
+      <link>https://kalug.github.io/planet/appleboy/20180317_nginx-reverse-proxy-image-resizing/</link>
+      <pubDate>Sat, 17 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/appleboy/20180317_nginx-reverse-proxy-image-resizing/</guid>
+      <description>在更早以前我們怎麼實現縮圖機制，當使用者上傳一張檔案，後端會固定將圖片縮圖成各種前端網頁需要的大小，不管前端頁面是否有使用，後端都會先產生好</description>
+    </item>
+    
+    <item>
+      <title>用 Go 語言實現單一或多重 Queue 搭配 optimistic concurrency</title>
+      <link>https://kalug.github.io/planet/appleboy/20180310_simple-queue-with-optimistic-concurrency-in-go/</link>
+      <pubDate>Sat, 10 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/appleboy/20180310_simple-queue-with-optimistic-concurrency-in-go/</guid>
+      <description>本篇教學會著重在如何使用 Go 語言的 goroutine 及 channel。MongoDB 是一套具有高效能讀寫的 NoSQL 資料庫，但是不像傳統關連式資料庫，有非常好用的 Transaction 交</description>
+    </item>
+    
+    <item>
+      <title>將 Go Html Template 存入 String 變數</title>
+      <link>https://kalug.github.io/planet/appleboy/20180228_simply-output-go-html-template-execution-to-strings/</link>
+      <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/appleboy/20180228_simply-output-go-html-template-execution-to-strings/</guid>
+      <description>在 Go 語言內通常都將 Html Temaple 寫入到 io.Writer interface 像是 *http.ResponseWriter，但是有些情境需要將 Template 寫入到 String 變數內，例如實作簡訊 Templat</description>
+    </item>
+    
+    <item>
+      <title>KaLUG 1712: 醫療用Linux/在家工作經驗分享 地點 橋頭糖廠博物館 糖廠咖啡</title>
+      <link>https://kalug.github.io/meetups/1712/</link>
+      <pubDate>Sat, 30 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/meetups/1712/</guid>
+      <description>時間：2017/12/30 14:00(+0800)~17:00 地點：高雄 橋頭糖廠博物館糖廠咖啡 / 高雄市橋頭區橋南里糖廠路24號 橋頭糖廠博物館</description>
+    </item>
+    
+    <item>
+      <title>KaLUG 1711: Ubuntu 17.10 Release Party @ Taiwan 高雄場  地點 橋頭糖廠 糖廠咖啡</title>
+      <link>https://kalug.github.io/meetups/1711/</link>
+      <pubDate>Sat, 18 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/meetups/1711/</guid>
+      <description>時間：2017/11/18 14:00(+0800)~18:00 地點：高雄 橋頭糖廠 糖廠咖啡 / 糖廠博物館</description>
+    </item>
+    
+    <item>
+      <title>KaLUG 1706 每月定期聚會 地點 橋頭糖廠 糖廠咖啡</title>
+      <link>https://kalug.github.io/meetups/1706/</link>
+      <pubDate>Sat, 24 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/meetups/1706/</guid>
+      <description>時間：2017/06/24 14:00(+0800)~17:00 地點：高雄 橋頭糖廠 糖廠咖啡 / 糖廠博物館</description>
+    </item>
+    
+    <item>
+      <title>KaLUGx維基百科xOpenstreemap 1704 聚會 橋頭糖廠 捷運R22A 2號出口 玫瑰盒子</title>
+      <link>https://kalug.github.io/meetups/1704/</link>
+      <pubDate>Sat, 15 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/meetups/1704/</guid>
+      <description>時間：2017/04/15 14:00(+0800)~17:00 地點：高雄 橋頭糖廠 捷運R22A 2號出口 玫瑰盒子 / 興糖路13號</description>
+    </item>
+    
+    <item>
+      <title>KaLUG 1703 聚會: 每月定期聚會 主題 地點 橋頭糖廠 玫瑰盒子</title>
+      <link>https://kalug.github.io/meetups/1703/</link>
+      <pubDate>Sat, 18 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/meetups/1703/</guid>
+      <description>時間：2017/03/18 14:00(+0800)~17:00 地點：高雄 橋頭糖廠 玫瑰盒子 / 興糖路13號</description>
+    </item>
+    
+    <item>
+      <title>KaLUG 1701 聚會: 初三 KaLUG團-</title>
+      <link>https://kalug.github.io/meetups/1701/</link>
+      <pubDate>Mon, 30 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/meetups/1701/</guid>
+      <description>時間：2017/01/30 14:00(+0800)~17:00 地點：高雄</description>
+    </item>
+    
+    <item>
+      <title>KaLUG 1612 聚會: 歲末Party</title>
+      <link>https://kalug.github.io/meetups/1612/</link>
+      <pubDate>Sat, 17 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/meetups/1612/</guid>
+      <description>時間：2016/12/17 14:00(+0800)~17:00 地點：彩色巴黎 富民店 / 高雄市左營區富民路391號</description>
+    </item>
+    
+    <item>
+      <title>KaLUG 1607 聚會: 凍仁台北歡送會</title>
+      <link>https://kalug.github.io/meetups/1607/</link>
+      <pubDate>Sat, 23 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/meetups/1607/</guid>
+      <description>時間：2016/07/23 14:00(+0800)~17:00 地點：毛伊咖啡 / 813高雄市左營區博愛二路316號</description>
+    </item>
+    
+    <item>
+      <title>KaLUG 1606 聚會: 1) 用LXD &#43; zfs 秒生Container  2)python &#43; WebRTC</title>
+      <link>https://kalug.github.io/meetups/1606/</link>
+      <pubDate>Sat, 25 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/meetups/1606/</guid>
+      <description>時間：2016/06/25 14:00(+0800)~17:00 地點：實踐菁英會館 / 高雄市前金區五福三路63號11樓</description>
+    </item>
+    
+    <item>
+      <title>KaLUG 1605 聚會</title>
+      <link>https://kalug.github.io/meetups/1605/</link>
+      <pubDate>Sat, 28 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/meetups/1605/</guid>
+      <description>時間：2016/05/28 14:00(+0800)~17:00 地點：實踐菁英會館 / 高雄市前金區五福三路63號11樓</description>
+    </item>
+    
+    <item>
+      <title>使用Mutt收GMail IMAP電子郵件, Part 3 封存郵件篇</title>
+      <link>https://kalug.github.io/planet/qerter/20100516_muttgmail-imap-part-3.html/</link>
+      <pubDate>Sun, 16 May 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/qerter/20100516_muttgmail-imap-part-3.html/</guid>
+      <description>在[使用Mutt收GMail IMAP電子郵件, Part 2 Procmail篇]的文章裡，我們使用procmail來幫我們將郵件做分類。但是，一般性沒</description>
+    </item>
+    
+    <item>
+      <title>使用Mutt收GMail IMAP電子郵件, Part 2 Procmail篇</title>
+      <link>https://kalug.github.io/planet/qerter/20091020_muttgmail-imap-part-2-procmail.html/</link>
+      <pubDate>Tue, 20 Oct 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/qerter/20091020_muttgmail-imap-part-2-procmail.html/</guid>
+      <description>在Part 1 [使用Mutt收GMail IMAP電子郵件, Part 1 基礎設定篇] 的文章後，我開始接觸使用Mutt這個方便快速的收信軟體來管理我的電子</description>
+    </item>
+    
+    <item>
+      <title>使用Mutt收GMail IMAP電子郵件, Part 1 基礎設定篇</title>
+      <link>https://kalug.github.io/planet/qerter/20090930_muttgmail-imap.html/</link>
+      <pubDate>Wed, 30 Sep 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/qerter/20090930_muttgmail-imap.html/</guid>
+      <description>為響應Richard Stallman 2008年9月在英國衛報反對使用者投入雲端運算的懷抱(Cloud computing is a trap, warns GNU founder Richard Stallman)，我決定改變收電子郵</description>
+    </item>
+    
+    <item>
+      <title>尋找Linux上自由且合用的台語文輸入法</title>
+      <link>https://kalug.github.io/planet/qerter/20090830_linux.html/</link>
+      <pubDate>Sun, 30 Aug 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/qerter/20090830_linux.html/</guid>
+      <description>最近開始鼓起勇氣試圖要在Linux上使用臺語文書寫，便開始尋找合適的臺語文書輸入法。而臺語文並沒有統一的書寫方式，我僅粗略分為台羅、漢羅與教</description>
+    </item>
+    
+    <item>
+      <title>[第參期] 安裝Debian Etch 在 Asus eee box上</title>
+      <link>https://kalug.github.io/planet/qerter/20090120_debian-sarge-asus-eee-box.html/</link>
+      <pubDate>Tue, 20 Jan 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/qerter/20090120_debian-sarge-asus-eee-box.html/</guid>
+      <description>此篇教學目的為安裝Debian Etch在eee box上，可正常使用X-window與ethernet網路。 首先去下載Debian Etch CD1 iso，</description>
+    </item>
+    
+    <item>
+      <title>[第貳期] 自由軟體四大自由</title>
+      <link>https://kalug.github.io/planet/qerter/20081102_blog-post.html/</link>
+      <pubDate>Sun, 02 Nov 2008 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/qerter/20081102_blog-post.html/</guid>
+      <description>有鑑於我自己常常跟別人推廣自由軟體，但是常常忘記自由軟體基本四大自由，僅列於此。 自由軟體四大自由原文出處網址： http://www.gnu.org/philosophy/free-sw.html 自由軟體四大自由（中文是我自</description>
+    </item>
+    
+    <item>
+      <title>[第壹期]digg-like 的自由軟體新聞網站 — Free Software Daily</title>
+      <link>https://kalug.github.io/planet/qerter/20081101_digg-like-free-software-daily.html/</link>
+      <pubDate>Sat, 01 Nov 2008 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/qerter/20081101_digg-like-free-software-daily.html/</guid>
+      <description>Free Software Dailyhttp://www.fsdaily.com 畢竟自由軟體的使用者算小眾，使用Web2.0經營方式的新聞網站，如digg，或台灣的funp，出現的常常是偏大眾口味的文章不然討論跟自</description>
+    </item>
+    
+    <item>
+      <title>KaLUG 三月份聚會</title>
+      <link>https://kalug.github.io/meetups/0803/</link>
+      <pubDate>Sat, 29 Mar 2008 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/meetups/0803/</guid>
+      <description>時間：2008/03/29 14:00(+0800)~17:00 地點：高雄市三民區明賢街69號 (Moca mona 咖啡館)</description>
+    </item>
+    
+    <item>
+      <title>MySQL 中文Big5轉至UTF-8</title>
+      <link>https://kalug.github.io/planet/qerter/20060817_mysql-big5utf-8.html/</link>
+      <pubDate>Thu, 17 Aug 2006 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/qerter/20060817_mysql-big5utf-8.html/</guid>
+      <description>因為工作需要，必須要將原本MS Access中的資料轉換至MySQL。MS Access 預設編碼為Big5 ，MySQL中以UTF-8存放資料，Collat</description>
     </item>
     
     <item>
@@ -43,294 +332,6 @@
       
       <guid>https://kalug.github.io/page/about/</guid>
       <description>KaLUG 是由一群熱愛 Open Source 的 朋友 所組成的團體. 歡迎參加我們的 聚會 ，Topic 題目不限，好玩就好。 歡迎加入我們的 KaLUG 星球 ！請留下你的網址在 kalug 星球 wiki 申請頁</description>
-    </item>
-    
-    <item>
-      <title>Go 語言基礎實戰教學影片上線了</title>
-      <link>https://kalug.github.io/planet/appleboy/20180329_golang-introduction-video/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/planet/appleboy/20180329_golang-introduction-video/</guid>
-      <description>購買連結 去年在台灣推廣 Drone 這套由 Go 語言所撰寫的開源專案，身為維護者之一，也將 Drone 跟 Gitea 完成整合。如果對於從開發到部署整個流程，還不是很了解的朋友，</description>
-    </item>
-    
-    <item>
-      <title>Go 語言搭配 Docker Healthy Check 檢查</title>
-      <link>https://kalug.github.io/planet/appleboy/20180319_docker-healthcheck-in-golang/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/planet/appleboy/20180319_docker-healthcheck-in-golang/</guid>
-      <description>在 Docker 1.12 版本後，提供了 HEALTHCHECK 指令，通過指定的一行命令來判斷容器內的服務是否正常運作。在此之前大部分都是透過判斷程式是否 Crash 來決定容器是否存活，但是這</description>
-    </item>
-    
-    <item>
-      <title>Go 語言的 init 函式</title>
-      <link>https://kalug.github.io/planet/appleboy/20180419_init-func-in-golang/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/planet/appleboy/20180419_init-func-in-golang/</guid>
-      <description>本篇會帶大家認識 Go 語言的 init 函式，在了解 init func 之前，大家應該都知道在同一個 Package 底下是不可以有重複的變數或者是函式名稱，但是唯獨 init() 可以在同一個 package 內宣</description>
-    </item>
-    
-    <item>
-      <title>Go 語言的 vendor 目錄</title>
-      <link>https://kalug.github.io/planet/appleboy/20180505_what-is-vendor-in-golang/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/planet/appleboy/20180505_what-is-vendor-in-golang/</guid>
-      <description>很多朋友剛入門 Go 語言時，第一個會遇到的問題是，該如何設定專案配置，讓專案可以正常執行，在個人電腦該如何開發多個專案，這邊就會遇到該如何設定 $</description>
-    </item>
-    
-    <item>
-      <title>KaLUG 1605 聚會</title>
-      <link>https://kalug.github.io/meetups/1605/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/meetups/1605/</guid>
-      <description>時間：2016/05/28 14:00(+0800)~17:00 地點：實踐菁英會館 / 高雄市前金區五福三路63號11樓</description>
-    </item>
-    
-    <item>
-      <title>KaLUG 1606 聚會: 1) 用LXD &#43; zfs 秒生Container  2)python &#43; WebRTC</title>
-      <link>https://kalug.github.io/meetups/1606/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/meetups/1606/</guid>
-      <description>時間：2016/06/25 14:00(+0800)~17:00 地點：實踐菁英會館 / 高雄市前金區五福三路63號11樓</description>
-    </item>
-    
-    <item>
-      <title>KaLUG 1607 聚會: 凍仁台北歡送會</title>
-      <link>https://kalug.github.io/meetups/1607/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/meetups/1607/</guid>
-      <description>時間：2016/07/23 14:00(+0800)~17:00 地點：毛伊咖啡 / 813高雄市左營區博愛二路316號</description>
-    </item>
-    
-    <item>
-      <title>KaLUG 1612 聚會: 歲末Party</title>
-      <link>https://kalug.github.io/meetups/1612/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/meetups/1612/</guid>
-      <description>時間：2016/12/17 14:00(+0800)~17:00 地點：彩色巴黎 富民店 / 高雄市左營區富民路391號</description>
-    </item>
-    
-    <item>
-      <title>KaLUG 1701 聚會: 初三 KaLUG團-</title>
-      <link>https://kalug.github.io/meetups/1701/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/meetups/1701/</guid>
-      <description>時間：2017/01/30 14:00(+0800)~17:00 地點：高雄</description>
-    </item>
-    
-    <item>
-      <title>KaLUG 1703 聚會: 每月定期聚會 主題 地點 橋頭糖廠 玫瑰盒子</title>
-      <link>https://kalug.github.io/meetups/1703/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/meetups/1703/</guid>
-      <description>時間：2017/03/18 14:00(+0800)~17:00 地點：高雄 橋頭糖廠 玫瑰盒子 / 興糖路13號</description>
-    </item>
-    
-    <item>
-      <title>KaLUG 1706 每月定期聚會 地點 橋頭糖廠 糖廠咖啡</title>
-      <link>https://kalug.github.io/meetups/1706/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/meetups/1706/</guid>
-      <description>時間：2017/06/24 14:00(+0800)~17:00 地點：高雄 橋頭糖廠 糖廠咖啡 / 糖廠博物館</description>
-    </item>
-    
-    <item>
-      <title>KaLUG 1711: Ubuntu 17.10 Release Party @ Taiwan 高雄場  地點 橋頭糖廠 糖廠咖啡</title>
-      <link>https://kalug.github.io/meetups/1711/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/meetups/1711/</guid>
-      <description>時間：2017/11/18 14:00(+0800)~18:00 地點：高雄 橋頭糖廠 糖廠咖啡 / 糖廠博物館</description>
-    </item>
-    
-    <item>
-      <title>KaLUG 1712: 醫療用Linux/在家工作經驗分享 地點 橋頭糖廠博物館 糖廠咖啡</title>
-      <link>https://kalug.github.io/meetups/1712/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/meetups/1712/</guid>
-      <description>時間：2017/12/30 14:00(+0800)~17:00 地點：高雄 橋頭糖廠博物館糖廠咖啡 / 高雄市橋頭區橋南里糖廠路24號 橋頭糖廠博物館</description>
-    </item>
-    
-    <item>
-      <title>KaLUG 1804聚會: 1. Emacs的org-mode&amp;&amp;GTD 2.katacoda 開開心心學k8s</title>
-      <link>https://kalug.github.io/meetups/1804/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/meetups/1804/</guid>
-      <description>時間：2018/04/14 14:00(+0800)~16:40 地點：橋頭糖廠博物館 的 糖廠咖啡 / 高雄市橋頭區橋南里糖廠路24號 橋頭糖廠博物館</description>
-    </item>
-    
-    <item>
-      <title>KaLUG 1805聚會: 接續早上 高雄Go  &#43; COSCUP科技政策規劃Workshop 討論</title>
-      <link>https://kalug.github.io/meetups/1805/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/meetups/1805/</guid>
-      <description>時間：2018/05/26 14:00(+0800) 地點：【高雄】Aroma caf&amp;rsquo;e live 香氣現場 / 前金區長生街25號</description>
-    </item>
-    
-    <item>
-      <title>KaLUG 1806聚會</title>
-      <link>https://kalug.github.io/meetups/1806/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/meetups/1806/</guid>
-      <description>時間：2018/06/23 14:00(+0800)</description>
-    </item>
-    
-    <item>
-      <title>KaLUG 三月份聚會</title>
-      <link>https://kalug.github.io/meetups/0803/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/meetups/0803/</guid>
-      <description>時間：2008/03/29 14:00(+0800)~17:00 地點：高雄市三民區明賢街69號 (Moca mona 咖啡館)</description>
-    </item>
-    
-    <item>
-      <title>KaLUGx維基百科xOpenstreemap 1704 聚會 橋頭糖廠 捷運R22A 2號出口 玫瑰盒子</title>
-      <link>https://kalug.github.io/meetups/1704/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/meetups/1704/</guid>
-      <description>時間：2017/04/15 14:00(+0800)~17:00 地點：高雄 橋頭糖廠 捷運R22A 2號出口 玫瑰盒子 / 興糖路13號</description>
-    </item>
-    
-    <item>
-      <title>MySQL 中文Big5轉至UTF-8</title>
-      <link>https://kalug.github.io/planet/qerter/20060817_mysql-big5utf-8.html/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/planet/qerter/20060817_mysql-big5utf-8.html/</guid>
-      <description>因為工作需要，必須要將原本MS Access中的資料轉換至MySQL。MS Access 預設編碼為Big5 ，MySQL中以UTF-8存放資料，Collat</description>
-    </item>
-    
-    <item>
-      <title>[影片教學] 使用 Filter 將專案跑在特定 Drone Agent 服務</title>
-      <link>https://kalug.github.io/planet/appleboy/20180415_how-to-use-filter-in-drone/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/planet/appleboy/20180415_how-to-use-filter-in-drone/</guid>
-      <description>Drone 是一套用 Go 語言撰寫的 CI/CD 開源專案，是由一個 Server 跟多個 Agent 所組成，Agent 上面必須安裝好 Dokcer 才可以順利測試及部署，但是團隊內會出現一個狀況，每個專</description>
-    </item>
-    
-    <item>
-      <title>[第參期] 安裝Debian Etch 在 Asus eee box上</title>
-      <link>https://kalug.github.io/planet/qerter/20090120_debian-sarge-asus-eee-box.html/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/planet/qerter/20090120_debian-sarge-asus-eee-box.html/</guid>
-      <description>此篇教學目的為安裝Debian Etch在eee box上，可正常使用X-window與ethernet網路。 首先去下載Debian Etch CD1 iso，</description>
-    </item>
-    
-    <item>
-      <title>[第壹期]digg-like 的自由軟體新聞網站 — Free Software Daily</title>
-      <link>https://kalug.github.io/planet/qerter/20081101_digg-like-free-software-daily.html/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/planet/qerter/20081101_digg-like-free-software-daily.html/</guid>
-      <description>Free Software Dailyhttp://www.fsdaily.com 畢竟自由軟體的使用者算小眾，使用Web2.0經營方式的新聞網站，如digg，或台灣的funp，出現的常常是偏大眾口味的文章不然討論跟自</description>
-    </item>
-    
-    <item>
-      <title>[第貳期] 自由軟體四大自由</title>
-      <link>https://kalug.github.io/planet/qerter/20081102_blog-post.html/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/planet/qerter/20081102_blog-post.html/</guid>
-      <description>有鑑於我自己常常跟別人推廣自由軟體，但是常常忘記自由軟體基本四大自由，僅列於此。 自由軟體四大自由原文出處網址： http://www.gnu.org/philosophy/free-sw.html 自由軟體四大自由（中文是我自</description>
-    </item>
-    
-    <item>
-      <title>使用Mutt收GMail IMAP電子郵件, Part 1 基礎設定篇</title>
-      <link>https://kalug.github.io/planet/qerter/20090930_muttgmail-imap.html/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/planet/qerter/20090930_muttgmail-imap.html/</guid>
-      <description>為響應Richard Stallman 2008年9月在英國衛報反對使用者投入雲端運算的懷抱(Cloud computing is a trap, warns GNU founder Richard Stallman)，我決定改變收電子郵</description>
-    </item>
-    
-    <item>
-      <title>使用Mutt收GMail IMAP電子郵件, Part 2 Procmail篇</title>
-      <link>https://kalug.github.io/planet/qerter/20091020_muttgmail-imap-part-2-procmail.html/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/planet/qerter/20091020_muttgmail-imap-part-2-procmail.html/</guid>
-      <description>在Part 1 [使用Mutt收GMail IMAP電子郵件, Part 1 基礎設定篇] 的文章後，我開始接觸使用Mutt這個方便快速的收信軟體來管理我的電子</description>
-    </item>
-    
-    <item>
-      <title>使用Mutt收GMail IMAP電子郵件, Part 3 封存郵件篇</title>
-      <link>https://kalug.github.io/planet/qerter/20100516_muttgmail-imap-part-3.html/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/planet/qerter/20100516_muttgmail-imap-part-3.html/</guid>
-      <description>在[使用Mutt收GMail IMAP電子郵件, Part 2 Procmail篇]的文章裡，我們使用procmail來幫我們將郵件做分類。但是，一般性沒</description>
-    </item>
-    
-    <item>
-      <title>如何使用 Go 語言 Flag 套件 (影片教學)</title>
-      <link>https://kalug.github.io/planet/appleboy/20180412_how-to-use-golang-flag-package/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/planet/appleboy/20180412_how-to-use-golang-flag-package/</guid>
-      <description>之前寫過一篇『用 Golang 寫 Command line 工具』教學，作者我錄了一個教學影片，教大家如何使用 Go 語言的 Flag 套件，套件用法很簡單，相信看了底下的影片教學馬上就會了，</description>
-    </item>
-    
-    <item>
-      <title>如何在 Go 專案內寫測試</title>
-      <link>https://kalug.github.io/planet/appleboy/20180514_how-to-write-testing-in-golang/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/planet/appleboy/20180514_how-to-write-testing-in-golang/</guid>
-      <description>相信大家都知道專案內不導入測試，未來越來越多功能，技術債就會越來越多，接手的人罵聲連連，而寫測試的簡單與否決定專案初期是否要先導入。為什麼專</description>
-    </item>
-    
-    <item>
-      <title>將 Go Html Template 存入 String 變數</title>
-      <link>https://kalug.github.io/planet/appleboy/20180228_simply-output-go-html-template-execution-to-strings/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/planet/appleboy/20180228_simply-output-go-html-template-execution-to-strings/</guid>
-      <description>在 Go 語言內通常都將 Html Temaple 寫入到 io.Writer interface 像是 *http.ResponseWriter，但是有些情境需要將 Template 寫入到 String 變數內，例如實作簡訊 Templat</description>
-    </item>
-    
-    <item>
-      <title>尋找Linux上自由且合用的台語文輸入法</title>
-      <link>https://kalug.github.io/planet/qerter/20090830_linux.html/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/planet/qerter/20090830_linux.html/</guid>
-      <description>最近開始鼓起勇氣試圖要在Linux上使用臺語文書寫，便開始尋找合適的臺語文書輸入法。而臺語文並沒有統一的書寫方式，我僅粗略分為台羅、漢羅與教</description>
-    </item>
-    
-    <item>
-      <title>用 Go 語言實現單一或多重 Queue 搭配 optimistic concurrency</title>
-      <link>https://kalug.github.io/planet/appleboy/20180310_simple-queue-with-optimistic-concurrency-in-go/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/planet/appleboy/20180310_simple-queue-with-optimistic-concurrency-in-go/</guid>
-      <description>本篇教學會著重在如何使用 Go 語言的 goroutine 及 channel。MongoDB 是一套具有高效能讀寫的 NoSQL 資料庫，但是不像傳統關連式資料庫，有非常好用的 Transaction 交</description>
-    </item>
-    
-    <item>
-      <title>用 Nginx 來架設線上即時縮圖機</title>
-      <link>https://kalug.github.io/planet/appleboy/20180317_nginx-reverse-proxy-image-resizing/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kalug.github.io/planet/appleboy/20180317_nginx-reverse-proxy-image-resizing/</guid>
-      <description>在更早以前我們怎麼實現縮圖機制，當使用者上傳一張檔案，後端會固定將圖片縮圖成各種前端網頁需要的大小，不管前端頁面是否有使用，後端都會先產生好</description>
     </item>
     
   </channel>
