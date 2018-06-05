@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>「敏捷原理與團隊塑造」與「獨角獸計劃」</title>
+  <meta property="og:title" content="「敏捷原理與團隊塑造」與「獨角獸計劃」" />
+  <meta name="twitter:title" content="「敏捷原理與團隊塑造」與「獨角獸計劃」" />
+  <meta name="description" content="自從凍仁踏上 DevOps 的偉大航道後，不時會在相關書籍和文獻看到敏捷開發 (Agile) 等字眼，雖有幸能在多年前短暫參與導入 Scrum 的團隊，但一直沒機會見識到導入成功的案">
+  <meta property="og:description" content="自從凍仁踏上 DevOps 的偉大航道後，不時會在相關書籍和文獻看到敏捷開發 (Agile) 等字眼，雖有幸能在多年前短暫參與導入 Scrum 的團隊，但一直沒機會見識到導入成功的案">
+  <meta name="twitter:description" content="自從凍仁踏上 DevOps 的偉大航道後，不時會在相關書籍和文獻看到敏捷開發 (Agile) 等字眼，雖有幸能在多年前短暫參與導入 Scrum 的團隊，但一直沒機會見識到導入成功的案">
+  <meta name="author" content=""/>
+  <link href='https://kalug.github.io/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://kalug.github.io/img/kalug.png" />
+  <meta name="twitter:image" content="https://kalug.github.io/img/kalug.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://kalug.github.io/planet/chusiang/20170619_the-agile-workshop-and-the-unicorn-project.html/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kaohsiung Linux User Group" />
+
+  <meta name="generator" content="Hugo 0.41" />
+  <link rel="canonical" href="https://kalug.github.io/planet/chusiang/20170619_the-agile-workshop-and-the-unicorn-project.html/" />
+  <link rel="alternate" href="https://kalug.github.io/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://kalug.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://kalug.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://kalug.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://kalug.github.io">Kaohsiung Linux User Group</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Meetups" href="/meetups/">Meetups</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Planet" href="/planet/">Planet</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Wiki" href="/wiki/">Wiki</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Kaohsiung Linux User Group" href="https://kalug.github.io">
+            <img class="avatar-img" src="https://kalug.github.io/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="blog-heading">
+              <h1>「敏捷原理與團隊塑造」與「獨角獸計劃」</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>自從凍仁踏上 DevOps 的偉大航道後，不時會在相關書籍和文獻看到敏捷開發 (Agile) 等字眼，雖有幸能在多年前短暫參與導入 Scrum 的團隊，但一直沒機會見識到導入成功的案例。<a href="http://note.drx.tw/2017/06/the-agile-workshop-and-the-unicorn-project.html#1"><sup>1</sup></a><br /><br />上週六 (06/17) 是凍仁參加 <a href="https://twitter.com/william_yeh" target="_blank">William Yeh</a> 前輩主講<a href="http://get.soft-arch.net/agile-workshop/" target="_blank">《敏捷原理與團隊塑造》</a>課程的日子，也是讓自己解開種種疑惑的日子，雖事前已看過<a href="https://www.tenlong.com.tw/products/9789863207146" target="_blank" title="SCRUM: The Art of Doing Twice the Work in Half the Time">《SCRUM: 用一半的時間做兩倍的事》</a>一書，但對實際面還是抱著很大的疑問。<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://2.bp.blogspot.com/-lgiqpK9gkSw/WUaKtdH3b5I/AAAAAAAAgLQ/DaVnAsi_m7QPsrXEhXfM3CigHYxb63HxwCLcBGAs/s1600/2017-06-18-agile-workshop-1.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="900" data-original-width="1600" height="225" src="https://2.bp.blogspot.com/-lgiqpK9gkSw/WUaKtdH3b5I/AAAAAAAAgLQ/DaVnAsi_m7QPsrXEhXfM3CigHYxb63HxwCLcBGAs/s400/2017-06-18-agile-workshop-1.jpg" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 課程講義、Agile 科普讀物和隨堂筆記本。</td></tr></tbody></table><a name='more'></a><br />仔細觀察近來的業界生態後就會得知，追求 DevOps 文化的團隊最後都一定會追求 Agile，我想那是因為如果說 DevOps Tools 是各門各派的武功了話，那 Agile 就屬心法了吧！<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://1.bp.blogspot.com/-nvSuFZiBgeE/WUalGaSWk_I/AAAAAAAAgLg/t1lMz7nFudoy2nDXPYq0QoFbtpKqtATPACLcBGAs/s1600/automate_with_ansible_basic3.001.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="768" data-original-width="1024" height="300" src="https://1.bp.blogspot.com/-nvSuFZiBgeE/WUalGaSWk_I/AAAAAAAAgLg/t1lMz7nFudoy2nDXPYq0QoFbtpKqtATPACLcBGAs/s400/automate_with_ansible_basic3.001.png" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 在<a href="http://note.drx.tw/2017/03/automate-with-ansible-basic-3e.html" target="_blank">現代 IT 人一定要知道的 Ansible 自動化組態技巧 (3/e)</a> 簡報中，凍仁也曾小小提及 Agile。</td></tr></tbody></table><br />這是堂極具互動和軟技術的課程，講者藉由自己的實戰經驗和不少的體驗活動，讓我們意識到 Agile 是什麼？怎麼藉由 Agile 在有限的資源下打出一手漂亮的好牌？<br /><br />在 Agile 之外，講者更融入了「薩提爾的冰山理論」、「限制理論」、「使用者故事對照」… 等軟技術進行<b>團隊塑造</b>，這都是凍仁未曾接觸過的領域，說講者是本活字典也不為過！<br /><br />還記得第一次看完<a href="https://www.tenlong.com.tw/products/9787115403650" target="_blank">《鳳凰項目》</a><a href="http://note.drx.tw/2017/06/the-agile-workshop-and-the-unicorn-project.html#2"><sup>2</sup></a> 一書的感動，這是本 DevOps 人的科普讀物，同時也是讓 IT 維運人出現一線曙光的傳奇故事。凍仁想追求書中的「獨角獸計劃」團隊，可只是扮演著<b>布倫特 (Brent)</b> 這個角色是難以達成的，或許當個<b>比爾 (Bill)</b> 一回，自己塑造個團隊會比較快達成！？雖然這次得花上比上次還要久的時間才能消化完課程內容，但至少講者給了凍仁一個明確方向，這就足夠矣！<br /><br /><blockquote class="instagram-media" data-instgrm-captioned="" data-instgrm-version="7" style="background: #fff; border-radius: 3px; border: 0; box-shadow: 0 0 1px 0 rgba(0 , 0 , 0 , 0.5) , 0 1px 10px 0 rgba(0 , 0 , 0 , 0.15); margin: 1px; max-width: 658px; padding: 0; width: 99.375%;"><div style="padding: 8px;"><div style="background: #F8F8F8; line-height: 0; margin-top: 40px; padding: 62.5% 0; text-align: center; width: 100%;"><div style="background: url(data:image/png; display: block; height: 44px; margin: 0 auto -44px; position: relative; top: -22px; width: 44px;"></div></div><div style="margin: 8px 0 0 0; padding: 0 4px;"><a href="https://www.instagram.com/p/BUgIYCQA2eG/" style="color: black; font-family: &quot;arial&quot; , sans-serif; font-size: 14px; font-style: normal; font-weight: normal; line-height: 17px; text-decoration: none; word-wrap: break-word;" target="_blank">I have a dream, I want to join the Unicorn project like the Phoenix project book, so I will building by myself ! #ThePhoenixProject #book</a></div><div style="color: #c9c8cd; font-family: Arial,sans-serif; font-size: 14px; line-height: 17px; margin-bottom: 0; margin-top: 8px; overflow: hidden; padding: 8px 0 7px; text-align: center; text-overflow: ellipsis; white-space: nowrap;">Chu-Siang Lai（@chusiang.lai）分享的貼文 於 <time datetime="2017-05-25T04:33:01+00:00" style="font-family: Arial,sans-serif; font-size: 14px; line-height: 17px;">2017 年  5月 月 24 9:33下午 PDT</time> 張貼</div></div></blockquote><script async="" defer="" src="//platform.instagram.com/en_US/embeds.js"></script><br /><br />留有這份感動的凍仁心想，既然沒法在公司直接導入 Agile，那何不在讓它先融入自己的生活呢？<a href="https://www.blogger.com/blogger.g?blogID=2917807170740470644#3"><sup>3</sup></a> 相信這個<b>可拋棄式玩具</b><a href="https://www.blogger.com/blogger.g?blogID=2917807170740470644#4"><sup>4</sup></a> 一定可以讓凍仁有所領悟的！<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://1.bp.blogspot.com/-F9b2klsssZY/WUaKtTWfVQI/AAAAAAAAgLM/3onDtcZk85ENGtVzJCYetbqKwUuLm2IMwCLcBGAs/s1600/2017-06-18-agile-workshop-2.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="900" data-original-width="1600" height="225" src="https://1.bp.blogspot.com/-F9b2klsssZY/WUaKtTWfVQI/AAAAAAAAgLM/3onDtcZk85ENGtVzJCYetbqKwUuLm2IMwCLcBGAs/s400/2017-06-18-agile-workshop-2.jpg" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 凍仁家的看板 (Kanban)。</td></tr></tbody></table><br />最後，就用《SCRUM: 用一半的時間做兩倍的事》一書的第九章標題做結尾吧！<br /><br /><blockquote class="instagram-media" data-instgrm-captioned data-instgrm-version="7" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"><div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:50.0% 0; text-align:center; width:100%;"><div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div><p style=" margin:8px 0 0 0; padding:0 4px;"><a href="https://www.instagram.com/p/BVaDZIuAijG/" style=" color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;" target="_blank">終於看到 #SCRUM用一半的時間做兩倍事 的「第 9 章：改變世界」了，身為瓶子的我，一看到這標題就有種共鳴！ 還令人想起高中跑假服時，學長姊曾說的一句話：「青年改變全世界！」。 #book #翔鷗假期服務隊</a></p><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">A post shared by Chu-Siang Lai (@chusiang.lai) on <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2017-06-16T16:25:25+00:00">Jun 16, 2017 at 9:25am PDT</time></p></div></blockquote><script async defer src="//platform.instagram.com/en_US/embeds.js"></script><br /><br /><center>我是名自命不凡的系統工程師 (System Engineer)，我想要改變自己、改變團隊並且改變世界！</center><br /><span class="Comment"> <a href="http://note.drx.tw/2017/06/the-agile-workshop-and-the-unicorn-project.html#1" name="1"></a><sup>1</sup> 相信不會有人認為站立會議 (Stand-up meeting) 開超過 1、2 小時的團隊會是成功案例。<br /><a href="http://note.drx.tw/2017/06/the-agile-workshop-and-the-unicorn-project.html#2" name="2"></a><sup>2</sup> 鳳凰項目的原文書名為 <a href="https://itrevolution.com/book/the-phoenix-project/" target="_blank">The Phoenix Project</a>，可說是入門 DevOps 的必讀書籍之一。<br /><a href="http://note.drx.tw/2017/06/the-agile-workshop-and-the-unicorn-project.html#3" name="3"></a><sup>3</sup> 想當初自己也是在家中的桌機灌了 Ubuntu 才學好 Linux 的呢！(笑) <br /><a href="http://note.drx.tw/2017/06/the-agile-workshop-and-the-unicorn-project.html#4" name="4"></a><sup>4</sup> 可拋棄玩具一詞出自<a href="https://www.tenlong.com.tw/products/9789862762561" target="_blank">《學徒模式》</a>一書，簡而言之就是在一個類似工作環境，但可以隨意玩耍試驗、學習成長，且不會讓自己丟掉工作的玩具。<br /><br /><center>(本文授權<a href="http://get.soft-arch.net/agile-workshop/" target="_blank">敏捷原理與團隊塑造</a>課程引述。)</center></span><br /><br /><code class="ref">站內連結<br /><font color="#ffdb00">★</font> <a href="http://note.drx.tw/2016/03/ansible-workshop-and-self-realization.html" target="_blank">「Ansible 自動化組態管理實戰講堂」與「自我實現」</a><br /><br />相關連結：<br /><span style="color: #ffdb00;">★</span> <a href="http://get.soft-arch.net/agile-workshop/" target="_blank">敏捷原理與團隊塑造，第一梯 06/17 開課了！</a><br /><span style="color: #ffdb00;">★</span> <a href="https://twitter.com/hashtag/SCRUM%E7%94%A8%E4%B8%80%E5%8D%8A%E7%9A%84%E6%99%82%E9%96%93%E5%81%9A%E5%85%A9%E5%80%8D%E4%BA%8B?src=hash">Twitter 上的 #SCRUM用一半的時間做兩倍事 推標</a><br /><span style="color: #ffdb00;">★</span> <a href="http://www.reader.idv.tw/2015/08/agile-lean-kanban.html" target="_blank">Agile, Lean, Kanban 敏捷, 精實, 看板 | 閱讀者</a><br /></code><br /></p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170619_the-agile-workshop-and-the-unicorn-project.html%2f&amp;text=%e3%80%8c%e6%95%8f%e6%8d%b7%e5%8e%9f%e7%90%86%e8%88%87%e5%9c%98%e9%9a%8a%e5%a1%91%e9%80%a0%e3%80%8d%e8%88%87%e3%80%8c%e7%8d%a8%e8%a7%92%e7%8d%b8%e8%a8%88%e5%8a%83%e3%80%8d&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170619_the-agile-workshop-and-the-unicorn-project.html%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170619_the-agile-workshop-and-the-unicorn-project.html%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170619_the-agile-workshop-and-the-unicorn-project.html%2f&amp;title=%e3%80%8c%e6%95%8f%e6%8d%b7%e5%8e%9f%e7%90%86%e8%88%87%e5%9c%98%e9%9a%8a%e5%a1%91%e9%80%a0%e3%80%8d%e8%88%87%e3%80%8c%e7%8d%a8%e8%a7%92%e7%8d%b8%e8%a8%88%e5%8a%83%e3%80%8d" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170619_the-agile-workshop-and-the-unicorn-project.html%2f&amp;title=%e3%80%8c%e6%95%8f%e6%8d%b7%e5%8e%9f%e7%90%86%e8%88%87%e5%9c%98%e9%9a%8a%e5%a1%91%e9%80%a0%e3%80%8d%e8%88%87%e3%80%8c%e7%8d%a8%e8%a7%92%e7%8d%b8%e8%a8%88%e5%8a%83%e3%80%8d" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170619_the-agile-workshop-and-the-unicorn-project.html%2f&amp;title=%e3%80%8c%e6%95%8f%e6%8d%b7%e5%8e%9f%e7%90%86%e8%88%87%e5%9c%98%e9%9a%8a%e5%a1%91%e9%80%a0%e3%80%8d%e8%88%87%e3%80%8c%e7%8d%a8%e8%a7%92%e7%8d%b8%e8%a8%88%e5%8a%83%e3%80%8d" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170619_the-agile-workshop-and-the-unicorn-project.html%2f&amp;description=%e3%80%8c%e6%95%8f%e6%8d%b7%e5%8e%9f%e7%90%86%e8%88%87%e5%9c%98%e9%9a%8a%e5%a1%91%e9%80%a0%e3%80%8d%e8%88%87%e3%80%8c%e7%8d%a8%e8%a7%92%e7%8d%b8%e8%a8%88%e5%8a%83%e3%80%8d" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://kalug.github.io/planet/chusiang/20170510_how-to-use-the-custom-themes-on-telegram-desktop.html/" data-toggle="tooltip" data-placement="top" title="怎麼在 Telegram Desktop 上使用自訂主題？">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://kalug.github.io/planet/chusiang/20170707_how-to-use-color-mode-to-run-ansible-playbooks-on-gitlab-ci.html/" data-toggle="tooltip" data-placement="top" title="怎麼在 GitLab CI 用 color mode 跑 Ansible Playbooks？">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "shawn111" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://www.facebook.com/groups/kalug.tw" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalug" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/joinchat/Bqbim0F9EuW-GMUbYg9geA" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://kalug.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://kalug.github.io">Kaohsiung Linux User Group</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.41</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://kalug.github.io/js/main.js"></script>
+<script src="https://kalug.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://kalug.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

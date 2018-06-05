@@ -5,23 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>使用Mutt收GMail IMAP電子郵件, Part 3 封存郵件篇</title>
-  <meta property="og:title" content="使用Mutt收GMail IMAP電子郵件, Part 3 封存郵件篇" />
-  <meta name="twitter:title" content="使用Mutt收GMail IMAP電子郵件, Part 3 封存郵件篇" />
-  <meta name="description" content="在[使用Mutt收GMail IMAP電子郵件, Part 2 Procmail篇]的文章裡，我們使用procmail來幫我們將郵件做分類。但是，一般性沒">
-  <meta property="og:description" content="在[使用Mutt收GMail IMAP電子郵件, Part 2 Procmail篇]的文章裡，我們使用procmail來幫我們將郵件做分類。但是，一般性沒">
-  <meta name="twitter:description" content="在[使用Mutt收GMail IMAP電子郵件, Part 2 Procmail篇]的文章裡，我們使用procmail來幫我們將郵件做分類。但是，一般性沒">
+  <title>從一個人的 DevOps，到一個 DevOps 的團隊</title>
+  <meta property="og:title" content="從一個人的 DevOps，到一個 DevOps 的團隊" />
+  <meta name="twitter:title" content="從一個人的 DevOps，到一個 DevOps 的團隊" />
+  <meta name="description" content="還記得先前在「敏捷原理與團隊塑造」課堂的最後，講者 William Yeh 提到，難得自己可以待在正在導入敏捷 (Agile) 的團隊，不妨藉由年底的 IT 鐵人賽，把導入 Agile 的種種給寫">
+  <meta property="og:description" content="還記得先前在「敏捷原理與團隊塑造」課堂的最後，講者 William Yeh 提到，難得自己可以待在正在導入敏捷 (Agile) 的團隊，不妨藉由年底的 IT 鐵人賽，把導入 Agile 的種種給寫">
+  <meta name="twitter:description" content="還記得先前在「敏捷原理與團隊塑造」課堂的最後，講者 William Yeh 提到，難得自己可以待在正在導入敏捷 (Agile) 的團隊，不妨藉由年底的 IT 鐵人賽，把導入 Agile 的種種給寫">
   <meta name="author" content=""/>
   <link href='https://kalug.github.io/img/kalug.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://kalug.github.io/img/kalug.png" />
   <meta name="twitter:image" content="https://kalug.github.io/img/kalug.png" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://kalug.github.io/planet/qerter/20100516_muttgmail-imap-part-3.html/" />
+  <meta property="og:url" content="https://kalug.github.io/planet/chusiang/20171224_from-one-persons-devops-to-one-devops-team.html/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kaohsiung Linux User Group" />
 
   <meta name="generator" content="Hugo 0.41" />
-  <link rel="canonical" href="https://kalug.github.io/planet/qerter/20100516_muttgmail-imap-part-3.html/" />
+  <link rel="canonical" href="https://kalug.github.io/planet/chusiang/20171224_from-one-persons-devops-to-one-devops-team.html/" />
   <link rel="alternate" href="https://kalug.github.io/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -164,7 +164,7 @@
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="blog-heading">
-              <h1>使用Mutt收GMail IMAP電子郵件, Part 3 封存郵件篇</h1>
+              <h1>從一個人的 DevOps，到一個 DevOps 的團隊</h1>
                 
                 
             </div>
@@ -180,7 +180,7 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>在[<a href="http://qerter.blogspot.com/2009/10/muttgmail-imap-part-2-procmail.html">使用Mutt收GMail IMAP電子郵件, Part 2 Procmail篇</a>]的文章裡，我們使用procmail來幫我們將郵件做分類。但是，一般性沒辦法分類的聯絡郵件還是會全部進到mbox（主郵件檔案）裡，隨著時間日積月累，mbox檔案大小會隨著時間越久，檔案會越變越大，Mutt讀取mbox檔案速度因此而變慢。<br /><br />此時，我們需要將舊郵件做封存(Archive)，方能解決mbox檔案隨著時間越變越大的問題。在Debian下，我們可以使用archivemail程式來幫我們的舊郵件做封存。使用方法十分簡單，如下：<br /><br /><code>archivemail &ndash;suffix &lsquo;<em>%B</em>%Y&rsquo; &ndash;days=90  mbox<br /></code><br /><br />archivemail程式就會將mbox檔案中超過90天以上的郵件封存壓縮，並且獨立成另外一個檔案，檔名後面加註月份與年份，檔名範例如 mbox_February_2010.gz。<br /><br />archivemail程式可搭配cron將郵件檔案定期做封存，支援IMAP, mbox, MH與Maildir 郵件檔案格式。</p>
+        <p>還記得先前在「<a href="http://note.drx.tw/2017/06/the-agile-workshop-and-the-unicorn-project.html" target="_blank">敏捷原理與團隊塑造</a>」課堂的最後，講者 William Yeh 提到，難得自己可以待在正在導入敏捷 (Agile) 的團隊，不妨藉由年底的 IT 鐵人賽，把導入 Agile 的種種給寫下來。可計劃總趕不上變化，凍仁便藉由高雄敏捷之旅 (Agile Tour Kaohsiung 2017) 的機會，分享自己近年來的 Agile 和 DevOps 學習旅程。<br /><br /><div style="text-align: center;"><script async="" class="speakerdeck-embed" data-id="c76e74988492458aa8b353a752ec59df" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script><br />▲ <sup>12</sup>&frasl;<sub>09</sub> 於 Agile Tour Kaohsiung 2017 分享的簡報。</div><a name='more'></a><br />由於凍仁是從 <b>Linux 系統工程師 (Linux System Engineer)</b> 起家的，所以 DevOps 的學習路線是從維運 (Opsation)、基礎建設 (Infrastructure)，一路往前推到開發 (Develop)、需求分析 (Request) 和企業投資 (Invest) 等 Agile 探討的相關議題。<br /><br />在這次的分享中，凍仁先是提到自己拿手 DevOps Tools 的學習經過，再小小提一下正在使用 Scrum 、Kanban 的 DevOps team 是長什麼樣子。<br /><br /><blockquote class="twitter-tweet" data-lang="zh-tw"><div dir="ltr" lang="zh">CI/CD/DevOps 既是條不歸路，更是大躍進之路：一旦踏出第一步，就注定你會不斷接觸遠離平庸的新觀點、新技術。<br /><br />至於背後是不是跑 agile，反而不那麼絕對了。<br /><br />屢屢從自己與別人演講、教育訓練、Q&amp;A 中歸納出來的心法……</div>— William Yeh (@william_yeh) <a href="https://twitter.com/william_yeh/status/678524911351029760?ref_src=twsrc%5Etfw">2015年12月20日</a></blockquote><br />現在回頭看 William Yeh 在 2 年前的推文，真的超有感！想當初凍仁參加「<a href="http://note.drx.tw/2016/03/ansible-workshop-and-self-realization.html" target="_blank">Ansible 自動化組態管理實戰講堂</a>」的初衷就是為了少看一本書，沒想到從此想看的書就越來越多了呢！(笑)<br /><br />在今年參加的付費課程中，最令凍仁印象深刻的，非「<a href="http://note.drx.tw/2017/09/the-phoenix-poject-workshop.html" target="_blank">《鳳凰項目》沙盤工作坊</a>」莫屬，但願凍仁現在待的團隊，也能早日追上那名為獨角獸 (Unicorn) 的 DevOps team。<br /><br />相信 2018 年的我們，都一定會更加進步，而接下來的故事，就等明年再繼續說下去吧！<br /><br />聖誕快樂！<br /><br />凍仁翔<br />Mon Dec 25 01:11:27 CST 2017<br /><script async="" charset="utf-8" src="https://platform.twitter.com/widgets.js"></script><br /><code class="ref">相關連結： <br /><span style="color: #ffdb00;">★</span> <a href="https://speakerdeck.com/chusiang/my-devops-tour">從一個人的 DevOps，到一個 DevOps 的團隊 | Speaker Deck</a><br /><span style="color: #ffdb00;">★</span> <a href="https://www.slideshare.net/freezejonny/my-devops-tour-83671273/freezejonny/my-devops-tour-83671273">從一個人的 DevOps，到一個 DevOps 的團隊 | SlideShare</a><br /><span style="color: #ffdb00;">★</span> <a href="https://www.accupass.com/event/1709111042501613360068" target="_blank">高雄敏捷之旅 Agile Tour Kaohsiung 2017</a><br /></code></p>
 
 
         
@@ -193,7 +193,7 @@
 
 
 <li>
-    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20100516_muttgmail-imap-part-3.html%2f&amp;text=%e4%bd%bf%e7%94%a8Mutt%e6%94%b6GMail%20IMAP%e9%9b%bb%e5%ad%90%e9%83%b5%e4%bb%b6%2c%20Part%203%20%e5%b0%81%e5%ad%98%e9%83%b5%e4%bb%b6%e7%af%87&amp;via="
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20171224_from-one-persons-devops-to-one-devops-team.html%2f&amp;text=%e5%be%9e%e4%b8%80%e5%80%8b%e4%ba%ba%e7%9a%84%20DevOps%ef%bc%8c%e5%88%b0%e4%b8%80%e5%80%8b%20DevOps%20%e7%9a%84%e5%9c%98%e9%9a%8a&amp;via="
        target="_blank" alt="" title="Share on Twitter">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -204,7 +204,7 @@
 
 
 <li>
-    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20100516_muttgmail-imap-part-3.html%2f" target="_blank" title="Share on Google Plus">
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20171224_from-one-persons-devops-to-one-devops-team.html%2f" target="_blank" title="Share on Google Plus">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
@@ -214,7 +214,7 @@
 
 
 <li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20100516_muttgmail-imap-part-3.html%2f" target="_blank" title="Share on Facebook">
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20171224_from-one-persons-devops-to-one-devops-team.html%2f" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -224,7 +224,7 @@
 
 
 <li>
-    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20100516_muttgmail-imap-part-3.html%2f&amp;title=%e4%bd%bf%e7%94%a8Mutt%e6%94%b6GMail%20IMAP%e9%9b%bb%e5%ad%90%e9%83%b5%e4%bb%b6%2c%20Part%203%20%e5%b0%81%e5%ad%98%e9%83%b5%e4%bb%b6%e7%af%87" target="_blank" title="Share on Reddit">
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20171224_from-one-persons-devops-to-one-devops-team.html%2f&amp;title=%e5%be%9e%e4%b8%80%e5%80%8b%e4%ba%ba%e7%9a%84%20DevOps%ef%bc%8c%e5%88%b0%e4%b8%80%e5%80%8b%20DevOps%20%e7%9a%84%e5%9c%98%e9%9a%8a" target="_blank" title="Share on Reddit">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
@@ -234,7 +234,7 @@
 
 
 <li>
-    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20100516_muttgmail-imap-part-3.html%2f&amp;title=%e4%bd%bf%e7%94%a8Mutt%e6%94%b6GMail%20IMAP%e9%9b%bb%e5%ad%90%e9%83%b5%e4%bb%b6%2c%20Part%203%20%e5%b0%81%e5%ad%98%e9%83%b5%e4%bb%b6%e7%af%87" target="_blank"
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20171224_from-one-persons-devops-to-one-devops-team.html%2f&amp;title=%e5%be%9e%e4%b8%80%e5%80%8b%e4%ba%ba%e7%9a%84%20DevOps%ef%bc%8c%e5%88%b0%e4%b8%80%e5%80%8b%20DevOps%20%e7%9a%84%e5%9c%98%e9%9a%8a" target="_blank"
        title="Share on LinkedIn">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -245,7 +245,7 @@
 
 
 <li>
-    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20100516_muttgmail-imap-part-3.html%2f&amp;title=%e4%bd%bf%e7%94%a8Mutt%e6%94%b6GMail%20IMAP%e9%9b%bb%e5%ad%90%e9%83%b5%e4%bb%b6%2c%20Part%203%20%e5%b0%81%e5%ad%98%e9%83%b5%e4%bb%b6%e7%af%87" target="_blank"
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20171224_from-one-persons-devops-to-one-devops-team.html%2f&amp;title=%e5%be%9e%e4%b8%80%e5%80%8b%e4%ba%ba%e7%9a%84%20DevOps%ef%bc%8c%e5%88%b0%e4%b8%80%e5%80%8b%20DevOps%20%e7%9a%84%e5%9c%98%e9%9a%8a" target="_blank"
        title="Share on StumbleUpon">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -256,7 +256,7 @@
 
 
 <li>
-    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20100516_muttgmail-imap-part-3.html%2f&amp;description=%e4%bd%bf%e7%94%a8Mutt%e6%94%b6GMail%20IMAP%e9%9b%bb%e5%ad%90%e9%83%b5%e4%bb%b6%2c%20Part%203%20%e5%b0%81%e5%ad%98%e9%83%b5%e4%bb%b6%e7%af%87" target="_blank"
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20171224_from-one-persons-devops-to-one-devops-team.html%2f&amp;description=%e5%be%9e%e4%b8%80%e5%80%8b%e4%ba%ba%e7%9a%84%20DevOps%ef%bc%8c%e5%88%b0%e4%b8%80%e5%80%8b%20DevOps%20%e7%9a%84%e5%9c%98%e9%9a%8a" target="_blank"
        title="Share on Pinterest">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -274,12 +274,12 @@
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="https://kalug.github.io/planet/qerter/20091020_muttgmail-imap-part-2-procmail.html/" data-toggle="tooltip" data-placement="top" title="使用Mutt收GMail IMAP電子郵件, Part 2 Procmail篇">&larr; Previous Post</a>
+              <a href="https://kalug.github.io/planet/chusiang/20171112_continuous-delivery-workshop-with-ansible-x-gitlab-ci.html/" data-toggle="tooltip" data-placement="top" title="DevOps 人一定要知道的持續交付技巧 - Ansible &amp; GitLab CI 實戰演練">&larr; Previous Post</a>
             </li>
           
           
             <li class="next">
-              <a href="https://kalug.github.io/planet/chusiang/20160503_setup-native-docker-for-mac-v1.11-and-migrate-docker-toolbox-on-osx-10.11.4.html/" data-toggle="tooltip" data-placement="top" title="在 OSX 10.11.4 安裝 Docker for Mac (v1.11.0-beta8)">Next Post &rarr;</a>
+              <a href="https://kalug.github.io/planet/appleboy/20180228_simply-output-go-html-template-execution-to-strings/" data-toggle="tooltip" data-placement="top" title="將 Go Html Template 存入 String 變數">Next Post &rarr;</a>
             </li>
           
         </ul>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>DevOps 人一定要知道的 Ansible &amp; GitLab CI 持續交付技巧</title>
+  <meta property="og:title" content="DevOps 人一定要知道的 Ansible &amp; GitLab CI 持續交付技巧" />
+  <meta name="twitter:title" content="DevOps 人一定要知道的 Ansible &amp; GitLab CI 持續交付技巧" />
+  <meta name="description" content="因緣際會下，凍仁先後於 COSCUP 2017 和 DevOps Taiwan x Agile Kaohsiung 的社群活動分享「使用 Ansible x GitLab CI 進行持續交付」的主題。 前者是接續 Smalltown 的 Infrastructure as Code，之後讓 Cheng Wei Chen 分享 Ansible &amp; GitLab CI/CD">
+  <meta property="og:description" content="因緣際會下，凍仁先後於 COSCUP 2017 和 DevOps Taiwan x Agile Kaohsiung 的社群活動分享「使用 Ansible x GitLab CI 進行持續交付」的主題。 前者是接續 Smalltown 的 Infrastructure as Code，之後讓 Cheng Wei Chen 分享 Ansible &amp; GitLab CI/CD">
+  <meta name="twitter:description" content="因緣際會下，凍仁先後於 COSCUP 2017 和 DevOps Taiwan x Agile Kaohsiung 的社群活動分享「使用 Ansible x GitLab CI 進行持續交付」的主題。 前者是接續 Smalltown 的 Infrastructure as Code，之後讓 Cheng Wei Chen 分享 Ansible &amp; GitLab CI/CD">
+  <meta name="author" content=""/>
+  <link href='https://kalug.github.io/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://kalug.github.io/img/kalug.png" />
+  <meta name="twitter:image" content="https://kalug.github.io/img/kalug.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://kalug.github.io/planet/chusiang/20170829_continuous-delivery-with-ansible-x-gitlab-ci.html/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kaohsiung Linux User Group" />
+
+  <meta name="generator" content="Hugo 0.41" />
+  <link rel="canonical" href="https://kalug.github.io/planet/chusiang/20170829_continuous-delivery-with-ansible-x-gitlab-ci.html/" />
+  <link rel="alternate" href="https://kalug.github.io/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://kalug.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://kalug.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://kalug.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://kalug.github.io">Kaohsiung Linux User Group</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Meetups" href="/meetups/">Meetups</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Planet" href="/planet/">Planet</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Wiki" href="/wiki/">Wiki</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Kaohsiung Linux User Group" href="https://kalug.github.io">
+            <img class="avatar-img" src="https://kalug.github.io/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="blog-heading">
+              <h1>DevOps 人一定要知道的 Ansible &amp; GitLab CI 持續交付技巧</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>因緣際會下，凍仁先後於 COSCUP 2017 和 DevOps Taiwan x Agile Kaohsiung 的社群活動分享「使用 Ansible x GitLab CI 進行持續交付」的主題。<br /><br />前者是接續 <a href="https://smalltowntechblog.com/" target="_blank" title="'小城故事不多 - 科技部' 作者">Smalltown</a> 的 <a href="https://www.slideshare.net/smalltown20110306/coscup-2017-infrastructure-as-code" target="_blank">Infrastructure as Code</a>，之後讓 <a href="http://chengweichen.com/" target="_blank">Cheng Wei Chen</a> 分享 <a href="http://blog.chengweichen.com/2017/08/coscup-2017-ansible-gitlab-cicd.html" target="_blank">Ansible &amp; GitLab CI/CD workshop 101</a> 進行更詳盡的實作面解說；後者則是接續 <a href="http://chengweichen.com/" target="_blank">Cheng Wei Chen</a> 的 <a href="https://www.slideshare.net/warfan/effective-devops-78979993" target="_blank">Effective DevOps：一場文化與技術的轉型運動</a>之後分享。<br /><br /><div style="text-align: center;"><script async="" class="speakerdeck-embed" data-id="1ae659ed34c24fe887922ca27769eb07" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script><br />▲ <a href="https://www.slideshare.net/freezejonny/continuous-delivery-with-ansible-x-gitlab-ci" target="_blank">Continuous Delivery with Ansible x GitLab CI</a> by Chu-Siang Lai.</div><a name='more'></a><br />第一場簡報的小檢討：<br /><ol><li>暗色系簡報較不利投影，建議於開講前先行公開簡報，以降低投影效果不彰問題。</li><li>淺灰色、深紅色、深藍色投影出來的文字辨識度不高，不建議使用。</li><li>程式碼範例建議使用白底，儘可能使用較大的字體。</li><li>文字過多，詳細內容應從講者口中得知，而不是直接寫在簡報上。</li><li>時間掌握度不足，並導致練習實作的時間大大縮短。</li></ol><br /><div style="text-align: center;"><script async="" class="speakerdeck-embed" data-id="5ca8e57a2c5642c48d06fd7643f5799f" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script><br />▲ <a href="https://www.slideshare.net/freezejonny/continuous-delivery-withansible-x-gitlab-ci-2e" target="_blank">Continuous Delivery with Ansible x GitLab CI (2e)</a> by Chu-Siang Lai.</div><br />第二場上台前的小調整：<br /><ol><li>先找台單槍投影機試播，直接從投影後的結果進行微調。</li><li>透明度需低於 70%，否則投影後效果不彰。</li><li>參照 <a href="https://github.com/chriskempson/tomorrow-theme" target="_blank">Tomorrow theme</a> 設置語法突顯 (Syntax highlighting)。</li><li>將藍色、紅色等顏色明度調整至 38%，以利投影。</li><li>移除較不重要的章節、實作，以縮短到 40 分鐘內講得完的頁數。</li><li>預先將實作部份錄製成影本，並大幅縮短等待時間，(約從 1 小時縮短至 7 分鐘)。</li></ol><div style="text-align: center;"><iframe allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/QHim_JxB4ZY?rel=0" width="560"></iframe><br />▲ <a href="https://youtu.be/QHim_JxB4ZY" target="_blank">Demo viedo for Continuous Delivery with Ansible x GitLab CI</a>.</div><br />從 2016 年至今，凍仁已陸續於各個社群分享了 7 場與 Ansible 有關的主題，大致可分為以下 4 個面向，其簡報可從 <a href="http://wiki.drx.tw/#!presentation.md" target="_blank"><a href="http://wiki.drx.tw/#!presentation.md">http://wiki.drx.tw/#!presentation.md</a></a> 取得。<br /><ol><li><b>Ansible 入門</b>：初期建議搭配 Docker 和 Jupyter 進行實作。</li><li><b>Ansible Roles 進階入門</b>：當 Ansible 越寫越複雜時，我們可以透過 Roles 來簡化 Playbboks。</li><li><b>混用 Ansible 建置 Docker images</b>：將 Ansible 應用到建置 Docker images，用一份 Playbooks 同時建置實體機器、VM 與 Docker Container 的概念。</li><li><b>使用 Ansible 和 GitLab CI 進行持續交付</b>：將 Ansible 推廣至企業，縮短交付週期，並減少例外工作。</li></ol><br /><div style="text-align: center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/ZF-C7vkhjMI?rel=0" frameborder="0" allowfullscreen></iframe><br />▲ <a href="https://youtu.be/ZF-C7vkhjMI" target="_blank">COSCUP 2017 現場直播影片 (上)</a>。</div><br /><div style="text-align: center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/7VDU8Gq3kD4?rel=0" frameborder="0" allowfullscreen></iframe><br />▲ <a href="https://youtu.be/7VDU8Gq3kD4" target="_blank">COSCUP 2017 現場直播影片 (下)</a>。</div><br />本次主題屬 Ansible 和 GitLab CI 的進階應用，若本身對組態管理工具、持續整合 (CI, Continuous Integration) 和自動化部署較無實務經驗，可能無法馬上進入狀況。相信這點是可以藉由加強基礎說明和實作來補助，但凍仁還是想在超過 2 小時以上的場次再分享進階的主題會比較合適。<br /><br />最後就讓凍仁以帥氣的活動照收尾了！<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://1.bp.blogspot.com/-U39R4En3RcQ/WaWghNsnjOI/AAAAAAAAgrc/7eb4C8F-n_QaiQaee1A35IkB3cHYh61SACLcBGAs/s1600/2017-08-05-coscuo2017-00.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="900" data-original-width="1600" height="225" src="https://1.bp.blogspot.com/-U39R4En3RcQ/WaWghNsnjOI/AAAAAAAAgrc/7eb4C8F-n_QaiQaee1A35IkB3cHYh61SACLcBGAs/s400/2017-08-05-coscuo2017-00.jpg" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 活動還未開始就先爆滿的 Room 307 by Chu-Siang Lai。 </td></tr></tbody></table><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://3.bp.blogspot.com/-xD2ndQ2Om_k/WaWgfPgKPLI/AAAAAAAAgrM/-S2vhn3FpjERF8VC6cTrMMUpQDmKzRvBACLcBGAs/s1600/2017-08-05-coscuo2017-01.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="1068" data-original-width="1600" height="266" src="https://3.bp.blogspot.com/-xD2ndQ2Om_k/WaWgfPgKPLI/AAAAAAAAgrM/-S2vhn3FpjERF8VC6cTrMMUpQDmKzRvBACLcBGAs/s400/2017-08-05-coscuo2017-01.jpg" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 講者晚宴獲得的小旗子 by Aminzai Wang。(照片來源：<a href="https://flic.kr/p/WgG7wZ" target="_blank"><a href="https://flic.kr/p/WgG7wZ">https://flic.kr/p/WgG7wZ</a></a>)</td></tr></tbody></table><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://1.bp.blogspot.com/-T6oydSWClw0/WaWgeGEenVI/AAAAAAAAgrI/-RayomNZGcQ9X6FGHFajnbdiJLTT74lKgCLcBGAs/s1600/2017-08-05-coscuo2017-02.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="1068" data-original-width="1600" height="266" src="https://1.bp.blogspot.com/-T6oydSWClw0/WaWgeGEenVI/AAAAAAAAgrI/-RayomNZGcQ9X6FGHFajnbdiJLTT74lKgCLcBGAs/s400/2017-08-05-coscuo2017-02.jpg" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 講者視角 by Aminzai Wang。(照片來源：<a href="https://flic.kr/p/Xg7VZw" target="_blank"><a href="https://flic.kr/p/Xg7VZw">https://flic.kr/p/Xg7VZw</a></a>)</td></tr></tbody></table><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://4.bp.blogspot.com/-nbH7tEZaZdE/WaWgftDgpBI/AAAAAAAAgrQ/GiZV-yBD-rEABiParhjTBsmdkkbcIxvBACLcBGAs/s1600/2017-08-05-coscuo2017-03.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="1068" data-original-width="1600" height="266" src="https://4.bp.blogspot.com/-nbH7tEZaZdE/WaWgftDgpBI/AAAAAAAAgrQ/GiZV-yBD-rEABiParhjTBsmdkkbcIxvBACLcBGAs/s400/2017-08-05-coscuo2017-03.jpg" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 個人很喜歡很帥氣講者照 by Aminzai Wang。(照片來源：<a href="https://flic.kr/p/Xv4TE8" target="_blank"><a href="https://flic.kr/p/Xv4TE8">https://flic.kr/p/Xv4TE8</a></a>)</td></tr></tbody></table><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://1.bp.blogspot.com/-QecBbgi7nbU/WaWggKGShMI/AAAAAAAAgrU/jwrEqnUMuR87jea1xmFL6_CeRjz6BcjyQCLcBGAs/s1600/2017-08-05-coscuo2017-04.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="1068" data-original-width="1600" height="266" src="https://1.bp.blogspot.com/-QecBbgi7nbU/WaWggKGShMI/AAAAAAAAgrU/jwrEqnUMuR87jea1xmFL6_CeRjz6BcjyQCLcBGAs/s400/2017-08-05-coscuo2017-04.jpg" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 講解中 by Aminzai Wang。(照片來源：<a href="https://flic.kr/p/WehwJC" target="_blank"><a href="https://flic.kr/p/WehwJC">https://flic.kr/p/WehwJC</a></a>)</td></tr></tbody></table><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://4.bp.blogspot.com/-3-T9Z9QThQk/WaWggcd35xI/AAAAAAAAgrY/E7By6r-1x98awWc-DZNe1C1t093DYL1BACLcBGAs/s1600/2017-08-05-coscuo2017-05.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="1068" data-original-width="1600" height="266" src="https://4.bp.blogspot.com/-3-T9Z9QThQk/WaWggcd35xI/AAAAAAAAgrY/E7By6r-1x98awWc-DZNe1C1t093DYL1BACLcBGAs/s400/2017-08-05-coscuo2017-05.jpg" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 講完這張，回公司就多了不少加速 Pipeline 相關的 issues by Aminzai Wang。(照片來源：<a href="https://flic.kr/p/Xr3YCw" target="_blank"><a href="https://flic.kr/p/Xr3YCw">https://flic.kr/p/Xr3YCw</a></a>)</td></tr></tbody></table><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://2.bp.blogspot.com/-dKxGy37yK0I/WaWghC4W_AI/AAAAAAAAgrg/5ldxHziuu-4brlBDnXoZFVQ98Hl7Bo-BACLcBGAs/s1600/2017-08-05-coscuo2017-06.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="1068" data-original-width="1600" height="266" src="https://2.bp.blogspot.com/-dKxGy37yK0I/WaWghC4W_AI/AAAAAAAAgrg/5ldxHziuu-4brlBDnXoZFVQ98Hl7Bo-BACLcBGAs/s400/2017-08-05-coscuo2017-06.jpg" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 會後於教室外繼續討論的凍仁 by Aminzai Wang。(<a href="https://flic.kr/p/WgG6Av" target="_blank"><a href="https://flic.kr/p/WgG6Av">https://flic.kr/p/WgG6Av</a></a>)</td></tr></tbody></table><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://3.bp.blogspot.com/-PE8_cP91-SE/WaWvxz1DH2I/AAAAAAAAgrw/lyLLAWdR-WohjmgfbPTcOR2qz4aDGiWZQCLcBGAs/s1600/2017-08-30-continuous_delivery_with_ansible_x_gitlab-ci.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="768" data-original-width="1024" height="300" src="https://3.bp.blogspot.com/-PE8_cP91-SE/WaWvxz1DH2I/AAAAAAAAgrw/lyLLAWdR-WohjmgfbPTcOR2qz4aDGiWZQCLcBGAs/s400/2017-08-30-continuous_delivery_with_ansible_x_gitlab-ci.png" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 順帶一提，簡報第一頁的可愛動物是使用 <i>cowsay</i> 指令繪製而成的牛兒，不是馬喔！</td></tr></tbody></table><br /><code class="ref">相關連結：<br /><span style="color: #ffdb00;">★</span> <a href="https://gitlab.com/chusiang/coscup2017-cd-demo" target="_blank">Chu-Siang Lai / coscup2017-cd-demo · GitLab</a><br /><font color="#ffdb00">★</font> <a href="https://youtu.be/5bESRA3r0UM?t=5h24m16s" target="_blank">COSCUP 2017 現場直播影片</a>。<br /><span style="color: #ffdb00;">★</span> <a href="http://blog.chengweichen.com/2017/08/coscup-2017-ansible-gitlab-cicd.html" target="_blank">艦長，你有事嗎？: COSCUP 2017 - Ansible &amp; GitLab CI/CD workshop 101</a><br /><font color="#ffdb00">★</font> <a href="https://youtu.be/fTfyrM3TAeg" target="_blank">[COSCUP 2017][307] Ansible &amp; GitLab CI/CD workshop 101 | YouTube</a><br /><span style="color: #ffdb00;">★</span> <a href="http://coscup.org/2017/#/schedule/day1/3071450" target="_blank">COSCUP 2017 活動頁面</a><br /><span style="color: #ffdb00;">★</span> <a href="https://devops.kktix.cc/events/meetup-kaohsiung-1" target="_blank">DevOps Taiwan x Agile Kaohsiung 高雄小聚活動頁面</a><br /><span style="color: #ffdb00;">★</span> <a href="https://github.com/chusiang/automate-with-ansible/" target="_blank">《現代 IT 人一定要知道的 Ansible 自動化組態技巧》 | GitHub</a><br /><br />參考資料：<br /><span style="color: #ffdb00;">★</span> <a href="https://www.tenlong.com.tw/products/9789862019627" target="_blank">《Continuous Delivery》中文版</a><br /><span style="color: #ffdb00;">★</span> <a href="https://www.tenlong.com.tw/products/9787115403650" target="_blank">《凤凰项目：一个 IT 运维的传奇故事》</a><br /><font color="#ffdb00">★</font> <a href="https://www.tenlong.com.tw/products/9789864765867">《鳳凰專案：看 IT 部門如何讓公司從谷底翻身的傳奇故事》</a><br /></code><br /></p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170829_continuous-delivery-with-ansible-x-gitlab-ci.html%2f&amp;text=DevOps%20%e4%ba%ba%e4%b8%80%e5%ae%9a%e8%a6%81%e7%9f%a5%e9%81%93%e7%9a%84%20Ansible%20%26%20GitLab%20CI%20%e6%8c%81%e7%ba%8c%e4%ba%a4%e4%bb%98%e6%8a%80%e5%b7%a7&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170829_continuous-delivery-with-ansible-x-gitlab-ci.html%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170829_continuous-delivery-with-ansible-x-gitlab-ci.html%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170829_continuous-delivery-with-ansible-x-gitlab-ci.html%2f&amp;title=DevOps%20%e4%ba%ba%e4%b8%80%e5%ae%9a%e8%a6%81%e7%9f%a5%e9%81%93%e7%9a%84%20Ansible%20%26%20GitLab%20CI%20%e6%8c%81%e7%ba%8c%e4%ba%a4%e4%bb%98%e6%8a%80%e5%b7%a7" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170829_continuous-delivery-with-ansible-x-gitlab-ci.html%2f&amp;title=DevOps%20%e4%ba%ba%e4%b8%80%e5%ae%9a%e8%a6%81%e7%9f%a5%e9%81%93%e7%9a%84%20Ansible%20%26%20GitLab%20CI%20%e6%8c%81%e7%ba%8c%e4%ba%a4%e4%bb%98%e6%8a%80%e5%b7%a7" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170829_continuous-delivery-with-ansible-x-gitlab-ci.html%2f&amp;title=DevOps%20%e4%ba%ba%e4%b8%80%e5%ae%9a%e8%a6%81%e7%9f%a5%e9%81%93%e7%9a%84%20Ansible%20%26%20GitLab%20CI%20%e6%8c%81%e7%ba%8c%e4%ba%a4%e4%bb%98%e6%8a%80%e5%b7%a7" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170829_continuous-delivery-with-ansible-x-gitlab-ci.html%2f&amp;description=DevOps%20%e4%ba%ba%e4%b8%80%e5%ae%9a%e8%a6%81%e7%9f%a5%e9%81%93%e7%9a%84%20Ansible%20%26%20GitLab%20CI%20%e6%8c%81%e7%ba%8c%e4%ba%a4%e4%bb%98%e6%8a%80%e5%b7%a7" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://kalug.github.io/planet/chusiang/20170707_how-to-use-color-mode-to-run-ansible-playbooks-on-gitlab-ci.html/" data-toggle="tooltip" data-placement="top" title="怎麼在 GitLab CI 用 color mode 跑 Ansible Playbooks？">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://kalug.github.io/planet/chusiang/20170901_the-phoenix-poject-workshop.html/" data-toggle="tooltip" data-placement="top" title="一群臺灣老司機參與《鳳凰項目》沙盤的持續成長故事">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "shawn111" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://www.facebook.com/groups/kalug.tw" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalug" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/joinchat/Bqbim0F9EuW-GMUbYg9geA" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://kalug.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://kalug.github.io">Kaohsiung Linux User Group</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.41</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://kalug.github.io/js/main.js"></script>
+<script src="https://kalug.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://kalug.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

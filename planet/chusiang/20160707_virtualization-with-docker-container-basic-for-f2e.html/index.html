@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>前端工程師一定要知道的 Docker 虛擬化容器技巧</title>
+  <meta property="og:title" content="前端工程師一定要知道的 Docker 虛擬化容器技巧" />
+  <meta name="twitter:title" content="前端工程師一定要知道的 Docker 虛擬化容器技巧" />
+  <meta name="description" content="感謝強者同事 Ralph Hsu 的邀請，讓使用 Docker 不到一年的凍仁可以到 07/04 Javascript 設計模式讀書會 (11) 磨磨上台演講這門技藝，並分享些近來的學習心得。 這是一份從 IT Engineer 的角度寫">
+  <meta property="og:description" content="感謝強者同事 Ralph Hsu 的邀請，讓使用 Docker 不到一年的凍仁可以到 07/04 Javascript 設計模式讀書會 (11) 磨磨上台演講這門技藝，並分享些近來的學習心得。 這是一份從 IT Engineer 的角度寫">
+  <meta name="twitter:description" content="感謝強者同事 Ralph Hsu 的邀請，讓使用 Docker 不到一年的凍仁可以到 07/04 Javascript 設計模式讀書會 (11) 磨磨上台演講這門技藝，並分享些近來的學習心得。 這是一份從 IT Engineer 的角度寫">
+  <meta name="author" content=""/>
+  <link href='https://kalug.github.io/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://kalug.github.io/img/kalug.png" />
+  <meta name="twitter:image" content="https://kalug.github.io/img/kalug.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://kalug.github.io/planet/chusiang/20160707_virtualization-with-docker-container-basic-for-f2e.html/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kaohsiung Linux User Group" />
+
+  <meta name="generator" content="Hugo 0.41" />
+  <link rel="canonical" href="https://kalug.github.io/planet/chusiang/20160707_virtualization-with-docker-container-basic-for-f2e.html/" />
+  <link rel="alternate" href="https://kalug.github.io/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://kalug.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://kalug.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://kalug.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://kalug.github.io">Kaohsiung Linux User Group</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Meetups" href="/meetups/">Meetups</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Planet" href="/planet/">Planet</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Wiki" href="/wiki/">Wiki</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Kaohsiung Linux User Group" href="https://kalug.github.io">
+            <img class="avatar-img" src="https://kalug.github.io/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="blog-heading">
+              <h1>前端工程師一定要知道的 Docker 虛擬化容器技巧</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>感謝強者同事 <a href="https://tw.linkedin.com/in/富棋-許-a93080a1" target="_blank">Ralph Hsu</a> 的邀請，讓使用 Docker 不到一年的凍仁可以到 <a href="https://www.facebook.com/events/270434173308724/" target="_blank">07/04 Javascript 設計模式讀書會 (11)</a> 磨磨<b>上台演講</b>這門技藝，並分享些近來的學習心得。<br /><br />這是一份從 IT Engineer 的角度寫給前端工程師的 <a href="https://www.docker.com" target="_blank">Docker</a> 入門簡報，包含了 Docker 觀念介紹、入門指令和一個小小的 <a href="https://en.wikipedia.org/wiki/Software_testing#System_testing" target="_blank">End-to-End Test</a> (簡稱 e2e test) demo。相信藉由一步步的等級提升，我們都可以早日成為大師，並提早下班的。(笑)<br /><br /><div style="text-align: center;"><script async class="speakerdeck-embed" data-id="5767db3221f448e3b2c0a6c28fcebeaf" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script><br />▲ <a href="https://speakerdeck.com/chusiang/qian-duan-gong-cheng-shi-ding-yao-zhi-dao-de-docker-xu-ni-hua-rong-qi-ji-qiao" target="_blank" title="前端工程師一定要知道的 Docker 虛擬化容器技巧">My sildes of Virtualization with Docker container (Basic) for F2E</a><br /></div><a name='more'></a><br />這次凍仁參考了<a href="https://www.gitbook.com/book/philipzheng/docker_practice/details" target="_blank">《Docker —— 從入門到實踐》</a>、<a href="https://docs.docker.com/engine/understanding-docker/" target="_blank">Docker 官方文件</a>、<a href="https://blog.wu-boy.com/2016/04/introduction-to-docker/" target="_blank">appleboy 的 Docker 基礎介紹與實戰簡報</a>等文件。也把先前<a href="http://www.tenlong.com.tw/items/9864340387?item_id=1007473" target="_blank">《Keynote 大師班》</a>一書中提到的一些進階技巧給練習了一遍，例如：彈出動畫、減法遮罩、<a href="https://color.adobe.com/zh/" target="_blank">Adobe Color CC</a> 配色 &hellip; 等。<br /><br />為了串起 <a href="https://github.com/angular/angular-seed" target="_blank">angular/angular-seed</a> 的 End-to-End Test 和 Docker 的凍仁，還臨時研究了 <a href="https://hub.docker.com/r/selenium/standalone-chrome-debug/" target="_blank">selenium/standalone-chrome-debug</a> 的 docker image。<br /><br /><blockquote class="twitter-tweet" data-lang="zh-tw"><div dir="ltr" lang="zh">感謝前人的教導，現在突然遇到簡報改需求也不怕，凍仁只需小小修改 Dockerfile 即可套用先前所寫的 <a href="https://twitter.com/hashtag/ansible?src=hash">#ansible</a> playbook，這下明晚 demo 用的 <a href="https://twitter.com/hashtag/docker?src=hash">#docker</a> image 有著落了！<a href="https://twitter.com/hashtag/devops?src=hash">#devops</a> <a href="https://twitter.com/hashtag/presentation?src=hash">#presentation</a> <a href="https://twitter.com/hashtag/takaojs1607?src=hash">#takaojs1607</a></div>— 凍仁翔 (@chusiang_lai) <a href="https://twitter.com/chusiang_lai/status/749542366713745409">2016年7月3日</a></blockquote><br />原先很傻很天真的以為只要用 <a href="https://github.com/chusiang/takaojs1607-docker-demo/blob/master/Dockerfile" target="_blank">Dockerfile</a> 繼承別人的 image，再套用之前寫好的 <a href="https://galaxy.ansible.com/chusiang/gitbook/" target="_blank">chusiang.gitbook</a> Ansible Role 就可以輕鬆解決這一回合；但在試後五六個版本後才發現只有 <b>selenium/standalone-chrome-debug:2.48.2</b> 才可正常的把 angular-seed e2e test 給 run 起來 &hellip;&hellip;。<br /><br /><div style="text-align: center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/XqCt8gk9AdI" frameborder="0" allowfullscreen></iframe><br />▲ angular-seed e2e tests demo on Docker (2:52)</div><br />錄完 Demo 影片後，完美主義的凍仁還加上了操作指令的字幕。完工時已過 05:30。演講後還被台下眼尖的友人 <a href="https://tw.linkedin.com/in/hashman-lin-048138b0" target="_blank">Hashman Lin</a> 發現，該影片是當日凌晨 03:33 時錄製的，真令人難以啟齒啊。<br /><br /><blockquote class="twitter-tweet" data-lang="zh-tw"><div dir="ltr" lang="zh">好在最後有把 e2e test 的部份串起來，不然今晚的簡報就整個就弱掉了。<br /><br /><a href="https://twitter.com/hashtag/selenium?src=hash">#selenium</a> <a href="https://twitter.com/hashtag/autotest?src=hash">#autotest</a> <a href="https://twitter.com/hashtag/docker?src=hash">#docker</a> <a href="https://t.co/u0bfWFLIa3">https://t.co/u0bfWFLIa3</a></div>— 凍仁翔 (@chusiang_lai) <a href="https://twitter.com/chusiang_lai/status/749794261973872640">2016年7月4日</a></blockquote><br />雖說早已接觸過 Git, GitHub, Docker, Dockerfile, Docker Hub (Automated Build), Jenkins, Selenium (Python) 等技藝，卻一直沒機會把它們都串起來實作自動化測試 (Autotest)。還記得當時在 Docker 裡把 angular-seed e2e test 跑起來時，還差點開心到跳起來呢！<br /><br /><blockquote class="twitter-tweet" data-lang="zh-tw"><div dir="ltr" lang="zh">「學到最多東習的人永遠都是那些肯主動站出來分享主題的人！」 <a href="https://t.co/LffN4gxYcO">https://t.co/LffN4gxYcO</a> 這次凍仁學習到了 Dockerfile 繼承之美、簡易 e2e test、對 Keynote 簡報軟體的熟練度提升，還有消化了 Docker 的核心觀念。<a href="https://twitter.com/hashtag/%E5%8F%AF%E6%8B%8B%E6%A3%84%E5%BC%8F%E7%8E%A9%E5%85%B7?src=hash">#可拋棄式玩具</a></div>— 凍仁翔 (@chusiang_lai) <a href="https://twitter.com/chusiang_lai/status/749976796200771584">2016年7月4日</a></blockquote><br />本機自錄的部份，由於當時未設置好 <a href="https://obsproject.com/" target="_blank">OBS</a>，錄錯了視窗。所以這是事後重錄簡報、剪接聲音後的版本。<br /><br /><div style="text-align: center;"><iframe allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/k5iwKUZY9tk" width="560"></iframe><br />▲ Offline Show of virtualization with Docker container for F2E (basic)</div><br />希望這份簡報可以降低大家入門 Docker 的門壏。接下來是該收收心準備下一場 <a href="http://studyarea.kktix.cc/events/c6457aff" target="_blank">SA 群英會</a>分享的簡報了，各位我們交大見！<br /><br /><h2 class="date-header"><span>2016-07-09</span></h2><br />補上線上版簡報 － <a href="https://www.icloud.com/keynote/07BC-J2dLVw7cW1oZnBHqeB3A#virtualization%5Fwith%5Fdocker%5Fbasic" target="_blank">前端工程師一定要知道的 Docker 虛擬化容器技巧 | iCloud Keynote</a>。<br /><script async="" charset="utf-8" src="//latform.twitter.com/widgets.js"></script><br /><code class="ref">延伸閱讀：<br /><span style="color: #ffdb00;">★</span> <a href="http://note.drx.tw/2016/01/install-docker-191-on-ubuntu-1404.html" target="_blank">於 Ubuntu 14.04 安裝 Docker 1.9.1+</a><br /><span style="color: #ffdb00;">★</span> <a href="http://note.drx.tw/2016/05/setup-native-docker-for-mac-v1.11-and-migrate-docker-toolbox-on-osx-10.11.4.html" target="_blank">在 OSX 10.11.4 安裝 Docker for Mac (v1.11.0-beta8)</a><br /><br />相關連結：<br /><font color="#ffdb00">★</font> <a href="https://speakerdeck.com/chusiang/qian-duan-gong-cheng-shi-ding-yao-zhi-dao-de-docker-xu-ni-hua-rong-qi-ji-qiao" target="_blank">前端工程師一定要知道的 Docker 虛擬化容器技巧 | Speaker Deck</a><br /><font color="#ffdb00">★</font> <a href="http://www.slideshare.net/freezejonny/docker-63701917" target="_blank">前端工程師一定要知道的 Docker 虛擬化容器技巧 | slideshare</a><br /><font color="#ffdb00">★</font> <a href="https://hub.docker.com/r/chusiang/takaojs1607/">chusiang/takaojs1607 | Docker Hub</a><br /><span style="color: #ffdb00;">★</span> <a href="https://github.com/chusiang/takaojs1607-docker-demo" target="_blank">chusiang/takaojs1607-docker-demo: docker demo for takaojs meetup | GitHub</a><br /><span style="color: #ffdb00;">★</span> <a href="https://hackmd.io/s/r1uRVjDL" target="_blank">F2E x Docker | JS 設計模式讀書會 #11 共筆 | HackMD</a><br /><font color="#ffdb00">★</font> <a href="https://docs.docker.com/engine/getstarted/step_three/">Find &amp; run the whalesay image | Docker</a><br /><font color="#ffdb00">★</font> <a href="http://powerpoint.tw/index.php/image-design-rule-02/" target="_blank">四個常用的簡報影像設計方法（下） | 簡報。小學堂</a><br /><font color="#ffdb00">★</font> <a href="https://color.adobe.com/zh/3399CC-color-theme-1785415/" target="_blank">3399CC 顏色主題作者 meteoric_cry - Adobe Color CC</a><br /><br />資料來源： <br /><span style="color: #ffdb00;">★</span> <a href="https://www.gitbook.com/book/philipzheng/docker_practice/details" target="_blank">《Docker —— 從入門到實踐­》正體中文版 | GitBook</a><br /><span style="color: #ffdb00;">★</span> <a href="https://docs.docker.com/engine/understanding-docker/" target="_blank">Docker Overview | Docker</a><br /><span style="color: #ffdb00;">★</span> <a href="http://blog.smlsun.com/2015/04/selenium-docker-debug.html" target="_blank">前端自動化測試之 Selenium docker 環境 debug 指南 | 蹤影 Smlsun</a><br /><font color="#ffdb00">★</font> <a href="https://testerhome.com/topics/3367">Docker selenium 記錄——Selenium conf 2015 » 社區 » TesterHome</a><br /><span style="color: #ffdb00;">★</span> <a href="https://docs.npmjs.com/cli/start" target="_blank">start | npm Documentation</a><br /></code><br /></p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20160707_virtualization-with-docker-container-basic-for-f2e.html%2f&amp;text=%e5%89%8d%e7%ab%af%e5%b7%a5%e7%a8%8b%e5%b8%ab%e4%b8%80%e5%ae%9a%e8%a6%81%e7%9f%a5%e9%81%93%e7%9a%84%20Docker%20%e8%99%9b%e6%93%ac%e5%8c%96%e5%ae%b9%e5%99%a8%e6%8a%80%e5%b7%a7&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20160707_virtualization-with-docker-container-basic-for-f2e.html%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20160707_virtualization-with-docker-container-basic-for-f2e.html%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20160707_virtualization-with-docker-container-basic-for-f2e.html%2f&amp;title=%e5%89%8d%e7%ab%af%e5%b7%a5%e7%a8%8b%e5%b8%ab%e4%b8%80%e5%ae%9a%e8%a6%81%e7%9f%a5%e9%81%93%e7%9a%84%20Docker%20%e8%99%9b%e6%93%ac%e5%8c%96%e5%ae%b9%e5%99%a8%e6%8a%80%e5%b7%a7" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20160707_virtualization-with-docker-container-basic-for-f2e.html%2f&amp;title=%e5%89%8d%e7%ab%af%e5%b7%a5%e7%a8%8b%e5%b8%ab%e4%b8%80%e5%ae%9a%e8%a6%81%e7%9f%a5%e9%81%93%e7%9a%84%20Docker%20%e8%99%9b%e6%93%ac%e5%8c%96%e5%ae%b9%e5%99%a8%e6%8a%80%e5%b7%a7" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20160707_virtualization-with-docker-container-basic-for-f2e.html%2f&amp;title=%e5%89%8d%e7%ab%af%e5%b7%a5%e7%a8%8b%e5%b8%ab%e4%b8%80%e5%ae%9a%e8%a6%81%e7%9f%a5%e9%81%93%e7%9a%84%20Docker%20%e8%99%9b%e6%93%ac%e5%8c%96%e5%ae%b9%e5%99%a8%e6%8a%80%e5%b7%a7" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20160707_virtualization-with-docker-container-basic-for-f2e.html%2f&amp;description=%e5%89%8d%e7%ab%af%e5%b7%a5%e7%a8%8b%e5%b8%ab%e4%b8%80%e5%ae%9a%e8%a6%81%e7%9f%a5%e9%81%93%e7%9a%84%20Docker%20%e8%99%9b%e6%93%ac%e5%8c%96%e5%ae%b9%e5%99%a8%e6%8a%80%e5%b7%a7" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://kalug.github.io/planet/chusiang/20160529_automate-with-ansible-basic.html/" data-toggle="tooltip" data-placement="top" title="現代 IT 人一定要知道的 Ansible 自動化組態技巧">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://kalug.github.io/planet/chusiang/20160709_remove-default-browser-on-miui8.html/" data-toggle="tooltip" data-placement="top" title="移除 MIUI 8 的預設瀏覽器">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "shawn111" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://www.facebook.com/groups/kalug.tw" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalug" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/joinchat/Bqbim0F9EuW-GMUbYg9geA" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://kalug.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://kalug.github.io">Kaohsiung Linux User Group</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.41</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://kalug.github.io/js/main.js"></script>
+<script src="https://kalug.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://kalug.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

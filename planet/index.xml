@@ -20,6 +20,15 @@
     </item>
     
     <item>
+      <title>簡單易用的 Zabbix 監控服務</title>
+      <link>https://kalug.github.io/planet/chusiang/20180531_zabbix-the-easy-to-use-monitoring-tools.html/</link>
+      <pubDate>Thu, 31 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20180531_zabbix-the-easy-to-use-monitoring-tools.html/</guid>
+      <description>上週六 (05/26)，是 DevOps Taiwan 的社群日。這次「Monitoring Tools 大亂鬥」一共邀請了 11 位講者，從雲端運算 (Cloud Computing) 的 AWS, Azure, GCP，和自由軟體 (Free Software) 的 Consul,</description>
+    </item>
+    
+    <item>
       <title>如何在 Go 專案內寫測試</title>
       <link>https://kalug.github.io/planet/appleboy/20180514_how-to-write-testing-in-golang/</link>
       <pubDate>Mon, 14 May 2018 00:00:00 +0000</pubDate>
@@ -35,6 +44,15 @@
       
       <guid>https://kalug.github.io/planet/appleboy/20180505_what-is-vendor-in-golang/</guid>
       <description>很多朋友剛入門 Go 語言時，第一個會遇到的問題是，該如何設定專案配置，讓專案可以正常執行，在個人電腦該如何開發多個專案，這邊就會遇到該如何設定 $</description>
+    </item>
+    
+    <item>
+      <title>怎麼無痛升級 Ansible</title>
+      <link>https://kalug.github.io/planet/chusiang/20180428_how-to-stable-upgrade-the-ansible.html/</link>
+      <pubDate>Sat, 28 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20180428_how-to-stable-upgrade-the-ansible.html/</guid>
+      <description>昨天，是凍仁參加 DevOps Taiwan Meetup #13 Ansible User 小聚，並擔任閃電秀講者的日子。還記得 2 年前，剛入門 Ansible 時，凍仁一直很想參加 Ansible 小聚，好親自與前輩們討教，降低學習門壏</description>
     </item>
     
     <item>
@@ -83,6 +101,15 @@
     </item>
     
     <item>
+      <title>Install the Vim 8.0 and YouCompleteMe with Make on CentOS 7.4</title>
+      <link>https://kalug.github.io/planet/chusiang/20180319_install-vim-80-and-youcompleteme-with.html/</link>
+      <pubDate>Mon, 19 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20180319_install-vim-80-and-youcompleteme-with.html/</guid>
+      <description>As a vimmer, I want to complete and install the Vim 7.4.1578+ at ~/.local , so than I can use the YouCompleteMe plugin on CentOS 7.4. ▲ The Vim 8.0.1522 on CentOS 7.4.1611. Install the Vim 8.0 with Make1. Install the necessary package. [ jonny@centos7 ~ ] $ sudo yum install gcc-c++ ncurses-devel python-devel 2. Get the source code of Vim. [ jonny@centos7 ~ ] $ git clone https://github.com/vim/vim.git 3.</description>
+    </item>
+    
+    <item>
       <title>用 Nginx 來架設線上即時縮圖機</title>
       <link>https://kalug.github.io/planet/appleboy/20180317_nginx-reverse-proxy-image-resizing/</link>
       <pubDate>Sat, 17 Mar 2018 00:00:00 +0000</pubDate>
@@ -107,6 +134,204 @@
       
       <guid>https://kalug.github.io/planet/appleboy/20180228_simply-output-go-html-template-execution-to-strings/</guid>
       <description>在 Go 語言內通常都將 Html Temaple 寫入到 io.Writer interface 像是 *http.ResponseWriter，但是有些情境需要將 Template 寫入到 String 變數內，例如實作簡訊 Templat</description>
+    </item>
+    
+    <item>
+      <title>從一個人的 DevOps，到一個 DevOps 的團隊</title>
+      <link>https://kalug.github.io/planet/chusiang/20171224_from-one-persons-devops-to-one-devops-team.html/</link>
+      <pubDate>Sun, 24 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20171224_from-one-persons-devops-to-one-devops-team.html/</guid>
+      <description>還記得先前在「敏捷原理與團隊塑造」課堂的最後，講者 William Yeh 提到，難得自己可以待在正在導入敏捷 (Agile) 的團隊，不妨藉由年底的 IT 鐵人賽，把導入 Agile 的種種給寫</description>
+    </item>
+    
+    <item>
+      <title>DevOps 人一定要知道的持續交付技巧 - Ansible &amp; GitLab CI 實戰演練</title>
+      <link>https://kalug.github.io/planet/chusiang/20171112_continuous-delivery-workshop-with-ansible-x-gitlab-ci.html/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20171112_continuous-delivery-workshop-with-ansible-x-gitlab-ci.html/</guid>
+      <description>凍仁前後分享過兩次 DevOps 人一定要知道的 Ansible &amp;amp; GitLab CI 持續交付技巧的技術分享後，有個謎之音問到：「不如挑戰看看工作坊 (Workshop) 吧？這主題都可以講上一天了呢！」，</description>
+    </item>
+    
+    <item>
+      <title>一位一日 Scrum Master 的 Scrum Drawing Game 活動心得</title>
+      <link>https://kalug.github.io/planet/chusiang/20171014_scrum-master-scrum-drawing-game.html/</link>
+      <pubDate>Sat, 14 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20171014_scrum-master-scrum-drawing-game.html/</guid>
+      <description>10&amp;frasl;12 是凍仁第一次參與敏捷內湖 (Agile Neihu) 聚會的日子，也是凍仁今年參加第 6 場與敏捷開發 (Agile) 相關活動的日子，雖然現在待的團隊也有 Scrum，但總是讓人覺得哪</description>
+    </item>
+    
+    <item>
+      <title>firewalld - CentOS 7 的動態防火牆</title>
+      <link>https://kalug.github.io/planet/chusiang/20170924_the-firewalld-on-centos-7.html/</link>
+      <pubDate>Sun, 24 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20170924_the-firewalld-on-centos-7.html/</guid>
+      <description>如同先前在 [完全用 GNU/Linux 工作] 07. 簡易的防火牆一文提到，Ubuntu 從 8.04 LTS 開始多了 ufw 這個簡單的防火牆，CentOS 也在 7.0 導入可以動態管理防火牆的 f</description>
+    </item>
+    
+    <item>
+      <title>如何在 CentOS 7 解決 glibc 的 yum 套件相依性問題</title>
+      <link>https://kalug.github.io/planet/chusiang/20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html/</link>
+      <pubDate>Sat, 23 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html/</guid>
+      <description>這週凍仁接到一個需要幫 CentOS 7 部署 OpenLDAP client 的任務。過程中，總是有一兩台 server 會遇到 glibc 相依性問題，並為此煩惱。如果是所有的 server 都有同樣的問題還好解決，最麻煩</description>
+    </item>
+    
+    <item>
+      <title>一群臺灣老司機參與《鳳凰項目》沙盤的持續成長故事</title>
+      <link>https://kalug.github.io/planet/chusiang/20170901_the-phoenix-poject-workshop.html/</link>
+      <pubDate>Fri, 01 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20170901_the-phoenix-poject-workshop.html/</guid>
+      <description>2017/09/01 是凍仁參與國際最佳實踐管理聯盟 (International Best Practice Management Alliance, IBPA) 和 iThome 舉辦的 《鳳凰項目》沙盤工作坊的日子，也是一場與 Agile、DevOps 界佼佼者大比拼的日子！</description>
+    </item>
+    
+    <item>
+      <title>DevOps 人一定要知道的 Ansible &amp; GitLab CI 持續交付技巧</title>
+      <link>https://kalug.github.io/planet/chusiang/20170829_continuous-delivery-with-ansible-x-gitlab-ci.html/</link>
+      <pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20170829_continuous-delivery-with-ansible-x-gitlab-ci.html/</guid>
+      <description>因緣際會下，凍仁先後於 COSCUP 2017 和 DevOps Taiwan x Agile Kaohsiung 的社群活動分享「使用 Ansible x GitLab CI 進行持續交付」的主題。 前者是接續 Smalltown 的 Infrastructure as Code，之後讓 Cheng Wei Chen 分享 Ansible &amp;amp; GitLab CI/CD</description>
+    </item>
+    
+    <item>
+      <title>怎麼在 GitLab CI 用 color mode 跑 Ansible Playbooks？</title>
+      <link>https://kalug.github.io/planet/chusiang/20170707_how-to-use-color-mode-to-run-ansible-playbooks-on-gitlab-ci.html/</link>
+      <pubDate>Fri, 07 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20170707_how-to-use-color-mode-to-run-ansible-playbooks-on-gitlab-ci.html/</guid>
+      <description>凍仁近日使用 Ansible 和 GitLab CI 幫公司導入持續交付 (Continuous Delivery) 時，很希望 GitLab CI 的執行結果可以像終端機 (TTY) 一樣，有便於閱讀的色彩模式 (color mode)。 今日隨手翻了《Ans</description>
+    </item>
+    
+    <item>
+      <title>「敏捷原理與團隊塑造」與「獨角獸計劃」</title>
+      <link>https://kalug.github.io/planet/chusiang/20170619_the-agile-workshop-and-the-unicorn-project.html/</link>
+      <pubDate>Mon, 19 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20170619_the-agile-workshop-and-the-unicorn-project.html/</guid>
+      <description>自從凍仁踏上 DevOps 的偉大航道後，不時會在相關書籍和文獻看到敏捷開發 (Agile) 等字眼，雖有幸能在多年前短暫參與導入 Scrum 的團隊，但一直沒機會見識到導入成功的案</description>
+    </item>
+    
+    <item>
+      <title>怎麼在 Telegram Desktop 上使用自訂主題？</title>
+      <link>https://kalug.github.io/planet/chusiang/20170510_how-to-use-the-custom-themes-on-telegram-desktop.html/</link>
+      <pubDate>Wed, 10 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20170510_how-to-use-the-custom-themes-on-telegram-desktop.html/</guid>
+      <description>Telegram Desktop 是 Telegram 官方推出同時支援 Windows、macOS 和 GNU/Linux 的桌面版本 (Desktop) 通訊軟體，同時也是採用 GPL v3 授權釋出的自由軟體。 從 v1.0 開始多了自訂怖景主題 (theme) 的</description>
+    </item>
+    
+    <item>
+      <title>現代 IT 人一定要知道的 Ansible 自動化組態技巧 (3/e)</title>
+      <link>https://kalug.github.io/planet/chusiang/20170326_automate-with-ansible-basic-3e.html/</link>
+      <pubDate>Sun, 26 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20170326_automate-with-ansible-basic-3e.html/</guid>
+      <description>上上周 (2017/03/14) 參加完 Weithenn 前輩分享的 打造 Infrastructure Agility Mode 2 的基石 – Docker / Container 後，凍仁便於上周 (2017/03/21) 的 Tossug 分享些 Ansible 基礎入門，長年待在南部的凍仁可說是第一次站上 Tossug 和摩茲工寮的</description>
+    </item>
+    
+    <item>
+      <title>如何只更換特定鍵盤的 Ctrl 和 Caps Lock 鍵位？ on Ubuntu 16.04</title>
+      <link>https://kalug.github.io/planet/chusiang/20170318_how-to-switch-ctrl-and-caps-lock-on-specific-keyboard.html/</link>
+      <pubDate>Sat, 18 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20170318_how-to-switch-ctrl-and-caps-lock-on-specific-keyboard.html/</guid>
+      <description>四年前，凍仁找到了對調 Ctrl 和 Caps Lock 的方法，並紀錄於「對調 Ctrl 和 Caps Lock 鍵位」一文，但使用 setxkbmap 指令操作時，會連外接不需更換鍵位的 HHKB Pro 2 也一併生效，害得凍仁</description>
+    </item>
+    
+    <item>
+      <title>如何將 Slack 的資料匯到 Rocket.Chat？</title>
+      <link>https://kalug.github.io/planet/chusiang/20170208_how-to-import-slack-data-into-rocket-chat.html/</link>
+      <pubDate>Wed, 08 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20170208_how-to-import-slack-data-into-rocket-chat.html/</guid>
+      <description>Rocket.Chat 是一套基於 Meteor.js 開發的開放源始碼 Chat 專案，有著 Slack like 的別名。在建置 Rocket.Chat server 的部份，凍仁曾試著用 Heroku 的方式建置，但只要一匯入 Slack 的資料 (data) 就會炸掉。最後是參考</description>
+    </item>
+    
+    <item>
+      <title>第 8 屆 IT 邦幫忙鐵人賽 － 鋼鐵般的刻意練習</title>
+      <link>https://kalug.github.io/planet/chusiang/20161207_ithome-ironman-8th.html/</link>
+      <pubDate>Wed, 07 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20161207_ithome-ironman-8th.html/</guid>
+      <description>今年 12 月, 是凍仁參加第 8 屆 IT 鐵人賽的日子，也是與 3 年前的自己比拼的好機會。接下來凍仁將會刻意練習 Ansible 這門技藝一個月，在此凍仁就先紀錄一些參賽心</description>
+    </item>
+    
+    <item>
+      <title>如何匯入 SSL 憑證到 AWS Certificate Manager</title>
+      <link>https://kalug.github.io/planet/chusiang/20161112_how-to-import-ssl-certificate-to-acm.html/</link>
+      <pubDate>Sat, 12 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20161112_how-to-import-ssl-certificate-to-acm.html/</guid>
+      <description>AWS Certificate Manager (ACM) 是 AWS 推出用來管理、部署 SSL 憑證的免費 SaaS 服務 (前提是得搭配 Elastic Load Balancing (ELB) 或 CloudFront 一起使用)。近日凍仁接獲幫公司更新 SSL 憑證的任務便把玩了一下，第一次</description>
+    </item>
+    
+    <item>
+      <title>Container Summit 2016 - 邁向下個  IT 架構的 Container</title>
+      <link>https://kalug.github.io/planet/chusiang/20160925_container-summit-2016-it-container.html/</link>
+      <pubDate>Sun, 25 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20160925_container-summit-2016-it-container.html/</guid>
+      <description>Container Summit 可說是聚集各界容器 (container) 專家，討論 container 次世代 IT 架構的研討會，會中有不少的話題圍繞在近來火紅的 Docker 技術上。想當初凍仁會開始接觸 Docker 也是聽到不少前輩在</description>
+    </item>
+    
+    <item>
+      <title>於 Debian 7 手動降版至 docker-engine 1.10.3</title>
+      <link>https://kalug.github.io/planet/chusiang/20160905_downgrade-docker-engine-to-1.11.2-on-debian-7.html/</link>
+      <pubDate>Mon, 05 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20160905_downgrade-docker-engine-to-1.11.2-on-debian-7.html/</guid>
+      <description>最近凍仁在 Debian 7 上升級 docker-engine 一直失敗，查看 error log 才得知 Docker 1.12.0+ 需使用 Linux Kernel 3.10.0+ 才行，但偏偏 apt 套件管理員還傻傻的把它給升上 1.12.1。若大家有相同的困擾就請</description>
+    </item>
+    
+    <item>
+      <title>現代 IT 人一定要知道的 Ansible 自動化組態技巧 Ⅱ - Roles &amp; Windows</title>
+      <link>https://kalug.github.io/planet/chusiang/20160726_automate-with-ansible-roles-windows.html/</link>
+      <pubDate>Tue, 26 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20160726_automate-with-ansible-roles-windows.html/</guid>
+      <description>今年，凍仁有幸接獲 Netman 前輩邀請，並擔任 SA 2016 群英會的講者。想想凍仁也在 SA 1 學到了不少技術，總算可以報恩了！ 這次凍仁是接續 sakana 前輩的淺談 Ansible 自動化管理</description>
+    </item>
+    
+    <item>
+      <title>移除 MIUI 8 的預設瀏覽器</title>
+      <link>https://kalug.github.io/planet/chusiang/20160709_remove-default-browser-on-miui8.html/</link>
+      <pubDate>Sat, 09 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20160709_remove-default-browser-on-miui8.html/</guid>
+      <description>近來凍仁遇到了一個挺令人頭痛的問題，那就是上個月不小心把小米手機 (MI2) 升上 MIUI 8。切換預設瀏覽器的功能癈了，不管設定怎麼改，只要點到開新分頁的連結</description>
+    </item>
+    
+    <item>
+      <title>前端工程師一定要知道的 Docker 虛擬化容器技巧</title>
+      <link>https://kalug.github.io/planet/chusiang/20160707_virtualization-with-docker-container-basic-for-f2e.html/</link>
+      <pubDate>Thu, 07 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20160707_virtualization-with-docker-container-basic-for-f2e.html/</guid>
+      <description>感謝強者同事 Ralph Hsu 的邀請，讓使用 Docker 不到一年的凍仁可以到 07/04 Javascript 設計模式讀書會 (11) 磨磨上台演講這門技藝，並分享些近來的學習心得。 這是一份從 IT Engineer 的角度寫</description>
+    </item>
+    
+    <item>
+      <title>現代 IT 人一定要知道的 Ansible 自動化組態技巧</title>
+      <link>https://kalug.github.io/planet/chusiang/20160529_automate-with-ansible-basic.html/</link>
+      <pubDate>Sun, 29 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20160529_automate-with-ansible-basic.html/</guid>
+      <description>愛上 Ansible 自動化組態的凍仁聽到五月份有 KaLUG 聚會，便自告奮勇說要分享 Ansible 的主題，這是凍仁自從報完大學專題後第二次在 KaLUG 分享 topic。 ▲ My sildes of Automate with Ansible (Basic) 決</description>
+    </item>
+    
+    <item>
+      <title>在 OSX 10.11.4 安裝 Docker for Mac (v1.11.0-beta8)</title>
+      <link>https://kalug.github.io/planet/chusiang/20160503_setup-native-docker-for-mac-v1.11-and-migrate-docker-toolbox-on-osx-10.11.4.html/</link>
+      <pubDate>Tue, 03 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/chusiang/20160503_setup-native-docker-for-mac-v1.11-and-migrate-docker-toolbox-on-osx-10.11.4.html/</guid>
+      <description>Docker for Mac 和 Docker for Windows 是個正在封測，並與 Docker Toolbox, Boot2docker 使用不同虛擬化技術的 Docker 原生應用程式 (native application) 。其分別使用了 xhyve VM 與 Hyper-V VM 的架構，讓我們不需再連到 Virtualbox 裡的 boot2docker VM 裡即可</description>
     </item>
     
     <item>

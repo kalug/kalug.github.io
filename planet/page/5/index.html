@@ -5,24 +5,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>使用Mutt收GMail IMAP電子郵件, Part 3 封存郵件篇</title>
-  <meta property="og:title" content="使用Mutt收GMail IMAP電子郵件, Part 3 封存郵件篇" />
-  <meta name="twitter:title" content="使用Mutt收GMail IMAP電子郵件, Part 3 封存郵件篇" />
-  <meta name="description" content="在[使用Mutt收GMail IMAP電子郵件, Part 2 Procmail篇]的文章裡，我們使用procmail來幫我們將郵件做分類。但是，一般性沒">
-  <meta property="og:description" content="在[使用Mutt收GMail IMAP電子郵件, Part 2 Procmail篇]的文章裡，我們使用procmail來幫我們將郵件做分類。但是，一般性沒">
-  <meta name="twitter:description" content="在[使用Mutt收GMail IMAP電子郵件, Part 2 Procmail篇]的文章裡，我們使用procmail來幫我們將郵件做分類。但是，一般性沒">
+  <title>Kaohsiung Linux User Group</title>
+  <meta property="og:title" content="Kaohsiung Linux User Group" />
+  <meta name="twitter:title" content="Kaohsiung Linux User Group" />
   <meta name="author" content=""/>
   <link href='https://kalug.github.io/img/kalug.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://kalug.github.io/img/kalug.png" />
   <meta name="twitter:image" content="https://kalug.github.io/img/kalug.png" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://kalug.github.io/planet/qerter/20100516_muttgmail-imap-part-3.html/" />
+  <meta property="og:url" content="https://kalug.github.io/planet/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kaohsiung Linux User Group" />
 
   <meta name="generator" content="Hugo 0.41" />
-  <link rel="canonical" href="https://kalug.github.io/planet/qerter/20100516_muttgmail-imap-part-3.html/" />
-  <link rel="alternate" href="https://kalug.github.io/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="canonical" href="https://kalug.github.io/planet/" />
+  <link rel="alternate" href="https://kalug.github.io/planet/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -147,26 +144,14 @@
 
 
     
-  
-  
-  
-
-
-
-
-  
-
   <header class="header-section ">
-    
     <div class="intro-header no-img">
-      
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="blog-heading">
-              <h1>使用Mutt收GMail IMAP電子郵件, Part 3 封存郵件篇</h1>
-                
-                
+            <div class="page-heading">
+              <h1></h1>
+              <hr class="small">
             </div>
           </div>
         </div>
@@ -174,149 +159,155 @@
     </div>
   </header>
 
-
     
-<div class="container" role="main">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <article role="main" class="blog-post">
-        <p>在[<a href="http://qerter.blogspot.com/2009/10/muttgmail-imap-part-2-procmail.html">使用Mutt收GMail IMAP電子郵件, Part 2 Procmail篇</a>]的文章裡，我們使用procmail來幫我們將郵件做分類。但是，一般性沒辦法分類的聯絡郵件還是會全部進到mbox（主郵件檔案）裡，隨著時間日積月累，mbox檔案大小會隨著時間越久，檔案會越變越大，Mutt讀取mbox檔案速度因此而變慢。<br /><br />此時，我們需要將舊郵件做封存(Archive)，方能解決mbox檔案隨著時間越變越大的問題。在Debian下，我們可以使用archivemail程式來幫我們的舊郵件做封存。使用方法十分簡單，如下：<br /><br /><code>archivemail &ndash;suffix &lsquo;<em>%B</em>%Y&rsquo; &ndash;days=90  mbox<br /></code><br /><br />archivemail程式就會將mbox檔案中超過90天以上的郵件封存壓縮，並且獨立成另外一個檔案，檔名後面加註月份與年份，檔名範例如 mbox_February_2010.gz。<br /><br />archivemail程式可搭配cron將郵件檔案定期做封存，支援IMAP, mbox, MH與Maildir 郵件檔案格式。</p>
-
-
+  <div class="container" role="main">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
+        <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://kalug.github.io/planet/qerter/20090120_debian-sarge-asus-eee-box.html/">
+                <h2 class="post-title">[第參期] 安裝Debian Etch 在 Asus eee box上</h2>
 
-        
-            <hr/>
-            <section id="social-share">
-              <ul class="list-inline footer-links">
                 
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp; qerter Posted on January 20, 2009
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 2 minutes (520 words)
+  
+  
+</span>
 
 
-<li>
-    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20100516_muttgmail-imap-part-3.html%2f&amp;text=%e4%bd%bf%e7%94%a8Mutt%e6%94%b6GMail%20IMAP%e9%9b%bb%e5%ad%90%e9%83%b5%e4%bb%b6%2c%20Part%203%20%e5%b0%81%e5%ad%98%e9%83%b5%e4%bb%b6%e7%af%87&amp;via="
-       target="_blank" alt="" title="Share on Twitter">
-        <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-              </span>
-    </a>
-</li>
+              </p>
+              <div class="post-entry">
+                
+                  此篇教學目的為安裝Debian Etch在eee box上，可正常使用X-window與ethernet網路。 首先去下載Debian Etch CD1 iso，
+                  <a href="https://kalug.github.io/planet/qerter/20090120_debian-sarge-asus-eee-box.html/" class="post-read-more">[Read More]</a>
+                
+              </div>
 
+              
 
-<li>
-    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20100516_muttgmail-imap-part-3.html%2f" target="_blank" title="Share on Google Plus">
-         <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
-              </span>
-    </a>
-</li>
-
-
-<li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20100516_muttgmail-imap-part-3.html%2f" target="_blank" title="Share on Facebook">
-        <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-              </span>
-    </a>
-</li>
-
-
-<li>
-    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20100516_muttgmail-imap-part-3.html%2f&amp;title=%e4%bd%bf%e7%94%a8Mutt%e6%94%b6GMail%20IMAP%e9%9b%bb%e5%ad%90%e9%83%b5%e4%bb%b6%2c%20Part%203%20%e5%b0%81%e5%ad%98%e9%83%b5%e4%bb%b6%e7%af%87" target="_blank" title="Share on Reddit">
-         <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
-              </span>
-    </a>
-</li>
-
-
-<li>
-    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20100516_muttgmail-imap-part-3.html%2f&amp;title=%e4%bd%bf%e7%94%a8Mutt%e6%94%b6GMail%20IMAP%e9%9b%bb%e5%ad%90%e9%83%b5%e4%bb%b6%2c%20Part%203%20%e5%b0%81%e5%ad%98%e9%83%b5%e4%bb%b6%e7%af%87" target="_blank"
-       title="Share on LinkedIn">
-         <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-              </span>
-    </a>
-</li>
-
-
-<li>
-    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20100516_muttgmail-imap-part-3.html%2f&amp;title=%e4%bd%bf%e7%94%a8Mutt%e6%94%b6GMail%20IMAP%e9%9b%bb%e5%ad%90%e9%83%b5%e4%bb%b6%2c%20Part%203%20%e5%b0%81%e5%ad%98%e9%83%b5%e4%bb%b6%e7%af%87" target="_blank"
-       title="Share on StumbleUpon">
-        <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
-              </span>
-    </a>
-</li>
-
-
-<li>
-    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.github.io%2fplanet%2fqerter%2f20100516_muttgmail-imap-part-3.html%2f&amp;description=%e4%bd%bf%e7%94%a8Mutt%e6%94%b6GMail%20IMAP%e9%9b%bb%e5%ad%90%e9%83%b5%e4%bb%b6%2c%20Part%203%20%e5%b0%81%e5%ad%98%e9%83%b5%e4%bb%b6%e7%af%87" target="_blank"
-       title="Share on Pinterest">
-         <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
-              </span>
-    </a>
-</li>
-
-              </ul>
-            </section>
-        
-      </article>
-
-      
-        <ul class="pager blog-pager">
+            </article>
           
-            <li class="previous">
-              <a href="https://kalug.github.io/planet/qerter/20091020_muttgmail-imap-part-2-procmail.html/" data-toggle="tooltip" data-placement="top" title="使用Mutt收GMail IMAP電子郵件, Part 2 Procmail篇">&larr; Previous Post</a>
-            </li>
-          
-          
-            <li class="next">
-              <a href="https://kalug.github.io/planet/chusiang/20160503_setup-native-docker-for-mac-v1.11-and-migrate-docker-toolbox-on-osx-10.11.4.html/" data-toggle="tooltip" data-placement="top" title="在 OSX 10.11.4 安裝 Docker for Mac (v1.11.0-beta8)">Next Post &rarr;</a>
-            </li>
-          
-        </ul>
-      
+            <article class="post-preview">
+              <a href="https://kalug.github.io/planet/qerter/20081102_blog-post.html/">
+                <h2 class="post-title">[第貳期] 自由軟體四大自由</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp; qerter Posted on November 2, 2008
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (320 words)
+  
+  
+</span>
 
 
-      
-        
-          <div class="disqus-comments">
-            <div id="disqus_thread"></div>
-<script>
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "shawn111" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-          </div>
-        
-        
-      
+              </p>
+              <div class="post-entry">
+                
+                  有鑑於我自己常常跟別人推廣自由軟體，但是常常忘記自由軟體基本四大自由，僅列於此。 自由軟體四大自由原文出處網址： http://www.gnu.org/philosophy/free-sw.html 自由軟體四大自由（中文是我自
+                  <a href="https://kalug.github.io/planet/qerter/20081102_blog-post.html/" class="post-read-more">[Read More]</a>
+                
+              </div>
 
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://kalug.github.io/planet/qerter/20081101_digg-like-free-software-daily.html/">
+                <h2 class="post-title">[第壹期]digg-like 的自由軟體新聞網站 — Free Software Daily</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp; qerter Posted on November 1, 2008
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (468 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  Free Software Dailyhttp://www.fsdaily.com 畢竟自由軟體的使用者算小眾，使用Web2.0經營方式的新聞網站，如digg，或台灣的funp，出現的常常是偏大眾口味的文章不然討論跟自
+                  <a href="https://kalug.github.io/planet/qerter/20081101_digg-like-free-software-daily.html/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://kalug.github.io/planet/qerter/20060817_mysql-big5utf-8.html/">
+                <h2 class="post-title">MySQL 中文Big5轉至UTF-8</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp; qerter Posted on August 17, 2006
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (313 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  因為工作需要，必須要將原本MS Access中的資料轉換至MySQL。MS Access 預設編碼為Big5 ，MySQL中以UTF-8存放資料，Collat
+                  <a href="https://kalug.github.io/planet/qerter/20060817_mysql-big5utf-8.html/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+
+            </article>
+          
+        </div>
+        
+          <ul class="pager main-pager">
+            
+              <li class="previous">
+                <a href="/planet/page/4/">&larr; Newer Posts</a>
+              </li>
+            
+            
+          </ul>
+        
+      </div>
     </div>
   </div>
-</div>
 
     <footer>
   <div class="container">
@@ -351,7 +342,7 @@
           
           <li>
             
-            <a href="https://kalug.github.io/index.xml" title="RSS">
+            <a href="https://kalug.github.io/planet/index.xml" title="RSS">
             
               <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>

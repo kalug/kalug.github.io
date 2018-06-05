@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>firewalld - CentOS 7 的動態防火牆</title>
+  <meta property="og:title" content="firewalld - CentOS 7 的動態防火牆" />
+  <meta name="twitter:title" content="firewalld - CentOS 7 的動態防火牆" />
+  <meta name="description" content="如同先前在 [完全用 GNU/Linux 工作] 07. 簡易的防火牆一文提到，Ubuntu 從 8.04 LTS 開始多了 ufw 這個簡單的防火牆，CentOS 也在 7.0 導入可以動態管理防火牆的 f">
+  <meta property="og:description" content="如同先前在 [完全用 GNU/Linux 工作] 07. 簡易的防火牆一文提到，Ubuntu 從 8.04 LTS 開始多了 ufw 這個簡單的防火牆，CentOS 也在 7.0 導入可以動態管理防火牆的 f">
+  <meta name="twitter:description" content="如同先前在 [完全用 GNU/Linux 工作] 07. 簡易的防火牆一文提到，Ubuntu 從 8.04 LTS 開始多了 ufw 這個簡單的防火牆，CentOS 也在 7.0 導入可以動態管理防火牆的 f">
+  <meta name="author" content=""/>
+  <link href='https://kalug.github.io/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://kalug.github.io/img/kalug.png" />
+  <meta name="twitter:image" content="https://kalug.github.io/img/kalug.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://kalug.github.io/planet/chusiang/20170924_the-firewalld-on-centos-7.html/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kaohsiung Linux User Group" />
+
+  <meta name="generator" content="Hugo 0.41" />
+  <link rel="canonical" href="https://kalug.github.io/planet/chusiang/20170924_the-firewalld-on-centos-7.html/" />
+  <link rel="alternate" href="https://kalug.github.io/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://kalug.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://kalug.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://kalug.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://kalug.github.io">Kaohsiung Linux User Group</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Meetups" href="/meetups/">Meetups</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Planet" href="/planet/">Planet</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Wiki" href="/wiki/">Wiki</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Kaohsiung Linux User Group" href="https://kalug.github.io">
+            <img class="avatar-img" src="https://kalug.github.io/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="blog-heading">
+              <h1>firewalld - CentOS 7 的動態防火牆</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>如同先前在 <a href="http://note.drx.tw/2013/09/working-with-linux-07-uncomplicated-firewall.html" target="_blank">[完全用 GNU/Linux 工作] 07. 簡易的防火牆</a>一文提到，Ubuntu 從 8.04 LTS 開始多了 ufw 這個簡單的防火牆，CentOS 也在 7.0 導入可以動態管理防火牆的 <b><a href="http://www.firewalld.org/" target="_blank">firewalld</a></b>。Weithenn 前輩的 <a href="http://www.weithenn.org/2017/05/centos-73-journey-part10.html" target="_blank">CentOS 7.3 基礎設定 (10) - 調整 Firewalld 防火牆規則</a>一文很好的解說了 firewalld 與 iptables 的差異，想深入了解的伙伴不妨參考一下。<br /><br />firewalld 還有個跟 Windows 7 類似的<b>網路共用設定</b>機制，在官方文件中是使用<b>界域</b> <span class="Comment"><sup>1</sup></span> (zone) 來敘述這項依據不同環境所設計的網路區域功能。我們可以藉由在各種不同的 zone 進行設置，來達到公開網域 (public network zone) 不開 ssh 埠口，而內部網域 (internal network zone) 則允許等較複雜的信任等級配置。這部份凍仁還未深入研究，在此就不多加說明。<br /><a name='more'></a><br /><h3>1. 安裝與初始化</h3>1.1. 若系統未預載，請手動安裝 <b>firewalld</b>。<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@CentOS</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo yum install <b>firewalld</b> <kbd>[Enter]</kbd></blockquote><br />1.2. 檢查 firewalld 服務運行狀態。<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@CentOS</span> <span style="color: #ad7fa8;">~</span> ]<br />$ systemctl <b>status</b> firewalld <kbd>[Enter]</kbd><br /><pre>● firewalld.service - firewalld - dynamic firewall daemon<br />   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; vendor preset: enabled)<br />   Active: active (running) since Sun 2017-09-24 09:03:55 UTC; 14min ago<br />     Docs: man:firewalld(1)<br /> Main PID: 4376 (firewalld)<br />   CGroup: /system.slice/firewalld.service<br />           └─4376 /usr/bin/python -Es /usr/sbin/firewalld &ndash;nofork &ndash;nopid </pre></blockquote><br />1.3. 若狀態不為 active，則啟動 (start) 它。firewalld 預設會開 ssh 服務，不用再擔心啟動防火牆時，會被 iptables 擋在牆外了！<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@CentOS</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo systemctl <b>start</b> firewalld <kbd>[Enter]</kbd></blockquote><br />1.4. 若需開機自動啟動，則還需啟用 (enable) 它。<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@CentOS</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo systemctl <b>enable</b> firewalld <span class="Ctrl">[Enter]</span><br /><pre>Created symlink from /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service to /usr/lib/systemd/system/firewalld.service.<br />Created symlink from /etc/systemd/system/basic.target.wants/firewalld.service to /usr/lib/systemd/system/firewalld.service.</pre></blockquote><br /><h3>2. 基礎操作</h3>2.1. 狀態 (state) 查詢，running 表示正常運行中。<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@CentOS</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo firewall-cmd <b>&ndash;state</b> <kbd>[Enter]</kbd><br />running</blockquote><br />2.2. 新增允許 HTTP 服務連線規則。<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@CentOS</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo firewall-cmd &ndash;add-service=<span style="color: red;">http</span> &ndash;permanent <kbd>[Enter]</kbd><br />success</blockquote><br />2.3. 新增允許 10050 埠口 TCP 連線規則。<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@CentOS</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo firewall-cmd &ndash;add-port=<span style="color: red;">10050/tcp</span> &ndash;permanent <kbd>[Enter]</kbd><br />success</blockquote><br />2.4. 刪除允許 dhcpv6-client 服務連線規則。<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@CentOS</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo firewall-cmd &ndash;remove-service=<span style="color: red;">dhcpv6-client</span> &lt;br /&gt;&nbsp; &nbsp; &ndash;permanent <kbd>[Enter]</kbd><br />success</blockquote><br />2.5. 刪除允許 10050 埠口的 TCP 連線規則。<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@CentOS</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo firewall-cmd &ndash;remove-port=<span style="color: red;">10050/tcp</span> &ndash;permanent <kbd>[Enter]</kbd><br />success</blockquote><br />2.6. 重新讀取防火牆規則。<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@CentOS</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo firewall-cmd <b>&ndash;reload</b> <kbd>[Enter]</kbd><br />success</blockquote><br />2.7. 列出當前的防火牆規則：眼尖的客官可以發現，以下範例為 public 這個 network zone 的配置。<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@CentOS</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo firewall-cmd <b>&ndash;list-all</b> <kbd>[Enter]</kbd><br />public (active)<br />&nbsp; target: default<br />&nbsp; icmp-block-inversion: no<br />&nbsp; interfaces: enp0s3<br />&nbsp; sources:<br />&nbsp; services: http ssh<br />&nbsp; ports:<br />&nbsp; protocols:<br />&nbsp; masquerade: no<br />&nbsp; forward-ports:<br />&nbsp; sourceports:<br />&nbsp; icmp-blocks:<br />&nbsp; rich rules:</blockquote><br /><h3>3. 進階使用</h3><h4>3.1. 允許 (accept) 特定 IP 連線</h4>3.1.1. 允許來自 192.168.1.2 的所有連線。 <br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@CentOS</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo firewall-cmd &ndash;add-rich-rule &lsquo;rule family=&ldquo;ipv4&rdquo; &lt;br /&gt;&nbsp; &nbsp; source address=&rdquo;<span style="color: red;">192.168.1.<sup>2</sup>&frasl;<sub>32</sub></span>&rdquo; <span style="color: red;">accept</span>&rsquo; &ndash;permanent <kbd>[Enter]</kbd></blockquote><br />3.1.2. 允許來自 192.168.2.1 ~ 192.168.2.254 的所有 ssh 連線。 <br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@CentOS</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo firewall-cmd &ndash;add-rich-rule &lsquo;rule family=&ldquo;ipv4&rdquo; &lt;br /&gt;&nbsp; &nbsp; source address=&rdquo;<span style="color: red;">192.168.2.0/24</span>&rdquo; service name=&rdquo;<span style="color: red;">ssh</span>&rdquo; <span style="color: red;">accept</span>&rsquo; &lt;br /&gt;&nbsp;&nbsp; &ndash;permanent <kbd>[Enter]</kbd></blockquote><br /><h4>3.2. 拒絕 (reject) 或阻擋 (drop) 特定 IP 連線</h4>3.2.1. 拒絕來自 110.88.4.5 的連線。 <br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@CentOS</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo firewall-cmd &ndash;add-rich-rule &lsquo;rule &lt;br /&gt;&nbsp; &nbsp; family=&ldquo;ipv4&rdquo; source address=&rdquo;<span style="color: red;">110.88.4.<sup>5</sup>&frasl;<sub>32</sub></span>&rdquo; <span style="color: red;">reject</span>&rsquo; &lt;br /&gt;&nbsp; &nbsp; &ndash;permanent <kbd>[Enter]</kbd></blockquote><br />3.2.2. 阻擋來自 27.16.3.1 ~ 27.16.3.254 的 22 埠口連線。 <br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@CentOS</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo firewall-cmd &ndash;add-rich-rule &lsquo;rule &lt;br /&gt;&nbsp; &nbsp; family=&ldquo;ipv4&rdquo; source address=&rdquo;<span style="color: red;">27.16.3.0/24</span>&rdquo; port port=&rdquo;<span style="color: red;">22</span>&rdquo; &lt;br /&gt;&nbsp; &nbsp; <span style="color: red;">drop</span>&rsquo; &ndash;permanent <kbd>[Enter]</kbd></blockquote><br /><h4>3.3. 允許特定埠口連線</h4>3.3.1. 允許 32700 到 33000 埠口的 TCP 連線規則。 <br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@CentOS</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo firewall-cmd &ndash;add-port=<font color="#ff0000">32700-33000/tcp</font> &ndash;permanent <kbd>[Enter]</kbd></blockquote><br /><h4>3.4. 圖形化介面</h4>大家可另外安裝 <b>firewall-config</b> 套件進行操作。<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@CentOS</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo yum install <b>firewall-config</b> <kbd>[Enter]</kbd></blockquote><br />近來凍仁總覺得 CentOS 7 的 firewalld 有些用不慣，索性參照之前 ufw 的筆記，把常用的 firewalld 防火牆指令整理了一下，將來有遇上比較特殊的用法再補上了。<br /><br /><span class="Comment"><sup>1</sup></span> 經友人 <a href="http://breezymove.blogspot.tw/" target="_blank">Cheng-Chia Tseng</a> 回饋，GNU/Linux 官方是使用「界域」一詞來形容此項功能。然而很棒的一點是在 <a href="http://linux.vbird.org/linux_basic/0610hardware.php#basic_firewall" target="_blank">20.1.4 防火牆簡易設定 | 鳥哥的 Linux 私房菜</a>一文也有很完整的解說呢！<br /><br /><code class="ref">站內連結：<br /><span style="color: #ffdb00;">★</span> <a href="http://note.drx.tw/2013/09/working-with-linux-07-uncomplicated-firewall.html" target="_blank">[完全用 GNU/Linux 工作] 07. 簡易的防火牆 － ufw</a><br /><br />相關連結：<br /><span style="color: #ffdb00;">★</span> <a href="https://access.redhat.com/documentation/zh-cn/red_hat_enterprise_linux/7/html/security_guide/sec-using_firewalls">4.5. 使用防火墙 - Red Hat Customer Portal</a><br /><span style="color: #ffdb00;">★</span> <a href="http://www.weithenn.org/2017/05/centos-73-journey-part10.html" target="_blank">CentOS 7.3 基礎設定 (10) - 調整 Firewalld 防火牆規則 | 不自量力 の Weithenn</a><br /><font color="#ffdb00">★</font> <a href="http://linux.vbird.org/linux_basic/0610hardware.php#basic_firewall" target="_blank">20.1.4 防火牆簡易設定 | 鳥哥的 Linux 私房菜</a><br /><span style="color: #ffdb00;">★</span> <a href="https://askubuntu.com/a/707833">gnome - Can I install a GUI for firewalld? | Ask Ubuntu</a><br /><br />資料來源： <br /><span style="color: #ffdb00;">★</span> <a href="https://fedoraproject.org/wiki/Firewalld?rd=FirewallD#Dynamic_firewall_with_firewalld" target="_blank">Firewalld | FedoraProject</a><br /><span style="color: #ffdb00;">★</span> <a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/sec-Using_Firewalls.html">Chapter&nbsp;5.&nbsp;Using Firewalls | Red Hat Customer Portal</a><br /><span style="color: #ffdb00;">★</span> <a href="https://access.redhat.com/discussions/1342573" target="_blank">Blocking IP addresses using Firewalld rhel 7.0 | Red Hat Customer Portal</a><br /><span style="color: #ffdb00;">★</span> <a href="http://blog.xuite.net/tolarku/blog/363801991-CentOS+7+Firewalld+%E9%98%B2%E7%81%AB%E7%89%86%E8%AA%AA%E6%98%8E%E4%BB%8B%E7%B4%B9" target="_blank">CentOS 7 Firewalld 防火牆說明介紹 @ 黃昏的甘蔗</a><br /></code><br /></p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170924_the-firewalld-on-centos-7.html%2f&amp;text=firewalld%20-%20CentOS%207%20%e7%9a%84%e5%8b%95%e6%85%8b%e9%98%b2%e7%81%ab%e7%89%86&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170924_the-firewalld-on-centos-7.html%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170924_the-firewalld-on-centos-7.html%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170924_the-firewalld-on-centos-7.html%2f&amp;title=firewalld%20-%20CentOS%207%20%e7%9a%84%e5%8b%95%e6%85%8b%e9%98%b2%e7%81%ab%e7%89%86" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170924_the-firewalld-on-centos-7.html%2f&amp;title=firewalld%20-%20CentOS%207%20%e7%9a%84%e5%8b%95%e6%85%8b%e9%98%b2%e7%81%ab%e7%89%86" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170924_the-firewalld-on-centos-7.html%2f&amp;title=firewalld%20-%20CentOS%207%20%e7%9a%84%e5%8b%95%e6%85%8b%e9%98%b2%e7%81%ab%e7%89%86" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170924_the-firewalld-on-centos-7.html%2f&amp;description=firewalld%20-%20CentOS%207%20%e7%9a%84%e5%8b%95%e6%85%8b%e9%98%b2%e7%81%ab%e7%89%86" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://kalug.github.io/planet/chusiang/20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html/" data-toggle="tooltip" data-placement="top" title="如何在 CentOS 7 解決 glibc 的 yum 套件相依性問題">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://kalug.github.io/planet/chusiang/20171014_scrum-master-scrum-drawing-game.html/" data-toggle="tooltip" data-placement="top" title="一位一日 Scrum Master 的 Scrum Drawing Game 活動心得">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "shawn111" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://www.facebook.com/groups/kalug.tw" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalug" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/joinchat/Bqbim0F9EuW-GMUbYg9geA" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://kalug.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://kalug.github.io">Kaohsiung Linux User Group</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.41</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://kalug.github.io/js/main.js"></script>
+<script src="https://kalug.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://kalug.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

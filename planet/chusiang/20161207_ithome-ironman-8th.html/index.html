@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>第 8 屆 IT 邦幫忙鐵人賽 － 鋼鐵般的刻意練習</title>
+  <meta property="og:title" content="第 8 屆 IT 邦幫忙鐵人賽 － 鋼鐵般的刻意練習" />
+  <meta name="twitter:title" content="第 8 屆 IT 邦幫忙鐵人賽 － 鋼鐵般的刻意練習" />
+  <meta name="description" content="今年 12 月, 是凍仁參加第 8 屆 IT 鐵人賽的日子，也是與 3 年前的自己比拼的好機會。接下來凍仁將會刻意練習 Ansible 這門技藝一個月，在此凍仁就先紀錄一些參賽心">
+  <meta property="og:description" content="今年 12 月, 是凍仁參加第 8 屆 IT 鐵人賽的日子，也是與 3 年前的自己比拼的好機會。接下來凍仁將會刻意練習 Ansible 這門技藝一個月，在此凍仁就先紀錄一些參賽心">
+  <meta name="twitter:description" content="今年 12 月, 是凍仁參加第 8 屆 IT 鐵人賽的日子，也是與 3 年前的自己比拼的好機會。接下來凍仁將會刻意練習 Ansible 這門技藝一個月，在此凍仁就先紀錄一些參賽心">
+  <meta name="author" content=""/>
+  <link href='https://kalug.github.io/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://kalug.github.io/img/kalug.png" />
+  <meta name="twitter:image" content="https://kalug.github.io/img/kalug.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://kalug.github.io/planet/chusiang/20161207_ithome-ironman-8th.html/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kaohsiung Linux User Group" />
+
+  <meta name="generator" content="Hugo 0.41" />
+  <link rel="canonical" href="https://kalug.github.io/planet/chusiang/20161207_ithome-ironman-8th.html/" />
+  <link rel="alternate" href="https://kalug.github.io/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://kalug.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://kalug.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://kalug.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://kalug.github.io">Kaohsiung Linux User Group</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Meetups" href="/meetups/">Meetups</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Planet" href="/planet/">Planet</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Wiki" href="/wiki/">Wiki</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Kaohsiung Linux User Group" href="https://kalug.github.io">
+            <img class="avatar-img" src="https://kalug.github.io/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="blog-heading">
+              <h1>第 8 屆 IT 邦幫忙鐵人賽 － 鋼鐵般的刻意練習</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>今年 12 月, 是凍仁參加<a href="http://ithelp.ithome.com.tw/ironman/" target="_blank" title="第 8 屆 IT 邦幫忙鐵人賽::用30天向世界宣告，這一年來鋼鐵般的歷練">第 8 屆 IT 鐵人賽</a>的日子，也是與 3 年前的自己比拼的好機會。接下來凍仁將會刻意練習 Ansible 這門技藝一個月，在此凍仁就先紀錄一些參賽心得了！<br /><br /><blockquote class="twitter-tweet" data-lang="zh-tw"><div dir="ltr" lang="zh">忙了一天，總算是抽到空檔報名了「第 8 屆 IT 鐵人賽」了！期許這次可以超越 3 年前的自己！！！<a href="https://twitter.com/hashtag/ironman?src=hash">#ironman</a> <a href="https://twitter.com/hashtag/ironmantraining?src=hash">#ironmantraining</a> <a href="https://twitter.com/hashtag/ithome?src=hash">#ithome</a> <a href="https://t.co/3xfkkmNvWP">pic.twitter.com/3xfkkmNvWP</a></div>— 凍仁翔 (@chusiang_lai) <a href="https://twitter.com/chusiang_lai/status/799315192253251584">2016年11月17日</a></blockquote><a name='more'></a><br />參賽資料如下：<br /><ul><li>題目：現代 IT 人一定要知道的 Ansible 自動化組態技巧。</li><li>簡介：Ansible 是個與 Puppet, SaltStack, Chef 並駕齊驅的組態設定 (Infrastructure as Code) 工具，其簡單易用的特性讓人愛不釋手，在 DevOps 界更佔有一席之地。本次凍仁將帶領大家一探 Ansible 這門技藝，並分享些實戰經驗。相信有了 Ansible 我們都可以提早下班了！ (笑)。</li><li>參賽網址：<a href="http://ithelp.ithome.com.tw/users/20031776/ironman/1022" target="_blank"><a href="http://ithelp.ithome.com.tw/users/20031776/ironman/1022">http://ithelp.ithome.com.tw/users/20031776/ironman/1022</a></a></li></ul><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://3.bp.blogspot.com/-u31mRFBezG4/WEgW_slbHLI/AAAAAAAAd00/C3UojSeN5WATZg5zHcXOLdEsPS818d75gCLcB/s1600/2016-12-07-ithelp-ironman-1.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="312" src="https://3.bp.blogspot.com/-u31mRFBezG4/WEgW_slbHLI/AAAAAAAAd00/C3UojSeN5WATZg5zHcXOLdEsPS818d75gCLcB/s400/2016-12-07-ithelp-ironman-1.png" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 上次參加 <b>MIS 組</b>，而這次則是 <b>DevOps 組</b>。</td></tr></tbody></table><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://1.bp.blogspot.com/-YTD9nUeDWGA/WEgW_UZgdII/AAAAAAAAd0w/kkn1YeFvFzgbSe931ASWFK6efoUsYvpXgCLcB/s1600/2016-12-07-ithelp-ironman-2.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="312" src="https://1.bp.blogspot.com/-YTD9nUeDWGA/WEgW_UZgdII/AAAAAAAAd0w/kkn1YeFvFzgbSe931ASWFK6efoUsYvpXgCLcB/s400/2016-12-07-ithelp-ironman-2.png" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 這次的發文系統已改成 Markdown 格式，想想上次的 BB Code 真的讓凍仁吃了不少苦頭啊！</td></tr></tbody></table><br /><blockquote class="twitter-tweet" data-lang="zh-tw"><div dir="ltr" lang="zh">在 Container Summit 2016 聽到 iThome 的前輩提到再過一陣子要舉辦今年的 IT 鐵人賽？還聽說挑戰成功率不到一半？希望這個活動可以一直辦下去，這樣凍仁才有機會超越以前的自己。:P<a href="https://twitter.com/hashtag/IT%E9%90%B5%E4%BA%BA%E8%B3%BD?src=hash">#IT鐵人賽</a> <a href="https://twitter.com/hashtag/%E5%9C%B0%E7%8D%84%E6%8A%98%E7%A3%A830%E5%A4%A9?src=hash">#地獄折磨30天</a> <a href="https://twitter.com/hashtag/%E5%AE%8C%E5%85%A8%E7%94%A8GNU_Linux%E5%B7%A5%E4%BD%9C?src=hash">#完全用GNU_Linux工作</a> <a href="https://t.co/u9tz6qzlYL">pic.twitter.com/u9tz6qzlYL</a></div>— 凍仁翔 (@chusiang_lai) <a href="https://twitter.com/chusiang_lai/status/779620593733820416">2016年9月24日</a></blockquote><br />在 <a href="http://note.drx.tw/2016/09/container-summit-2016-it-container.html" target="_blank">Container Summit 2016</a> 遇見 iThome 的前輩後，凍仁已把封存已久的獎盃給擺了出來，並每天告訴自己這次要比上次更好、更努力才行！<br /><br />在完賽前凍仁會閉關一陣子，接下來最新的文章還請上「<a href="http://ithelp.ithome.com.tw/users/20031776/ironman/1022" target="_blank">現代 IT 人一定要知道的 Ansible 自動化組態技巧 | iT 邦幫忙</a>」觀看。<br /><br />希望藉由這 30 天的文章，可以讓 IT 相關從業人員能更簡單的入門 Ansible 這門技藝，或許來日凍仁就可以找到寫 Ansible 的好工作了！(笑)<br /><br />凍仁該回去準備 Day8 的文章了，我們 2017 年見啦！<br /><br /><br /><hr width="95%" size="1" noshade style="border:2px dashed #cc0000;"><br /><h2 class="date-header"><span>2017-02-23</span></h2><br /><a href="http://ithelp.ithome.com.tw/users/20031776/ironman/1022" target="_blank">《現代 IT 人一定要知道的 Ansible 自動化組態技》</a>系列文章已於 2017/02/20 榮獲 IT 鐵人賽 DevOps 組冠軍，再次感謝主辦單位 iThome 和一路支持在下的前輩和伙伴。<br /><br /><h2 class="date-header"><span>2017-05-21</span></h2><br />補上頒獎典禮的照片連結，期待已久的獎盃照和新的得獎名單網站。<br /><ul><li><a href="https://www.flickr.com/photos/153668487@N06/sets/72157679001575423/">2017 第 8 屆 iT 邦幫忙鐵人賽頒獎典禮暨 iT 社群交流 Party | Flickr</a></li><li><a href="http://ithelp.ithome.com.tw/ironman/8th_winner">2017 第 8 屆 iT 邦幫忙鐵人賽得獎名單 | iThome</a></li></ul><br /><blockquote class="instagram-media" data-instgrm-captioned data-instgrm-version="7" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"><div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:50.0% 0; text-align:center; width:100%;"><div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div><p style=" margin:8px 0 0 0; padding:0 4px;"><a href="https://www.instagram.com/p/BSFx3FfAiT_/" style=" color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;" target="_blank">2017 第 8 屆 IT 邦幫忙鐵人賽 DevOps 組冠軍獎盃 (左) 與 2013 第 6 屆 IT 邦幫忙鐵人賽 MIS 組優選獎盃 (右)。 #ithome #IT鐵人賽 #trophy</a></p><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">A post shared by Chu-Siang Lai (@chusiang.lai) on <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2017-03-26T05:53:14+00:00">Mar 25, 2017 at 10:53pm PDT</time></p></div></blockquote><script async defer src="//platform.instagram.com/en_US/embeds.js"></script><br /><br /><br /><code class="ref">延伸閱讀：<br /><font color="#ffdb00">★</font> <a href="http://note.drx.tw/2013/09/working-on-gnu-linux.html" target="_blank">完全用 GNU/Linux 工作</a><br /><br />相關連結：<br /><font color="#ffdb00">★</font> <a href="http://ithelp.ithome.com.tw/ironman/8th_winner" target="_blank">2017 第 8 屆 iT 邦幫忙鐵人賽得獎名單 | iThome</a><br /><span style="color: #ffdb00;">★</span> <a href="https://twitter.com/search?f=tweets&amp;q=%E9%90%B5%E4%BA%BA%E8%B3%BD%20from%3Achusiang_lai&amp;src=typd" target="_blank">Twitter 上的碎碎唸</a><br /><span style="color: #ffdb00;">★</span> <a href="https://github.com/chusiang/automate-with-ansible">chusiang/automate-with-ansible: 現代 IT 人一定要知道的 Ansible 自動化組態技巧 | GitHub</a><br /><span style="color: #ffdb00;">★</span> <a href="https://www.gitbook.com/book/chusiang/automate-with-ansible/details">現代 IT 人一定要知道的 Ansible 自動化組態技巧 | GitBook</a><br /><span style="color: #ffdb00;">★</span> <a href="http://ithelp.ithome.com.tw/users/20031776/ironman/1022">現代 IT 人一定要知道的 Ansible 自動化組態技巧 | iT 邦幫忙</a><br /></code><br /><br /><script async="" charset="utf-8" src="//platform.twitter.com/widgets.js"></script><br /></p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20161207_ithome-ironman-8th.html%2f&amp;text=%e7%ac%ac%208%20%e5%b1%86%20IT%20%e9%82%a6%e5%b9%ab%e5%bf%99%e9%90%b5%e4%ba%ba%e8%b3%bd%20%ef%bc%8d%20%e9%8b%bc%e9%90%b5%e8%88%ac%e7%9a%84%e5%88%bb%e6%84%8f%e7%b7%b4%e7%bf%92&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20161207_ithome-ironman-8th.html%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20161207_ithome-ironman-8th.html%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20161207_ithome-ironman-8th.html%2f&amp;title=%e7%ac%ac%208%20%e5%b1%86%20IT%20%e9%82%a6%e5%b9%ab%e5%bf%99%e9%90%b5%e4%ba%ba%e8%b3%bd%20%ef%bc%8d%20%e9%8b%bc%e9%90%b5%e8%88%ac%e7%9a%84%e5%88%bb%e6%84%8f%e7%b7%b4%e7%bf%92" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20161207_ithome-ironman-8th.html%2f&amp;title=%e7%ac%ac%208%20%e5%b1%86%20IT%20%e9%82%a6%e5%b9%ab%e5%bf%99%e9%90%b5%e4%ba%ba%e8%b3%bd%20%ef%bc%8d%20%e9%8b%bc%e9%90%b5%e8%88%ac%e7%9a%84%e5%88%bb%e6%84%8f%e7%b7%b4%e7%bf%92" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20161207_ithome-ironman-8th.html%2f&amp;title=%e7%ac%ac%208%20%e5%b1%86%20IT%20%e9%82%a6%e5%b9%ab%e5%bf%99%e9%90%b5%e4%ba%ba%e8%b3%bd%20%ef%bc%8d%20%e9%8b%bc%e9%90%b5%e8%88%ac%e7%9a%84%e5%88%bb%e6%84%8f%e7%b7%b4%e7%bf%92" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20161207_ithome-ironman-8th.html%2f&amp;description=%e7%ac%ac%208%20%e5%b1%86%20IT%20%e9%82%a6%e5%b9%ab%e5%bf%99%e9%90%b5%e4%ba%ba%e8%b3%bd%20%ef%bc%8d%20%e9%8b%bc%e9%90%b5%e8%88%ac%e7%9a%84%e5%88%bb%e6%84%8f%e7%b7%b4%e7%bf%92" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://kalug.github.io/planet/chusiang/20161112_how-to-import-ssl-certificate-to-acm.html/" data-toggle="tooltip" data-placement="top" title="如何匯入 SSL 憑證到 AWS Certificate Manager">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://kalug.github.io/planet/chusiang/20170208_how-to-import-slack-data-into-rocket-chat.html/" data-toggle="tooltip" data-placement="top" title="如何將 Slack 的資料匯到 Rocket.Chat？">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "shawn111" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://www.facebook.com/groups/kalug.tw" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalug" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/joinchat/Bqbim0F9EuW-GMUbYg9geA" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://kalug.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://kalug.github.io">Kaohsiung Linux User Group</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.41</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://kalug.github.io/js/main.js"></script>
+<script src="https://kalug.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://kalug.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+
