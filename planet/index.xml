@@ -110,6 +110,15 @@
     </item>
     
     <item>
+      <title>從 Pianoboy 高至豪的故事看軟體自由運動的價值觀</title>
+      <link>https://kalug.github.io/planet/slat-tw/20180318_pianoboy.html/</link>
+      <pubDate>Sun, 18 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20180318_pianoboy.html/</guid>
+      <description>https://www.plurk.com/p/moeuyd https://www.ptt.cc/bbs/Gossiping/M.1520850748.A.3C2.html 這是一個堅持30餘年，在台灣握有資源的人看不見他的價值，於是自己另尋出路，闖出另一片天的故事。 原轉 po 網友 AkiRa 重點放在台灣握有資源的人的一些</description>
+    </item>
+    
+    <item>
       <title>用 Nginx 來架設線上即時縮圖機</title>
       <link>https://kalug.github.io/planet/appleboy/20180317_nginx-reverse-proxy-image-resizing/</link>
       <pubDate>Sat, 17 Mar 2018 00:00:00 +0000</pubDate>
@@ -128,6 +137,24 @@
     </item>
     
     <item>
+      <title>中華民國軟體自由協會 FB 粉絲頁分享連結：Supporters of Free Software Foundation Europe</title>
+      <link>https://kalug.github.io/planet/slat-tw/20180307_fb-supporters-of-free-software.html/</link>
+      <pubDate>Wed, 07 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20180307_fb-supporters-of-free-software.html/</guid>
+      <description>協會很榮幸受到歐洲自由軟體基金會(Free Software Foundation Europe) 邀請，發一段支持軟體自由運動與 FSFE 的聲明。今天刊載在 FSFE 網站上了。雖然網站上由現任理事長代表，但</description>
+    </item>
+    
+    <item>
+      <title>中華民國軟體自由協會 FB 粉絲頁分享連結：軟體自由協會 線上書城 - 我們想要的是哪一種錢？</title>
+      <link>https://kalug.github.io/planet/slat-tw/20180306_fb.html/</link>
+      <pubDate>Tue, 06 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20180306_fb.html/</guid>
+      <description>【線上書城新書上架】金融科技的起手式—《我們想要的是哪一種錢？》 協會的線上書城有新書上架了！ 金錢是最常被提起的話題：每個人都在談錢，並且終其</description>
+    </item>
+    
+    <item>
       <title>將 Go Html Template 存入 String 變數</title>
       <link>https://kalug.github.io/planet/appleboy/20180228_simply-output-go-html-template-execution-to-strings/</link>
       <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
@@ -137,12 +164,165 @@
     </item>
     
     <item>
+      <title>中華民國軟體自由協會 分享相片：過去這一年在數位世界中，並不是太好過。德國慕尼黑市在政治因素操作下，儘管各項分析都顯示會大幅度增加經濟成本與減少本地就業機會，但市議會仍決議丟棄十幾年來使用的自由軟體系統，逐步在未來數年回到專有軟體廠商的懷抱；美國通過了廢除網路中立性的法案，讓網路服務供應商可以依自己喜好輕易扼殺其他網路服務的競爭力，而台灣的電信商也跟進喊燒！臉書不斷修改規則，降低粉絲專頁的觸及率，還進一步過濾敏感詞，只為了討好大國...... 但是在過去這一年中，也不是沒有好消息。慕尼黑市踢開了自由軟體，但西班牙的巴塞隆納卻反其道，揚棄專有軟體投向自由開源的未來！此外在台灣更是有許多進展。我們突破了技能檢定考試只預裝專有軟體的障礙，讓自由軟體納入預裝軟體選擇；開放文件格式政策在各政府機關逐漸發芽，而台灣更成了 LibreOffice 與文件基金會在亞洲的堅實堡壘！ 生活在現代的我們，與網際網路的連結已經是緊密不可分；但面對許多想要限制、束縛我們在數位世界自由的勢力，我們若再不覺醒、再不反抗，後果就是在數位世界中任大廠宰割。#軟體自由運動 是我們的核心理念。在此歡迎關切軟體自由運動的各位，在 3 月 17 日一起來軟體自由反抗軍的基地 A&#43;A space 共創共享空間，聽聽我們這一年在軟體自由運動上的進展，還有未來的展望。 日期：107 年 3 月 17 日（星期六） 時間：13:30 ~ 16:30 地點：A&#43;A 共創共享空間 地址：台北市南京東路五段213號4樓之1 捷運南京三民站1號出口左轉，於南京東路五段與三民路口彰化銀行樓上。大樓入口在三民路上。</title>
+      <link>https://kalug.github.io/planet/slat-tw/20180227_libreoffice-3-17-aa-space-107-3-17-1330.html/</link>
+      <pubDate>Tue, 27 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20180227_libreoffice-3-17-aa-space-107-3-17-1330.html/</guid>
+      <description>從 中華民國軟體自由協會 文章連結：http://ift.tt/2ESOPGC</description>
+    </item>
+    
+    <item>
+      <title>中華民國軟體自由協會 FB 粉絲頁分享連結：Early availability of LibreOffice 5.4.5 and LibreOffice 6.0.1: all users are invited to update for improved robustness and security</title>
+      <link>https://kalug.github.io/planet/slat-tw/20180209_fb-early-availability-of-libreoffice.html/</link>
+      <pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20180209_fb-early-availability-of-libreoffice.html/</guid>
+      <description>【LibreOffice 安全性更新通報】 雖然 LibreOffice 6.0 才剛發布不久，團隊核心成員上週也都在布魯賽爾參加 FOSDEM 以及半年一次的實體會議，但在接到重大安全性</description>
+    </item>
+    
+    <item>
+      <title>中華民國軟體自由協會 FB 粉絲頁分享連結：會員大會宣傳短片【Funky版】</title>
+      <link>https://kalug.github.io/planet/slat-tw/20180202_fb-funky.html/</link>
+      <pubDate>Fri, 02 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20180202_fb-funky.html/</guid>
+      <description>軟體自由協會 2018 年會員大會，將在 3&amp;frasl;17 日下午一點半於 A+A Space 共創共享空間舉行。在 3 月 1 日以前加入協會的會員都有提案並表決的權利。尚未加入協會的朋友也歡</description>
+    </item>
+    
+    <item>
+      <title>中華民國軟體自由協會 FB 粉絲頁分享連結：會員大會宣傳短片【浪潮版】</title>
+      <link>https://kalug.github.io/planet/slat-tw/20180202_fb.html/</link>
+      <pubDate>Fri, 02 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20180202_fb.html/</guid>
+      <description>軟體自由協會 2018 年會員大會，將在 3&amp;frasl;17 日下午一點半於 A+A Space 共創共享空間舉行。在 3 月 1 日以前加入協會的會員都有提案並表決的權利。尚未加入協會的朋友也歡</description>
+    </item>
+    
+    <item>
+      <title>【文件基金會新聞稿】LibreOffice 6.0 發行：強大、簡單、安全，桌面與雲端互通</title>
+      <link>https://kalug.github.io/planet/slat-tw/20180131_libreoffice-60.html/</link>
+      <pubDate>Wed, 31 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20180131_libreoffice-60.html/</guid>
+      <description>@page { margin: 2cm } p.第一行縮排-western { text-indent: 0.8cm; direction: inherit; font-family: &amp;ldquo;Liberation Sans&amp;rdquo;, sans-serif; line-height: 115%; text-align: justify } p.第一行縮排-cjk { text-indent: 0.8cm; direction: inherit; font-family: &amp;ldquo;Noto Sans CJK TC Regular&amp;rdquo;, sans-serif; font-size: 12pt; so-language: zh-TW; line-height: 115%; text-align: justify } p.第一</description>
+    </item>
+    
+    <item>
+      <title>中華民國軟體自由協會 FB 粉絲頁分享連結：【文件基金會新聞稿】LibreOffice 6.0 發行：強大、簡單、安全，桌面與雲端互通</title>
+      <link>https://kalug.github.io/planet/slat-tw/20180131_fb-libreoffice-60.html/</link>
+      <pubDate>Wed, 31 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20180131_fb-libreoffice-60.html/</guid>
+      <description>【新聞稿】LibreOffice 6.0 正式釋出！ http://ift.tt/2FwUFcG 請點擊連結： 【文件基金會新聞稿】LibreOffice 6.0 發行：強大、簡單、安全，桌面與雲端互通</description>
+    </item>
+    
+    <item>
+      <title>中華民國軟體自由協會 FB 粉絲頁分享連結：LibreOffice 正體中文消息</title>
+      <link>https://kalug.github.io/planet/slat-tw/20180126_fb-libreoffice.html/</link>
+      <pubDate>Fri, 26 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20180126_fb-libreoffice.html/</guid>
+      <description>各位有在用 LibreOffice 的朋友都可以到 Ask LibreOffice 網站看看喔！😍 請點擊連結： LibreOffice 正體中文消息</description>
+    </item>
+    
+    <item>
+      <title>中華民國軟體自由協會 分享相片：</title>
+      <link>https://kalug.github.io/planet/slat-tw/20180125_blog-post_20.html/</link>
+      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20180125_blog-post_20.html/</guid>
+      <description>從 中華民國軟體自由協會 文章連結：http://ift.tt/2FdbKbs</description>
+    </item>
+    
+    <item>
+      <title>中華民國軟體自由協會 分享相片：</title>
+      <link>https://kalug.github.io/planet/slat-tw/20180125_blog-post_25.html/</link>
+      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20180125_blog-post_25.html/</guid>
+      <description>從 中華民國軟體自由協會 文章連結：http://ift.tt/2DIH7xq</description>
+    </item>
+    
+    <item>
+      <title>中華民國軟體自由協會 分享相片：</title>
+      <link>https://kalug.github.io/planet/slat-tw/20180125_blog-post_51.html/</link>
+      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20180125_blog-post_51.html/</guid>
+      <description>從 中華民國軟體自由協會 文章連結：http://ift.tt/2DGUD4K</description>
+    </item>
+    
+    <item>
+      <title>中華民國軟體自由協會 FB 粉絲頁分享連結：Jason</title>
+      <link>https://kalug.github.io/planet/slat-tw/20180123_fb-jason.html/</link>
+      <pubDate>Tue, 23 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20180123_fb-jason.html/</guid>
+      <description>耀達電腦為協會的自由軟體服務廠商聯盟成員。目前徵求 MIS 工程師，工作地點在台中市。公司福利小編親眼目睹，十分羨慕！歡迎身懷絕技、有志以開源解決方</description>
+    </item>
+    
+    <item>
+      <title>中華民國軟體自由協會 FB 粉絲頁分享連結：Italo</title>
+      <link>https://kalug.github.io/planet/slat-tw/20180121_fb-italo.html/</link>
+      <pubDate>Sun, 21 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20180121_fb-italo.html/</guid>
+      <description>3&amp;frasl;24-3/25，全世界的開源超級週末！ 在這兩天 - 自由軟體基金會在波士頓舉辦 LibrePlanet 年會 - 新加坡舉辦 FOSSASIA - 印尼舉辦 LibreOffice Conference Indonesia - 義大利 Torino 舉辦</description>
+    </item>
+    
+    <item>
+      <title>中華民國軟體自由協會 分享相片：</title>
+      <link>https://kalug.github.io/planet/slat-tw/20180113_blog-post_13.html/</link>
+      <pubDate>Sat, 13 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20180113_blog-post_13.html/</guid>
+      <description>從 中華民國軟體自由協會 文章連結：http://ift.tt/2EDfse2</description>
+    </item>
+    
+    <item>
+      <title>中華民國軟體自由協會 分享相片：</title>
+      <link>https://kalug.github.io/planet/slat-tw/20180113_blog-post_31.html/</link>
+      <pubDate>Sat, 13 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20180113_blog-post_31.html/</guid>
+      <description>從 中華民國軟體自由協會 文章連結：http://ift.tt/2Fv4uZz</description>
+    </item>
+    
+    <item>
+      <title>中華民國軟體自由協會 分享連結：軟體自由‧開源浪潮 2018 一起發‧同樂會</title>
+      <link>https://kalug.github.io/planet/slat-tw/20180107_2018.html/</link>
+      <pubDate>Sun, 07 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20180107_2018.html/</guid>
+      <description>軟體自由協會與 A+A Space 共創共享空間的同樂會報名將在 10 日截止喔！不限會員，歡迎認同、想認識這群軟體自由反抗軍的朋友們一起來參加！ http://ift.tt/2maot7D http://ift.tt/2maot7D</description>
+    </item>
+    
+    <item>
+      <title>囧星人：贊助專案大成功，卻發現錢能載舟亦能覆舟</title>
+      <link>https://kalug.github.io/planet/slat-tw/20180107_content-share.html/</link>
+      <pubDate>Sun, 07 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20180107_content-share.html/</guid>
+      <description>今天看到了這一篇報導： https://www.businesstoday.com.tw/article/category/154768/post/201801030030 囧星人在跨年夜開直播，說明為何結束一年來的募資活動。其中這一段我們認為是重點： 『囧星人自我要求高，一集10分鐘的說書</description>
+    </item>
+    
+    <item>
       <title>從一個人的 DevOps，到一個 DevOps 的團隊</title>
       <link>https://kalug.github.io/planet/chusiang/20171224_from-one-persons-devops-to-one-devops-team.html/</link>
       <pubDate>Sun, 24 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>https://kalug.github.io/planet/chusiang/20171224_from-one-persons-devops-to-one-devops-team.html/</guid>
       <description>還記得先前在「敏捷原理與團隊塑造」課堂的最後，講者 William Yeh 提到，難得自己可以待在正在導入敏捷 (Agile) 的團隊，不妨藉由年底的 IT 鐵人賽，把導入 Agile 的種種給寫</description>
+    </item>
+    
+    <item>
+      <title>GNU 網站翻譯計畫</title>
+      <link>https://kalug.github.io/planet/slat-tw/20171213_gnu.html/</link>
+      <pubDate>Wed, 13 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20171213_gnu.html/</guid>
+      <description>今年初我在協會中提案希望能翻譯 GNU 網站上的內容，長期目標是翻譯完自由軟體基金會出版的《Free Software, Free Society》和《Free as in Freedom (2.0)</description>
     </item>
     
     <item>
@@ -182,6 +362,24 @@
     </item>
     
     <item>
+      <title>軟體自由日 -- 協會 2016-2017 總結，向大眾報告</title>
+      <link>https://kalug.github.io/planet/slat-tw/20170916_2016-2017.html/</link>
+      <pubDate>Sat, 16 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20170916_2016-2017.html/</guid>
+      <description>今天是 2017 年度的軟體自由日，軟體自由協會委託藝術設計專家吳傳浩理事所設計新的視覺識別系統，選在這一天於協會粉絲頁正式啟用，而新的吉祥物也即將與</description>
+    </item>
+    
+    <item>
+      <title>【新聞稿】拿人民的納稅錢？就該做公開透明的資訊系統！</title>
+      <link>https://kalug.github.io/planet/slat-tw/20170913_public-money-public-code.html/</link>
+      <pubDate>Wed, 13 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20170913_public-money-public-code.html/</guid>
+      <description>@page { margin: 2cm } p { margin-bottom: 0.25cm; direction: inherit; line-height: 120%; text-align: justify; page-break-before: auto } p.cjk { font-family: &amp;ldquo;Noto Sans CJK TC Regular&amp;rdquo;, sans-serif } a:link { so-language: zxx } 全世界超過 30 個組織要求改進政府數位資訊建設的流程與思維 @page { margin: 2cm } p.第一行</description>
+    </item>
+    
+    <item>
       <title>一群臺灣老司機參與《鳳凰項目》沙盤的持續成長故事</title>
       <link>https://kalug.github.io/planet/chusiang/20170901_the-phoenix-poject-workshop.html/</link>
       <pubDate>Fri, 01 Sep 2017 00:00:00 +0000</pubDate>
@@ -197,6 +395,33 @@
       
       <guid>https://kalug.github.io/planet/chusiang/20170829_continuous-delivery-with-ansible-x-gitlab-ci.html/</guid>
       <description>因緣際會下，凍仁先後於 COSCUP 2017 和 DevOps Taiwan x Agile Kaohsiung 的社群活動分享「使用 Ansible x GitLab CI 進行持續交付」的主題。 前者是接續 Smalltown 的 Infrastructure as Code，之後讓 Cheng Wei Chen 分享 Ansible &amp;amp; GitLab CI/CD</description>
+    </item>
+    
+    <item>
+      <title>再談自由軟體與專有軟體</title>
+      <link>https://kalug.github.io/planet/slat-tw/20170829_clarify-free-software.html/</link>
+      <pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20170829_clarify-free-software.html/</guid>
+      <description>一直以來都時常會有些討論自由軟體、專有軟體的貼文有些似是而非的看法，所以本人在此不吝提出一些觀點，並針對混淆之處作澄清，希望各位讀者能參考參</description>
+    </item>
+    
+    <item>
+      <title>【新聞稿】軟體自由協會與國際開源社群成員拜會政委唐鳳</title>
+      <link>https://kalug.github.io/planet/slat-tw/20170807_news-20170807.html/</link>
+      <pubDate>Mon, 07 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20170807_news-20170807.html/</guid>
+      <description>中華民國軟體自由協會理事長翁佳驥、常務理事曾政嘉，在8月7日偕同國內開源社群成員及國際開源社群「文件基金會」 (The Document Foundation) 創始人之一的 Italo Vignol</description>
+    </item>
+    
+    <item>
+      <title>【新聞稿】LibreOffice 5.4 發行，Writer、Calc 與 Impress 增添新功能</title>
+      <link>https://kalug.github.io/planet/slat-tw/20170728_libreoffice-54.html/</link>
+      <pubDate>Fri, 28 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/planet/slat-tw/20170728_libreoffice-54.html/</guid>
+      <description>【2017 年 7 月 28 日柏林報導】文件基金會宣布發行 LibreOffice 5.4 版，這個版本將是 LibreOffice 5.x 系列的最後一個主版本更新，涵蓋 Windows、MacOS 與 Linux 版，以及</description>
     </item>
     
     <item>

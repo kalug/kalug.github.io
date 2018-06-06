@@ -5,23 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>如何在 CentOS 7 解決 glibc 的 yum 套件相依性問題</title>
-  <meta property="og:title" content="如何在 CentOS 7 解決 glibc 的 yum 套件相依性問題" />
-  <meta name="twitter:title" content="如何在 CentOS 7 解決 glibc 的 yum 套件相依性問題" />
-  <meta name="description" content="這週凍仁接到一個需要幫 CentOS 7 部署 OpenLDAP client 的任務。過程中，總是有一兩台 server 會遇到 glibc 相依性問題，並為此煩惱。如果是所有的 server 都有同樣的問題還好解決，最麻煩">
-  <meta property="og:description" content="這週凍仁接到一個需要幫 CentOS 7 部署 OpenLDAP client 的任務。過程中，總是有一兩台 server 會遇到 glibc 相依性問題，並為此煩惱。如果是所有的 server 都有同樣的問題還好解決，最麻煩">
-  <meta name="twitter:description" content="這週凍仁接到一個需要幫 CentOS 7 部署 OpenLDAP client 的任務。過程中，總是有一兩台 server 會遇到 glibc 相依性問題，並為此煩惱。如果是所有的 server 都有同樣的問題還好解決，最麻煩">
+  <title>中華民國軟體自由協會 FB 粉絲頁分享連結：Early availability of LibreOffice 5.4.5 and LibreOffice 6.0.1: all users are invited to update for improved robustness and security</title>
+  <meta property="og:title" content="中華民國軟體自由協會 FB 粉絲頁分享連結：Early availability of LibreOffice 5.4.5 and LibreOffice 6.0.1: all users are invited to update for improved robustness and security" />
+  <meta name="twitter:title" content="中華民國軟體自由協會 FB 粉絲頁分享連結：Early availability of LibreOffice 5.4.5 and …" />
+  <meta name="description" content="【LibreOffice 安全性更新通報】 雖然 LibreOffice 6.0 才剛發布不久，團隊核心成員上週也都在布魯賽爾參加 FOSDEM 以及半年一次的實體會議，但在接到重大安全性">
+  <meta property="og:description" content="【LibreOffice 安全性更新通報】 雖然 LibreOffice 6.0 才剛發布不久，團隊核心成員上週也都在布魯賽爾參加 FOSDEM 以及半年一次的實體會議，但在接到重大安全性">
+  <meta name="twitter:description" content="【LibreOffice 安全性更新通報】 雖然 LibreOffice 6.0 才剛發布不久，團隊核心成員上週也都在布魯賽爾參加 FOSDEM 以及半年一次的實體會議，但在接到重大安全性">
   <meta name="author" content=""/>
   <link href='https://kalug.github.io/img/kalug.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://kalug.github.io/img/kalug.png" />
   <meta name="twitter:image" content="https://kalug.github.io/img/kalug.png" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://kalug.github.io/planet/chusiang/20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html/" />
+  <meta property="og:url" content="https://kalug.github.io/planet/slat-tw/20180209_fb-early-availability-of-libreoffice.html/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kaohsiung Linux User Group" />
 
   <meta name="generator" content="Hugo 0.41" />
-  <link rel="canonical" href="https://kalug.github.io/planet/chusiang/20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html/" />
+  <link rel="canonical" href="https://kalug.github.io/planet/slat-tw/20180209_fb-early-availability-of-libreoffice.html/" />
   <link rel="alternate" href="https://kalug.github.io/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -164,7 +164,7 @@
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="blog-heading">
-              <h1>如何在 CentOS 7 解決 glibc 的 yum 套件相依性問題</h1>
+              <h1>中華民國軟體自由協會 FB 粉絲頁分享連結：Early availability of LibreOffice 5.4.5 and LibreOffice 6.0.1: all users are invited to update for improved robustness and security</h1>
                 
                 
             </div>
@@ -180,7 +180,7 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>這週凍仁接到一個需要幫 CentOS 7 部署 OpenLDAP client 的任務。過程中，總是有一兩台 server 會遇到 glibc 相依性問題，並為此煩惱。如果是所有的 server 都有同樣的問題還好解決，最麻煩的就是遇上這種時好時壞的情形。<br /><br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@centos7</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo yum install nss-pam-ldapd <span class="Ctrl">[Enter]</span><br /><pre>&hellip;<br /><span class="lnr"> 1</span> &ndash;&gt; Finished Dependency Resolution<br /><span class="lnr"> 2</span> Error: Package: glibc-2.17-157.el7_3.1.i686 (internel-upadte)<br /><span class="lnr"> 3</span>   Requires: glibc-common = 2.17-157.el7_3.1<br /><span class="lnr"> 4</span>   Installed: glibc-common-2.17-157.el7_3.2.x86_64 (@updates)<br /><span class="lnr"> 5</span>       glibc-common = 2.17-157.el7_3.2<br /><span class="lnr"> 5</span>   Available: glibc-common-2.17-105.el7.x86_64 (internel-base)<br /><span class="lnr"> 6</span>       glibc-common = 2.17-105.el7<br /><span class="lnr"> 7</span>   Available: glibc-common-2.17-106.el7_2.1.x86_64 (internel-upadte)<br /><span class="lnr"> 8</span>       glibc-common = 2.17-106.el7_2.1<br /><span class="lnr"> 9</span>   Available: glibc-common-2.17-106.el7_2.4.x86_64 (internel-upadte)<br /><span class="lnr">10</span>       glibc-common = 2.17-106.el7_2.4<br /><span class="lnr">11</span>   Available: glibc-common-2.17-106.el7_2.6.x86_64 (internel-upadte)<br /><span class="lnr">12</span>       glibc-common = 2.17-106.el7_2.6<br /><span class="lnr">13</span>   Available: glibc-common-2.17-106.el7_2.8.x86_64 (internel-upadte)<br /><span class="lnr">14</span>       glibc-common = 2.17-106.el7_2.8<br /><span class="lnr">15</span>   Available: glibc-common-2.17-157.el7.x86_64 (internel-base)<br /><span class="lnr">16</span>       glibc-common = 2.17-157.el7<br /><span class="lnr">17</span>   Available: glibc-common-2.17-157.el7_3.1.x86_64 (internel-upadte)<br /><span class="lnr">18</span>       glibc-common = 2.17-157.el7_3.1<br /><span class="lnr">19</span> You could try using &ndash;skip-broken to work around the problem<br /><span class="lnr">20</span> You could try running: rpm -Va &ndash;nofiles &ndash;nodigest<br /></pre></blockquote><div style="text-align: center;">▲ 安裝 <b>nss-pam-ldapd</b> 出現了 glibc 的套件相依性問題。</div><a name='more'></a><br />上網查了一下資料，發現前人在 2016 年就遇上同樣的問題，其解法也很簡單，只需先降級 glibc 即可。<br /><br />1. 降級 glibc 的相關套件。<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@centos7</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo yum downgrade glibc glibc-common glibc-devel glibc-headers <span class="Ctrl">[Enter]</span></blockquote><br />2. 接著重新安裝 <b>nss-pam-ldapd</b> 就不會遇到相依性問題了。<br /><blockquote>$ sudo yum install nss-pam-ldapd <span class="Ctrl">[Enter]</span></blockquote><br />現在回過頭來看，其實在錯誤訊息的第 3 行的 <i>glibc-common = 2.17-157.el7_3.1</i> 就提到需安裝 <i>2.17-157.el7_3.1</i> 版本的 glibc-common，可出問題的 server 上雖已裝了 <i>2.17-157.el7_3.2</i> 但在降級的過程中失敗。<br /><br />這問題會發生在已安裝某些服務後，才改用內部 Yum mirror repo 的 server 上。而這個結論是在嘗試升級已<b>降級 glibc</b> 和<b>切換內部 Yum mirror repo</b> 的 server，卻無任何變更後得知。<br /><br />題外話，現在的凍仁很幸運地得到前人分享的知識，並擁有 <b>Ansible</b> 和 <b>Vagrant</b> 兩大利器，才能在不到一週內解決環境不一的問題。甚至還在最後發現 Ansible Playbooks 漏掉了要安裝 authconfig 這個必要套件呢！<br /><br /><code class="ref">相關連結：<br /><span style="color: #ffdb00;">★</span> <a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System-Level_Authentication_Guide/authconfig-install.html">2.2.&nbsp;Using authconfig | redhat customer portal</a><br /><br />資料來源： <br /><span style="color: #ffdb00;">★</span> <a href="https://www.linuxquestions.org/questions/linux-newbie-8/yum-dependencies-resolution-fail-glibc-common-4175582316/" target="_blank">[SOLVED] Yum Dependencies resolution fail (glibc-common) | LinuxQuestions.org</a><br /></code></p>
+        <p>【LibreOffice 安全性更新通報】 雖然 LibreOffice 6.0 才剛發布不久，團隊核心成員上週也都在布魯賽爾參加 FOSDEM 以及半年一次的實體會議，但在接到重大安全性通報後仍舊立即修正，並立刻推出新版本。 剛剛下載新鮮版 6.0.0.3 的朋友，建議立即升級到 6.0.1 版；使用安定版 5.4 的朋友則建議立即升級到 5.4.5 版。 <a href="http://ift.tt/2EwLSuw">http://ift.tt/2EwLSuw</a><br /><br />請點擊連結： <a href="https://blog.documentfoundation.org/blog/2018/02/09/early-availability-libreoffice-5-4-5-libreoffice-6-0-1/" target="_blank">Early availability of LibreOffice 5.4.5 and LibreOffice 6.0.1: all users are invited to update for improved robustness and security</a><br /></p>
 
 
         
@@ -193,7 +193,7 @@
 
 
 <li>
-    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f&amp;text=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%207%20%e8%a7%a3%e6%b1%ba%20glibc%20%e7%9a%84%20yum%20%e5%a5%97%e4%bb%b6%e7%9b%b8%e4%be%9d%e6%80%a7%e5%95%8f%e9%a1%8c&amp;via="
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20180209_fb-early-availability-of-libreoffice.html%2f&amp;text=%e4%b8%ad%e8%8f%af%e6%b0%91%e5%9c%8b%e8%bb%9f%e9%ab%94%e8%87%aa%e7%94%b1%e5%8d%94%e6%9c%83%20FB%20%e7%b2%89%e7%b5%b2%e9%a0%81%e5%88%86%e4%ba%ab%e9%80%a3%e7%b5%90%ef%bc%9aEarly%20availability%20of%20LibreOffice%205.4.5%20and%20LibreOffice%206.0.1%3a%20all%20users%20are%20invited%20to%20update%20for%20improved%20robustness%20and%20security&amp;via="
        target="_blank" alt="" title="Share on Twitter">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -204,7 +204,7 @@
 
 
 <li>
-    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f" target="_blank" title="Share on Google Plus">
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20180209_fb-early-availability-of-libreoffice.html%2f" target="_blank" title="Share on Google Plus">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
@@ -214,7 +214,7 @@
 
 
 <li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f" target="_blank" title="Share on Facebook">
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20180209_fb-early-availability-of-libreoffice.html%2f" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -224,7 +224,7 @@
 
 
 <li>
-    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f&amp;title=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%207%20%e8%a7%a3%e6%b1%ba%20glibc%20%e7%9a%84%20yum%20%e5%a5%97%e4%bb%b6%e7%9b%b8%e4%be%9d%e6%80%a7%e5%95%8f%e9%a1%8c" target="_blank" title="Share on Reddit">
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20180209_fb-early-availability-of-libreoffice.html%2f&amp;title=%e4%b8%ad%e8%8f%af%e6%b0%91%e5%9c%8b%e8%bb%9f%e9%ab%94%e8%87%aa%e7%94%b1%e5%8d%94%e6%9c%83%20FB%20%e7%b2%89%e7%b5%b2%e9%a0%81%e5%88%86%e4%ba%ab%e9%80%a3%e7%b5%90%ef%bc%9aEarly%20availability%20of%20LibreOffice%205.4.5%20and%20LibreOffice%206.0.1%3a%20all%20users%20are%20invited%20to%20update%20for%20improved%20robustness%20and%20security" target="_blank" title="Share on Reddit">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
@@ -234,7 +234,7 @@
 
 
 <li>
-    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f&amp;title=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%207%20%e8%a7%a3%e6%b1%ba%20glibc%20%e7%9a%84%20yum%20%e5%a5%97%e4%bb%b6%e7%9b%b8%e4%be%9d%e6%80%a7%e5%95%8f%e9%a1%8c" target="_blank"
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20180209_fb-early-availability-of-libreoffice.html%2f&amp;title=%e4%b8%ad%e8%8f%af%e6%b0%91%e5%9c%8b%e8%bb%9f%e9%ab%94%e8%87%aa%e7%94%b1%e5%8d%94%e6%9c%83%20FB%20%e7%b2%89%e7%b5%b2%e9%a0%81%e5%88%86%e4%ba%ab%e9%80%a3%e7%b5%90%ef%bc%9aEarly%20availability%20of%20LibreOffice%205.4.5%20and%20LibreOffice%206.0.1%3a%20all%20users%20are%20invited%20to%20update%20for%20improved%20robustness%20and%20security" target="_blank"
        title="Share on LinkedIn">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -245,7 +245,7 @@
 
 
 <li>
-    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f&amp;title=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%207%20%e8%a7%a3%e6%b1%ba%20glibc%20%e7%9a%84%20yum%20%e5%a5%97%e4%bb%b6%e7%9b%b8%e4%be%9d%e6%80%a7%e5%95%8f%e9%a1%8c" target="_blank"
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20180209_fb-early-availability-of-libreoffice.html%2f&amp;title=%e4%b8%ad%e8%8f%af%e6%b0%91%e5%9c%8b%e8%bb%9f%e9%ab%94%e8%87%aa%e7%94%b1%e5%8d%94%e6%9c%83%20FB%20%e7%b2%89%e7%b5%b2%e9%a0%81%e5%88%86%e4%ba%ab%e9%80%a3%e7%b5%90%ef%bc%9aEarly%20availability%20of%20LibreOffice%205.4.5%20and%20LibreOffice%206.0.1%3a%20all%20users%20are%20invited%20to%20update%20for%20improved%20robustness%20and%20security" target="_blank"
        title="Share on StumbleUpon">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -256,7 +256,7 @@
 
 
 <li>
-    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f&amp;description=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%207%20%e8%a7%a3%e6%b1%ba%20glibc%20%e7%9a%84%20yum%20%e5%a5%97%e4%bb%b6%e7%9b%b8%e4%be%9d%e6%80%a7%e5%95%8f%e9%a1%8c" target="_blank"
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20180209_fb-early-availability-of-libreoffice.html%2f&amp;description=%e4%b8%ad%e8%8f%af%e6%b0%91%e5%9c%8b%e8%bb%9f%e9%ab%94%e8%87%aa%e7%94%b1%e5%8d%94%e6%9c%83%20FB%20%e7%b2%89%e7%b5%b2%e9%a0%81%e5%88%86%e4%ba%ab%e9%80%a3%e7%b5%90%ef%bc%9aEarly%20availability%20of%20LibreOffice%205.4.5%20and%20LibreOffice%206.0.1%3a%20all%20users%20are%20invited%20to%20update%20for%20improved%20robustness%20and%20security" target="_blank"
        title="Share on Pinterest">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -274,12 +274,12 @@
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="https://kalug.github.io/planet/slat-tw/20170916_2016-2017.html/" data-toggle="tooltip" data-placement="top" title="軟體自由日 -- 協會 2016-2017 總結，向大眾報告">&larr; Previous Post</a>
+              <a href="https://kalug.github.io/planet/slat-tw/20180202_fb-funky.html/" data-toggle="tooltip" data-placement="top" title="中華民國軟體自由協會 FB 粉絲頁分享連結：會員大會宣傳短片【Funky版】">&larr; Previous Post</a>
             </li>
           
           
             <li class="next">
-              <a href="https://kalug.github.io/planet/chusiang/20170924_the-firewalld-on-centos-7.html/" data-toggle="tooltip" data-placement="top" title="firewalld - CentOS 7 的動態防火牆">Next Post &rarr;</a>
+              <a href="https://kalug.github.io/planet/slat-tw/20180227_libreoffice-3-17-aa-space-107-3-17-1330.html/" data-toggle="tooltip" data-placement="top" title="中華民國軟體自由協會 分享相片：過去這一年在數位世界中，並不是太好過。德國慕尼黑市在政治因素操作下，儘管各項分析都顯示會大幅度增加經濟成本與減少本地就業機會，但市議會仍決議丟棄十幾年來使用的自由軟體系統，逐步在未來數年回到專有軟體廠商的懷抱；美國通過了廢除網路中立性的法案，讓網路服務供應商可以依自己喜好輕易扼殺其他網路服務的競爭力，而台灣的電信商也跟進喊燒！臉書不斷修改規則，降低粉絲專頁的觸及率，還進一步過濾敏感詞，只為了討好大國...... 但是在過去這一年中，也不是沒有好消息。慕尼黑市踢開了自由軟體，但西班牙的巴塞隆納卻反其道，揚棄專有軟體投向自由開源的未來！此外在台灣更是有許多進展。我們突破了技能檢定考試只預裝專有軟體的障礙，讓自由軟體納入預裝軟體選擇；開放文件格式政策在各政府機關逐漸發芽，而台灣更成了 LibreOffice 與文件基金會在亞洲的堅實堡壘！ 生活在現代的我們，與網際網路的連結已經是緊密不可分；但面對許多想要限制、束縛我們在數位世界自由的勢力，我們若再不覺醒、再不反抗，後果就是在數位世界中任大廠宰割。#軟體自由運動 是我們的核心理念。在此歡迎關切軟體自由運動的各位，在 3 月 17 日一起來軟體自由反抗軍的基地 A&#43;A space 共創共享空間，聽聽我們這一年在軟體自由運動上的進展，還有未來的展望。 日期：107 年 3 月 17 日（星期六） 時間：13:30 ~ 16:30 地點：A&#43;A 共創共享空間 地址：台北市南京東路五段213號4樓之1 捷運南京三民站1號出口左轉，於南京東路五段與三民路口彰化銀行樓上。大樓入口在三民路上。">Next Post &rarr;</a>
             </li>
           
         </ul>

@@ -5,23 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>如何在 CentOS 7 解決 glibc 的 yum 套件相依性問題</title>
-  <meta property="og:title" content="如何在 CentOS 7 解決 glibc 的 yum 套件相依性問題" />
-  <meta name="twitter:title" content="如何在 CentOS 7 解決 glibc 的 yum 套件相依性問題" />
-  <meta name="description" content="這週凍仁接到一個需要幫 CentOS 7 部署 OpenLDAP client 的任務。過程中，總是有一兩台 server 會遇到 glibc 相依性問題，並為此煩惱。如果是所有的 server 都有同樣的問題還好解決，最麻煩">
-  <meta property="og:description" content="這週凍仁接到一個需要幫 CentOS 7 部署 OpenLDAP client 的任務。過程中，總是有一兩台 server 會遇到 glibc 相依性問題，並為此煩惱。如果是所有的 server 都有同樣的問題還好解決，最麻煩">
-  <meta name="twitter:description" content="這週凍仁接到一個需要幫 CentOS 7 部署 OpenLDAP client 的任務。過程中，總是有一兩台 server 會遇到 glibc 相依性問題，並為此煩惱。如果是所有的 server 都有同樣的問題還好解決，最麻煩">
+  <title>再談自由軟體與專有軟體</title>
+  <meta property="og:title" content="再談自由軟體與專有軟體" />
+  <meta name="twitter:title" content="再談自由軟體與專有軟體" />
+  <meta name="description" content="一直以來都時常會有些討論自由軟體、專有軟體的貼文有些似是而非的看法，所以本人在此不吝提出一些觀點，並針對混淆之處作澄清，希望各位讀者能參考參">
+  <meta property="og:description" content="一直以來都時常會有些討論自由軟體、專有軟體的貼文有些似是而非的看法，所以本人在此不吝提出一些觀點，並針對混淆之處作澄清，希望各位讀者能參考參">
+  <meta name="twitter:description" content="一直以來都時常會有些討論自由軟體、專有軟體的貼文有些似是而非的看法，所以本人在此不吝提出一些觀點，並針對混淆之處作澄清，希望各位讀者能參考參">
   <meta name="author" content=""/>
   <link href='https://kalug.github.io/img/kalug.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://kalug.github.io/img/kalug.png" />
   <meta name="twitter:image" content="https://kalug.github.io/img/kalug.png" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://kalug.github.io/planet/chusiang/20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html/" />
+  <meta property="og:url" content="https://kalug.github.io/planet/slat-tw/20170829_clarify-free-software.html/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kaohsiung Linux User Group" />
 
   <meta name="generator" content="Hugo 0.41" />
-  <link rel="canonical" href="https://kalug.github.io/planet/chusiang/20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html/" />
+  <link rel="canonical" href="https://kalug.github.io/planet/slat-tw/20170829_clarify-free-software.html/" />
   <link rel="alternate" href="https://kalug.github.io/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -164,7 +164,7 @@
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="blog-heading">
-              <h1>如何在 CentOS 7 解決 glibc 的 yum 套件相依性問題</h1>
+              <h1>再談自由軟體與專有軟體</h1>
                 
                 
             </div>
@@ -180,7 +180,7 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>這週凍仁接到一個需要幫 CentOS 7 部署 OpenLDAP client 的任務。過程中，總是有一兩台 server 會遇到 glibc 相依性問題，並為此煩惱。如果是所有的 server 都有同樣的問題還好解決，最麻煩的就是遇上這種時好時壞的情形。<br /><br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@centos7</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo yum install nss-pam-ldapd <span class="Ctrl">[Enter]</span><br /><pre>&hellip;<br /><span class="lnr"> 1</span> &ndash;&gt; Finished Dependency Resolution<br /><span class="lnr"> 2</span> Error: Package: glibc-2.17-157.el7_3.1.i686 (internel-upadte)<br /><span class="lnr"> 3</span>   Requires: glibc-common = 2.17-157.el7_3.1<br /><span class="lnr"> 4</span>   Installed: glibc-common-2.17-157.el7_3.2.x86_64 (@updates)<br /><span class="lnr"> 5</span>       glibc-common = 2.17-157.el7_3.2<br /><span class="lnr"> 5</span>   Available: glibc-common-2.17-105.el7.x86_64 (internel-base)<br /><span class="lnr"> 6</span>       glibc-common = 2.17-105.el7<br /><span class="lnr"> 7</span>   Available: glibc-common-2.17-106.el7_2.1.x86_64 (internel-upadte)<br /><span class="lnr"> 8</span>       glibc-common = 2.17-106.el7_2.1<br /><span class="lnr"> 9</span>   Available: glibc-common-2.17-106.el7_2.4.x86_64 (internel-upadte)<br /><span class="lnr">10</span>       glibc-common = 2.17-106.el7_2.4<br /><span class="lnr">11</span>   Available: glibc-common-2.17-106.el7_2.6.x86_64 (internel-upadte)<br /><span class="lnr">12</span>       glibc-common = 2.17-106.el7_2.6<br /><span class="lnr">13</span>   Available: glibc-common-2.17-106.el7_2.8.x86_64 (internel-upadte)<br /><span class="lnr">14</span>       glibc-common = 2.17-106.el7_2.8<br /><span class="lnr">15</span>   Available: glibc-common-2.17-157.el7.x86_64 (internel-base)<br /><span class="lnr">16</span>       glibc-common = 2.17-157.el7<br /><span class="lnr">17</span>   Available: glibc-common-2.17-157.el7_3.1.x86_64 (internel-upadte)<br /><span class="lnr">18</span>       glibc-common = 2.17-157.el7_3.1<br /><span class="lnr">19</span> You could try using &ndash;skip-broken to work around the problem<br /><span class="lnr">20</span> You could try running: rpm -Va &ndash;nofiles &ndash;nodigest<br /></pre></blockquote><div style="text-align: center;">▲ 安裝 <b>nss-pam-ldapd</b> 出現了 glibc 的套件相依性問題。</div><a name='more'></a><br />上網查了一下資料，發現前人在 2016 年就遇上同樣的問題，其解法也很簡單，只需先降級 glibc 即可。<br /><br />1. 降級 glibc 的相關套件。<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@centos7</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo yum downgrade glibc glibc-common glibc-devel glibc-headers <span class="Ctrl">[Enter]</span></blockquote><br />2. 接著重新安裝 <b>nss-pam-ldapd</b> 就不會遇到相依性問題了。<br /><blockquote>$ sudo yum install nss-pam-ldapd <span class="Ctrl">[Enter]</span></blockquote><br />現在回過頭來看，其實在錯誤訊息的第 3 行的 <i>glibc-common = 2.17-157.el7_3.1</i> 就提到需安裝 <i>2.17-157.el7_3.1</i> 版本的 glibc-common，可出問題的 server 上雖已裝了 <i>2.17-157.el7_3.2</i> 但在降級的過程中失敗。<br /><br />這問題會發生在已安裝某些服務後，才改用內部 Yum mirror repo 的 server 上。而這個結論是在嘗試升級已<b>降級 glibc</b> 和<b>切換內部 Yum mirror repo</b> 的 server，卻無任何變更後得知。<br /><br />題外話，現在的凍仁很幸運地得到前人分享的知識，並擁有 <b>Ansible</b> 和 <b>Vagrant</b> 兩大利器，才能在不到一週內解決環境不一的問題。甚至還在最後發現 Ansible Playbooks 漏掉了要安裝 authconfig 這個必要套件呢！<br /><br /><code class="ref">相關連結：<br /><span style="color: #ffdb00;">★</span> <a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System-Level_Authentication_Guide/authconfig-install.html">2.2.&nbsp;Using authconfig | redhat customer portal</a><br /><br />資料來源： <br /><span style="color: #ffdb00;">★</span> <a href="https://www.linuxquestions.org/questions/linux-newbie-8/yum-dependencies-resolution-fail-glibc-common-4175582316/" target="_blank">[SOLVED] Yum Dependencies resolution fail (glibc-common) | LinuxQuestions.org</a><br /></code></p>
+        <p><br /><div class="separator" style="clear: both; text-align: center;"><a href="https://2.bp.blogspot.com/-KeCDFIascEI/WaVlesOjloI/AAAAAAAAE_Q/XUWihOfIJdMmJzDYjLQcFGpRhwl5sGP2QCLcBGAs/s1600/BabyTuxSitAlpha.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="800" data-original-width="800" height="320" src="https://2.bp.blogspot.com/-KeCDFIascEI/WaVlesOjloI/AAAAAAAAE_Q/XUWihOfIJdMmJzDYjLQcFGpRhwl5sGP2QCLcBGAs/s320/BabyTuxSitAlpha.png" width="320" /></a></div>一直以來都時常會有些討論自由軟體、專有軟體的貼文有些似是而非的看法，所以本人在此不吝提出一些觀點，並針對混淆之處作澄清，希望各位讀者能參考參考。 <br /><br />一、有些人認為採用自由軟體會抹殺從事軟體開發的工作機會。我認為這是誤解，[0] 請見後述逐項說明。<br /><br />二、自由軟體與免費無關，也有許多公司提供自由軟體的商業支援、或銷售自由軟體產品，這些即所謂商業自由軟體公司，例如美商 Red Hat 公司就銷售需付費的 Red Hat Enterprise Linux。[1] 至於我們常見的自由軟體願意無償提供，只是軟體開發單位自己歡喜甘願而已，將自由軟體和免費混為一談是討論自由軟體時最常見的錯誤見解。[2] <br /><br />三、自由軟體的開發一樣要成本、維護也同樣要成本，這些成本多半來自於個人無償奉獻、商業公司、或基金會的支持，任何人都能向這些商業公司購買自由軟體，或是隨喜捐款給自由軟體背後的獨立開發者或維護的基金會。此外，向各位提供一個數據作參考：Linux 基金會公佈2016年 Linux 作業系統核心的程式碼開發有 92.3% 都出自商業公司；[3] 各位也可以進一步研究世界軟體大廠諸如 Oracle、Red Hat、Canonical、Novel 等是怎樣運用自由軟體產品賺錢的。自由軟體唯一與專有軟體不大相同的地方，就是他們的自由軟體成品取之於前人知識、技術、經驗，但成果不私藏，願意拿出來和大家分享，無論有無收費任何人都能自由使用、研究修改、再次散布、改善並回饋給社會大眾。 <br /><br />四、再來聊聊軟體的著作權問題。法律上，一般的實體有物權（有體財產），可以給來給去、賣來賣去；但抽象概念、辦事方法如軟體這類創作沒有實體（無體財產），只能用契約約定如何利用，這就是軟體授權的由來。目前根據伯恩公約之約定，任何人的著作在完成後都將自動取得著作權，所以不管是專有軟體或是自由軟體都受到著作權法保障：只是專有軟體想要佔有專門權利，所以拿著作權法去限制其他人如何使用獨家軟體（故稱專有軟體）；[4] 而自由軟體希望利他，所以拿著作權法來保障任何人都能自由善用其軟體（故稱自由軟體）。[5] <br /><br />五、接著談一下軟體的專利。軟體，說穿了，它的源始形式就是一串數學運算式，這些式子的主旨在於描寫如何完成某件事情的方法。在美國產業中，絕大多數的軟體專利都圍繞著含混不明的文字敘述打轉，甚至是將那些數學公式的描述換句話說（可參考網路上許多談論「軟體的荒謬性」相關文章）。[6] 這也是為何歐盟不允許軟體本身申請專利、以及對資訊表達的方式申請專利。然而，實務上為了抵禦專利蟑螂或其他專有軟體公司的侵害，無論前述的 Oracle、Red Hat、Canonical、Novel 等公司，或是大量利用自由軟體作服務的公司如 Google、Facebook 等，皆保有自己的軟體專利作防護，也甚至有 Open Invention Network 這樣的專利聯盟在保護自由與開源軟體。[7] <br /><br />六、最後，人們今日所處社會的成果，無一不是建立在前人的知識、技術、文化上。牛頓曾說過：「如果說我看得比別人遠些，那是因為我站在巨人的肩膀上」。試想如果我們處在一個沒有自由軟體、只有專有軟體，並且處處充滿軟體專利的極端社會中，那麼要從頭寫一個不會被告的軟體大概難如登天，任何同領域的新創公司難與既有公司相競爭，整個市場終將被大型專有軟體廠商壟斷。這時我們就能瞭解，自由軟體得以讓任何人使用、修改、散布、回饋，也包括任何廠商，各廠商都能利用自由軟體推出商業服務、並積極修正改善或增添新功能爭取客戶，而這才是保障任何廠商都能參與競爭的公平做法。 <br /><br />好比手機市場，如果當年沒有自由的 Linux 內核心，那麼利用它作基底的 Android 也就無法於焉誕生，而市場上就更難有人白手起家和已成氣候的蘋果 iOS 競爭了。（附註：Android 系統是由許多自由軟體和專有軟體搭配構成，而非完全都是自由軟體）<br /><br />至於教育上的應用，自由軟體允許任何人研究程式碼並做出改善，這點無疑是更平等、更自由的教材。[8] <br /><br />以上個人淺見給各位參考。 <br /><br /><h4>可進一步參照之資料</h4>0. <a href="https://www.getgnulinux.org/zh-tw/linux/misunderstanding_free_software/"><a href="https://www.getgnulinux.org/zh-tw/linux/misunderstanding_free_software/">https://www.getgnulinux.org/zh-tw/linux/misunderstanding_free_software/</a> </a><br />1. <a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux"><a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux">https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux</a> </a><br />2. <a href="https://www.gnu.org/philosophy/selling.zh-tw.html"><a href="https://www.gnu.org/philosophy/selling.zh-tw.html">https://www.gnu.org/philosophy/selling.zh-tw.html</a> </a><br />3. <a href="http://blog.nutsfactory.net/2016/08/30/linux-%e4%ba%8c%e5%8d%81%e4%ba%94%e9%80%b1%e5%b9%b4/"><a href="http://blog.nutsfactory.net/2016/08/30/linux-%e4%ba%8c%e5%8d%81%e4%ba%94%e9%80%b1%e5%b9%b4/">http://blog.nutsfactory.net/2016/08/30/linux-%e4%ba%8c%e5%8d%81%e4%ba%94%e9%80%b1%e5%b9%b4/</a> </a><br />4. <a href="https://www.getgnulinux.org/zh-tw/windows/restrictions/"><a href="https://www.getgnulinux.org/zh-tw/windows/restrictions/">https://www.getgnulinux.org/zh-tw/windows/restrictions/</a> </a><br />5. <a href="https://www.gnu.org/philosophy/free-sw.html"><a href="https://www.gnu.org/philosophy/free-sw.html">https://www.gnu.org/philosophy/free-sw.html</a> </a><br />6. <a href="http://blog.nutsfactory.net/2010/05/16/patent-absurdity/"><a href="http://blog.nutsfactory.net/2010/05/16/patent-absurdity/">http://blog.nutsfactory.net/2010/05/16/patent-absurdity/</a> </a><br />7. <a href="https://www.openfoundry.org/tw/foss-news/8592-open-source-innovation-patents-and-the-android-platform-in-perspective"><a href="https://www.openfoundry.org/tw/foss-news/8592-open-source-innovation-patents-and-the-android-platform-in-perspective">https://www.openfoundry.org/tw/foss-news/8592-open-source-innovation-patents-and-the-android-platform-in-perspective</a> </a><br />8. <a href="https://www.getgnulinux.org/zh-tw/windows/stand_for_a_free_society/">https://www.getgnulinux.org/zh-tw/windows/stand_for_a_free_society/&nbsp;</a><br /><br />作者：曾政嘉 (Cheng-Chia Tseng)。目前是中華民國軟體自由協會常務理事，此外亦長期參與多項自由軟體專案，為 Fedora  大使、Ubuntu Member、The Document Foundation Member、和 GNOME Foundation  Member。&nbsp;&nbsp;</p>
 
 
         
@@ -193,7 +193,7 @@
 
 
 <li>
-    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f&amp;text=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%207%20%e8%a7%a3%e6%b1%ba%20glibc%20%e7%9a%84%20yum%20%e5%a5%97%e4%bb%b6%e7%9b%b8%e4%be%9d%e6%80%a7%e5%95%8f%e9%a1%8c&amp;via="
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20170829_clarify-free-software.html%2f&amp;text=%e5%86%8d%e8%ab%87%e8%87%aa%e7%94%b1%e8%bb%9f%e9%ab%94%e8%88%87%e5%b0%88%e6%9c%89%e8%bb%9f%e9%ab%94&amp;via="
        target="_blank" alt="" title="Share on Twitter">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -204,7 +204,7 @@
 
 
 <li>
-    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f" target="_blank" title="Share on Google Plus">
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20170829_clarify-free-software.html%2f" target="_blank" title="Share on Google Plus">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
@@ -214,7 +214,7 @@
 
 
 <li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f" target="_blank" title="Share on Facebook">
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20170829_clarify-free-software.html%2f" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -224,7 +224,7 @@
 
 
 <li>
-    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f&amp;title=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%207%20%e8%a7%a3%e6%b1%ba%20glibc%20%e7%9a%84%20yum%20%e5%a5%97%e4%bb%b6%e7%9b%b8%e4%be%9d%e6%80%a7%e5%95%8f%e9%a1%8c" target="_blank" title="Share on Reddit">
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20170829_clarify-free-software.html%2f&amp;title=%e5%86%8d%e8%ab%87%e8%87%aa%e7%94%b1%e8%bb%9f%e9%ab%94%e8%88%87%e5%b0%88%e6%9c%89%e8%bb%9f%e9%ab%94" target="_blank" title="Share on Reddit">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
@@ -234,7 +234,7 @@
 
 
 <li>
-    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f&amp;title=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%207%20%e8%a7%a3%e6%b1%ba%20glibc%20%e7%9a%84%20yum%20%e5%a5%97%e4%bb%b6%e7%9b%b8%e4%be%9d%e6%80%a7%e5%95%8f%e9%a1%8c" target="_blank"
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20170829_clarify-free-software.html%2f&amp;title=%e5%86%8d%e8%ab%87%e8%87%aa%e7%94%b1%e8%bb%9f%e9%ab%94%e8%88%87%e5%b0%88%e6%9c%89%e8%bb%9f%e9%ab%94" target="_blank"
        title="Share on LinkedIn">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -245,7 +245,7 @@
 
 
 <li>
-    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f&amp;title=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%207%20%e8%a7%a3%e6%b1%ba%20glibc%20%e7%9a%84%20yum%20%e5%a5%97%e4%bb%b6%e7%9b%b8%e4%be%9d%e6%80%a7%e5%95%8f%e9%a1%8c" target="_blank"
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20170829_clarify-free-software.html%2f&amp;title=%e5%86%8d%e8%ab%87%e8%87%aa%e7%94%b1%e8%bb%9f%e9%ab%94%e8%88%87%e5%b0%88%e6%9c%89%e8%bb%9f%e9%ab%94" target="_blank"
        title="Share on StumbleUpon">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -256,7 +256,7 @@
 
 
 <li>
-    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f&amp;description=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%207%20%e8%a7%a3%e6%b1%ba%20glibc%20%e7%9a%84%20yum%20%e5%a5%97%e4%bb%b6%e7%9b%b8%e4%be%9d%e6%80%a7%e5%95%8f%e9%a1%8c" target="_blank"
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20170829_clarify-free-software.html%2f&amp;description=%e5%86%8d%e8%ab%87%e8%87%aa%e7%94%b1%e8%bb%9f%e9%ab%94%e8%88%87%e5%b0%88%e6%9c%89%e8%bb%9f%e9%ab%94" target="_blank"
        title="Share on Pinterest">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -274,12 +274,12 @@
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="https://kalug.github.io/planet/slat-tw/20170916_2016-2017.html/" data-toggle="tooltip" data-placement="top" title="軟體自由日 -- 協會 2016-2017 總結，向大眾報告">&larr; Previous Post</a>
+              <a href="https://kalug.github.io/planet/slat-tw/20170807_news-20170807.html/" data-toggle="tooltip" data-placement="top" title="【新聞稿】軟體自由協會與國際開源社群成員拜會政委唐鳳">&larr; Previous Post</a>
             </li>
           
           
             <li class="next">
-              <a href="https://kalug.github.io/planet/chusiang/20170924_the-firewalld-on-centos-7.html/" data-toggle="tooltip" data-placement="top" title="firewalld - CentOS 7 的動態防火牆">Next Post &rarr;</a>
+              <a href="https://kalug.github.io/planet/chusiang/20170829_continuous-delivery-with-ansible-x-gitlab-ci.html/" data-toggle="tooltip" data-placement="top" title="DevOps 人一定要知道的 Ansible &amp; GitLab CI 持續交付技巧">Next Post &rarr;</a>
             </li>
           
         </ul>

@@ -5,23 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>如何在 CentOS 7 解決 glibc 的 yum 套件相依性問題</title>
-  <meta property="og:title" content="如何在 CentOS 7 解決 glibc 的 yum 套件相依性問題" />
-  <meta name="twitter:title" content="如何在 CentOS 7 解決 glibc 的 yum 套件相依性問題" />
-  <meta name="description" content="這週凍仁接到一個需要幫 CentOS 7 部署 OpenLDAP client 的任務。過程中，總是有一兩台 server 會遇到 glibc 相依性問題，並為此煩惱。如果是所有的 server 都有同樣的問題還好解決，最麻煩">
-  <meta property="og:description" content="這週凍仁接到一個需要幫 CentOS 7 部署 OpenLDAP client 的任務。過程中，總是有一兩台 server 會遇到 glibc 相依性問題，並為此煩惱。如果是所有的 server 都有同樣的問題還好解決，最麻煩">
-  <meta name="twitter:description" content="這週凍仁接到一個需要幫 CentOS 7 部署 OpenLDAP client 的任務。過程中，總是有一兩台 server 會遇到 glibc 相依性問題，並為此煩惱。如果是所有的 server 都有同樣的問題還好解決，最麻煩">
+  <title>GNU 網站翻譯計畫</title>
+  <meta property="og:title" content="GNU 網站翻譯計畫" />
+  <meta name="twitter:title" content="GNU 網站翻譯計畫" />
+  <meta name="description" content="今年初我在協會中提案希望能翻譯 GNU 網站上的內容，長期目標是翻譯完自由軟體基金會出版的《Free Software, Free Society》和《Free as in Freedom (2.0)">
+  <meta property="og:description" content="今年初我在協會中提案希望能翻譯 GNU 網站上的內容，長期目標是翻譯完自由軟體基金會出版的《Free Software, Free Society》和《Free as in Freedom (2.0)">
+  <meta name="twitter:description" content="今年初我在協會中提案希望能翻譯 GNU 網站上的內容，長期目標是翻譯完自由軟體基金會出版的《Free Software, Free Society》和《Free as in Freedom (2.0)">
   <meta name="author" content=""/>
   <link href='https://kalug.github.io/img/kalug.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://kalug.github.io/img/kalug.png" />
   <meta name="twitter:image" content="https://kalug.github.io/img/kalug.png" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://kalug.github.io/planet/chusiang/20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html/" />
+  <meta property="og:url" content="https://kalug.github.io/planet/slat-tw/20171213_gnu.html/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kaohsiung Linux User Group" />
 
   <meta name="generator" content="Hugo 0.41" />
-  <link rel="canonical" href="https://kalug.github.io/planet/chusiang/20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html/" />
+  <link rel="canonical" href="https://kalug.github.io/planet/slat-tw/20171213_gnu.html/" />
   <link rel="alternate" href="https://kalug.github.io/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -164,7 +164,7 @@
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="blog-heading">
-              <h1>如何在 CentOS 7 解決 glibc 的 yum 套件相依性問題</h1>
+              <h1>GNU 網站翻譯計畫</h1>
                 
                 
             </div>
@@ -180,7 +180,7 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>這週凍仁接到一個需要幫 CentOS 7 部署 OpenLDAP client 的任務。過程中，總是有一兩台 server 會遇到 glibc 相依性問題，並為此煩惱。如果是所有的 server 都有同樣的問題還好解決，最麻煩的就是遇上這種時好時壞的情形。<br /><br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@centos7</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo yum install nss-pam-ldapd <span class="Ctrl">[Enter]</span><br /><pre>&hellip;<br /><span class="lnr"> 1</span> &ndash;&gt; Finished Dependency Resolution<br /><span class="lnr"> 2</span> Error: Package: glibc-2.17-157.el7_3.1.i686 (internel-upadte)<br /><span class="lnr"> 3</span>   Requires: glibc-common = 2.17-157.el7_3.1<br /><span class="lnr"> 4</span>   Installed: glibc-common-2.17-157.el7_3.2.x86_64 (@updates)<br /><span class="lnr"> 5</span>       glibc-common = 2.17-157.el7_3.2<br /><span class="lnr"> 5</span>   Available: glibc-common-2.17-105.el7.x86_64 (internel-base)<br /><span class="lnr"> 6</span>       glibc-common = 2.17-105.el7<br /><span class="lnr"> 7</span>   Available: glibc-common-2.17-106.el7_2.1.x86_64 (internel-upadte)<br /><span class="lnr"> 8</span>       glibc-common = 2.17-106.el7_2.1<br /><span class="lnr"> 9</span>   Available: glibc-common-2.17-106.el7_2.4.x86_64 (internel-upadte)<br /><span class="lnr">10</span>       glibc-common = 2.17-106.el7_2.4<br /><span class="lnr">11</span>   Available: glibc-common-2.17-106.el7_2.6.x86_64 (internel-upadte)<br /><span class="lnr">12</span>       glibc-common = 2.17-106.el7_2.6<br /><span class="lnr">13</span>   Available: glibc-common-2.17-106.el7_2.8.x86_64 (internel-upadte)<br /><span class="lnr">14</span>       glibc-common = 2.17-106.el7_2.8<br /><span class="lnr">15</span>   Available: glibc-common-2.17-157.el7.x86_64 (internel-base)<br /><span class="lnr">16</span>       glibc-common = 2.17-157.el7<br /><span class="lnr">17</span>   Available: glibc-common-2.17-157.el7_3.1.x86_64 (internel-upadte)<br /><span class="lnr">18</span>       glibc-common = 2.17-157.el7_3.1<br /><span class="lnr">19</span> You could try using &ndash;skip-broken to work around the problem<br /><span class="lnr">20</span> You could try running: rpm -Va &ndash;nofiles &ndash;nodigest<br /></pre></blockquote><div style="text-align: center;">▲ 安裝 <b>nss-pam-ldapd</b> 出現了 glibc 的套件相依性問題。</div><a name='more'></a><br />上網查了一下資料，發現前人在 2016 年就遇上同樣的問題，其解法也很簡單，只需先降級 glibc 即可。<br /><br />1. 降級 glibc 的相關套件。<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@centos7</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo yum downgrade glibc glibc-common glibc-devel glibc-headers <span class="Ctrl">[Enter]</span></blockquote><br />2. 接著重新安裝 <b>nss-pam-ldapd</b> 就不會遇到相依性問題了。<br /><blockquote>$ sudo yum install nss-pam-ldapd <span class="Ctrl">[Enter]</span></blockquote><br />現在回過頭來看，其實在錯誤訊息的第 3 行的 <i>glibc-common = 2.17-157.el7_3.1</i> 就提到需安裝 <i>2.17-157.el7_3.1</i> 版本的 glibc-common，可出問題的 server 上雖已裝了 <i>2.17-157.el7_3.2</i> 但在降級的過程中失敗。<br /><br />這問題會發生在已安裝某些服務後，才改用內部 Yum mirror repo 的 server 上。而這個結論是在嘗試升級已<b>降級 glibc</b> 和<b>切換內部 Yum mirror repo</b> 的 server，卻無任何變更後得知。<br /><br />題外話，現在的凍仁很幸運地得到前人分享的知識，並擁有 <b>Ansible</b> 和 <b>Vagrant</b> 兩大利器，才能在不到一週內解決環境不一的問題。甚至還在最後發現 Ansible Playbooks 漏掉了要安裝 authconfig 這個必要套件呢！<br /><br /><code class="ref">相關連結：<br /><span style="color: #ffdb00;">★</span> <a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System-Level_Authentication_Guide/authconfig-install.html">2.2.&nbsp;Using authconfig | redhat customer portal</a><br /><br />資料來源： <br /><span style="color: #ffdb00;">★</span> <a href="https://www.linuxquestions.org/questions/linux-newbie-8/yum-dependencies-resolution-fail-glibc-common-4175582316/" target="_blank">[SOLVED] Yum Dependencies resolution fail (glibc-common) | LinuxQuestions.org</a><br /></code></p>
+        <p>今年初我在協會中提案希望能翻譯 GNU 網站上的內容，長期目標是翻譯完自由軟體基金會出版的《Free Software, Free Society》和《Free as in Freedom (2.0)》這兩本書。<br /><div dir="ltr"><br />其中《Free Software, Free Society》是 Richard Stallman 的文選，基本上都放在 GNU 網站上，所以只要翻譯好 GNU 上對應的文章即可完成，計 43 篇文章與 2 篇附錄，為本翻譯計畫的優先實現目標。<br /><br />目前已完成 1-1 <a data-saferedirecturl="https://www.google.com/url?q=https://www.gnu.org/philosophy/free-sw.html&amp;source=gmail&amp;ust=1513135678185000&amp;usg=AFQjCNH71vFJpFl2hEHdPiPQ5RR9S-uDsw" href="https://www.gnu.org/philosophy/free-sw.html" target="_blank">The Free Software Definition</a>, 1-2 <a data-saferedirecturl="https://www.google.com/url?q=https://www.gnu.org/gnu/about-gnu.html&amp;source=gmail&amp;ust=1513135678185000&amp;usg=AFQjCNE114alz1PAz5wcI8a8pN3LhY_WjA" href="https://www.gnu.org/gnu/thegnuproject.html" target="_blank">The GNU Project</a>, 1-5 <a data-saferedirecturl="https://www.google.com/url?q=https://www.gnu.org/philosophy/why-free.zh-tw.html&amp;source=gmail&amp;ust=1513135678185000&amp;usg=AFQjCNHaJctONk_sWnysGPOcwX45neE0BA" href="https://www.gnu.org/philosophy/why-free.zh-tw.html" target="_blank">Why Software Should Not Have Owners</a>, 1-10 <a data-saferedirecturl="https://www.google.com/url?q=https://www.gnu.org/philosophy/selling.html&amp;source=gmail&amp;ust=1513135678185000&amp;usg=AFQjCNGapjszAPOvDI5C0dm7dRU_3EfqVw" href="https://www.gnu.org/philosophy/selling.html" target="_blank">Selling Free Software</a>, 2-13 <a data-saferedirecturl="https://www.google.com/url?q=https://www.gnu.org/philosophy/categories.html&amp;source=gmail&amp;ust=1513135678185000&amp;usg=AFQjCNGE39Uu8hCupJxPEp7W8Mo4CscK2w" href="https://www.gnu.org/philosophy/categories.html" target="_blank">Categories of Free and Nonfree Software</a>, 3-21 <a data-saferedirecturl="https://www.google.com/url?q=https://www.gnu.org/copyleft/copyleft.html&amp;source=gmail&amp;ust=1513135678185000&amp;usg=AFQjCNF1gCM9QjA-E92-vLvPntlxuELs6w" href="https://www.gnu.org/copyleft/copyleft.html" target="_blank">What Is Copyleft?</a><br /><br />至於非書籍文選方面，則翻譯好 GNU 官網<a data-saferedirecturl="https://www.google.com/url?q=https://www.gnu.org/&amp;source=gmail&amp;ust=1513135678185000&amp;usg=AFQjCNFYcGBamkpPK_VpL9FslxwCIZ3Fkw" href="https://www.gnu.org/" target="_blank">首頁</a>、<a data-saferedirecturl="https://www.google.com/url?q=https://www.gnu.org/distros/common-distros.zh-tw.html&amp;source=gmail&amp;ust=1513135678185000&amp;usg=AFQjCNHez6_wiznjO2QujfqhFQXVjz-zKg" href="https://www.gnu.org/distros/common-distros.zh-tw.html" target="_blank">common distros</a>、<a data-saferedirecturl="https://www.google.com/url?q=https://www.gnu.org/gnu/gnu.html&amp;source=gmail&amp;ust=1513135678185000&amp;usg=AFQjCNG0VduSTXadt1h7f5sc3bIgNncESw" href="https://www.gnu.org/gnu/gnu.html" target="_blank">gnu</a>、<a data-saferedirecturl="https://www.google.com/url?q=https://www.gnu.org/gnu/about-gnu.html&amp;source=gmail&amp;ust=1513135678185000&amp;usg=AFQjCNE114alz1PAz5wcI8a8pN3LhY_WjA" href="https://www.gnu.org/gnu/about-gnu.html" target="_blank">about gnu</a>、<a data-saferedirecturl="https://www.google.com/url?q=https://www.gnu.org/gnu/gnu-history.html&amp;source=gmail&amp;ust=1513135678185000&amp;usg=AFQjCNGdlkteHKbx7ueBheCfUa5mlM-7Gg" href="https://www.gnu.org/gnu/gnu-history.html" target="_blank">gnu history</a>、<a data-saferedirecturl="https://www.google.com/url?q=https://www.gnu.org/philosophy/philosophy.html&amp;source=gmail&amp;ust=1513135678185000&amp;usg=AFQjCNGb6N1qOrwzILjepTei-TEiBxQsrg" href="https://www.gnu.org/philosophy/philosophy.html" target="_blank">philosophy</a>。<br /><br /><div class="separator" style="clear: both; text-align: center;"></div><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://3.bp.blogspot.com/-4QJvKeXoSSo/WjBwwhCIVrI/AAAAAAAAFJ0/GQIUpKdBINQpGbHT7CxLwPVLWZw5vu__ACLcBGAs/s1600/GNU%2B%25E4%25BD%259C%25E6%25A5%25AD%25E7%25B3%25BB%25E7%25B5%25B1%25E8%2588%2587%25E8%2587%25AA%25E7%2594%25B1%25E8%25BB%259F%25E9%25AB%2594%25E9%2581%258B%25E5%258B%2595.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="941" data-original-width="1226" height="306" src="https://3.bp.blogspot.com/-4QJvKeXoSSo/WjBwwhCIVrI/AAAAAAAAFJ0/GQIUpKdBINQpGbHT7CxLwPVLWZw5vu__ACLcBGAs/s400/GNU%2B%25E4%25BD%259C%25E6%25A5%25AD%25E7%25B3%25BB%25E7%25B5%25B1%25E8%2588%2587%25E8%2587%25AA%25E7%2594%25B1%25E8%25BB%259F%25E9%25AB%2594%25E9%2581%258B%25E5%258B%2595.png" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">GNU 專案網站</td></tr></tbody></table>非常歡迎有興趣的朋友一同協助翻譯！<br /><br />GNU 網站中文翻譯的郵遞論壇：www-zh-tw-<wbr></wbr>translators@gnu.org<br />郵遞論壇訂閱網頁：<a data-saferedirecturl="https://www.google.com/url?q=https://lists.gnu.org/mailman/listinfo/www-zh-tw-translators&amp;source=gmail&amp;ust=1513135678185000&amp;usg=AFQjCNEn6NziPrlR5DTTvVSlOPDv7RxGsA" href="https://lists.gnu.org/mailman/listinfo/www-zh-tw-translators" target="_blank"><a href="https://lists.gnu">https://lists.gnu</a>.<wbr></wbr>org/mailman/listinfo/www-zh-<wbr></wbr>tw-translators</a><br />翻譯參與指引：<a data-saferedirecturl="https://www.google.com/url?q=https://www.gnu.org/server/standards/README.translations.html%23how&amp;source=gmail&amp;ust=1513135678185000&amp;usg=AFQjCNEDDKm5sz2DOjo5YNwBMjgoic64Tg" href="https://www.gnu.org/server/standards/README.translations.html#how" target="_blank"><a href="https://www.gnu.org/">https://www.gnu.org/</a><wbr></wbr>server/standards/README.<wbr></wbr>translations.html#how</a><br />翻譯的任務協調、議題追蹤站 Savannah：<a data-saferedirecturl="https://www.google.com/url?q=https://savannah.gnu.org/projects/www-zh-tw/&amp;source=gmail&amp;ust=1513135678185000&amp;usg=AFQjCNHqlMz9XkIKwoE2dHwZD8oVCoraKA" href="https://savannah.gnu.org/projects/www-zh-tw/" target="_blank"><a href="https://savannah.gnu">https://savannah.gnu</a>.<wbr></wbr>org/projects/www-zh-tw/</a><br />翻譯者手冊：<a data-saferedirecturl="https://www.google.com/url?q=https://www.gnu.org/software/trans-coord/manual/web-trans/&amp;source=gmail&amp;ust=1513135678185000&amp;usg=AFQjCNEu-j-kVz_uLtxt5JcFHkBc8fHCPA" href="https://www.gnu.org/software/trans-coord/manual/web-trans/" target="_blank"><a href="https://www.gnu.org/">https://www.gnu.org/</a><wbr></wbr>software/trans-coord/manual/<wbr></wbr>web-trans/</a><br />翻譯的官方建議優先序：<a data-saferedirecturl="https://www.google.com/url?q=https://www.gnu.org/server/standards/translations/priorities.html&amp;source=gmail&amp;ust=1513135678185000&amp;usg=AFQjCNEn5MEtyQsBKpKtnkibQBzMQ3_7LQ" href="https://www.gnu.org/server/standards/translations/priorities.html" target="_blank"><a href="https://www.gnu.org/">https://www.gnu.org/</a><wbr></wbr>server/standards/translations/<wbr></wbr>priorities.html</a><br /><br />翻譯流程：<br /><ol><li>請在 <a href="https://savannah.gnu.org/" target="_blank">Savannah</a> 上<a href="https://savannah.gnu.org/account/register.php" target="_blank">註冊帳號</a></li><li>加入 Savannah 上的 <a href="https://savannah.gnu.org/projects/www-zh-tw/" target="_blank">www-zh-tw</a> 專案</li><li>有任何問題請利用 www-zh-tw 專案提供的郵遞論壇：www-zh-tw-<wbr></wbr>translators@gnu.org</li><li><a href="https://savannah.gnu.org/task/?func=additem&amp;group=www-zh-tw" target="_blank">開 Tasks</a> 認領翻譯，或<a href="https://savannah.gnu.org/bugs/?func=additem&amp;group=www-zh-tw" target="_blank">開 Bugs</a> 提報翻譯問題（想協助翻譯時的任何疑問，請利用上述郵遞論壇）</li><li>術語請參考翻譯對照表（<a href="http://breezymove.blogspot.tw/2017/12/gnu_12.html" target="_blank">目前放在這裡</a>）</li><li>完成工作後，將狀態改為 Ready For Test，並找其他人校對</li><li>其他人校對完後，提請我協助提交翻譯 po 檔，並將狀態改為 Done</li></ol></div><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://4.bp.blogspot.com/-sIWT_psSCl4/WjBsJv4vuyI/AAAAAAAAFJk/Uzx2jcUeWfcnUuxoYpUrusehGdx0dHSVwCLcBGAs/s1600/Screenshot-2017-12-13%2BWelcome%2B%255BSavannah%255D.png" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="785" data-original-width="1600" height="195" src="https://4.bp.blogspot.com/-sIWT_psSCl4/WjBsJv4vuyI/AAAAAAAAFJk/Uzx2jcUeWfcnUuxoYpUrusehGdx0dHSVwCLcBGAs/s400/Screenshot-2017-12-13%2BWelcome%2B%255BSavannah%255D.png" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">Savannah 網站 </td></tr></tbody></table><div dir="ltr">歡迎有興趣的朋友一起參與 GNU 網站的翻譯！<br /><br />作者：曾政嘉 (Cheng-Chia Tseng)。目前是中華民國軟體自由協會常務理事，此外亦長期參與多項自由軟體專案，為 Fedora  大使、Ubuntu Member、The Document Foundation Member、和 GNOME Foundation  Member。  </div></p>
 
 
         
@@ -193,7 +193,7 @@
 
 
 <li>
-    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f&amp;text=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%207%20%e8%a7%a3%e6%b1%ba%20glibc%20%e7%9a%84%20yum%20%e5%a5%97%e4%bb%b6%e7%9b%b8%e4%be%9d%e6%80%a7%e5%95%8f%e9%a1%8c&amp;via="
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20171213_gnu.html%2f&amp;text=GNU%20%e7%b6%b2%e7%ab%99%e7%bf%bb%e8%ad%af%e8%a8%88%e7%95%ab&amp;via="
        target="_blank" alt="" title="Share on Twitter">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -204,7 +204,7 @@
 
 
 <li>
-    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f" target="_blank" title="Share on Google Plus">
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20171213_gnu.html%2f" target="_blank" title="Share on Google Plus">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
@@ -214,7 +214,7 @@
 
 
 <li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f" target="_blank" title="Share on Facebook">
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20171213_gnu.html%2f" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -224,7 +224,7 @@
 
 
 <li>
-    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f&amp;title=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%207%20%e8%a7%a3%e6%b1%ba%20glibc%20%e7%9a%84%20yum%20%e5%a5%97%e4%bb%b6%e7%9b%b8%e4%be%9d%e6%80%a7%e5%95%8f%e9%a1%8c" target="_blank" title="Share on Reddit">
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20171213_gnu.html%2f&amp;title=GNU%20%e7%b6%b2%e7%ab%99%e7%bf%bb%e8%ad%af%e8%a8%88%e7%95%ab" target="_blank" title="Share on Reddit">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
@@ -234,7 +234,7 @@
 
 
 <li>
-    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f&amp;title=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%207%20%e8%a7%a3%e6%b1%ba%20glibc%20%e7%9a%84%20yum%20%e5%a5%97%e4%bb%b6%e7%9b%b8%e4%be%9d%e6%80%a7%e5%95%8f%e9%a1%8c" target="_blank"
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20171213_gnu.html%2f&amp;title=GNU%20%e7%b6%b2%e7%ab%99%e7%bf%bb%e8%ad%af%e8%a8%88%e7%95%ab" target="_blank"
        title="Share on LinkedIn">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -245,7 +245,7 @@
 
 
 <li>
-    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f&amp;title=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%207%20%e8%a7%a3%e6%b1%ba%20glibc%20%e7%9a%84%20yum%20%e5%a5%97%e4%bb%b6%e7%9b%b8%e4%be%9d%e6%80%a7%e5%95%8f%e9%a1%8c" target="_blank"
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20171213_gnu.html%2f&amp;title=GNU%20%e7%b6%b2%e7%ab%99%e7%bf%bb%e8%ad%af%e8%a8%88%e7%95%ab" target="_blank"
        title="Share on StumbleUpon">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -256,7 +256,7 @@
 
 
 <li>
-    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f&amp;description=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%207%20%e8%a7%a3%e6%b1%ba%20glibc%20%e7%9a%84%20yum%20%e5%a5%97%e4%bb%b6%e7%9b%b8%e4%be%9d%e6%80%a7%e5%95%8f%e9%a1%8c" target="_blank"
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20171213_gnu.html%2f&amp;description=GNU%20%e7%b6%b2%e7%ab%99%e7%bf%bb%e8%ad%af%e8%a8%88%e7%95%ab" target="_blank"
        title="Share on Pinterest">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -274,12 +274,12 @@
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="https://kalug.github.io/planet/slat-tw/20170916_2016-2017.html/" data-toggle="tooltip" data-placement="top" title="軟體自由日 -- 協會 2016-2017 總結，向大眾報告">&larr; Previous Post</a>
+              <a href="https://kalug.github.io/planet/chusiang/20171112_continuous-delivery-workshop-with-ansible-x-gitlab-ci.html/" data-toggle="tooltip" data-placement="top" title="DevOps 人一定要知道的持續交付技巧 - Ansible &amp; GitLab CI 實戰演練">&larr; Previous Post</a>
             </li>
           
           
             <li class="next">
-              <a href="https://kalug.github.io/planet/chusiang/20170924_the-firewalld-on-centos-7.html/" data-toggle="tooltip" data-placement="top" title="firewalld - CentOS 7 的動態防火牆">Next Post &rarr;</a>
+              <a href="https://kalug.github.io/planet/chusiang/20171224_from-one-persons-devops-to-one-devops-team.html/" data-toggle="tooltip" data-placement="top" title="從一個人的 DevOps，到一個 DevOps 的團隊">Next Post &rarr;</a>
             </li>
           
         </ul>

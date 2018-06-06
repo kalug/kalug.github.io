@@ -5,23 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>如何在 CentOS 7 解決 glibc 的 yum 套件相依性問題</title>
-  <meta property="og:title" content="如何在 CentOS 7 解決 glibc 的 yum 套件相依性問題" />
-  <meta name="twitter:title" content="如何在 CentOS 7 解決 glibc 的 yum 套件相依性問題" />
-  <meta name="description" content="這週凍仁接到一個需要幫 CentOS 7 部署 OpenLDAP client 的任務。過程中，總是有一兩台 server 會遇到 glibc 相依性問題，並為此煩惱。如果是所有的 server 都有同樣的問題還好解決，最麻煩">
-  <meta property="og:description" content="這週凍仁接到一個需要幫 CentOS 7 部署 OpenLDAP client 的任務。過程中，總是有一兩台 server 會遇到 glibc 相依性問題，並為此煩惱。如果是所有的 server 都有同樣的問題還好解決，最麻煩">
-  <meta name="twitter:description" content="這週凍仁接到一個需要幫 CentOS 7 部署 OpenLDAP client 的任務。過程中，總是有一兩台 server 會遇到 glibc 相依性問題，並為此煩惱。如果是所有的 server 都有同樣的問題還好解決，最麻煩">
+  <title>軟體自由日 -- 協會 2016-2017 總結，向大眾報告</title>
+  <meta property="og:title" content="軟體自由日 -- 協會 2016-2017 總結，向大眾報告" />
+  <meta name="twitter:title" content="軟體自由日 -- 協會 2016-2017 總結，向大眾報告" />
+  <meta name="description" content="今天是 2017 年度的軟體自由日，軟體自由協會委託藝術設計專家吳傳浩理事所設計新的視覺識別系統，選在這一天於協會粉絲頁正式啟用，而新的吉祥物也即將與">
+  <meta property="og:description" content="今天是 2017 年度的軟體自由日，軟體自由協會委託藝術設計專家吳傳浩理事所設計新的視覺識別系統，選在這一天於協會粉絲頁正式啟用，而新的吉祥物也即將與">
+  <meta name="twitter:description" content="今天是 2017 年度的軟體自由日，軟體自由協會委託藝術設計專家吳傳浩理事所設計新的視覺識別系統，選在這一天於協會粉絲頁正式啟用，而新的吉祥物也即將與">
   <meta name="author" content=""/>
   <link href='https://kalug.github.io/img/kalug.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://kalug.github.io/img/kalug.png" />
   <meta name="twitter:image" content="https://kalug.github.io/img/kalug.png" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://kalug.github.io/planet/chusiang/20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html/" />
+  <meta property="og:url" content="https://kalug.github.io/planet/slat-tw/20170916_2016-2017.html/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kaohsiung Linux User Group" />
 
   <meta name="generator" content="Hugo 0.41" />
-  <link rel="canonical" href="https://kalug.github.io/planet/chusiang/20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html/" />
+  <link rel="canonical" href="https://kalug.github.io/planet/slat-tw/20170916_2016-2017.html/" />
   <link rel="alternate" href="https://kalug.github.io/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -164,7 +164,7 @@
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="blog-heading">
-              <h1>如何在 CentOS 7 解決 glibc 的 yum 套件相依性問題</h1>
+              <h1>軟體自由日 -- 協會 2016-2017 總結，向大眾報告</h1>
                 
                 
             </div>
@@ -180,7 +180,7 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>這週凍仁接到一個需要幫 CentOS 7 部署 OpenLDAP client 的任務。過程中，總是有一兩台 server 會遇到 glibc 相依性問題，並為此煩惱。如果是所有的 server 都有同樣的問題還好解決，最麻煩的就是遇上這種時好時壞的情形。<br /><br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@centos7</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo yum install nss-pam-ldapd <span class="Ctrl">[Enter]</span><br /><pre>&hellip;<br /><span class="lnr"> 1</span> &ndash;&gt; Finished Dependency Resolution<br /><span class="lnr"> 2</span> Error: Package: glibc-2.17-157.el7_3.1.i686 (internel-upadte)<br /><span class="lnr"> 3</span>   Requires: glibc-common = 2.17-157.el7_3.1<br /><span class="lnr"> 4</span>   Installed: glibc-common-2.17-157.el7_3.2.x86_64 (@updates)<br /><span class="lnr"> 5</span>       glibc-common = 2.17-157.el7_3.2<br /><span class="lnr"> 5</span>   Available: glibc-common-2.17-105.el7.x86_64 (internel-base)<br /><span class="lnr"> 6</span>       glibc-common = 2.17-105.el7<br /><span class="lnr"> 7</span>   Available: glibc-common-2.17-106.el7_2.1.x86_64 (internel-upadte)<br /><span class="lnr"> 8</span>       glibc-common = 2.17-106.el7_2.1<br /><span class="lnr"> 9</span>   Available: glibc-common-2.17-106.el7_2.4.x86_64 (internel-upadte)<br /><span class="lnr">10</span>       glibc-common = 2.17-106.el7_2.4<br /><span class="lnr">11</span>   Available: glibc-common-2.17-106.el7_2.6.x86_64 (internel-upadte)<br /><span class="lnr">12</span>       glibc-common = 2.17-106.el7_2.6<br /><span class="lnr">13</span>   Available: glibc-common-2.17-106.el7_2.8.x86_64 (internel-upadte)<br /><span class="lnr">14</span>       glibc-common = 2.17-106.el7_2.8<br /><span class="lnr">15</span>   Available: glibc-common-2.17-157.el7.x86_64 (internel-base)<br /><span class="lnr">16</span>       glibc-common = 2.17-157.el7<br /><span class="lnr">17</span>   Available: glibc-common-2.17-157.el7_3.1.x86_64 (internel-upadte)<br /><span class="lnr">18</span>       glibc-common = 2.17-157.el7_3.1<br /><span class="lnr">19</span> You could try using &ndash;skip-broken to work around the problem<br /><span class="lnr">20</span> You could try running: rpm -Va &ndash;nofiles &ndash;nodigest<br /></pre></blockquote><div style="text-align: center;">▲ 安裝 <b>nss-pam-ldapd</b> 出現了 glibc 的套件相依性問題。</div><a name='more'></a><br />上網查了一下資料，發現前人在 2016 年就遇上同樣的問題，其解法也很簡單，只需先降級 glibc 即可。<br /><br />1. 降級 glibc 的相關套件。<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@centos7</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo yum downgrade glibc glibc-common glibc-devel glibc-headers <span class="Ctrl">[Enter]</span></blockquote><br />2. 接著重新安裝 <b>nss-pam-ldapd</b> 就不會遇到相依性問題了。<br /><blockquote>$ sudo yum install nss-pam-ldapd <span class="Ctrl">[Enter]</span></blockquote><br />現在回過頭來看，其實在錯誤訊息的第 3 行的 <i>glibc-common = 2.17-157.el7_3.1</i> 就提到需安裝 <i>2.17-157.el7_3.1</i> 版本的 glibc-common，可出問題的 server 上雖已裝了 <i>2.17-157.el7_3.2</i> 但在降級的過程中失敗。<br /><br />這問題會發生在已安裝某些服務後，才改用內部 Yum mirror repo 的 server 上。而這個結論是在嘗試升級已<b>降級 glibc</b> 和<b>切換內部 Yum mirror repo</b> 的 server，卻無任何變更後得知。<br /><br />題外話，現在的凍仁很幸運地得到前人分享的知識，並擁有 <b>Ansible</b> 和 <b>Vagrant</b> 兩大利器，才能在不到一週內解決環境不一的問題。甚至還在最後發現 Ansible Playbooks 漏掉了要安裝 authconfig 這個必要套件呢！<br /><br /><code class="ref">相關連結：<br /><span style="color: #ffdb00;">★</span> <a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System-Level_Authentication_Guide/authconfig-install.html">2.2.&nbsp;Using authconfig | redhat customer portal</a><br /><br />資料來源： <br /><span style="color: #ffdb00;">★</span> <a href="https://www.linuxquestions.org/questions/linux-newbie-8/yum-dependencies-resolution-fail-glibc-common-4175582316/" target="_blank">[SOLVED] Yum Dependencies resolution fail (glibc-common) | LinuxQuestions.org</a><br /></code></p>
+        <div class="separator" style="clear: both; text-align: center;"><a href="https://3.bp.blogspot.com/-2iDXG3EGqt4/Wb0HYKz560I/AAAAAAAAAHA/spdF6jQp5AElXhO3nW1YN-oRUT2_ia6iACLcBGAs/s1600/g85697.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="420" data-original-width="420" height="200" src="https://3.bp.blogspot.com/-2iDXG3EGqt4/Wb0HYKz560I/AAAAAAAAAHA/spdF6jQp5AElXhO3nW1YN-oRUT2_ia6iACLcBGAs/s200/g85697.png" width="200" /></a></div><br /><span style="text-align: justify;">今天是 2017 年度的軟體自由日，軟體自由協會委託藝術設計專家吳傳浩理事所設計新的視覺識別系統，選在這一天於<a href="https://www.facebook.com/slat.org/" target="_blank">協會粉絲頁</a>正式啟用，而新的吉祥物也即將與大家見面！敬請各位期待。</span><br /><div style="text-align: justify;"><br /></div><div style="text-align: justify;">接著依照過去兩年的慣例，協會在此向大家報告過去一年協會完成與進行中的事項。</div><br /><div style="text-align: justify;">過去這一年在軟體自由運動方面，最大的進展當屬<a href="https://www.facebook.com/slat.org/posts/2221408888085376" target="_blank">國家技能檢定中心的「網頁設計」丙級類科，終於將相關之自由軟體（包括 BlueGriffon、Gimp、Inkscape 等）列入考試預裝軟體選項之一</a>。搭配 104 人力銀行與 1111 人力銀行陸續將自由軟體列於專長列表之中，我們可以更有力地在職校與企業中，推動軟體自由的概念 -- 軟體自由並不是要求所有人都要用自由軟體，但是在教育界使用自由軟體搭配公共授權的素材，不但可以達成教育公平性的目標，並且可以讓過去以工具為導向的教學思維轉變為以技術觀念為導向。學生進入職場後面對相同領域的各式自由/專有軟體，均不會受到限制。</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">接下來，協會仍然持續與國家發展委員會合作推動開放文件格式 ODF 相關政策。2017 年 8 月協會邀請文件基金會暨 LibreOffice 共同創辦人之一的 <a href="https://www.facebook.com/coscup/posts/10155568052837249" target="_blank">Italo Vignoli 來台參加 COSCUP 演講</a>，並偕同社群朋友一起到<a href="https://technews.tw/2017/08/08/the-document-foundation-meet-audrey-tang/" target="_blank">行政院拜訪數位政委唐鳳</a>。Italo Vignoli 回國後<a href="https://blog.documentfoundation.org/blog/2017/08/11/coscup-report/" target="_blank">撰文表示</a>對台灣之行充滿正面評價，台灣無疑地是文件基金會與 LibreOffice 的一座堅強據點。</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">開放授權的書籍方面，協會於 2016 年初發行「不插電的資訊科學」後，至今已售出超過 1,600 本，顯見即使是有電子書可以無償下載，但許多老師與朋友們仍願意支持協會持續進行。更令人高興的是，「不插電的資訊科學」在各地開花，開發出許多不同面向的教案與故事情境等。2017 年 5 月，由南投埔里國中謝宗翔老師發想，台北力行國小顏國雄老師協助以 HTML5 撰寫動畫模擬教材，共同創作出的「<a href="https://www.facebook.com/ComputerScienceTT/" target="_blank">偷插電的資訊科學</a>」同樣以 CC 授權<a href="https://sites.google.com/ntjh.ntct.edu.tw/cstt/" target="_blank">分享在網站上</a>，並透過協會<a href="https://sites.google.com/view/slat-bookstore/%E8%B3%87%E8%A8%8A%E7%A7%91%E5%AD%B8%E9%A1%9E/%E5%81%B7%E6%8F%92%E9%9B%BB%E7%9A%84%E8%B3%87%E8%A8%8A%E7%A7%91%E5%AD%B8%E6%95%99%E5%B8%AB%E6%89%8B%E5%86%8A" target="_blank">出版成書</a>。至今短短四個月的時間，也售出了超過 900 本。最後，完全由交大紙飛機團隊自主發起翻譯成書的「不用電腦學程式」，同樣以開放授權方式釋出。該書現階段不販售，採免費贈送，但要求索書的教育者貢獻分享教案，與協會的理念不謀而合。此書協會以現有資源協助紙飛機團隊申請出版與處理物流等事物，希望有更多老師能共創共享，一起改變台灣的資訊教育。</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">協會在採用新的視覺辨識系統後，也會開始製作一系列的週邊商品來販售籌措營運經費。也請大家屆時多多購買贊助協會，讓協會更有力量在軟體自由運動上持續努力與大家溝通、推廣！</div><div style="text-align: justify;"><div class="separator" style="clear: both; text-align: center;"><a href="https://2.bp.blogspot.com/-58-XsDjRgKU/Wb0HPaBguXI/AAAAAAAAAG8/vaPZn4sGKjcsdAUoa9fK5sizJH1QEoQMwCLcBGAs/s1600/01_stal_center_col.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="1132" data-original-width="1600" height="448" src="https://2.bp.blogspot.com/-58-XsDjRgKU/Wb0HPaBguXI/AAAAAAAAAG8/vaPZn4sGKjcsdAUoa9fK5sizJH1QEoQMwCLcBGAs/s640/01_stal_center_col.png" width="640" /></a></div><br /></div><div style="text-align: justify;"><br /></div>
 
 
         
@@ -193,7 +193,7 @@
 
 
 <li>
-    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f&amp;text=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%207%20%e8%a7%a3%e6%b1%ba%20glibc%20%e7%9a%84%20yum%20%e5%a5%97%e4%bb%b6%e7%9b%b8%e4%be%9d%e6%80%a7%e5%95%8f%e9%a1%8c&amp;via="
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20170916_2016-2017.html%2f&amp;text=%e8%bb%9f%e9%ab%94%e8%87%aa%e7%94%b1%e6%97%a5%20--%20%e5%8d%94%e6%9c%83%202016-2017%20%e7%b8%bd%e7%b5%90%ef%bc%8c%e5%90%91%e5%a4%a7%e7%9c%be%e5%a0%b1%e5%91%8a&amp;via="
        target="_blank" alt="" title="Share on Twitter">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -204,7 +204,7 @@
 
 
 <li>
-    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f" target="_blank" title="Share on Google Plus">
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20170916_2016-2017.html%2f" target="_blank" title="Share on Google Plus">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
@@ -214,7 +214,7 @@
 
 
 <li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f" target="_blank" title="Share on Facebook">
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20170916_2016-2017.html%2f" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -224,7 +224,7 @@
 
 
 <li>
-    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f&amp;title=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%207%20%e8%a7%a3%e6%b1%ba%20glibc%20%e7%9a%84%20yum%20%e5%a5%97%e4%bb%b6%e7%9b%b8%e4%be%9d%e6%80%a7%e5%95%8f%e9%a1%8c" target="_blank" title="Share on Reddit">
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20170916_2016-2017.html%2f&amp;title=%e8%bb%9f%e9%ab%94%e8%87%aa%e7%94%b1%e6%97%a5%20--%20%e5%8d%94%e6%9c%83%202016-2017%20%e7%b8%bd%e7%b5%90%ef%bc%8c%e5%90%91%e5%a4%a7%e7%9c%be%e5%a0%b1%e5%91%8a" target="_blank" title="Share on Reddit">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
@@ -234,7 +234,7 @@
 
 
 <li>
-    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f&amp;title=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%207%20%e8%a7%a3%e6%b1%ba%20glibc%20%e7%9a%84%20yum%20%e5%a5%97%e4%bb%b6%e7%9b%b8%e4%be%9d%e6%80%a7%e5%95%8f%e9%a1%8c" target="_blank"
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20170916_2016-2017.html%2f&amp;title=%e8%bb%9f%e9%ab%94%e8%87%aa%e7%94%b1%e6%97%a5%20--%20%e5%8d%94%e6%9c%83%202016-2017%20%e7%b8%bd%e7%b5%90%ef%bc%8c%e5%90%91%e5%a4%a7%e7%9c%be%e5%a0%b1%e5%91%8a" target="_blank"
        title="Share on LinkedIn">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -245,7 +245,7 @@
 
 
 <li>
-    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f&amp;title=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%207%20%e8%a7%a3%e6%b1%ba%20glibc%20%e7%9a%84%20yum%20%e5%a5%97%e4%bb%b6%e7%9b%b8%e4%be%9d%e6%80%a7%e5%95%8f%e9%a1%8c" target="_blank"
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20170916_2016-2017.html%2f&amp;title=%e8%bb%9f%e9%ab%94%e8%87%aa%e7%94%b1%e6%97%a5%20--%20%e5%8d%94%e6%9c%83%202016-2017%20%e7%b8%bd%e7%b5%90%ef%bc%8c%e5%90%91%e5%a4%a7%e7%9c%be%e5%a0%b1%e5%91%8a" target="_blank"
        title="Share on StumbleUpon">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -256,7 +256,7 @@
 
 
 <li>
-    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.github.io%2fplanet%2fchusiang%2f20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html%2f&amp;description=%e5%a6%82%e4%bd%95%e5%9c%a8%20CentOS%207%20%e8%a7%a3%e6%b1%ba%20glibc%20%e7%9a%84%20yum%20%e5%a5%97%e4%bb%b6%e7%9b%b8%e4%be%9d%e6%80%a7%e5%95%8f%e9%a1%8c" target="_blank"
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.github.io%2fplanet%2fslat-tw%2f20170916_2016-2017.html%2f&amp;description=%e8%bb%9f%e9%ab%94%e8%87%aa%e7%94%b1%e6%97%a5%20--%20%e5%8d%94%e6%9c%83%202016-2017%20%e7%b8%bd%e7%b5%90%ef%bc%8c%e5%90%91%e5%a4%a7%e7%9c%be%e5%a0%b1%e5%91%8a" target="_blank"
        title="Share on Pinterest">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -274,12 +274,12 @@
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="https://kalug.github.io/planet/slat-tw/20170916_2016-2017.html/" data-toggle="tooltip" data-placement="top" title="軟體自由日 -- 協會 2016-2017 總結，向大眾報告">&larr; Previous Post</a>
+              <a href="https://kalug.github.io/planet/slat-tw/20170913_public-money-public-code.html/" data-toggle="tooltip" data-placement="top" title="【新聞稿】拿人民的納稅錢？就該做公開透明的資訊系統！">&larr; Previous Post</a>
             </li>
           
           
             <li class="next">
-              <a href="https://kalug.github.io/planet/chusiang/20170924_the-firewalld-on-centos-7.html/" data-toggle="tooltip" data-placement="top" title="firewalld - CentOS 7 的動態防火牆">Next Post &rarr;</a>
+              <a href="https://kalug.github.io/planet/chusiang/20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html/" data-toggle="tooltip" data-placement="top" title="如何在 CentOS 7 解決 glibc 的 yum 套件相依性問題">Next Post &rarr;</a>
             </li>
           
         </ul>
