@@ -2,632 +2,632 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kaohsiung Linux User Group</title>
-    <link>https://kalug.github.io/planet/</link>
+    <link>http://kalug.linux.org.tw/planet/</link>
     <description>Recent content on Kaohsiung Linux User Group</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Tue, 05 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://kalug.github.io/planet/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://kalug.linux.org.tw/planet/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Drone 搭配 Kubernetes 部署 Go 語言項目</title>
-      <link>https://kalug.github.io/planet/appleboy/20180605_drone-kubernetes-with-golang/</link>
+      <link>http://kalug.linux.org.tw/planet/appleboy/20180605_drone-kubernetes-with-golang/</link>
       <pubDate>Tue, 05 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/appleboy/20180605_drone-kubernetes-with-golang/</guid>
+      <guid>http://kalug.linux.org.tw/planet/appleboy/20180605_drone-kubernetes-with-golang/</guid>
       <description>在之前寫過一篇『Drone 搭配 Kubernetes 升級應用程式版本』，裡面內容最主要介紹 honestbee 撰寫的 drone 外掛: drone-kubernetes，但是此外掛並非用 Go 語</description>
     </item>
     
     <item>
       <title>簡單易用的 Zabbix 監控服務</title>
-      <link>https://kalug.github.io/planet/chusiang/20180531_zabbix-the-easy-to-use-monitoring-tools.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20180531_zabbix-the-easy-to-use-monitoring-tools.html/</link>
       <pubDate>Thu, 31 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20180531_zabbix-the-easy-to-use-monitoring-tools.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20180531_zabbix-the-easy-to-use-monitoring-tools.html/</guid>
       <description>上週六 (05/26)，是 DevOps Taiwan 的社群日。這次「Monitoring Tools 大亂鬥」一共邀請了 11 位講者，從雲端運算 (Cloud Computing) 的 AWS, Azure, GCP，和自由軟體 (Free Software) 的 Consul,</description>
     </item>
     
     <item>
       <title>如何在 Go 專案內寫測試</title>
-      <link>https://kalug.github.io/planet/appleboy/20180514_how-to-write-testing-in-golang/</link>
+      <link>http://kalug.linux.org.tw/planet/appleboy/20180514_how-to-write-testing-in-golang/</link>
       <pubDate>Mon, 14 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/appleboy/20180514_how-to-write-testing-in-golang/</guid>
+      <guid>http://kalug.linux.org.tw/planet/appleboy/20180514_how-to-write-testing-in-golang/</guid>
       <description>相信大家都知道專案內不導入測試，未來越來越多功能，技術債就會越來越多，接手的人罵聲連連，而寫測試的簡單與否決定專案初期是否要先導入。為什麼專</description>
     </item>
     
     <item>
       <title>Go 語言的 vendor 目錄</title>
-      <link>https://kalug.github.io/planet/appleboy/20180505_what-is-vendor-in-golang/</link>
+      <link>http://kalug.linux.org.tw/planet/appleboy/20180505_what-is-vendor-in-golang/</link>
       <pubDate>Sat, 05 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/appleboy/20180505_what-is-vendor-in-golang/</guid>
+      <guid>http://kalug.linux.org.tw/planet/appleboy/20180505_what-is-vendor-in-golang/</guid>
       <description>很多朋友剛入門 Go 語言時，第一個會遇到的問題是，該如何設定專案配置，讓專案可以正常執行，在個人電腦該如何開發多個專案，這邊就會遇到該如何設定 $</description>
     </item>
     
     <item>
       <title>怎麼無痛升級 Ansible</title>
-      <link>https://kalug.github.io/planet/chusiang/20180428_how-to-stable-upgrade-the-ansible.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20180428_how-to-stable-upgrade-the-ansible.html/</link>
       <pubDate>Sat, 28 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20180428_how-to-stable-upgrade-the-ansible.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20180428_how-to-stable-upgrade-the-ansible.html/</guid>
       <description>昨天，是凍仁參加 DevOps Taiwan Meetup #13 Ansible User 小聚，並擔任閃電秀講者的日子。還記得 2 年前，剛入門 Ansible 時，凍仁一直很想參加 Ansible 小聚，好親自與前輩們討教，降低學習門壏</description>
     </item>
     
     <item>
       <title>Go 語言的 init 函式</title>
-      <link>https://kalug.github.io/planet/appleboy/20180419_init-func-in-golang/</link>
+      <link>http://kalug.linux.org.tw/planet/appleboy/20180419_init-func-in-golang/</link>
       <pubDate>Thu, 19 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/appleboy/20180419_init-func-in-golang/</guid>
+      <guid>http://kalug.linux.org.tw/planet/appleboy/20180419_init-func-in-golang/</guid>
       <description>本篇會帶大家認識 Go 語言的 init 函式，在了解 init func 之前，大家應該都知道在同一個 Package 底下是不可以有重複的變數或者是函式名稱，但是唯獨 init() 可以在同一個 package 內宣</description>
     </item>
     
     <item>
       <title>[影片教學] 使用 Filter 將專案跑在特定 Drone Agent 服務</title>
-      <link>https://kalug.github.io/planet/appleboy/20180415_how-to-use-filter-in-drone/</link>
+      <link>http://kalug.linux.org.tw/planet/appleboy/20180415_how-to-use-filter-in-drone/</link>
       <pubDate>Sun, 15 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/appleboy/20180415_how-to-use-filter-in-drone/</guid>
+      <guid>http://kalug.linux.org.tw/planet/appleboy/20180415_how-to-use-filter-in-drone/</guid>
       <description>Drone 是一套用 Go 語言撰寫的 CI/CD 開源專案，是由一個 Server 跟多個 Agent 所組成，Agent 上面必須安裝好 Dokcer 才可以順利測試及部署，但是團隊內會出現一個狀況，每個專</description>
     </item>
     
     <item>
       <title>如何使用 Go 語言 Flag 套件 (影片教學)</title>
-      <link>https://kalug.github.io/planet/appleboy/20180412_how-to-use-golang-flag-package/</link>
+      <link>http://kalug.linux.org.tw/planet/appleboy/20180412_how-to-use-golang-flag-package/</link>
       <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/appleboy/20180412_how-to-use-golang-flag-package/</guid>
+      <guid>http://kalug.linux.org.tw/planet/appleboy/20180412_how-to-use-golang-flag-package/</guid>
       <description>之前寫過一篇『用 Golang 寫 Command line 工具』教學，作者我錄了一個教學影片，教大家如何使用 Go 語言的 Flag 套件，套件用法很簡單，相信看了底下的影片教學馬上就會了，</description>
     </item>
     
     <item>
       <title>Go 語言基礎實戰教學影片上線了</title>
-      <link>https://kalug.github.io/planet/appleboy/20180329_golang-introduction-video/</link>
+      <link>http://kalug.linux.org.tw/planet/appleboy/20180329_golang-introduction-video/</link>
       <pubDate>Thu, 29 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/appleboy/20180329_golang-introduction-video/</guid>
+      <guid>http://kalug.linux.org.tw/planet/appleboy/20180329_golang-introduction-video/</guid>
       <description>購買連結 去年在台灣推廣 Drone 這套由 Go 語言所撰寫的開源專案，身為維護者之一，也將 Drone 跟 Gitea 完成整合。如果對於從開發到部署整個流程，還不是很了解的朋友，</description>
     </item>
     
     <item>
       <title>Go 語言搭配 Docker Healthy Check 檢查</title>
-      <link>https://kalug.github.io/planet/appleboy/20180319_docker-healthcheck-in-golang/</link>
+      <link>http://kalug.linux.org.tw/planet/appleboy/20180319_docker-healthcheck-in-golang/</link>
       <pubDate>Mon, 19 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/appleboy/20180319_docker-healthcheck-in-golang/</guid>
+      <guid>http://kalug.linux.org.tw/planet/appleboy/20180319_docker-healthcheck-in-golang/</guid>
       <description>在 Docker 1.12 版本後，提供了 HEALTHCHECK 指令，通過指定的一行命令來判斷容器內的服務是否正常運作。在此之前大部分都是透過判斷程式是否 Crash 來決定容器是否存活，但是這</description>
     </item>
     
     <item>
       <title>Install the Vim 8.0 and YouCompleteMe with Make on CentOS 7.4</title>
-      <link>https://kalug.github.io/planet/chusiang/20180319_install-vim-80-and-youcompleteme-with.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20180319_install-vim-80-and-youcompleteme-with.html/</link>
       <pubDate>Mon, 19 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20180319_install-vim-80-and-youcompleteme-with.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20180319_install-vim-80-and-youcompleteme-with.html/</guid>
       <description>As a vimmer, I want to complete and install the Vim 7.4.1578+ at ~/.local , so than I can use the YouCompleteMe plugin on CentOS 7.4. ▲ The Vim 8.0.1522 on CentOS 7.4.1611. Install the Vim 8.0 with Make1. Install the necessary package. [ jonny@centos7 ~ ] $ sudo yum install gcc-c++ ncurses-devel python-devel 2. Get the source code of Vim. [ jonny@centos7 ~ ] $ git clone https://github.com/vim/vim.git 3.</description>
     </item>
     
     <item>
       <title>從 Pianoboy 高至豪的故事看軟體自由運動的價值觀</title>
-      <link>https://kalug.github.io/planet/slat-tw/20180318_pianoboy.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20180318_pianoboy.html/</link>
       <pubDate>Sun, 18 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20180318_pianoboy.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20180318_pianoboy.html/</guid>
       <description>https://www.plurk.com/p/moeuyd https://www.ptt.cc/bbs/Gossiping/M.1520850748.A.3C2.html 這是一個堅持30餘年，在台灣握有資源的人看不見他的價值，於是自己另尋出路，闖出另一片天的故事。 原轉 po 網友 AkiRa 重點放在台灣握有資源的人的一些</description>
     </item>
     
     <item>
       <title>用 Nginx 來架設線上即時縮圖機</title>
-      <link>https://kalug.github.io/planet/appleboy/20180317_nginx-reverse-proxy-image-resizing/</link>
+      <link>http://kalug.linux.org.tw/planet/appleboy/20180317_nginx-reverse-proxy-image-resizing/</link>
       <pubDate>Sat, 17 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/appleboy/20180317_nginx-reverse-proxy-image-resizing/</guid>
+      <guid>http://kalug.linux.org.tw/planet/appleboy/20180317_nginx-reverse-proxy-image-resizing/</guid>
       <description>在更早以前我們怎麼實現縮圖機制，當使用者上傳一張檔案，後端會固定將圖片縮圖成各種前端網頁需要的大小，不管前端頁面是否有使用，後端都會先產生好</description>
     </item>
     
     <item>
       <title>用 Go 語言實現單一或多重 Queue 搭配 optimistic concurrency</title>
-      <link>https://kalug.github.io/planet/appleboy/20180310_simple-queue-with-optimistic-concurrency-in-go/</link>
+      <link>http://kalug.linux.org.tw/planet/appleboy/20180310_simple-queue-with-optimistic-concurrency-in-go/</link>
       <pubDate>Sat, 10 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/appleboy/20180310_simple-queue-with-optimistic-concurrency-in-go/</guid>
+      <guid>http://kalug.linux.org.tw/planet/appleboy/20180310_simple-queue-with-optimistic-concurrency-in-go/</guid>
       <description>本篇教學會著重在如何使用 Go 語言的 goroutine 及 channel。MongoDB 是一套具有高效能讀寫的 NoSQL 資料庫，但是不像傳統關連式資料庫，有非常好用的 Transaction 交</description>
     </item>
     
     <item>
       <title>中華民國軟體自由協會 FB 粉絲頁分享連結：Supporters of Free Software Foundation Europe</title>
-      <link>https://kalug.github.io/planet/slat-tw/20180307_fb-supporters-of-free-software.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20180307_fb-supporters-of-free-software.html/</link>
       <pubDate>Wed, 07 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20180307_fb-supporters-of-free-software.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20180307_fb-supporters-of-free-software.html/</guid>
       <description>協會很榮幸受到歐洲自由軟體基金會(Free Software Foundation Europe) 邀請，發一段支持軟體自由運動與 FSFE 的聲明。今天刊載在 FSFE 網站上了。雖然網站上由現任理事長代表，但</description>
     </item>
     
     <item>
       <title>中華民國軟體自由協會 FB 粉絲頁分享連結：軟體自由協會 線上書城 - 我們想要的是哪一種錢？</title>
-      <link>https://kalug.github.io/planet/slat-tw/20180306_fb.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20180306_fb.html/</link>
       <pubDate>Tue, 06 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20180306_fb.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20180306_fb.html/</guid>
       <description>【線上書城新書上架】金融科技的起手式—《我們想要的是哪一種錢？》 協會的線上書城有新書上架了！ 金錢是最常被提起的話題：每個人都在談錢，並且終其</description>
     </item>
     
     <item>
       <title>將 Go Html Template 存入 String 變數</title>
-      <link>https://kalug.github.io/planet/appleboy/20180228_simply-output-go-html-template-execution-to-strings/</link>
+      <link>http://kalug.linux.org.tw/planet/appleboy/20180228_simply-output-go-html-template-execution-to-strings/</link>
       <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/appleboy/20180228_simply-output-go-html-template-execution-to-strings/</guid>
+      <guid>http://kalug.linux.org.tw/planet/appleboy/20180228_simply-output-go-html-template-execution-to-strings/</guid>
       <description>在 Go 語言內通常都將 Html Temaple 寫入到 io.Writer interface 像是 *http.ResponseWriter，但是有些情境需要將 Template 寫入到 String 變數內，例如實作簡訊 Templat</description>
     </item>
     
     <item>
       <title>中華民國軟體自由協會 分享相片：過去這一年在數位世界中，並不是太好過。德國慕尼黑市在政治因素操作下，儘管各項分析都顯示會大幅度增加經濟成本與減少本地就業機會，但市議會仍決議丟棄十幾年來使用的自由軟體系統，逐步在未來數年回到專有軟體廠商的懷抱；美國通過了廢除網路中立性的法案，讓網路服務供應商可以依自己喜好輕易扼殺其他網路服務的競爭力，而台灣的電信商也跟進喊燒！臉書不斷修改規則，降低粉絲專頁的觸及率，還進一步過濾敏感詞，只為了討好大國...... 但是在過去這一年中，也不是沒有好消息。慕尼黑市踢開了自由軟體，但西班牙的巴塞隆納卻反其道，揚棄專有軟體投向自由開源的未來！此外在台灣更是有許多進展。我們突破了技能檢定考試只預裝專有軟體的障礙，讓自由軟體納入預裝軟體選擇；開放文件格式政策在各政府機關逐漸發芽，而台灣更成了 LibreOffice 與文件基金會在亞洲的堅實堡壘！ 生活在現代的我們，與網際網路的連結已經是緊密不可分；但面對許多想要限制、束縛我們在數位世界自由的勢力，我們若再不覺醒、再不反抗，後果就是在數位世界中任大廠宰割。#軟體自由運動 是我們的核心理念。在此歡迎關切軟體自由運動的各位，在 3 月 17 日一起來軟體自由反抗軍的基地 A&#43;A space 共創共享空間，聽聽我們這一年在軟體自由運動上的進展，還有未來的展望。 日期：107 年 3 月 17 日（星期六） 時間：13:30 ~ 16:30 地點：A&#43;A 共創共享空間 地址：台北市南京東路五段213號4樓之1 捷運南京三民站1號出口左轉，於南京東路五段與三民路口彰化銀行樓上。大樓入口在三民路上。</title>
-      <link>https://kalug.github.io/planet/slat-tw/20180227_libreoffice-3-17-aa-space-107-3-17-1330.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20180227_libreoffice-3-17-aa-space-107-3-17-1330.html/</link>
       <pubDate>Tue, 27 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20180227_libreoffice-3-17-aa-space-107-3-17-1330.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20180227_libreoffice-3-17-aa-space-107-3-17-1330.html/</guid>
       <description>從 中華民國軟體自由協會 文章連結：http://ift.tt/2ESOPGC</description>
     </item>
     
     <item>
       <title>中華民國軟體自由協會 FB 粉絲頁分享連結：Early availability of LibreOffice 5.4.5 and LibreOffice 6.0.1: all users are invited to update for improved robustness and security</title>
-      <link>https://kalug.github.io/planet/slat-tw/20180209_fb-early-availability-of-libreoffice.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20180209_fb-early-availability-of-libreoffice.html/</link>
       <pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20180209_fb-early-availability-of-libreoffice.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20180209_fb-early-availability-of-libreoffice.html/</guid>
       <description>【LibreOffice 安全性更新通報】 雖然 LibreOffice 6.0 才剛發布不久，團隊核心成員上週也都在布魯賽爾參加 FOSDEM 以及半年一次的實體會議，但在接到重大安全性</description>
     </item>
     
     <item>
       <title>中華民國軟體自由協會 FB 粉絲頁分享連結：會員大會宣傳短片【Funky版】</title>
-      <link>https://kalug.github.io/planet/slat-tw/20180202_fb-funky.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20180202_fb-funky.html/</link>
       <pubDate>Fri, 02 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20180202_fb-funky.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20180202_fb-funky.html/</guid>
       <description>軟體自由協會 2018 年會員大會，將在 3&amp;frasl;17 日下午一點半於 A+A Space 共創共享空間舉行。在 3 月 1 日以前加入協會的會員都有提案並表決的權利。尚未加入協會的朋友也歡</description>
     </item>
     
     <item>
       <title>中華民國軟體自由協會 FB 粉絲頁分享連結：會員大會宣傳短片【浪潮版】</title>
-      <link>https://kalug.github.io/planet/slat-tw/20180202_fb.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20180202_fb.html/</link>
       <pubDate>Fri, 02 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20180202_fb.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20180202_fb.html/</guid>
       <description>軟體自由協會 2018 年會員大會，將在 3&amp;frasl;17 日下午一點半於 A+A Space 共創共享空間舉行。在 3 月 1 日以前加入協會的會員都有提案並表決的權利。尚未加入協會的朋友也歡</description>
     </item>
     
     <item>
       <title>【文件基金會新聞稿】LibreOffice 6.0 發行：強大、簡單、安全，桌面與雲端互通</title>
-      <link>https://kalug.github.io/planet/slat-tw/20180131_libreoffice-60.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20180131_libreoffice-60.html/</link>
       <pubDate>Wed, 31 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20180131_libreoffice-60.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20180131_libreoffice-60.html/</guid>
       <description>@page { margin: 2cm } p.第一行縮排-western { text-indent: 0.8cm; direction: inherit; font-family: &amp;ldquo;Liberation Sans&amp;rdquo;, sans-serif; line-height: 115%; text-align: justify } p.第一行縮排-cjk { text-indent: 0.8cm; direction: inherit; font-family: &amp;ldquo;Noto Sans CJK TC Regular&amp;rdquo;, sans-serif; font-size: 12pt; so-language: zh-TW; line-height: 115%; text-align: justify } p.第一</description>
     </item>
     
     <item>
       <title>中華民國軟體自由協會 FB 粉絲頁分享連結：【文件基金會新聞稿】LibreOffice 6.0 發行：強大、簡單、安全，桌面與雲端互通</title>
-      <link>https://kalug.github.io/planet/slat-tw/20180131_fb-libreoffice-60.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20180131_fb-libreoffice-60.html/</link>
       <pubDate>Wed, 31 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20180131_fb-libreoffice-60.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20180131_fb-libreoffice-60.html/</guid>
       <description>【新聞稿】LibreOffice 6.0 正式釋出！ http://ift.tt/2FwUFcG 請點擊連結： 【文件基金會新聞稿】LibreOffice 6.0 發行：強大、簡單、安全，桌面與雲端互通</description>
     </item>
     
     <item>
       <title>中華民國軟體自由協會 FB 粉絲頁分享連結：LibreOffice 正體中文消息</title>
-      <link>https://kalug.github.io/planet/slat-tw/20180126_fb-libreoffice.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20180126_fb-libreoffice.html/</link>
       <pubDate>Fri, 26 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20180126_fb-libreoffice.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20180126_fb-libreoffice.html/</guid>
       <description>各位有在用 LibreOffice 的朋友都可以到 Ask LibreOffice 網站看看喔！😍 請點擊連結： LibreOffice 正體中文消息</description>
     </item>
     
     <item>
       <title>中華民國軟體自由協會 分享相片：</title>
-      <link>https://kalug.github.io/planet/slat-tw/20180125_blog-post_20.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20180125_blog-post_20.html/</link>
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20180125_blog-post_20.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20180125_blog-post_20.html/</guid>
       <description>從 中華民國軟體自由協會 文章連結：http://ift.tt/2FdbKbs</description>
     </item>
     
     <item>
       <title>中華民國軟體自由協會 分享相片：</title>
-      <link>https://kalug.github.io/planet/slat-tw/20180125_blog-post_25.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20180125_blog-post_25.html/</link>
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20180125_blog-post_25.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20180125_blog-post_25.html/</guid>
       <description>從 中華民國軟體自由協會 文章連結：http://ift.tt/2DIH7xq</description>
     </item>
     
     <item>
       <title>中華民國軟體自由協會 分享相片：</title>
-      <link>https://kalug.github.io/planet/slat-tw/20180125_blog-post_51.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20180125_blog-post_51.html/</link>
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20180125_blog-post_51.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20180125_blog-post_51.html/</guid>
       <description>從 中華民國軟體自由協會 文章連結：http://ift.tt/2DGUD4K</description>
     </item>
     
     <item>
       <title>中華民國軟體自由協會 FB 粉絲頁分享連結：Jason</title>
-      <link>https://kalug.github.io/planet/slat-tw/20180123_fb-jason.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20180123_fb-jason.html/</link>
       <pubDate>Tue, 23 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20180123_fb-jason.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20180123_fb-jason.html/</guid>
       <description>耀達電腦為協會的自由軟體服務廠商聯盟成員。目前徵求 MIS 工程師，工作地點在台中市。公司福利小編親眼目睹，十分羨慕！歡迎身懷絕技、有志以開源解決方</description>
     </item>
     
     <item>
       <title>中華民國軟體自由協會 FB 粉絲頁分享連結：Italo</title>
-      <link>https://kalug.github.io/planet/slat-tw/20180121_fb-italo.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20180121_fb-italo.html/</link>
       <pubDate>Sun, 21 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20180121_fb-italo.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20180121_fb-italo.html/</guid>
       <description>3&amp;frasl;24-3/25，全世界的開源超級週末！ 在這兩天 - 自由軟體基金會在波士頓舉辦 LibrePlanet 年會 - 新加坡舉辦 FOSSASIA - 印尼舉辦 LibreOffice Conference Indonesia - 義大利 Torino 舉辦</description>
     </item>
     
     <item>
       <title>中華民國軟體自由協會 分享相片：</title>
-      <link>https://kalug.github.io/planet/slat-tw/20180113_blog-post_13.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20180113_blog-post_13.html/</link>
       <pubDate>Sat, 13 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20180113_blog-post_13.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20180113_blog-post_13.html/</guid>
       <description>從 中華民國軟體自由協會 文章連結：http://ift.tt/2EDfse2</description>
     </item>
     
     <item>
       <title>中華民國軟體自由協會 分享相片：</title>
-      <link>https://kalug.github.io/planet/slat-tw/20180113_blog-post_31.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20180113_blog-post_31.html/</link>
       <pubDate>Sat, 13 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20180113_blog-post_31.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20180113_blog-post_31.html/</guid>
       <description>從 中華民國軟體自由協會 文章連結：http://ift.tt/2Fv4uZz</description>
     </item>
     
     <item>
       <title>中華民國軟體自由協會 分享連結：軟體自由‧開源浪潮 2018 一起發‧同樂會</title>
-      <link>https://kalug.github.io/planet/slat-tw/20180107_2018.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20180107_2018.html/</link>
       <pubDate>Sun, 07 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20180107_2018.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20180107_2018.html/</guid>
       <description>軟體自由協會與 A+A Space 共創共享空間的同樂會報名將在 10 日截止喔！不限會員，歡迎認同、想認識這群軟體自由反抗軍的朋友們一起來參加！ http://ift.tt/2maot7D http://ift.tt/2maot7D</description>
     </item>
     
     <item>
       <title>囧星人：贊助專案大成功，卻發現錢能載舟亦能覆舟</title>
-      <link>https://kalug.github.io/planet/slat-tw/20180107_content-share.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20180107_content-share.html/</link>
       <pubDate>Sun, 07 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20180107_content-share.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20180107_content-share.html/</guid>
       <description>今天看到了這一篇報導： https://www.businesstoday.com.tw/article/category/154768/post/201801030030 囧星人在跨年夜開直播，說明為何結束一年來的募資活動。其中這一段我們認為是重點： 『囧星人自我要求高，一集10分鐘的說書</description>
     </item>
     
     <item>
       <title>從一個人的 DevOps，到一個 DevOps 的團隊</title>
-      <link>https://kalug.github.io/planet/chusiang/20171224_from-one-persons-devops-to-one-devops-team.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20171224_from-one-persons-devops-to-one-devops-team.html/</link>
       <pubDate>Sun, 24 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20171224_from-one-persons-devops-to-one-devops-team.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20171224_from-one-persons-devops-to-one-devops-team.html/</guid>
       <description>還記得先前在「敏捷原理與團隊塑造」課堂的最後，講者 William Yeh 提到，難得自己可以待在正在導入敏捷 (Agile) 的團隊，不妨藉由年底的 IT 鐵人賽，把導入 Agile 的種種給寫</description>
     </item>
     
     <item>
       <title>GNU 網站翻譯計畫</title>
-      <link>https://kalug.github.io/planet/slat-tw/20171213_gnu.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20171213_gnu.html/</link>
       <pubDate>Wed, 13 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20171213_gnu.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20171213_gnu.html/</guid>
       <description>今年初我在協會中提案希望能翻譯 GNU 網站上的內容，長期目標是翻譯完自由軟體基金會出版的《Free Software, Free Society》和《Free as in Freedom (2.0)</description>
     </item>
     
     <item>
       <title>DevOps 人一定要知道的持續交付技巧 - Ansible &amp; GitLab CI 實戰演練</title>
-      <link>https://kalug.github.io/planet/chusiang/20171112_continuous-delivery-workshop-with-ansible-x-gitlab-ci.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20171112_continuous-delivery-workshop-with-ansible-x-gitlab-ci.html/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20171112_continuous-delivery-workshop-with-ansible-x-gitlab-ci.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20171112_continuous-delivery-workshop-with-ansible-x-gitlab-ci.html/</guid>
       <description>凍仁前後分享過兩次 DevOps 人一定要知道的 Ansible &amp;amp; GitLab CI 持續交付技巧的技術分享後，有個謎之音問到：「不如挑戰看看工作坊 (Workshop) 吧？這主題都可以講上一天了呢！」，</description>
     </item>
     
     <item>
       <title>一位一日 Scrum Master 的 Scrum Drawing Game 活動心得</title>
-      <link>https://kalug.github.io/planet/chusiang/20171014_scrum-master-scrum-drawing-game.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20171014_scrum-master-scrum-drawing-game.html/</link>
       <pubDate>Sat, 14 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20171014_scrum-master-scrum-drawing-game.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20171014_scrum-master-scrum-drawing-game.html/</guid>
       <description>10&amp;frasl;12 是凍仁第一次參與敏捷內湖 (Agile Neihu) 聚會的日子，也是凍仁今年參加第 6 場與敏捷開發 (Agile) 相關活動的日子，雖然現在待的團隊也有 Scrum，但總是讓人覺得哪</description>
     </item>
     
     <item>
       <title>firewalld - CentOS 7 的動態防火牆</title>
-      <link>https://kalug.github.io/planet/chusiang/20170924_the-firewalld-on-centos-7.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20170924_the-firewalld-on-centos-7.html/</link>
       <pubDate>Sun, 24 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20170924_the-firewalld-on-centos-7.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20170924_the-firewalld-on-centos-7.html/</guid>
       <description>如同先前在 [完全用 GNU/Linux 工作] 07. 簡易的防火牆一文提到，Ubuntu 從 8.04 LTS 開始多了 ufw 這個簡單的防火牆，CentOS 也在 7.0 導入可以動態管理防火牆的 f</description>
     </item>
     
     <item>
       <title>如何在 CentOS 7 解決 glibc 的 yum 套件相依性問題</title>
-      <link>https://kalug.github.io/planet/chusiang/20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html/</link>
       <pubDate>Sat, 23 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html/</guid>
       <description>這週凍仁接到一個需要幫 CentOS 7 部署 OpenLDAP client 的任務。過程中，總是有一兩台 server 會遇到 glibc 相依性問題，並為此煩惱。如果是所有的 server 都有同樣的問題還好解決，最麻煩</description>
     </item>
     
     <item>
       <title>軟體自由日 -- 協會 2016-2017 總結，向大眾報告</title>
-      <link>https://kalug.github.io/planet/slat-tw/20170916_2016-2017.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20170916_2016-2017.html/</link>
       <pubDate>Sat, 16 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20170916_2016-2017.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20170916_2016-2017.html/</guid>
       <description>今天是 2017 年度的軟體自由日，軟體自由協會委託藝術設計專家吳傳浩理事所設計新的視覺識別系統，選在這一天於協會粉絲頁正式啟用，而新的吉祥物也即將與</description>
     </item>
     
     <item>
       <title>【新聞稿】拿人民的納稅錢？就該做公開透明的資訊系統！</title>
-      <link>https://kalug.github.io/planet/slat-tw/20170913_public-money-public-code.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20170913_public-money-public-code.html/</link>
       <pubDate>Wed, 13 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20170913_public-money-public-code.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20170913_public-money-public-code.html/</guid>
       <description>@page { margin: 2cm } p { margin-bottom: 0.25cm; direction: inherit; line-height: 120%; text-align: justify; page-break-before: auto } p.cjk { font-family: &amp;ldquo;Noto Sans CJK TC Regular&amp;rdquo;, sans-serif } a:link { so-language: zxx } 全世界超過 30 個組織要求改進政府數位資訊建設的流程與思維 @page { margin: 2cm } p.第一行</description>
     </item>
     
     <item>
       <title>一群臺灣老司機參與《鳳凰項目》沙盤的持續成長故事</title>
-      <link>https://kalug.github.io/planet/chusiang/20170901_the-phoenix-poject-workshop.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20170901_the-phoenix-poject-workshop.html/</link>
       <pubDate>Fri, 01 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20170901_the-phoenix-poject-workshop.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20170901_the-phoenix-poject-workshop.html/</guid>
       <description>2017/09/01 是凍仁參與國際最佳實踐管理聯盟 (International Best Practice Management Alliance, IBPA) 和 iThome 舉辦的 《鳳凰項目》沙盤工作坊的日子，也是一場與 Agile、DevOps 界佼佼者大比拼的日子！</description>
     </item>
     
     <item>
       <title>DevOps 人一定要知道的 Ansible &amp; GitLab CI 持續交付技巧</title>
-      <link>https://kalug.github.io/planet/chusiang/20170829_continuous-delivery-with-ansible-x-gitlab-ci.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20170829_continuous-delivery-with-ansible-x-gitlab-ci.html/</link>
       <pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20170829_continuous-delivery-with-ansible-x-gitlab-ci.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20170829_continuous-delivery-with-ansible-x-gitlab-ci.html/</guid>
       <description>因緣際會下，凍仁先後於 COSCUP 2017 和 DevOps Taiwan x Agile Kaohsiung 的社群活動分享「使用 Ansible x GitLab CI 進行持續交付」的主題。 前者是接續 Smalltown 的 Infrastructure as Code，之後讓 Cheng Wei Chen 分享 Ansible &amp;amp; GitLab CI/CD</description>
     </item>
     
     <item>
       <title>再談自由軟體與專有軟體</title>
-      <link>https://kalug.github.io/planet/slat-tw/20170829_clarify-free-software.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20170829_clarify-free-software.html/</link>
       <pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20170829_clarify-free-software.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20170829_clarify-free-software.html/</guid>
       <description>一直以來都時常會有些討論自由軟體、專有軟體的貼文有些似是而非的看法，所以本人在此不吝提出一些觀點，並針對混淆之處作澄清，希望各位讀者能參考參</description>
     </item>
     
     <item>
       <title>【新聞稿】軟體自由協會與國際開源社群成員拜會政委唐鳳</title>
-      <link>https://kalug.github.io/planet/slat-tw/20170807_news-20170807.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20170807_news-20170807.html/</link>
       <pubDate>Mon, 07 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20170807_news-20170807.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20170807_news-20170807.html/</guid>
       <description>中華民國軟體自由協會理事長翁佳驥、常務理事曾政嘉，在8月7日偕同國內開源社群成員及國際開源社群「文件基金會」 (The Document Foundation) 創始人之一的 Italo Vignol</description>
     </item>
     
     <item>
       <title>【新聞稿】LibreOffice 5.4 發行，Writer、Calc 與 Impress 增添新功能</title>
-      <link>https://kalug.github.io/planet/slat-tw/20170728_libreoffice-54.html/</link>
+      <link>http://kalug.linux.org.tw/planet/slat-tw/20170728_libreoffice-54.html/</link>
       <pubDate>Fri, 28 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/slat-tw/20170728_libreoffice-54.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/slat-tw/20170728_libreoffice-54.html/</guid>
       <description>【2017 年 7 月 28 日柏林報導】文件基金會宣布發行 LibreOffice 5.4 版，這個版本將是 LibreOffice 5.x 系列的最後一個主版本更新，涵蓋 Windows、MacOS 與 Linux 版，以及</description>
     </item>
     
     <item>
       <title>怎麼在 GitLab CI 用 color mode 跑 Ansible Playbooks？</title>
-      <link>https://kalug.github.io/planet/chusiang/20170707_how-to-use-color-mode-to-run-ansible-playbooks-on-gitlab-ci.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20170707_how-to-use-color-mode-to-run-ansible-playbooks-on-gitlab-ci.html/</link>
       <pubDate>Fri, 07 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20170707_how-to-use-color-mode-to-run-ansible-playbooks-on-gitlab-ci.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20170707_how-to-use-color-mode-to-run-ansible-playbooks-on-gitlab-ci.html/</guid>
       <description>凍仁近日使用 Ansible 和 GitLab CI 幫公司導入持續交付 (Continuous Delivery) 時，很希望 GitLab CI 的執行結果可以像終端機 (TTY) 一樣，有便於閱讀的色彩模式 (color mode)。 今日隨手翻了《Ans</description>
     </item>
     
     <item>
       <title>「敏捷原理與團隊塑造」與「獨角獸計劃」</title>
-      <link>https://kalug.github.io/planet/chusiang/20170619_the-agile-workshop-and-the-unicorn-project.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20170619_the-agile-workshop-and-the-unicorn-project.html/</link>
       <pubDate>Mon, 19 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20170619_the-agile-workshop-and-the-unicorn-project.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20170619_the-agile-workshop-and-the-unicorn-project.html/</guid>
       <description>自從凍仁踏上 DevOps 的偉大航道後，不時會在相關書籍和文獻看到敏捷開發 (Agile) 等字眼，雖有幸能在多年前短暫參與導入 Scrum 的團隊，但一直沒機會見識到導入成功的案</description>
     </item>
     
     <item>
       <title>怎麼在 Telegram Desktop 上使用自訂主題？</title>
-      <link>https://kalug.github.io/planet/chusiang/20170510_how-to-use-the-custom-themes-on-telegram-desktop.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20170510_how-to-use-the-custom-themes-on-telegram-desktop.html/</link>
       <pubDate>Wed, 10 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20170510_how-to-use-the-custom-themes-on-telegram-desktop.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20170510_how-to-use-the-custom-themes-on-telegram-desktop.html/</guid>
       <description>Telegram Desktop 是 Telegram 官方推出同時支援 Windows、macOS 和 GNU/Linux 的桌面版本 (Desktop) 通訊軟體，同時也是採用 GPL v3 授權釋出的自由軟體。 從 v1.0 開始多了自訂怖景主題 (theme) 的</description>
     </item>
     
     <item>
       <title>現代 IT 人一定要知道的 Ansible 自動化組態技巧 (3/e)</title>
-      <link>https://kalug.github.io/planet/chusiang/20170326_automate-with-ansible-basic-3e.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20170326_automate-with-ansible-basic-3e.html/</link>
       <pubDate>Sun, 26 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20170326_automate-with-ansible-basic-3e.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20170326_automate-with-ansible-basic-3e.html/</guid>
       <description>上上周 (2017/03/14) 參加完 Weithenn 前輩分享的 打造 Infrastructure Agility Mode 2 的基石 – Docker / Container 後，凍仁便於上周 (2017/03/21) 的 Tossug 分享些 Ansible 基礎入門，長年待在南部的凍仁可說是第一次站上 Tossug 和摩茲工寮的</description>
     </item>
     
     <item>
       <title>如何只更換特定鍵盤的 Ctrl 和 Caps Lock 鍵位？ on Ubuntu 16.04</title>
-      <link>https://kalug.github.io/planet/chusiang/20170318_how-to-switch-ctrl-and-caps-lock-on-specific-keyboard.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20170318_how-to-switch-ctrl-and-caps-lock-on-specific-keyboard.html/</link>
       <pubDate>Sat, 18 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20170318_how-to-switch-ctrl-and-caps-lock-on-specific-keyboard.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20170318_how-to-switch-ctrl-and-caps-lock-on-specific-keyboard.html/</guid>
       <description>四年前，凍仁找到了對調 Ctrl 和 Caps Lock 的方法，並紀錄於「對調 Ctrl 和 Caps Lock 鍵位」一文，但使用 setxkbmap 指令操作時，會連外接不需更換鍵位的 HHKB Pro 2 也一併生效，害得凍仁</description>
     </item>
     
     <item>
       <title>如何將 Slack 的資料匯到 Rocket.Chat？</title>
-      <link>https://kalug.github.io/planet/chusiang/20170208_how-to-import-slack-data-into-rocket-chat.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20170208_how-to-import-slack-data-into-rocket-chat.html/</link>
       <pubDate>Wed, 08 Feb 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20170208_how-to-import-slack-data-into-rocket-chat.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20170208_how-to-import-slack-data-into-rocket-chat.html/</guid>
       <description>Rocket.Chat 是一套基於 Meteor.js 開發的開放源始碼 Chat 專案，有著 Slack like 的別名。在建置 Rocket.Chat server 的部份，凍仁曾試著用 Heroku 的方式建置，但只要一匯入 Slack 的資料 (data) 就會炸掉。最後是參考</description>
     </item>
     
     <item>
       <title>第 8 屆 IT 邦幫忙鐵人賽 － 鋼鐵般的刻意練習</title>
-      <link>https://kalug.github.io/planet/chusiang/20161207_ithome-ironman-8th.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20161207_ithome-ironman-8th.html/</link>
       <pubDate>Wed, 07 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20161207_ithome-ironman-8th.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20161207_ithome-ironman-8th.html/</guid>
       <description>今年 12 月, 是凍仁參加第 8 屆 IT 鐵人賽的日子，也是與 3 年前的自己比拼的好機會。接下來凍仁將會刻意練習 Ansible 這門技藝一個月，在此凍仁就先紀錄一些參賽心</description>
     </item>
     
     <item>
       <title>如何匯入 SSL 憑證到 AWS Certificate Manager</title>
-      <link>https://kalug.github.io/planet/chusiang/20161112_how-to-import-ssl-certificate-to-acm.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20161112_how-to-import-ssl-certificate-to-acm.html/</link>
       <pubDate>Sat, 12 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20161112_how-to-import-ssl-certificate-to-acm.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20161112_how-to-import-ssl-certificate-to-acm.html/</guid>
       <description>AWS Certificate Manager (ACM) 是 AWS 推出用來管理、部署 SSL 憑證的免費 SaaS 服務 (前提是得搭配 Elastic Load Balancing (ELB) 或 CloudFront 一起使用)。近日凍仁接獲幫公司更新 SSL 憑證的任務便把玩了一下，第一次</description>
     </item>
     
     <item>
       <title>Container Summit 2016 - 邁向下個  IT 架構的 Container</title>
-      <link>https://kalug.github.io/planet/chusiang/20160925_container-summit-2016-it-container.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20160925_container-summit-2016-it-container.html/</link>
       <pubDate>Sun, 25 Sep 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20160925_container-summit-2016-it-container.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20160925_container-summit-2016-it-container.html/</guid>
       <description>Container Summit 可說是聚集各界容器 (container) 專家，討論 container 次世代 IT 架構的研討會，會中有不少的話題圍繞在近來火紅的 Docker 技術上。想當初凍仁會開始接觸 Docker 也是聽到不少前輩在</description>
     </item>
     
     <item>
       <title>於 Debian 7 手動降版至 docker-engine 1.10.3</title>
-      <link>https://kalug.github.io/planet/chusiang/20160905_downgrade-docker-engine-to-1.11.2-on-debian-7.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20160905_downgrade-docker-engine-to-1.11.2-on-debian-7.html/</link>
       <pubDate>Mon, 05 Sep 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20160905_downgrade-docker-engine-to-1.11.2-on-debian-7.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20160905_downgrade-docker-engine-to-1.11.2-on-debian-7.html/</guid>
       <description>最近凍仁在 Debian 7 上升級 docker-engine 一直失敗，查看 error log 才得知 Docker 1.12.0+ 需使用 Linux Kernel 3.10.0+ 才行，但偏偏 apt 套件管理員還傻傻的把它給升上 1.12.1。若大家有相同的困擾就請</description>
     </item>
     
     <item>
       <title>現代 IT 人一定要知道的 Ansible 自動化組態技巧 Ⅱ - Roles &amp; Windows</title>
-      <link>https://kalug.github.io/planet/chusiang/20160726_automate-with-ansible-roles-windows.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20160726_automate-with-ansible-roles-windows.html/</link>
       <pubDate>Tue, 26 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20160726_automate-with-ansible-roles-windows.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20160726_automate-with-ansible-roles-windows.html/</guid>
       <description>今年，凍仁有幸接獲 Netman 前輩邀請，並擔任 SA 2016 群英會的講者。想想凍仁也在 SA 1 學到了不少技術，總算可以報恩了！ 這次凍仁是接續 sakana 前輩的淺談 Ansible 自動化管理</description>
     </item>
     
     <item>
       <title>移除 MIUI 8 的預設瀏覽器</title>
-      <link>https://kalug.github.io/planet/chusiang/20160709_remove-default-browser-on-miui8.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20160709_remove-default-browser-on-miui8.html/</link>
       <pubDate>Sat, 09 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20160709_remove-default-browser-on-miui8.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20160709_remove-default-browser-on-miui8.html/</guid>
       <description>近來凍仁遇到了一個挺令人頭痛的問題，那就是上個月不小心把小米手機 (MI2) 升上 MIUI 8。切換預設瀏覽器的功能癈了，不管設定怎麼改，只要點到開新分頁的連結</description>
     </item>
     
     <item>
       <title>前端工程師一定要知道的 Docker 虛擬化容器技巧</title>
-      <link>https://kalug.github.io/planet/chusiang/20160707_virtualization-with-docker-container-basic-for-f2e.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20160707_virtualization-with-docker-container-basic-for-f2e.html/</link>
       <pubDate>Thu, 07 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20160707_virtualization-with-docker-container-basic-for-f2e.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20160707_virtualization-with-docker-container-basic-for-f2e.html/</guid>
       <description>感謝強者同事 Ralph Hsu 的邀請，讓使用 Docker 不到一年的凍仁可以到 07/04 Javascript 設計模式讀書會 (11) 磨磨上台演講這門技藝，並分享些近來的學習心得。 這是一份從 IT Engineer 的角度寫</description>
     </item>
     
     <item>
       <title>現代 IT 人一定要知道的 Ansible 自動化組態技巧</title>
-      <link>https://kalug.github.io/planet/chusiang/20160529_automate-with-ansible-basic.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20160529_automate-with-ansible-basic.html/</link>
       <pubDate>Sun, 29 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20160529_automate-with-ansible-basic.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20160529_automate-with-ansible-basic.html/</guid>
       <description>愛上 Ansible 自動化組態的凍仁聽到五月份有 KaLUG 聚會，便自告奮勇說要分享 Ansible 的主題，這是凍仁自從報完大學專題後第二次在 KaLUG 分享 topic。 ▲ My sildes of Automate with Ansible (Basic) 決</description>
     </item>
     
     <item>
       <title>在 OSX 10.11.4 安裝 Docker for Mac (v1.11.0-beta8)</title>
-      <link>https://kalug.github.io/planet/chusiang/20160503_setup-native-docker-for-mac-v1.11-and-migrate-docker-toolbox-on-osx-10.11.4.html/</link>
+      <link>http://kalug.linux.org.tw/planet/chusiang/20160503_setup-native-docker-for-mac-v1.11-and-migrate-docker-toolbox-on-osx-10.11.4.html/</link>
       <pubDate>Tue, 03 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/chusiang/20160503_setup-native-docker-for-mac-v1.11-and-migrate-docker-toolbox-on-osx-10.11.4.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/chusiang/20160503_setup-native-docker-for-mac-v1.11-and-migrate-docker-toolbox-on-osx-10.11.4.html/</guid>
       <description>Docker for Mac 和 Docker for Windows 是個正在封測，並與 Docker Toolbox, Boot2docker 使用不同虛擬化技術的 Docker 原生應用程式 (native application) 。其分別使用了 xhyve VM 與 Hyper-V VM 的架構，讓我們不需再連到 Virtualbox 裡的 boot2docker VM 裡即可</description>
     </item>
     
     <item>
       <title>使用Mutt收GMail IMAP電子郵件, Part 3 封存郵件篇</title>
-      <link>https://kalug.github.io/planet/qerter/20100516_muttgmail-imap-part-3.html/</link>
+      <link>http://kalug.linux.org.tw/planet/qerter/20100516_muttgmail-imap-part-3.html/</link>
       <pubDate>Sun, 16 May 2010 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/qerter/20100516_muttgmail-imap-part-3.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/qerter/20100516_muttgmail-imap-part-3.html/</guid>
       <description>在[使用Mutt收GMail IMAP電子郵件, Part 2 Procmail篇]的文章裡，我們使用procmail來幫我們將郵件做分類。但是，一般性沒</description>
     </item>
     
     <item>
       <title>使用Mutt收GMail IMAP電子郵件, Part 2 Procmail篇</title>
-      <link>https://kalug.github.io/planet/qerter/20091020_muttgmail-imap-part-2-procmail.html/</link>
+      <link>http://kalug.linux.org.tw/planet/qerter/20091020_muttgmail-imap-part-2-procmail.html/</link>
       <pubDate>Tue, 20 Oct 2009 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/qerter/20091020_muttgmail-imap-part-2-procmail.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/qerter/20091020_muttgmail-imap-part-2-procmail.html/</guid>
       <description>在Part 1 [使用Mutt收GMail IMAP電子郵件, Part 1 基礎設定篇] 的文章後，我開始接觸使用Mutt這個方便快速的收信軟體來管理我的電子</description>
     </item>
     
     <item>
       <title>使用Mutt收GMail IMAP電子郵件, Part 1 基礎設定篇</title>
-      <link>https://kalug.github.io/planet/qerter/20090930_muttgmail-imap.html/</link>
+      <link>http://kalug.linux.org.tw/planet/qerter/20090930_muttgmail-imap.html/</link>
       <pubDate>Wed, 30 Sep 2009 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/qerter/20090930_muttgmail-imap.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/qerter/20090930_muttgmail-imap.html/</guid>
       <description>為響應Richard Stallman 2008年9月在英國衛報反對使用者投入雲端運算的懷抱(Cloud computing is a trap, warns GNU founder Richard Stallman)，我決定改變收電子郵</description>
     </item>
     
     <item>
       <title>尋找Linux上自由且合用的台語文輸入法</title>
-      <link>https://kalug.github.io/planet/qerter/20090830_linux.html/</link>
+      <link>http://kalug.linux.org.tw/planet/qerter/20090830_linux.html/</link>
       <pubDate>Sun, 30 Aug 2009 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/qerter/20090830_linux.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/qerter/20090830_linux.html/</guid>
       <description>最近開始鼓起勇氣試圖要在Linux上使用臺語文書寫，便開始尋找合適的臺語文書輸入法。而臺語文並沒有統一的書寫方式，我僅粗略分為台羅、漢羅與教</description>
     </item>
     
     <item>
       <title>[第參期] 安裝Debian Etch 在 Asus eee box上</title>
-      <link>https://kalug.github.io/planet/qerter/20090120_debian-sarge-asus-eee-box.html/</link>
+      <link>http://kalug.linux.org.tw/planet/qerter/20090120_debian-sarge-asus-eee-box.html/</link>
       <pubDate>Tue, 20 Jan 2009 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/qerter/20090120_debian-sarge-asus-eee-box.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/qerter/20090120_debian-sarge-asus-eee-box.html/</guid>
       <description>此篇教學目的為安裝Debian Etch在eee box上，可正常使用X-window與ethernet網路。 首先去下載Debian Etch CD1 iso，</description>
     </item>
     
     <item>
       <title>[第貳期] 自由軟體四大自由</title>
-      <link>https://kalug.github.io/planet/qerter/20081102_blog-post.html/</link>
+      <link>http://kalug.linux.org.tw/planet/qerter/20081102_blog-post.html/</link>
       <pubDate>Sun, 02 Nov 2008 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/qerter/20081102_blog-post.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/qerter/20081102_blog-post.html/</guid>
       <description>有鑑於我自己常常跟別人推廣自由軟體，但是常常忘記自由軟體基本四大自由，僅列於此。 自由軟體四大自由原文出處網址： http://www.gnu.org/philosophy/free-sw.html 自由軟體四大自由（中文是我自</description>
     </item>
     
     <item>
       <title>[第壹期]digg-like 的自由軟體新聞網站 — Free Software Daily</title>
-      <link>https://kalug.github.io/planet/qerter/20081101_digg-like-free-software-daily.html/</link>
+      <link>http://kalug.linux.org.tw/planet/qerter/20081101_digg-like-free-software-daily.html/</link>
       <pubDate>Sat, 01 Nov 2008 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/qerter/20081101_digg-like-free-software-daily.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/qerter/20081101_digg-like-free-software-daily.html/</guid>
       <description>Free Software Dailyhttp://www.fsdaily.com 畢竟自由軟體的使用者算小眾，使用Web2.0經營方式的新聞網站，如digg，或台灣的funp，出現的常常是偏大眾口味的文章不然討論跟自</description>
     </item>
     
     <item>
       <title>MySQL 中文Big5轉至UTF-8</title>
-      <link>https://kalug.github.io/planet/qerter/20060817_mysql-big5utf-8.html/</link>
+      <link>http://kalug.linux.org.tw/planet/qerter/20060817_mysql-big5utf-8.html/</link>
       <pubDate>Thu, 17 Aug 2006 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/planet/qerter/20060817_mysql-big5utf-8.html/</guid>
+      <guid>http://kalug.linux.org.tw/planet/qerter/20060817_mysql-big5utf-8.html/</guid>
       <description>因為工作需要，必須要將原本MS Access中的資料轉換至MySQL。MS Access 預設編碼為Big5 ，MySQL中以UTF-8存放資料，Collat</description>
     </item>
     

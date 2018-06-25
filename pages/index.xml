@@ -2,37 +2,37 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pages on Kaohsiung Linux User Group</title>
-    <link>https://kalug.github.io/pages/</link>
+    <link>http://kalug.linux.org.tw/pages/</link>
     <description>Recent content in Pages on Kaohsiung Linux User Group</description>
     <generator>Hugo -- gohugo.io</generator>
     
-	<atom:link href="https://kalug.github.io/pages/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://kalug.linux.org.tw/pages/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title></title>
-      <link>https://kalug.github.io/pages/kaohsiung/</link>
+      <link>http://kalug.linux.org.tw/pages/kaohsiung/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/pages/kaohsiung/</guid>
+      <guid>http://kalug.linux.org.tw/pages/kaohsiung/</guid>
       <description>高雄生活 工作 咖啡廳 餐廳 溜小孩的點</description>
     </item>
     
     <item>
       <title></title>
-      <link>https://kalug.github.io/pages/usefuldevices/</link>
+      <link>http://kalug.linux.org.tw/pages/usefuldevices/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/pages/usefuldevices/</guid>
+      <guid>http://kalug.linux.org.tw/pages/usefuldevices/</guid>
       <description> Useful Devices Laptop Chromebook Tablet Mobile devices Others </description>
     </item>
     
     <item>
       <title></title>
-      <link>https://kalug.github.io/pages/sig/</link>
+      <link>http://kalug.linux.org.tw/pages/sig/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/pages/sig/</guid>
+      <guid>http://kalug.linux.org.tw/pages/sig/</guid>
       <description>Special Interest Group 為了方便排定每個月分享的主題, 我們讓各各不同興趣的同好一起安排主題分享的頻率 Ubuntu Fans 成員: Tim, Shawn 半年一次 Release Party GoLang 成員: Hawk, Shawn, Rick 每三個月 Javas</description>
     </item>
     

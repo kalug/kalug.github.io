@@ -2,155 +2,155 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kaohsiung Linux User Group</title>
-    <link>https://kalug.github.io/meetups/</link>
+    <link>http://kalug.linux.org.tw/meetups/</link>
     <description>Recent content on Kaohsiung Linux User Group</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sat, 28 Jul 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://kalug.github.io/meetups/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://kalug.linux.org.tw/meetups/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>KaLUG 1807聚會</title>
-      <link>https://kalug.github.io/meetups/1807/</link>
+      <link>http://kalug.linux.org.tw/meetups/1807/</link>
       <pubDate>Sat, 28 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/meetups/1807/</guid>
+      <guid>http://kalug.linux.org.tw/meetups/1807/</guid>
       <description>時間：2018/07/28 14:00(+0800)</description>
     </item>
     
     <item>
       <title>KaLUG 1806聚會</title>
-      <link>https://kalug.github.io/meetups/1806/</link>
+      <link>http://kalug.linux.org.tw/meetups/1806/</link>
       <pubDate>Sat, 23 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/meetups/1806/</guid>
+      <guid>http://kalug.linux.org.tw/meetups/1806/</guid>
       <description>時間：2018/06/23 14:00(+0800)</description>
     </item>
     
     <item>
       <title>KaLUG 1805聚會: 接續早上 高雄Go  &#43; COSCUP科技政策規劃Workshop 討論</title>
-      <link>https://kalug.github.io/meetups/1805/</link>
+      <link>http://kalug.linux.org.tw/meetups/1805/</link>
       <pubDate>Sat, 26 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/meetups/1805/</guid>
+      <guid>http://kalug.linux.org.tw/meetups/1805/</guid>
       <description>時間：2018/05/26 14:00(+0800) 地點：【高雄】Aroma caf&amp;rsquo;e live 香氣現場 / 前金區長生街25號</description>
     </item>
     
     <item>
       <title>KaLUG 1804聚會: 1. Emacs的org-mode&amp;&amp;GTD 2.katacoda 開開心心學k8s</title>
-      <link>https://kalug.github.io/meetups/1804/</link>
+      <link>http://kalug.linux.org.tw/meetups/1804/</link>
       <pubDate>Sat, 14 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/meetups/1804/</guid>
+      <guid>http://kalug.linux.org.tw/meetups/1804/</guid>
       <description>時間：2018/04/14 14:00(+0800)~16:40 地點：橋頭糖廠博物館 的 糖廠咖啡 / 高雄市橋頭區橋南里糖廠路24號 橋頭糖廠博物館</description>
     </item>
     
     <item>
       <title>1803聚會主題: 開源與天文 地點 橋頭糖廠博物館 糖廠咖啡</title>
-      <link>https://kalug.github.io/meetups/1803/</link>
+      <link>http://kalug.linux.org.tw/meetups/1803/</link>
       <pubDate>Sat, 17 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/meetups/1803/</guid>
+      <guid>http://kalug.linux.org.tw/meetups/1803/</guid>
       <description>時間：2018/03/17 14:00(+0800)~16:40 地點：橋頭糖廠博物館 的 糖廠咖啡 / 高雄市橋頭區橋南里糖廠路24號 橋頭糖廠博物館</description>
     </item>
     
     <item>
       <title>KaLUG 1712: 醫療用Linux/在家工作經驗分享 地點 橋頭糖廠博物館 糖廠咖啡</title>
-      <link>https://kalug.github.io/meetups/1712/</link>
+      <link>http://kalug.linux.org.tw/meetups/1712/</link>
       <pubDate>Sat, 30 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/meetups/1712/</guid>
+      <guid>http://kalug.linux.org.tw/meetups/1712/</guid>
       <description>時間：2017/12/30 14:00(+0800)~17:00 地點：高雄 橋頭糖廠博物館糖廠咖啡 / 高雄市橋頭區橋南里糖廠路24號 橋頭糖廠博物館</description>
     </item>
     
     <item>
       <title>KaLUG 1711: Ubuntu 17.10 Release Party @ Taiwan 高雄場  地點 橋頭糖廠 糖廠咖啡</title>
-      <link>https://kalug.github.io/meetups/1711/</link>
+      <link>http://kalug.linux.org.tw/meetups/1711/</link>
       <pubDate>Sat, 18 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/meetups/1711/</guid>
+      <guid>http://kalug.linux.org.tw/meetups/1711/</guid>
       <description>時間：2017/11/18 14:00(+0800)~18:00 地點：高雄 橋頭糖廠 糖廠咖啡 / 糖廠博物館</description>
     </item>
     
     <item>
       <title>KaLUG 1706 每月定期聚會 地點 橋頭糖廠 糖廠咖啡</title>
-      <link>https://kalug.github.io/meetups/1706/</link>
+      <link>http://kalug.linux.org.tw/meetups/1706/</link>
       <pubDate>Sat, 24 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/meetups/1706/</guid>
+      <guid>http://kalug.linux.org.tw/meetups/1706/</guid>
       <description>時間：2017/06/24 14:00(+0800)~17:00 地點：高雄 橋頭糖廠 糖廠咖啡 / 糖廠博物館</description>
     </item>
     
     <item>
       <title>KaLUGx維基百科xOpenstreemap 1704 聚會 橋頭糖廠 捷運R22A 2號出口 玫瑰盒子</title>
-      <link>https://kalug.github.io/meetups/1704/</link>
+      <link>http://kalug.linux.org.tw/meetups/1704/</link>
       <pubDate>Sat, 15 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/meetups/1704/</guid>
+      <guid>http://kalug.linux.org.tw/meetups/1704/</guid>
       <description>時間：2017/04/15 14:00(+0800)~17:00 地點：高雄 橋頭糖廠 捷運R22A 2號出口 玫瑰盒子 / 興糖路13號</description>
     </item>
     
     <item>
       <title>KaLUG 1703 聚會: 每月定期聚會 主題 地點 橋頭糖廠 玫瑰盒子</title>
-      <link>https://kalug.github.io/meetups/1703/</link>
+      <link>http://kalug.linux.org.tw/meetups/1703/</link>
       <pubDate>Sat, 18 Mar 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/meetups/1703/</guid>
+      <guid>http://kalug.linux.org.tw/meetups/1703/</guid>
       <description>時間：2017/03/18 14:00(+0800)~17:00 地點：高雄 橋頭糖廠 玫瑰盒子 / 興糖路13號</description>
     </item>
     
     <item>
       <title>KaLUG 1701 聚會: 初三 KaLUG團-</title>
-      <link>https://kalug.github.io/meetups/1701/</link>
+      <link>http://kalug.linux.org.tw/meetups/1701/</link>
       <pubDate>Mon, 30 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/meetups/1701/</guid>
+      <guid>http://kalug.linux.org.tw/meetups/1701/</guid>
       <description>時間：2017/01/30 14:00(+0800)~17:00 地點：高雄</description>
     </item>
     
     <item>
       <title>KaLUG 1612 聚會: 歲末Party</title>
-      <link>https://kalug.github.io/meetups/1612/</link>
+      <link>http://kalug.linux.org.tw/meetups/1612/</link>
       <pubDate>Sat, 17 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/meetups/1612/</guid>
+      <guid>http://kalug.linux.org.tw/meetups/1612/</guid>
       <description>時間：2016/12/17 14:00(+0800)~17:00 地點：彩色巴黎 富民店 / 高雄市左營區富民路391號</description>
     </item>
     
     <item>
       <title>KaLUG 1607 聚會: 凍仁台北歡送會</title>
-      <link>https://kalug.github.io/meetups/1607/</link>
+      <link>http://kalug.linux.org.tw/meetups/1607/</link>
       <pubDate>Sat, 23 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/meetups/1607/</guid>
+      <guid>http://kalug.linux.org.tw/meetups/1607/</guid>
       <description>時間：2016/07/23 14:00(+0800)~17:00 地點：毛伊咖啡 / 813高雄市左營區博愛二路316號</description>
     </item>
     
     <item>
       <title>KaLUG 1606 聚會: 1) 用LXD &#43; zfs 秒生Container  2)python &#43; WebRTC</title>
-      <link>https://kalug.github.io/meetups/1606/</link>
+      <link>http://kalug.linux.org.tw/meetups/1606/</link>
       <pubDate>Sat, 25 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/meetups/1606/</guid>
+      <guid>http://kalug.linux.org.tw/meetups/1606/</guid>
       <description>時間：2016/06/25 14:00(+0800)~17:00 地點：實踐菁英會館 / 高雄市前金區五福三路63號11樓</description>
     </item>
     
     <item>
       <title>KaLUG 1605 聚會</title>
-      <link>https://kalug.github.io/meetups/1605/</link>
+      <link>http://kalug.linux.org.tw/meetups/1605/</link>
       <pubDate>Sat, 28 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/meetups/1605/</guid>
+      <guid>http://kalug.linux.org.tw/meetups/1605/</guid>
       <description>時間：2016/05/28 14:00(+0800)~17:00 地點：實踐菁英會館 / 高雄市前金區五福三路63號11樓</description>
     </item>
     
     <item>
       <title>KaLUG 三月份聚會</title>
-      <link>https://kalug.github.io/meetups/0803/</link>
+      <link>http://kalug.linux.org.tw/meetups/0803/</link>
       <pubDate>Sat, 29 Mar 2008 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/meetups/0803/</guid>
+      <guid>http://kalug.linux.org.tw/meetups/0803/</guid>
       <description>時間：2008/03/29 14:00(+0800)~17:00 地點：高雄市三民區明賢街69號 (Moca mona 咖啡館)</description>
     </item>
     

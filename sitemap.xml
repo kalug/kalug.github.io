@@ -3,486 +3,486 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://kalug.github.io/meetups/1807/</loc>
+    <loc>http://kalug.linux.org.tw/meetups/1807/</loc>
     <lastmod>2018-07-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/meetups/1806/</loc>
+    <loc>http://kalug.linux.org.tw/meetups/1806/</loc>
     <lastmod>2018-06-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180605_drone-kubernetes-with-golang/</loc>
+    <loc>http://kalug.linux.org.tw/planet/appleboy/20180605_drone-kubernetes-with-golang/</loc>
     <lastmod>2018-06-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20180531_zabbix-the-easy-to-use-monitoring-tools.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20180531_zabbix-the-easy-to-use-monitoring-tools.html/</loc>
     <lastmod>2018-05-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/meetups/1805/</loc>
+    <loc>http://kalug.linux.org.tw/meetups/1805/</loc>
     <lastmod>2018-05-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180514_how-to-write-testing-in-golang/</loc>
+    <loc>http://kalug.linux.org.tw/planet/appleboy/20180514_how-to-write-testing-in-golang/</loc>
     <lastmod>2018-05-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180505_what-is-vendor-in-golang/</loc>
+    <loc>http://kalug.linux.org.tw/planet/appleboy/20180505_what-is-vendor-in-golang/</loc>
     <lastmod>2018-05-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20180428_how-to-stable-upgrade-the-ansible.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20180428_how-to-stable-upgrade-the-ansible.html/</loc>
     <lastmod>2018-04-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180419_init-func-in-golang/</loc>
+    <loc>http://kalug.linux.org.tw/planet/appleboy/20180419_init-func-in-golang/</loc>
     <lastmod>2018-04-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180415_how-to-use-filter-in-drone/</loc>
+    <loc>http://kalug.linux.org.tw/planet/appleboy/20180415_how-to-use-filter-in-drone/</loc>
     <lastmod>2018-04-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/meetups/1804/</loc>
+    <loc>http://kalug.linux.org.tw/meetups/1804/</loc>
     <lastmod>2018-04-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180412_how-to-use-golang-flag-package/</loc>
+    <loc>http://kalug.linux.org.tw/planet/appleboy/20180412_how-to-use-golang-flag-package/</loc>
     <lastmod>2018-04-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180329_golang-introduction-video/</loc>
+    <loc>http://kalug.linux.org.tw/planet/appleboy/20180329_golang-introduction-video/</loc>
     <lastmod>2018-03-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180319_docker-healthcheck-in-golang/</loc>
+    <loc>http://kalug.linux.org.tw/planet/appleboy/20180319_docker-healthcheck-in-golang/</loc>
     <lastmod>2018-03-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20180319_install-vim-80-and-youcompleteme-with.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20180319_install-vim-80-and-youcompleteme-with.html/</loc>
     <lastmod>2018-03-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20180318_pianoboy.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20180318_pianoboy.html/</loc>
     <lastmod>2018-03-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/meetups/1803/</loc>
+    <loc>http://kalug.linux.org.tw/meetups/1803/</loc>
     <lastmod>2018-03-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180317_nginx-reverse-proxy-image-resizing/</loc>
+    <loc>http://kalug.linux.org.tw/planet/appleboy/20180317_nginx-reverse-proxy-image-resizing/</loc>
     <lastmod>2018-03-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180310_simple-queue-with-optimistic-concurrency-in-go/</loc>
+    <loc>http://kalug.linux.org.tw/planet/appleboy/20180310_simple-queue-with-optimistic-concurrency-in-go/</loc>
     <lastmod>2018-03-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20180307_fb-supporters-of-free-software.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20180307_fb-supporters-of-free-software.html/</loc>
     <lastmod>2018-03-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20180306_fb.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20180306_fb.html/</loc>
     <lastmod>2018-03-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/appleboy/20180228_simply-output-go-html-template-execution-to-strings/</loc>
+    <loc>http://kalug.linux.org.tw/planet/appleboy/20180228_simply-output-go-html-template-execution-to-strings/</loc>
     <lastmod>2018-02-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20180227_libreoffice-3-17-aa-space-107-3-17-1330.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20180227_libreoffice-3-17-aa-space-107-3-17-1330.html/</loc>
     <lastmod>2018-02-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20180209_fb-early-availability-of-libreoffice.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20180209_fb-early-availability-of-libreoffice.html/</loc>
     <lastmod>2018-02-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20180202_fb-funky.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20180202_fb-funky.html/</loc>
     <lastmod>2018-02-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20180202_fb.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20180202_fb.html/</loc>
     <lastmod>2018-02-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20180131_libreoffice-60.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20180131_libreoffice-60.html/</loc>
     <lastmod>2018-01-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20180131_fb-libreoffice-60.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20180131_fb-libreoffice-60.html/</loc>
     <lastmod>2018-01-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20180126_fb-libreoffice.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20180126_fb-libreoffice.html/</loc>
     <lastmod>2018-01-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20180125_blog-post_20.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20180125_blog-post_20.html/</loc>
     <lastmod>2018-01-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20180125_blog-post_25.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20180125_blog-post_25.html/</loc>
     <lastmod>2018-01-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20180125_blog-post_51.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20180125_blog-post_51.html/</loc>
     <lastmod>2018-01-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20180123_fb-jason.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20180123_fb-jason.html/</loc>
     <lastmod>2018-01-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20180121_fb-italo.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20180121_fb-italo.html/</loc>
     <lastmod>2018-01-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20180113_blog-post_13.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20180113_blog-post_13.html/</loc>
     <lastmod>2018-01-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20180113_blog-post_31.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20180113_blog-post_31.html/</loc>
     <lastmod>2018-01-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20180107_2018.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20180107_2018.html/</loc>
     <lastmod>2018-01-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20180107_content-share.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20180107_content-share.html/</loc>
     <lastmod>2018-01-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/meetups/1712/</loc>
+    <loc>http://kalug.linux.org.tw/meetups/1712/</loc>
     <lastmod>2017-12-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20171224_from-one-persons-devops-to-one-devops-team.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20171224_from-one-persons-devops-to-one-devops-team.html/</loc>
     <lastmod>2017-12-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20171213_gnu.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20171213_gnu.html/</loc>
     <lastmod>2017-12-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/meetups/1711/</loc>
+    <loc>http://kalug.linux.org.tw/meetups/1711/</loc>
     <lastmod>2017-11-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20171112_continuous-delivery-workshop-with-ansible-x-gitlab-ci.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20171112_continuous-delivery-workshop-with-ansible-x-gitlab-ci.html/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20171014_scrum-master-scrum-drawing-game.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20171014_scrum-master-scrum-drawing-game.html/</loc>
     <lastmod>2017-10-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20170924_the-firewalld-on-centos-7.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20170924_the-firewalld-on-centos-7.html/</loc>
     <lastmod>2017-09-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20170923_how-to-fix-glibc-yum-dependencies-at-centos-7.html/</loc>
     <lastmod>2017-09-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20170916_2016-2017.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20170916_2016-2017.html/</loc>
     <lastmod>2017-09-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20170913_public-money-public-code.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20170913_public-money-public-code.html/</loc>
     <lastmod>2017-09-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20170901_the-phoenix-poject-workshop.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20170901_the-phoenix-poject-workshop.html/</loc>
     <lastmod>2017-09-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20170829_continuous-delivery-with-ansible-x-gitlab-ci.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20170829_continuous-delivery-with-ansible-x-gitlab-ci.html/</loc>
     <lastmod>2017-08-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20170829_clarify-free-software.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20170829_clarify-free-software.html/</loc>
     <lastmod>2017-08-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20170807_news-20170807.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20170807_news-20170807.html/</loc>
     <lastmod>2017-08-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/slat-tw/20170728_libreoffice-54.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/slat-tw/20170728_libreoffice-54.html/</loc>
     <lastmod>2017-07-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20170707_how-to-use-color-mode-to-run-ansible-playbooks-on-gitlab-ci.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20170707_how-to-use-color-mode-to-run-ansible-playbooks-on-gitlab-ci.html/</loc>
     <lastmod>2017-07-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/meetups/1706/</loc>
+    <loc>http://kalug.linux.org.tw/meetups/1706/</loc>
     <lastmod>2017-06-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20170619_the-agile-workshop-and-the-unicorn-project.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20170619_the-agile-workshop-and-the-unicorn-project.html/</loc>
     <lastmod>2017-06-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20170510_how-to-use-the-custom-themes-on-telegram-desktop.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20170510_how-to-use-the-custom-themes-on-telegram-desktop.html/</loc>
     <lastmod>2017-05-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/meetups/1704/</loc>
+    <loc>http://kalug.linux.org.tw/meetups/1704/</loc>
     <lastmod>2017-04-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20170326_automate-with-ansible-basic-3e.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20170326_automate-with-ansible-basic-3e.html/</loc>
     <lastmod>2017-03-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/meetups/1703/</loc>
+    <loc>http://kalug.linux.org.tw/meetups/1703/</loc>
     <lastmod>2017-03-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20170318_how-to-switch-ctrl-and-caps-lock-on-specific-keyboard.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20170318_how-to-switch-ctrl-and-caps-lock-on-specific-keyboard.html/</loc>
     <lastmod>2017-03-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20170208_how-to-import-slack-data-into-rocket-chat.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20170208_how-to-import-slack-data-into-rocket-chat.html/</loc>
     <lastmod>2017-02-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/meetups/1701/</loc>
+    <loc>http://kalug.linux.org.tw/meetups/1701/</loc>
     <lastmod>2017-01-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/meetups/1612/</loc>
+    <loc>http://kalug.linux.org.tw/meetups/1612/</loc>
     <lastmod>2016-12-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20161207_ithome-ironman-8th.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20161207_ithome-ironman-8th.html/</loc>
     <lastmod>2016-12-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20161112_how-to-import-ssl-certificate-to-acm.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20161112_how-to-import-ssl-certificate-to-acm.html/</loc>
     <lastmod>2016-11-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20160925_container-summit-2016-it-container.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20160925_container-summit-2016-it-container.html/</loc>
     <lastmod>2016-09-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20160905_downgrade-docker-engine-to-1.11.2-on-debian-7.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20160905_downgrade-docker-engine-to-1.11.2-on-debian-7.html/</loc>
     <lastmod>2016-09-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20160726_automate-with-ansible-roles-windows.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20160726_automate-with-ansible-roles-windows.html/</loc>
     <lastmod>2016-07-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/meetups/1607/</loc>
+    <loc>http://kalug.linux.org.tw/meetups/1607/</loc>
     <lastmod>2016-07-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20160709_remove-default-browser-on-miui8.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20160709_remove-default-browser-on-miui8.html/</loc>
     <lastmod>2016-07-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20160707_virtualization-with-docker-container-basic-for-f2e.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20160707_virtualization-with-docker-container-basic-for-f2e.html/</loc>
     <lastmod>2016-07-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/meetups/1606/</loc>
+    <loc>http://kalug.linux.org.tw/meetups/1606/</loc>
     <lastmod>2016-06-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20160529_automate-with-ansible-basic.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20160529_automate-with-ansible-basic.html/</loc>
     <lastmod>2016-05-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/meetups/1605/</loc>
+    <loc>http://kalug.linux.org.tw/meetups/1605/</loc>
     <lastmod>2016-05-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/chusiang/20160503_setup-native-docker-for-mac-v1.11-and-migrate-docker-toolbox-on-osx-10.11.4.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/chusiang/20160503_setup-native-docker-for-mac-v1.11-and-migrate-docker-toolbox-on-osx-10.11.4.html/</loc>
     <lastmod>2016-05-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/qerter/20100516_muttgmail-imap-part-3.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/qerter/20100516_muttgmail-imap-part-3.html/</loc>
     <lastmod>2010-05-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/qerter/20091020_muttgmail-imap-part-2-procmail.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/qerter/20091020_muttgmail-imap-part-2-procmail.html/</loc>
     <lastmod>2009-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/qerter/20090930_muttgmail-imap.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/qerter/20090930_muttgmail-imap.html/</loc>
     <lastmod>2009-09-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/qerter/20090830_linux.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/qerter/20090830_linux.html/</loc>
     <lastmod>2009-08-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/qerter/20090120_debian-sarge-asus-eee-box.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/qerter/20090120_debian-sarge-asus-eee-box.html/</loc>
     <lastmod>2009-01-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/qerter/20081102_blog-post.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/qerter/20081102_blog-post.html/</loc>
     <lastmod>2008-11-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/qerter/20081101_digg-like-free-software-daily.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/qerter/20081101_digg-like-free-software-daily.html/</loc>
     <lastmod>2008-11-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/meetups/0803/</loc>
+    <loc>http://kalug.linux.org.tw/meetups/0803/</loc>
     <lastmod>2008-03-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/qerter/20060817_mysql-big5utf-8.html/</loc>
+    <loc>http://kalug.linux.org.tw/planet/qerter/20060817_mysql-big5utf-8.html/</loc>
     <lastmod>2006-08-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/readme/</loc>
+    <loc>http://kalug.linux.org.tw/readme/</loc>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/</loc>
+    <loc>http://kalug.linux.org.tw/</loc>
     <lastmod>2018-07-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/about/sponsors/</loc>
+    <loc>http://kalug.linux.org.tw/about/sponsors/</loc>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/meetups/</loc>
+    <loc>http://kalug.linux.org.tw/meetups/</loc>
     <lastmod>2018-07-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/pages/kaohsiung/</loc>
+    <loc>http://kalug.linux.org.tw/pages/kaohsiung/</loc>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/pages/usefuldevices/</loc>
+    <loc>http://kalug.linux.org.tw/pages/usefuldevices/</loc>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/pages/sig/</loc>
+    <loc>http://kalug.linux.org.tw/pages/sig/</loc>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/planet/</loc>
+    <loc>http://kalug.linux.org.tw/planet/</loc>
     <lastmod>2018-06-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/about/us/</loc>
+    <loc>http://kalug.linux.org.tw/about/us/</loc>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/about/</loc>
+    <loc>http://kalug.linux.org.tw/about/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/categories/</loc>
+    <loc>http://kalug.linux.org.tw/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/pages/</loc>
+    <loc>http://kalug.linux.org.tw/pages/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://kalug.github.io/tags/</loc>
+    <loc>http://kalug.linux.org.tw/tags/</loc>
     <priority>0</priority>
   </url>
   
