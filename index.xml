@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>高雄Linux使用者協會 on Kaohsiung Linux User Group</title>
+    <title>Kaohsiung Linux User Group</title>
     <link>https://kalug.github.io/</link>
-    <description>Recent content in 高雄Linux使用者協會 on Kaohsiung Linux User Group</description>
+    <description>Recent content on Kaohsiung Linux User Group</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sat, 28 Jul 2018 00:00:00 +0000</lastBuildDate>
     
@@ -776,11 +776,56 @@
     </item>
     
     <item>
-      <title>About us</title>
-      <link>https://kalug.github.io/page/about/</link>
+      <title></title>
+      <link>https://kalug.github.io/readme/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.github.io/page/about/</guid>
+      <guid>https://kalug.github.io/readme/</guid>
+      <description>Source of KaLUG HUGO site master branch: only store content data build branch: configs/layouts/themes of hugo ~ $ git clone -b build git@github.com:kalug/kalug.git ~ $ cd kalug kalug $ git worktree add content origin/master kalug $ hugo server How To Contribute 歡迎一起豐富網站內容, 可以直接修改 content branch 比如想要改 首頁 (content/_index.md) 可以</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://kalug.github.io/about/sponsors/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/about/sponsors/</guid>
+      <description>贊助 Funmula.com - BigGo.com</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://kalug.github.io/pages/kaohsiung/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/pages/kaohsiung/</guid>
+      <description>高雄生活 工作 咖啡廳 餐廳 溜小孩的點</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://kalug.github.io/pages/usefuldevices/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/pages/usefuldevices/</guid>
+      <description> Useful Devices Laptop Chromebook Tablet Mobile devices Others </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://kalug.github.io/pages/sig/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/pages/sig/</guid>
+      <description>Special Interest Group 為了方便排定每個月分享的主題, 我們讓各各不同興趣的同好一起安排主題分享的頻率 Ubuntu Fans 成員: Tim, Shawn 半年一次 Release Party GoLang 成員: Hawk, Shawn, Rick 每三個月 Javas</description>
+    </item>
+    
+    <item>
+      <title>About us</title>
+      <link>https://kalug.github.io/about/us/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.github.io/about/us/</guid>
       <description>KaLUG 是由一群熱愛 Open Source 的 朋友 所組成的團體. 歡迎參加我們的 聚會 ，Topic 題目不限，好玩就好。 歡迎加入我們的 KaLUG 星球 ！請留下你的網址在 kalug 星球 wiki 申請頁</description>
     </item>
     

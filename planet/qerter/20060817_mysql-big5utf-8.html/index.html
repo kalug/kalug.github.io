@@ -112,14 +112,30 @@
           
         
           
-            <li>
-              <a title="Wiki" href="/wiki/">Wiki</a>
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Pages</a>
+              <div class="navlinks-children">
+                
+                  <a href="/pages/sig">Special Interest Group</a>
+                
+                  <a href="/pages/UsefulDevices">Useful Devices</a>
+                
+                  <a href="/pages/Kaohsiung">Kaohsiung Life</a>
+                
+              </div>
             </li>
           
         
           
-            <li>
-              <a title="About" href="/page/about/">About</a>
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">About</a>
+              <div class="navlinks-children">
+                
+                  <a href="/about/us">us</a>
+                
+                  <a href="/about/sponsors">Sponsors</a>
+                
+              </div>
             </li>
           
         
@@ -298,7 +314,7 @@
             return;
         }
         var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "shawn111" + '.disqus.com/embed.js';
+        s.src = '//' + "kalug-linux-org-tw" + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();

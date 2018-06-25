@@ -428,8 +428,33 @@
   </url>
   
   <url>
+    <loc>https://kalug.github.io/readme/</loc>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/</loc>
+    <lastmod>2018-07-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/about/sponsors/</loc>
+  </url>
+  
+  <url>
     <loc>https://kalug.github.io/meetups/</loc>
     <lastmod>2018-07-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/pages/kaohsiung/</loc>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/pages/usefuldevices/</loc>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/pages/sig/</loc>
   </url>
   
   <url>
@@ -438,7 +463,12 @@
   </url>
   
   <url>
-    <loc>https://kalug.github.io/page/about/</loc>
+    <loc>https://kalug.github.io/about/us/</loc>
+  </url>
+  
+  <url>
+    <loc>https://kalug.github.io/about/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -447,18 +477,13 @@
   </url>
   
   <url>
-    <loc>https://kalug.github.io/page/</loc>
+    <loc>https://kalug.github.io/pages/</loc>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://kalug.github.io/tags/</loc>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://kalug.github.io/</loc>
-    <lastmod>2018-07-28T00:00:00+00:00</lastmod>
   </url>
   
 </urlset>
