@@ -11,20 +11,20 @@
     
     <item>
       <title></title>
-      <link>https://kalug.linux.org.tw/pages/kaohsiung/</link>
+      <link>https://kalug.linux.org.tw/pages/devices/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.linux.org.tw/pages/kaohsiung/</guid>
-      <description>高雄生活 工作 咖啡廳 餐廳 溜小孩的點</description>
+      <guid>https://kalug.linux.org.tw/pages/devices/</guid>
+      <description> Useful Devices Edit me   Laptop Chromebook Tablet Mobile devices Others </description>
     </item>
     
     <item>
       <title></title>
-      <link>https://kalug.linux.org.tw/pages/usefuldevices/</link>
+      <link>https://kalug.linux.org.tw/pages/life/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://kalug.linux.org.tw/pages/usefuldevices/</guid>
-      <description> Useful Devices Laptop Chromebook Tablet Mobile devices Others </description>
+      <guid>https://kalug.linux.org.tw/pages/life/</guid>
+      <description>高雄生活 Edit me 工作 咖啡廳 餐廳 溜小孩的點 Edit me</description>
     </item>
     
     <item>
@@ -33,7 +33,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://kalug.linux.org.tw/pages/sig/</guid>
-      <description>Special Interest Group 為了方便排定每個月分享的主題, 我們讓各各不同興趣的同好一起安排主題分享的頻率 Ubuntu Fans 成員: Tim, Shawn 半年一次 Release Party GoLang 成員: Hawk, Shawn, Rick 每三個月 Javas</description>
+      <description>Special Interest Group 為了方便排定每個月分享的主題, 我們讓各各不同興趣的同好一起安排主題分享的頻率 Edit me Ubuntu Fans 成員: Tim, Shawn 半年一次 Release Party GoLang 成員: Hawk, Shawn, Rick 每三個月 Jav</description>
     </item>
     
   </channel>
