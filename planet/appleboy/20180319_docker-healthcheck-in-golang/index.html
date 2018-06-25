@@ -12,23 +12,23 @@
   <meta property="og:description" content="在 Docker 1.12 版本後，提供了 HEALTHCHECK 指令，通過指定的一行命令來判斷容器內的服務是否正常運作。在此之前大部分都是透過判斷程式是否 Crash 來決定容器是否存活，但是這">
   <meta name="twitter:description" content="在 Docker 1.12 版本後，提供了 HEALTHCHECK 指令，通過指定的一行命令來判斷容器內的服務是否正常運作。在此之前大部分都是透過判斷程式是否 Crash 來決定容器是否存活，但是這">
   <meta name="author" content=""/>
-  <link href='http://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
-  <meta property="og:image" content="http://kalug.linux.org.tw/img/kalug.png" />
-  <meta name="twitter:image" content="http://kalug.linux.org.tw/img/kalug.png" />
+  <link href='https://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:image" content="https://kalug.linux.org.tw/img/kalug.png" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="http://kalug.linux.org.tw/planet/appleboy/20180319_docker-healthcheck-in-golang/" />
+  <meta property="og:url" content="https://kalug.linux.org.tw/planet/appleboy/20180319_docker-healthcheck-in-golang/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kaohsiung Linux User Group" />
 
   <meta name="generator" content="Hugo 0.41" />
-  <link rel="canonical" href="http://kalug.linux.org.tw/planet/appleboy/20180319_docker-healthcheck-in-golang/" />
-  <link rel="alternate" href="http://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="canonical" href="https://kalug.linux.org.tw/planet/appleboy/20180319_docker-healthcheck-in-golang/" />
+  <link rel="alternate" href="https://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="http://kalug.linux.org.tw/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
-  <link rel="stylesheet" href="http://kalug.linux.org.tw/css/highlight.min.css" /><link rel="stylesheet" href="http://kalug.linux.org.tw/css/codeblock.css" />
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/highlight.min.css" /><link rel="stylesheet" href="https://kalug.linux.org.tw/css/codeblock.css" />
 
 
 
@@ -93,7 +93,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="http://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+      <a class="navbar-brand" href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
     </div>
 
     <div class="collapse navbar-collapse" id="main-navbar">
@@ -149,8 +149,8 @@
     <div class="avatar-container">
       <div class="avatar-img-border">
         
-          <a title="Kaohsiung Linux User Group" href="http://kalug.linux.org.tw">
-            <img class="avatar-img" src="http://kalug.linux.org.tw/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          <a title="Kaohsiung Linux User Group" href="https://kalug.linux.org.tw">
+            <img class="avatar-img" src="https://kalug.linux.org.tw/img/kalug.png" alt="Kaohsiung Linux User Group" />
           </a>
         
       </div>
@@ -279,7 +279,7 @@ $ docker inspect --format &#039;{{json .State.Health}}&#039; gorush | jq
 
 
 <li>
-    <a href="//twitter.com/share?url=http%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f&amp;text=Go%20%e8%aa%9e%e8%a8%80%e6%90%ad%e9%85%8d%20Docker%20Healthy%20Check%20%e6%aa%a2%e6%9f%a5&amp;via="
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f&amp;text=Go%20%e8%aa%9e%e8%a8%80%e6%90%ad%e9%85%8d%20Docker%20Healthy%20Check%20%e6%aa%a2%e6%9f%a5&amp;via="
        target="_blank" alt="" title="Share on Twitter">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -290,7 +290,7 @@ $ docker inspect --format &#039;{{json .State.Health}}&#039; gorush | jq
 
 
 <li>
-    <a href="//plus.google.com/share?url=http%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f" target="_blank" title="Share on Google Plus">
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f" target="_blank" title="Share on Google Plus">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
@@ -300,7 +300,7 @@ $ docker inspect --format &#039;{{json .State.Health}}&#039; gorush | jq
 
 
 <li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f" target="_blank" title="Share on Facebook">
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -310,7 +310,7 @@ $ docker inspect --format &#039;{{json .State.Health}}&#039; gorush | jq
 
 
 <li>
-    <a href="//reddit.com/submit?url=http%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e6%90%ad%e9%85%8d%20Docker%20Healthy%20Check%20%e6%aa%a2%e6%9f%a5" target="_blank" title="Share on Reddit">
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e6%90%ad%e9%85%8d%20Docker%20Healthy%20Check%20%e6%aa%a2%e6%9f%a5" target="_blank" title="Share on Reddit">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
@@ -320,7 +320,7 @@ $ docker inspect --format &#039;{{json .State.Health}}&#039; gorush | jq
 
 
 <li>
-    <a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e6%90%ad%e9%85%8d%20Docker%20Healthy%20Check%20%e6%aa%a2%e6%9f%a5" target="_blank"
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e6%90%ad%e9%85%8d%20Docker%20Healthy%20Check%20%e6%aa%a2%e6%9f%a5" target="_blank"
        title="Share on LinkedIn">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -331,7 +331,7 @@ $ docker inspect --format &#039;{{json .State.Health}}&#039; gorush | jq
 
 
 <li>
-    <a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e6%90%ad%e9%85%8d%20Docker%20Healthy%20Check%20%e6%aa%a2%e6%9f%a5" target="_blank"
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e6%90%ad%e9%85%8d%20Docker%20Healthy%20Check%20%e6%aa%a2%e6%9f%a5" target="_blank"
        title="Share on StumbleUpon">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -342,7 +342,7 @@ $ docker inspect --format &#039;{{json .State.Health}}&#039; gorush | jq
 
 
 <li>
-    <a href="//www.pinterest.com/pin/create/button/?url=http%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f&amp;description=Go%20%e8%aa%9e%e8%a8%80%e6%90%ad%e9%85%8d%20Docker%20Healthy%20Check%20%e6%aa%a2%e6%9f%a5" target="_blank"
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180319_docker-healthcheck-in-golang%2f&amp;description=Go%20%e8%aa%9e%e8%a8%80%e6%90%ad%e9%85%8d%20Docker%20Healthy%20Check%20%e6%aa%a2%e6%9f%a5" target="_blank"
        title="Share on Pinterest">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -360,12 +360,12 @@ $ docker inspect --format &#039;{{json .State.Health}}&#039; gorush | jq
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="http://kalug.linux.org.tw/planet/chusiang/20180319_install-vim-80-and-youcompleteme-with.html/" data-toggle="tooltip" data-placement="top" title="Install the Vim 8.0 and YouCompleteMe with Make on CentOS 7.4">&larr; Previous Post</a>
+              <a href="https://kalug.linux.org.tw/planet/chusiang/20180319_install-vim-80-and-youcompleteme-with.html/" data-toggle="tooltip" data-placement="top" title="Install the Vim 8.0 and YouCompleteMe with Make on CentOS 7.4">&larr; Previous Post</a>
             </li>
           
           
             <li class="next">
-              <a href="http://kalug.linux.org.tw/planet/appleboy/20180329_golang-introduction-video/" data-toggle="tooltip" data-placement="top" title="Go 語言基礎實戰教學影片上線了">Next Post &rarr;</a>
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20180329_golang-introduction-video/" data-toggle="tooltip" data-placement="top" title="Go 語言基礎實戰教學影片上線了">Next Post &rarr;</a>
             </li>
           
         </ul>
@@ -437,7 +437,7 @@ $ docker inspect --format &#039;{{json .State.Health}}&#039; gorush | jq
           
           <li>
             
-            <a href="http://kalug.linux.org.tw/index.xml" title="RSS">
+            <a href="https://kalug.linux.org.tw/index.xml" title="RSS">
             
               <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -455,7 +455,7 @@ $ docker inspect --format &#039;{{json .State.Health}}&#039; gorush | jq
 
           
             &nbsp;&bull;&nbsp;
-            <a href="http://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+            <a href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
           
         </p>
         
@@ -472,13 +472,13 @@ $ docker inspect --format &#039;{{json .State.Health}}&#039; gorush | jq
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="http://kalug.linux.org.tw/js/main.js"></script>
-<script src="http://kalug.linux.org.tw/js/highlight.min.js"></script>
+<script src="https://kalug.linux.org.tw/js/main.js"></script>
+<script src="https://kalug.linux.org.tw/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
 <script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="http://kalug.linux.org.tw/js/load-photoswipe.js"></script>
+<script src="https://kalug.linux.org.tw/js/load-photoswipe.js"></script>
 
 
 
