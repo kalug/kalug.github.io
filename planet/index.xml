@@ -5,10 +5,19 @@
     <link>https://kalug.linux.org.tw/planet/</link>
     <description>Recent content on Kaohsiung Linux User Group</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 05 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 26 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kalug.linux.org.tw/planet/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>如何在 Go 語言內寫效能測試</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20180626_how-to-write-benchmark-in-go/</link>
+      <pubDate>Tue, 26 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20180626_how-to-write-benchmark-in-go/</guid>
+      <description>Go 語言不只有內建基本的 Testing 功能，另外也內建了 Benchmark 工具，讓開發者可以快速的驗證自己寫的程式碼效能如何？該如何使用基本的 Benchmark 工具，底下用簡單的例子來說</description>
+    </item>
     
     <item>
       <title>Drone 搭配 Kubernetes 部署 Go 語言項目</title>

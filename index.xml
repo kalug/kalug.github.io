@@ -20,6 +20,15 @@
     </item>
     
     <item>
+      <title>如何在 Go 語言內寫效能測試</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20180626_how-to-write-benchmark-in-go/</link>
+      <pubDate>Tue, 26 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20180626_how-to-write-benchmark-in-go/</guid>
+      <description>Go 語言不只有內建基本的 Testing 功能，另外也內建了 Benchmark 工具，讓開發者可以快速的驗證自己寫的程式碼效能如何？該如何使用基本的 Benchmark 工具，底下用簡單的例子來說</description>
+    </item>
+    
+    <item>
       <title>KaLUG 1806聚會</title>
       <link>https://kalug.linux.org.tw/meetups/1806/</link>
       <pubDate>Sat, 23 Jun 2018 00:00:00 +0000</pubDate>
@@ -781,7 +790,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://kalug.linux.org.tw/readme/</guid>
-      <description>Source of KaLUG HUGO site master branch: only store content data build branch: configs/layouts/themes of hugo ~ $ git clone -b build git@github.com:kalug/kalug.git ~ $ cd kalug kalug $ git worktree add content origin/master kalug $ hugo server How To Contribute 歡迎一起豐富網站內容, 可以直接修改 content branch 比如想要改 首頁 (content/_index.md) 可以</description>
+      <description>Source of KaLUG HUGO site master branch: only store content data build branch: configs/layouts/themes of hugo ~ $ git clone -b build git@github.com:kalug/kalug.git ~ $ cd kalug kalug $ git worktree add content origin/master kalug $ hugo server How To Contribute 歡迎一起豐富網站內容, 可以直接修改 master branch 比如想要改 首頁 (_index.md) 在c</description>
     </item>
     
     <item>
