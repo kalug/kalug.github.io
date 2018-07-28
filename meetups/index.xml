@@ -5,10 +5,19 @@
     <link>https://kalug.linux.org.tw/meetups/</link>
     <description>Recent content on Kaohsiung Linux User Group</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 23 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 28 Jul 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kalug.linux.org.tw/meetups/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>KaLUG 1807聚會</title>
+      <link>https://kalug.linux.org.tw/meetups/1807/</link>
+      <pubDate>Sat, 28 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/meetups/1807/</guid>
+      <description>時間：2018/07/28 14:00(+0800)</description>
+    </item>
     
     <item>
       <title>KaLUG 1806聚會 KaLUG website rebuild &#43; Erlang/LISP/GoLang/Python coroutine</title>

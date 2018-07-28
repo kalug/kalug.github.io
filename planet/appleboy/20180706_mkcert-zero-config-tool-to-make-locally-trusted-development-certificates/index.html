@@ -5,23 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Go 語言的 vendor 目錄</title>
-  <meta property="og:title" content="Go 語言的 vendor 目錄" />
-  <meta name="twitter:title" content="Go 語言的 vendor 目錄" />
-  <meta name="description" content="很多朋友剛入門 Go 語言時，第一個會遇到的問題是，該如何設定專案配置，讓專案可以正常執行，在個人電腦該如何開發多個專案，這邊就會遇到該如何設定 $">
-  <meta property="og:description" content="很多朋友剛入門 Go 語言時，第一個會遇到的問題是，該如何設定專案配置，讓專案可以正常執行，在個人電腦該如何開發多個專案，這邊就會遇到該如何設定 $">
-  <meta name="twitter:description" content="很多朋友剛入門 Go 語言時，第一個會遇到的問題是，該如何設定專案配置，讓專案可以正常執行，在個人電腦該如何開發多個專案，這邊就會遇到該如何設定 $">
+  <title>在本機端快速產生網站免費憑證</title>
+  <meta property="og:title" content="在本機端快速產生網站免費憑證" />
+  <meta name="twitter:title" content="在本機端快速產生網站免費憑證" />
+  <meta name="description" content="大家看到網站免費憑證，一定會想到 Let&#8217;s encrypt 服務商提供一個網域可以使用 100 個免費憑證，如果您有很多 subdomain 需求，還可以申請獨立一張 wildcard 憑證，但是這是在伺服器端">
+  <meta property="og:description" content="大家看到網站免費憑證，一定會想到 Let&#8217;s encrypt 服務商提供一個網域可以使用 100 個免費憑證，如果您有很多 subdomain 需求，還可以申請獨立一張 wildcard 憑證，但是這是在伺服器端">
+  <meta name="twitter:description" content="大家看到網站免費憑證，一定會想到 Let&#8217;s encrypt 服務商提供一個網域可以使用 100 個免費憑證，如果您有很多 subdomain 需求，還可以申請獨立一張 wildcard 憑證，但是這是在伺服器端">
   <meta name="author" content=""/>
   <link href='https://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://kalug.linux.org.tw/img/kalug.png" />
   <meta name="twitter:image" content="https://kalug.linux.org.tw/img/kalug.png" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://kalug.linux.org.tw/planet/appleboy/20180505_what-is-vendor-in-golang/" />
+  <meta property="og:url" content="https://kalug.linux.org.tw/planet/appleboy/20180706_mkcert-zero-config-tool-to-make-locally-trusted-development-certificates/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kaohsiung Linux User Group" />
 
   <meta name="generator" content="Hugo 0.41" />
-  <link rel="canonical" href="https://kalug.linux.org.tw/planet/appleboy/20180505_what-is-vendor-in-golang/" />
+  <link rel="canonical" href="https://kalug.linux.org.tw/planet/appleboy/20180706_mkcert-zero-config-tool-to-make-locally-trusted-development-certificates/" />
   <link rel="alternate" href="https://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -206,7 +206,7 @@ if (!doNotTrack) {
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="blog-heading">
-              <h1>Go 語言的 vendor 目錄</h1>
+              <h1>在本機端快速產生網站免費憑證</h1>
                 
                 
             </div>
@@ -222,24 +222,124 @@ if (!doNotTrack) {
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p><a href="https://www.flickr.com/photos/appleboy/40093179410/in/dateposted-public/" title="Go-Logo_Blue"><img src="https://i1.wp.com/farm1.staticflickr.com/908/40093179410_53df4bb9e8_z.jpg?w=840&#038;ssl=1" alt="Go-Logo_Blue" data-recalc-dims="1" /></a></p>
+        <p><a href="https://www.flickr.com/photos/appleboy/43227213371/in/dateposted-public/" title="SSL-Certificate"><img src="https://i1.wp.com/farm2.staticflickr.com/1785/43227213371_a041db0810_o.png?w=840&#038;ssl=1" alt="SSL-Certificate" data-recalc-dims="1" /></a></p>
 
-<p>很多朋友剛入門 <a href="https://golang.org">Go 語言時</a>，第一個會遇到的問題是，該如何設定專案配置，讓專案可以正常執行，在個人電腦該如何開發多個專案，這邊就會遇到該如何設定 <code>$GOPATH</code>，我在這邊跟大家講個觀念，開發環境只會有一個 <code>$GOPATH</code>，不管團隊內有多少專案，都是存放在同一個 GOPATH，避免每次開專案都要重新設定 <code>$GOPATH</code>，而專案內用到的相依性套件，請各自維護，透過<a href="https://github.com/golang/go/wiki/PackageManagementTools">官方提供的 wiki</a>，請選一套覺得好用的來使用吧，沒有最好的工具，找一套適合團隊是最重要的。</p>
+<p>大家看到網站免費憑證，一定會想到 <a href="https://letsencrypt.org/">Let&#8217;s encrypt</a> 服務商提供一個網域可以使用 100 個免費憑證，如果您有很多 subdomain 需求，還可以申請獨立一張 <a href="https://community.letsencrypt.org/t/acme-v2-and-wildcard-certificate-support-is-live/55579">wildcard 憑證</a>，但是這是在伺服器端的操作，假設在本機端開發，該如何快速產生憑證，這樣開啟瀏覽器時，就可以看到綠色的 https 字眼</p>
 
-<p><span id="more-7017"></span></p>
+<p><a href="https://www.flickr.com/photos/appleboy/43177490822/in/dateposted-public/" title="Snip20180706_2"><img src="https://i2.wp.com/farm1.staticflickr.com/921/43177490822_974612c015_z.jpg?w=840&#038;ssl=1" alt="Snip20180706_2" data-recalc-dims="1" /></a></p>
 
-<h2>什麼是 vendor</h2>
+<p><span id="more-7047"></span></p>
 
-<p>這邊不多說了，直接看影片教學最快了。</p>
+<h2>安裝 mkcert</h2>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/DKqw_CvVklo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<p>本篇介紹一個用 <a href="https://golang.org">Go 語言</a>寫的工具叫做 <a href="https://github.com/FiloSottile/mkcert">mkcert</a>，此工具目前只有支援 MacOS 及 Linux 環境，未來會支援 Windows，如果有在玩 Windows 的開發者，也可以直接開 PR 啦。安裝方式非常簡單。在 MacOS 可以用 brew</p>
 
-<hr />
+<pre class="brush: plain; title: ; notranslate">
+$ brew install mkcert
+$ brew install nss # if you use Firefox
+</pre>
 
-<p>Go 語言線上課程目前特價 $1600，持續錄製中，每週都會有新的影片上架，歡迎大家參考看看，請點選底下購買連結:</p>
+<h2>使用 mkcert</h2>
 
-<p><h1><a href="http://bit.ly/intro-golang">點我購買</a></h1><br />
-<div class="wp_rp_wrap  wp_rp_plain" ><div class="wp_rp_content"><h3 class="related_post_title">Related View</h3><ul class="related_post wp_rp"><li data-position="0" data-poid="in-6674" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/03/golang-dependency-management-tool-dep/" class="wp_rp_title">Go 語言官方推出的 dep 使用心得</a><small class="wp_rp_comments_count"> (6)</small><br /></li><li data-position="1" data-poid="in-6772" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/07/go-framework-gin-release-v1-2/" class="wp_rp_title">Go 語言框架 Gin 終於發佈 v1.2 版本</a><small class="wp_rp_comments_count"> (2)</small><br /></li><li data-position="2" data-poid="in-6342" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/05/package-management-for-golang-glide/" class="wp_rp_title">Golang 套件管理工具 Glide</a><small class="wp_rp_comments_count"> (2)</small><br /></li><li data-position="3" data-poid="in-6966" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/03/simple-queue-with-optimistic-concurrency-in-go/" class="wp_rp_title">用 Go 語言實現單一或多重 Queue 搭配 optimistic concurrency</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="4" data-poid="in-7013" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/04/init-func-in-golang/" class="wp_rp_title">Go 語言的 init 函式</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="5" data-poid="in-6804" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/09/why-i-choose-drone-as-ci-cd-tool/" class="wp_rp_title">為什麼我用 Drone 取代 Jenkins 及 GitLab CI</a><small class="wp_rp_comments_count"> (10)</small><br /></li><li data-position="6" data-poid="in-6992" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/03/golang-introduction-video/" class="wp_rp_title">Go 語言基礎實戰教學影片上線了</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="7" data-poid="in-6953" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/01/write-golang-in-aws-lambda/" class="wp_rp_title">在 AWS Lambda 上寫 Go 語言搭配 API Gateway</a><small class="wp_rp_comments_count"> (3)</small><br /></li><li data-position="8" data-poid="in-7029" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/06/drone-kubernetes-with-golang/" class="wp_rp_title">Drone 搭配 Kubernetes 部署 Go 語言項目</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="9" data-poid="in-6819" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/09/deploy-go-app-to-zeit-now/" class="wp_rp_title">部署 Go 語言 App 到 Now.sh</a><small class="wp_rp_comments_count"> (0)</small><br /></li></ul></div></div></p>
+<p>第一步驟就是先初始化目錄</p>
+
+<pre class="brush: plain; title: ; notranslate">
+$ mkcert -install
+</pre>
+
+<p>接著看看有幾個網站 domain 需要在本機端使用可以一次申請</p>
+
+<pre class="brush: plain; title: ; notranslate">
+$ mkcert myapp.dev example.com
+Using the local CA at &quot;/Users/xxxxxx/Library/Application Support/mkcert&quot; ✨
+
+Created a new certificate valid for the following names <img src="https://s.w.org/images/core/emoji/2.3/72x72/1f4dc.png" alt="📜" class="wp-smiley" style="height: 1em; max-height: 1em;" />
+ - &quot;example.com&quot;
+ - &quot;myapp.dev&quot;
+
+The certificate is at &quot;./example.com+1.pem&quot; and the key at &quot;./example.com+1-key.pem&quot; ✅
+</pre>
+
+<h2>撰寫簡單 https 服務</h2>
+
+<p>這邊用 Go 語言當例子</p>
+
+<pre class="brush: go; title: ; notranslate">
+package main
+
+import (
+    &quot;log&quot;
+    &quot;net/http&quot;
+)
+
+func helloServer(w http.ResponseWriter, req *http.Request) {
+    w.Header().Set(&quot;Content-Type&quot;, &quot;text/plain&quot;)
+    w.Write([]byte(&quot;This is an example server.\n&quot;))
+}
+
+func main() {
+    log.Println(&quot;Server listen in 443 port. Please open https://localhost/hello&quot;)
+    http.HandleFunc(&quot;/hello&quot;, helloServer)
+    err := http.ListenAndServeTLS(&quot;:443&quot;, &quot;ssl/localhost.pem&quot;, &quot;ssl/localhost-key.pem&quot;, nil)
+    if err != nil {
+        log.Fatal(&quot;ListenAndServe: &quot;, err)
+    }
+}
+</pre>
+
+<p>其中 <code>ssl/localhost.pem</code> 跟 <code>ssl/localhost-key.pem</code> 就是剛剛透過 mkcert 產生出來的金鑰。透過 curl 工具，可以快速驗證是否成功:</p>
+
+<pre class="brush: plain; title: ; notranslate">
+$ curl -v https://localhost/hello
+*   Trying ::1...
+* TCP_NODELAY set
+* Connected to localhost (::1) port 443 (#0)
+* ALPN, offering h2
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/cert.pem
+  CApath: none
+* TLSv1.2 (OUT), TLS handshake, Client hello (1):
+* TLSv1.2 (IN), TLS handshake, Server hello (2):
+* TLSv1.2 (IN), TLS handshake, Certificate (11):
+* TLSv1.2 (IN), TLS handshake, Server key exchange (12):
+* TLSv1.2 (IN), TLS handshake, Server finished (14):
+* TLSv1.2 (OUT), TLS handshake, Client key exchange (16):
+* TLSv1.2 (OUT), TLS change cipher, Client hello (1):
+* TLSv1.2 (OUT), TLS handshake, Finished (20):
+* TLSv1.2 (IN), TLS change cipher, Client hello (1):
+* TLSv1.2 (IN), TLS handshake, Finished (20):
+* SSL connection using TLSv1.2 / ECDHE-RSA-AES128-GCM-SHA256
+* ALPN, server accepted to use h2
+* Server certificate:
+*  subject: O=mkcert development certificate
+*  start date: Jul  5 02:06:09 2018 GMT
+*  expire date: Jul  6 02:06:09 2028 GMT
+*  subjectAltName: host &quot;localhost&quot; matched cert&#039;s &quot;localhost&quot;
+*  issuer: O=mkcert development CA
+*  SSL certificate verify ok.
+* Using HTTP2, server supports multi-use
+* Connection state changed (HTTP/2 confirmed)
+* Copying HTTP/2 data in stream buffer to connection buffer after upgrade: len=0
+* Using Stream ID: 1 (easy handle 0x7f8fca805800)
+&gt; GET /hello HTTP/2
+&gt; Host: localhost
+&gt; User-Agent: curl/7.54.0
+&gt; Accept: */*
+&gt;
+* Connection state changed (MAX_CONCURRENT_STREAMS updated)!
+&lt; HTTP/2 200
+&lt; content-type: text/plain
+&lt; content-length: 27
+&lt; date: Fri, 06 Jul 2018 02:30:54 GMT
+&lt;
+This is an example server.
+* Connection #0 to host localhost left intact
+</pre>
+
+<p>上面範例放在 <a href="https://github.com/go-training/training/tree/master/example21-simple-golang-https-tls">go-training 專案</a>內，歡迎大家取用。<br />
+<div class="wp_rp_wrap  wp_rp_plain" ><div class="wp_rp_content"><h3 class="related_post_title">Related View</h3><ul class="related_post wp_rp"><li data-position="0" data-poid="in-7029" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/06/drone-kubernetes-with-golang/" class="wp_rp_title">Drone 搭配 Kubernetes 部署 Go 語言項目</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="1" data-poid="in-6869" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/11/gorush-a-push-notification-server-written-in-go/" class="wp_rp_title">Gorush 輕量級手機訊息發送服務</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="2" data-poid="in-6634" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/01/new-git-code-hosting-option-gitea/" class="wp_rp_title">開發者另類的自架 Git 服務選擇: Gitea</a><small class="wp_rp_comments_count"> (4)</small><br /></li><li data-position="3" data-poid="in-6481" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/08/golang-tesing-on-jenkins/" class="wp_rp_title">在 Jenkins 跑 Golang 測試</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="4" data-poid="in-6683" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/04/1-line-letsencrypt-https-servers-in-golang/" class="wp_rp_title">在 Go 語言用一行程式碼自動化安裝且更新 Let’s Encrypt 憑證</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="5" data-poid="in-6819" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/09/deploy-go-app-to-zeit-now/" class="wp_rp_title">部署 Go 語言 App 到 Now.sh</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="6" data-poid="in-6569" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/11/send-line-notification-using-docker-written-in-golang/" class="wp_rp_title">用 Docker 發送 Line 訊息</a><small class="wp_rp_comments_count"> (5)</small><br /></li><li data-position="7" data-poid="in-6617" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/12/send-line-message-using-drone-line/" class="wp_rp_title">用 drone-line 架設 Line webhook 及發送訊息</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="8" data-poid="in-6657" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/02/caddy-setting-with-drone-ci-server/" class="wp_rp_title">Caddy 搭配 Drone 伺服器設定</a><small class="wp_rp_comments_count"> (4)</small><br /></li><li data-position="9" data-poid="in-6858" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/10/go-configuration-with-viper/" class="wp_rp_title">在 Go 語言使用 Viper 管理設定檔</a><small class="wp_rp_comments_count"> (0)</small><br /></li></ul></div></div></p>
 
 
         
@@ -252,7 +352,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f&amp;text=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20vendor%20%e7%9b%ae%e9%8c%84&amp;via="
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180706_mkcert-zero-config-tool-to-make-locally-trusted-development-certificates%2f&amp;text=%e5%9c%a8%e6%9c%ac%e6%a9%9f%e7%ab%af%e5%bf%ab%e9%80%9f%e7%94%a2%e7%94%9f%e7%b6%b2%e7%ab%99%e5%85%8d%e8%b2%bb%e6%86%91%e8%ad%89&amp;via="
        target="_blank" alt="" title="Share on Twitter">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -263,7 +363,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f" target="_blank" title="Share on Google Plus">
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180706_mkcert-zero-config-tool-to-make-locally-trusted-development-certificates%2f" target="_blank" title="Share on Google Plus">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
@@ -273,7 +373,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f" target="_blank" title="Share on Facebook">
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180706_mkcert-zero-config-tool-to-make-locally-trusted-development-certificates%2f" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -283,7 +383,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20vendor%20%e7%9b%ae%e9%8c%84" target="_blank" title="Share on Reddit">
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180706_mkcert-zero-config-tool-to-make-locally-trusted-development-certificates%2f&amp;title=%e5%9c%a8%e6%9c%ac%e6%a9%9f%e7%ab%af%e5%bf%ab%e9%80%9f%e7%94%a2%e7%94%9f%e7%b6%b2%e7%ab%99%e5%85%8d%e8%b2%bb%e6%86%91%e8%ad%89" target="_blank" title="Share on Reddit">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
@@ -293,7 +393,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20vendor%20%e7%9b%ae%e9%8c%84" target="_blank"
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180706_mkcert-zero-config-tool-to-make-locally-trusted-development-certificates%2f&amp;title=%e5%9c%a8%e6%9c%ac%e6%a9%9f%e7%ab%af%e5%bf%ab%e9%80%9f%e7%94%a2%e7%94%9f%e7%b6%b2%e7%ab%99%e5%85%8d%e8%b2%bb%e6%86%91%e8%ad%89" target="_blank"
        title="Share on LinkedIn">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -304,7 +404,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20vendor%20%e7%9b%ae%e9%8c%84" target="_blank"
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180706_mkcert-zero-config-tool-to-make-locally-trusted-development-certificates%2f&amp;title=%e5%9c%a8%e6%9c%ac%e6%a9%9f%e7%ab%af%e5%bf%ab%e9%80%9f%e7%94%a2%e7%94%9f%e7%b6%b2%e7%ab%99%e5%85%8d%e8%b2%bb%e6%86%91%e8%ad%89" target="_blank"
        title="Share on StumbleUpon">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -315,7 +415,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f&amp;description=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20vendor%20%e7%9b%ae%e9%8c%84" target="_blank"
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180706_mkcert-zero-config-tool-to-make-locally-trusted-development-certificates%2f&amp;description=%e5%9c%a8%e6%9c%ac%e6%a9%9f%e7%ab%af%e5%bf%ab%e9%80%9f%e7%94%a2%e7%94%9f%e7%b6%b2%e7%ab%99%e5%85%8d%e8%b2%bb%e6%86%91%e8%ad%89" target="_blank"
        title="Share on Pinterest">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -333,12 +433,12 @@ if (!doNotTrack) {
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="https://kalug.linux.org.tw/planet/chusiang/20180428_how-to-stable-upgrade-the-ansible.html/" data-toggle="tooltip" data-placement="top" title="怎麼無痛升級 Ansible">&larr; Previous Post</a>
+              <a href="https://kalug.linux.org.tw/planet/chusiang/20180630_see-the-agile-from-mindset.html/" data-toggle="tooltip" data-placement="top" title="從《心態致勝》看敏捷">&larr; Previous Post</a>
             </li>
           
           
             <li class="next">
-              <a href="https://kalug.linux.org.tw/planet/appleboy/20180514_how-to-write-testing-in-golang/" data-toggle="tooltip" data-placement="top" title="如何在 Go 專案內寫測試">Next Post &rarr;</a>
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20180719_graphql-in-go/" data-toggle="tooltip" data-placement="top" title="Go 語言實戰 GraphQL">Next Post &rarr;</a>
             </li>
           
         </ul>

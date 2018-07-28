@@ -5,23 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Go 語言的 vendor 目錄</title>
-  <meta property="og:title" content="Go 語言的 vendor 目錄" />
-  <meta name="twitter:title" content="Go 語言的 vendor 目錄" />
-  <meta name="description" content="很多朋友剛入門 Go 語言時，第一個會遇到的問題是，該如何設定專案配置，讓專案可以正常執行，在個人電腦該如何開發多個專案，這邊就會遇到該如何設定 $">
-  <meta property="og:description" content="很多朋友剛入門 Go 語言時，第一個會遇到的問題是，該如何設定專案配置，讓專案可以正常執行，在個人電腦該如何開發多個專案，這邊就會遇到該如何設定 $">
-  <meta name="twitter:description" content="很多朋友剛入門 Go 語言時，第一個會遇到的問題是，該如何設定專案配置，讓專案可以正常執行，在個人電腦該如何開發多個專案，這邊就會遇到該如何設定 $">
+  <title>用 Caddy 申請 Let’s Encrypt Wildcard 憑證</title>
+  <meta property="og:title" content="用 Caddy 申請 Let’s Encrypt Wildcard 憑證" />
+  <meta name="twitter:title" content="用 Caddy 申請 Let’s Encrypt Wildcard 憑證" />
+  <meta name="description" content="2018 年 3 月 Let&#8217;s Encrypt 官方正式公告支援 Wildcard Certificate 憑證，有在玩多個 subdomain 有福了，未來只要申請一張 *.example.com 就全部通用啦，當然很高興 Caddy 也跟進了，在 v11.0 正式支援多種 DNS Provi">
+  <meta property="og:description" content="2018 年 3 月 Let&#8217;s Encrypt 官方正式公告支援 Wildcard Certificate 憑證，有在玩多個 subdomain 有福了，未來只要申請一張 *.example.com 就全部通用啦，當然很高興 Caddy 也跟進了，在 v11.0 正式支援多種 DNS Provi">
+  <meta name="twitter:description" content="2018 年 3 月 Let&#8217;s Encrypt 官方正式公告支援 Wildcard Certificate 憑證，有在玩多個 subdomain 有福了，未來只要申請一張 *.example.com 就全部通用啦，當然很高興 Caddy 也跟進了，在 v11.0 正式支援多種 DNS Provi">
   <meta name="author" content=""/>
   <link href='https://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://kalug.linux.org.tw/img/kalug.png" />
   <meta name="twitter:image" content="https://kalug.linux.org.tw/img/kalug.png" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://kalug.linux.org.tw/planet/appleboy/20180505_what-is-vendor-in-golang/" />
+  <meta property="og:url" content="https://kalug.linux.org.tw/planet/appleboy/20180727_caddy-lets-encrypt-wildcard-certificate/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kaohsiung Linux User Group" />
 
   <meta name="generator" content="Hugo 0.41" />
-  <link rel="canonical" href="https://kalug.linux.org.tw/planet/appleboy/20180505_what-is-vendor-in-golang/" />
+  <link rel="canonical" href="https://kalug.linux.org.tw/planet/appleboy/20180727_caddy-lets-encrypt-wildcard-certificate/" />
   <link rel="alternate" href="https://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -206,7 +206,7 @@ if (!doNotTrack) {
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="blog-heading">
-              <h1>Go 語言的 vendor 目錄</h1>
+              <h1>用 Caddy 申請 Let’s Encrypt Wildcard 憑證</h1>
                 
                 
             </div>
@@ -222,24 +222,61 @@ if (!doNotTrack) {
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p><a href="https://www.flickr.com/photos/appleboy/40093179410/in/dateposted-public/" title="Go-Logo_Blue"><img src="https://i1.wp.com/farm1.staticflickr.com/908/40093179410_53df4bb9e8_z.jpg?w=840&#038;ssl=1" alt="Go-Logo_Blue" data-recalc-dims="1" /></a></p>
+        <p><a href="https://www.flickr.com/photos/appleboy/42761134805/in/dateposted-public/" title="Screen Shot 2018-07-27 at 11.29.44 AM"><img src="https://i2.wp.com/farm1.staticflickr.com/846/42761134805_c4ab2e9168_z.jpg?w=840&#038;ssl=1" alt="Screen Shot 2018-07-27 at 11.29.44 AM" data-recalc-dims="1" /></a></p>
 
-<p>很多朋友剛入門 <a href="https://golang.org">Go 語言時</a>，第一個會遇到的問題是，該如何設定專案配置，讓專案可以正常執行，在個人電腦該如何開發多個專案，這邊就會遇到該如何設定 <code>$GOPATH</code>，我在這邊跟大家講個觀念，開發環境只會有一個 <code>$GOPATH</code>，不管團隊內有多少專案，都是存放在同一個 GOPATH，避免每次開專案都要重新設定 <code>$GOPATH</code>，而專案內用到的相依性套件，請各自維護，透過<a href="https://github.com/golang/go/wiki/PackageManagementTools">官方提供的 wiki</a>，請選一套覺得好用的來使用吧，沒有最好的工具，找一套適合團隊是最重要的。</p>
+<p>2018 年 3 月 <a href="https://letsencrypt.org/">Let&#8217;s Encrypt</a> 官方正式公告<a href="https://community.letsencrypt.org/t/acme-v2-production-environment-wildcards/55578">支援 Wildcard Certificate 憑證</a>，有在玩多個 subdomain 有福了，未來只要申請一張 <code>*.example.com</code> 就全部通用啦，當然很高興 <a href="https://caddyserver.com/">Caddy</a> 也跟進了，在 <a href="https://caddyserver.com/blog/caddy-0_11-released">v11.0</a> 正式支援多種 DNS Provider，只要申請 DNS 提供商的 API Key 或 Secret 設定在啟動 Caddy 步驟內就可以了。底下用 <a href="https://tw.godaddy.com/">Godaddy</a> 舉例。</p>
 
-<p><span id="more-7017"></span></p>
+<p><span id="more-7054"></span></p>
 
-<h2>什麼是 vendor</h2>
+<h2>申請 Godaddy API Key</h2>
 
-<p>這邊不多說了，直接看影片教學最快了。</p>
+<p>請直接上 <a href="https://developer.godaddy.com/keys">Godaddy 開發者網站</a>申請，就可以正式拿到 Key 跟 Secret</p>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/DKqw_CvVklo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<p><a href="https://www.flickr.com/photos/appleboy/43663781331/in/dateposted-public/" title="https___developer_godaddy_com_keys__&#x1f50a;"><img src="https://i0.wp.com/farm1.staticflickr.com/922/43663781331_ea6b26d29a_z.jpg?w=840&#038;ssl=1" alt="https___developer_godaddy_com_keys__&#x1f50a;" data-recalc-dims="1" /></a></p>
 
-<hr />
+<h2>下載 Caddy 執行檔</h2>
 
-<p>Go 語言線上課程目前特價 $1600，持續錄製中，每週都會有新的影片上架，歡迎大家參考看看，請點選底下購買連結:</p>
+<p>可以直接到<a href="https://caddyserver.com/download">官方網站</a>下載，請記得選擇您的 DNS Provider plugin 才可以</p>
 
-<p><h1><a href="http://bit.ly/intro-golang">點我購買</a></h1><br />
-<div class="wp_rp_wrap  wp_rp_plain" ><div class="wp_rp_content"><h3 class="related_post_title">Related View</h3><ul class="related_post wp_rp"><li data-position="0" data-poid="in-6674" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/03/golang-dependency-management-tool-dep/" class="wp_rp_title">Go 語言官方推出的 dep 使用心得</a><small class="wp_rp_comments_count"> (6)</small><br /></li><li data-position="1" data-poid="in-6772" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/07/go-framework-gin-release-v1-2/" class="wp_rp_title">Go 語言框架 Gin 終於發佈 v1.2 版本</a><small class="wp_rp_comments_count"> (2)</small><br /></li><li data-position="2" data-poid="in-6342" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/05/package-management-for-golang-glide/" class="wp_rp_title">Golang 套件管理工具 Glide</a><small class="wp_rp_comments_count"> (2)</small><br /></li><li data-position="3" data-poid="in-6966" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/03/simple-queue-with-optimistic-concurrency-in-go/" class="wp_rp_title">用 Go 語言實現單一或多重 Queue 搭配 optimistic concurrency</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="4" data-poid="in-7013" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/04/init-func-in-golang/" class="wp_rp_title">Go 語言的 init 函式</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="5" data-poid="in-6804" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/09/why-i-choose-drone-as-ci-cd-tool/" class="wp_rp_title">為什麼我用 Drone 取代 Jenkins 及 GitLab CI</a><small class="wp_rp_comments_count"> (10)</small><br /></li><li data-position="6" data-poid="in-6992" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/03/golang-introduction-video/" class="wp_rp_title">Go 語言基礎實戰教學影片上線了</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="7" data-poid="in-6953" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/01/write-golang-in-aws-lambda/" class="wp_rp_title">在 AWS Lambda 上寫 Go 語言搭配 API Gateway</a><small class="wp_rp_comments_count"> (3)</small><br /></li><li data-position="8" data-poid="in-7029" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/06/drone-kubernetes-with-golang/" class="wp_rp_title">Drone 搭配 Kubernetes 部署 Go 語言項目</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="9" data-poid="in-6819" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/09/deploy-go-app-to-zeit-now/" class="wp_rp_title">部署 Go 語言 App 到 Now.sh</a><small class="wp_rp_comments_count"> (0)</small><br /></li></ul></div></div></p>
+<p><a href="https://www.flickr.com/photos/appleboy/43617522682/in/dateposted-public/" title="Download_Caddy_&#x1f50a;"><img src="https://i0.wp.com/farm1.staticflickr.com/837/43617522682_96e20797cd_z.jpg?w=840&#038;ssl=1" alt="Download_Caddy_&#x1f50a;" data-recalc-dims="1" /></a></p>
+
+<p>接著點選左下角的 Download 按鈕，下方會顯示可以透過 CURL 方式來安裝</p>
+
+<pre class="brush: plain; title: ; notranslate">
+$ curl https://getcaddy.com | bash -s personal http.cache,http.expires,tls.dns.godaddy
+</pre>
+
+<p>直接把上面的指令貼到 Linux Console 上，這樣系統會預設將 Caddy 安裝到 <code>/usr/local/bin</code> 底下。</p>
+
+<h2>Caddy 設定檔並啟動</h2>
+
+<p>打開您的 <code>Caddyfile</code> 或者是其他檔案。裡面寫入</p>
+
+<pre class="brush: plain; title: ; notranslate">
+*.design.wu-boy.com {
+    proxy / localhost:8081 {
+        websocket
+    }
+
+    tls {
+        dns godaddy
+    }
+}
+</pre>
+
+<p>請注意 dns 區域，請填上 DNS Provider，如果不知道要填什麼值，可以參考<a href="https://caddyserver.com/docs/automatic-https">線上文件</a>，完成後可以透過底下指令啟動:</p>
+
+<pre class="brush: plain; title: ; notranslate">
+$ GODADDY_API_KEY=xxxx \
+GODADDY_API_SECRET=xxxx \
+CADDYPATH=/etc/caddy/ssl \
+caddy -conf=/etc/caddy/Caddyfile
+</pre>
+
+<p>啟動後，可以打開網頁測試看看</p>
+
+<p><a data-flickr-embed="true"  href="https://www.flickr.com/photos/appleboy/29794179438/in/dateposted-public/" title="Screenshot_2018_7_27__11_25_AM"><img src="https://i1.wp.com/farm1.staticflickr.com/914/29794179438_c3c1bf80a3_z.jpg?resize=640%2C292&#038;ssl=1" alt="Screenshot_2018_7_27__11_25_AM" data-recalc-dims="1"></a><br />
+<div class="wp_rp_wrap  wp_rp_plain" id="wp_rp_first"><div class="wp_rp_content"><h3 class="related_post_title">Related View</h3><ul class="related_post wp_rp"><li data-position="0" data-poid="in-6777" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/07/lets-encrypt-support-wildcard-certificates-in-2018-01/" class="wp_rp_title">Let&#8217;s Encrypt 將在 2018 年一月支援 Wildcard Certificates</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="1" data-poid="in-5958" data-post-type="none" ><a href="https://blog.wu-boy.com/2015/12/letsencrypt-entering-public-beta-free-ssl/" class="wp_rp_title">Letsencrypt 開放申請免費 SSL 憑證</a><small class="wp_rp_comments_count"> (4)</small><br /></li><li data-position="2" data-poid="in-6072" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/01/free-register-letsencrypt-ssl-website/" class="wp_rp_title">免費幫您申請 Letsencrypt 憑證網站</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="3" data-poid="in-5967" data-post-type="none" ><a href="https://blog.wu-boy.com/2015/12/force-https-connection-on-wordpress/" class="wp_rp_title">將 wordpress 強制使用 SSL 連線</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="4" data-poid="in-6899" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/11/migrate-nginx-to-caddy/" class="wp_rp_title">從 Nginx 換到 Caddy</a><small class="wp_rp_comments_count"> (7)</small><br /></li><li data-position="5" data-poid="in-6683" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/04/1-line-letsencrypt-https-servers-in-golang/" class="wp_rp_title">在 Go 語言用一行程式碼自動化安裝且更新 Let’s Encrypt 憑證</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="6" data-poid="in-6657" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/02/caddy-setting-with-drone-ci-server/" class="wp_rp_title">Caddy 搭配 Drone 伺服器設定</a><small class="wp_rp_comments_count"> (4)</small><br /></li><li data-position="7" data-poid="in-6548" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/10/website-support-http2-using-letsencrypt/" class="wp_rp_title">申請 Let&#8217;s Encrypt 免費憑證讓網站支援 HTTP2</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="8" data-poid="in-5273" data-post-type="none" ><a href="https://blog.wu-boy.com/2014/04/startssl-close-registeration-openssl-cve-2014-0160-heartbleed-security/" class="wp_rp_title">StartSSL 關閉註冊 OpenSSL CVE-2014-0160 Heartbleed Security</a><small class="wp_rp_comments_count"> (5)</small><br /></li><li data-position="9" data-poid="in-6481" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/08/golang-tesing-on-jenkins/" class="wp_rp_title">在 Jenkins 跑 Golang 測試</a><small class="wp_rp_comments_count"> (0)</small><br /></li></ul></div></div></p>
 
 
         
@@ -252,7 +289,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f&amp;text=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20vendor%20%e7%9b%ae%e9%8c%84&amp;via="
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180727_caddy-lets-encrypt-wildcard-certificate%2f&amp;text=%e7%94%a8%20Caddy%20%e7%94%b3%e8%ab%8b%20Let%e2%80%99s%20Encrypt%20Wildcard%20%e6%86%91%e8%ad%89&amp;via="
        target="_blank" alt="" title="Share on Twitter">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -263,7 +300,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f" target="_blank" title="Share on Google Plus">
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180727_caddy-lets-encrypt-wildcard-certificate%2f" target="_blank" title="Share on Google Plus">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
@@ -273,7 +310,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f" target="_blank" title="Share on Facebook">
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180727_caddy-lets-encrypt-wildcard-certificate%2f" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -283,7 +320,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20vendor%20%e7%9b%ae%e9%8c%84" target="_blank" title="Share on Reddit">
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180727_caddy-lets-encrypt-wildcard-certificate%2f&amp;title=%e7%94%a8%20Caddy%20%e7%94%b3%e8%ab%8b%20Let%e2%80%99s%20Encrypt%20Wildcard%20%e6%86%91%e8%ad%89" target="_blank" title="Share on Reddit">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
@@ -293,7 +330,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20vendor%20%e7%9b%ae%e9%8c%84" target="_blank"
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180727_caddy-lets-encrypt-wildcard-certificate%2f&amp;title=%e7%94%a8%20Caddy%20%e7%94%b3%e8%ab%8b%20Let%e2%80%99s%20Encrypt%20Wildcard%20%e6%86%91%e8%ad%89" target="_blank"
        title="Share on LinkedIn">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -304,7 +341,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20vendor%20%e7%9b%ae%e9%8c%84" target="_blank"
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180727_caddy-lets-encrypt-wildcard-certificate%2f&amp;title=%e7%94%a8%20Caddy%20%e7%94%b3%e8%ab%8b%20Let%e2%80%99s%20Encrypt%20Wildcard%20%e6%86%91%e8%ad%89" target="_blank"
        title="Share on StumbleUpon">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -315,7 +352,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f&amp;description=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20vendor%20%e7%9b%ae%e9%8c%84" target="_blank"
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180727_caddy-lets-encrypt-wildcard-certificate%2f&amp;description=%e7%94%a8%20Caddy%20%e7%94%b3%e8%ab%8b%20Let%e2%80%99s%20Encrypt%20Wildcard%20%e6%86%91%e8%ad%89" target="_blank"
        title="Share on Pinterest">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -333,13 +370,9 @@ if (!doNotTrack) {
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="https://kalug.linux.org.tw/planet/chusiang/20180428_how-to-stable-upgrade-the-ansible.html/" data-toggle="tooltip" data-placement="top" title="怎麼無痛升級 Ansible">&larr; Previous Post</a>
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20180719_graphql-in-go/" data-toggle="tooltip" data-placement="top" title="Go 語言實戰 GraphQL">&larr; Previous Post</a>
             </li>
           
-          
-            <li class="next">
-              <a href="https://kalug.linux.org.tw/planet/appleboy/20180514_how-to-write-testing-in-golang/" data-toggle="tooltip" data-placement="top" title="如何在 Go 專案內寫測試">Next Post &rarr;</a>
-            </li>
           
         </ul>
       

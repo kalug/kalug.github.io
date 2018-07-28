@@ -5,23 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Go 語言的 vendor 目錄</title>
-  <meta property="og:title" content="Go 語言的 vendor 目錄" />
-  <meta name="twitter:title" content="Go 語言的 vendor 目錄" />
-  <meta name="description" content="很多朋友剛入門 Go 語言時，第一個會遇到的問題是，該如何設定專案配置，讓專案可以正常執行，在個人電腦該如何開發多個專案，這邊就會遇到該如何設定 $">
-  <meta property="og:description" content="很多朋友剛入門 Go 語言時，第一個會遇到的問題是，該如何設定專案配置，讓專案可以正常執行，在個人電腦該如何開發多個專案，這邊就會遇到該如何設定 $">
-  <meta name="twitter:description" content="很多朋友剛入門 Go 語言時，第一個會遇到的問題是，該如何設定專案配置，讓專案可以正常執行，在個人電腦該如何開發多個專案，這邊就會遇到該如何設定 $">
+  <title>Go 語言實戰 GraphQL</title>
+  <meta property="og:title" content="Go 語言實戰 GraphQL" />
+  <meta name="twitter:title" content="Go 語言實戰 GraphQL" />
+  <meta name="description" content="很高興能在 2018 ModernWeb 研討會跟大家分享用 Go 語言實戰 GraphQL，相信大家都知道 GraphQL 帶給前端後端及手機開發者很多好處，強烈推薦大家來嘗試看看。這場議程">
+  <meta property="og:description" content="很高興能在 2018 ModernWeb 研討會跟大家分享用 Go 語言實戰 GraphQL，相信大家都知道 GraphQL 帶給前端後端及手機開發者很多好處，強烈推薦大家來嘗試看看。這場議程">
+  <meta name="twitter:description" content="很高興能在 2018 ModernWeb 研討會跟大家分享用 Go 語言實戰 GraphQL，相信大家都知道 GraphQL 帶給前端後端及手機開發者很多好處，強烈推薦大家來嘗試看看。這場議程">
   <meta name="author" content=""/>
   <link href='https://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://kalug.linux.org.tw/img/kalug.png" />
   <meta name="twitter:image" content="https://kalug.linux.org.tw/img/kalug.png" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://kalug.linux.org.tw/planet/appleboy/20180505_what-is-vendor-in-golang/" />
+  <meta property="og:url" content="https://kalug.linux.org.tw/planet/appleboy/20180719_graphql-in-go/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kaohsiung Linux User Group" />
 
   <meta name="generator" content="Hugo 0.41" />
-  <link rel="canonical" href="https://kalug.linux.org.tw/planet/appleboy/20180505_what-is-vendor-in-golang/" />
+  <link rel="canonical" href="https://kalug.linux.org.tw/planet/appleboy/20180719_graphql-in-go/" />
   <link rel="alternate" href="https://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -206,7 +206,7 @@ if (!doNotTrack) {
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="blog-heading">
-              <h1>Go 語言的 vendor 目錄</h1>
+              <h1>Go 語言實戰 GraphQL</h1>
                 
                 
             </div>
@@ -222,24 +222,29 @@ if (!doNotTrack) {
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p><a href="https://www.flickr.com/photos/appleboy/40093179410/in/dateposted-public/" title="Go-Logo_Blue"><img src="https://i1.wp.com/farm1.staticflickr.com/908/40093179410_53df4bb9e8_z.jpg?w=840&#038;ssl=1" alt="Go-Logo_Blue" data-recalc-dims="1" /></a></p>
+        <p><a href="https://www.flickr.com/photos/appleboy/41690303080/in/dateposted-public/" title="Screen Shot 2018-07-19 at 8.58.48 AM"><img src="https://i1.wp.com/farm2.staticflickr.com/1769/41690303080_3d1a278b8a_z.jpg?w=840&#038;ssl=1" alt="Screen Shot 2018-07-19 at 8.58.48 AM" data-recalc-dims="1" /></a></p>
 
-<p>很多朋友剛入門 <a href="https://golang.org">Go 語言時</a>，第一個會遇到的問題是，該如何設定專案配置，讓專案可以正常執行，在個人電腦該如何開發多個專案，這邊就會遇到該如何設定 <code>$GOPATH</code>，我在這邊跟大家講個觀念，開發環境只會有一個 <code>$GOPATH</code>，不管團隊內有多少專案，都是存放在同一個 GOPATH，避免每次開專案都要重新設定 <code>$GOPATH</code>，而專案內用到的相依性套件，請各自維護，透過<a href="https://github.com/golang/go/wiki/PackageManagementTools">官方提供的 wiki</a>，請選一套覺得好用的來使用吧，沒有最好的工具，找一套適合團隊是最重要的。</p>
+<p>很高興能在 <a href="http://modernweb.tw/">2018 ModernWeb</a> 研討會跟大家分享用 <a href="https://golang.org">Go 語言</a>實戰 <a href="https://graphql.org/">GraphQL</a>，相信大家都知道 GraphQL 帶給前端後端及手機開發者很多好處，強烈推薦大家來嘗試看看。這場議程最主要是推廣 GraphQL 及 Go 語言。底下有投影片大家可以參考看看。</p>
 
-<p><span id="more-7017"></span></p>
+<p><span id="more-7052"></span></p>
 
-<h2>什麼是 vendor</h2>
+<h2>大綱</h2>
 
-<p>這邊不多說了，直接看影片教學最快了。</p>
+<p>在這場議程，大致上有四大議題跟大家探討</p>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/DKqw_CvVklo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<ol>
+<li>為什麼我捨棄 RESTful 轉向 GraphQL</li>
+<li>什麼是 GraphQL，它解決了什麼問題</li>
+<li>在 Go 語言實戰 GraphQL 技巧踩雷</li>
+<li>如何撰寫 GraphQL 測試</li>
+</ol>
 
-<hr />
+<p>很感謝會後蠻多朋友跑過來跟我討論，但是礙於要趕搭高鐵回新竹，所以沒跟大家深入探討。如果有任何問題都可以直接聯絡我。</p>
 
-<p>Go 語言線上課程目前特價 $1600，持續錄製中，每週都會有新的影片上架，歡迎大家參考看看，請點選底下購買連結:</p>
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/L0UEo6V4Nrn7DN" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
 
-<p><h1><a href="http://bit.ly/intro-golang">點我購買</a></h1><br />
-<div class="wp_rp_wrap  wp_rp_plain" ><div class="wp_rp_content"><h3 class="related_post_title">Related View</h3><ul class="related_post wp_rp"><li data-position="0" data-poid="in-6674" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/03/golang-dependency-management-tool-dep/" class="wp_rp_title">Go 語言官方推出的 dep 使用心得</a><small class="wp_rp_comments_count"> (6)</small><br /></li><li data-position="1" data-poid="in-6772" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/07/go-framework-gin-release-v1-2/" class="wp_rp_title">Go 語言框架 Gin 終於發佈 v1.2 版本</a><small class="wp_rp_comments_count"> (2)</small><br /></li><li data-position="2" data-poid="in-6342" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/05/package-management-for-golang-glide/" class="wp_rp_title">Golang 套件管理工具 Glide</a><small class="wp_rp_comments_count"> (2)</small><br /></li><li data-position="3" data-poid="in-6966" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/03/simple-queue-with-optimistic-concurrency-in-go/" class="wp_rp_title">用 Go 語言實現單一或多重 Queue 搭配 optimistic concurrency</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="4" data-poid="in-7013" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/04/init-func-in-golang/" class="wp_rp_title">Go 語言的 init 函式</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="5" data-poid="in-6804" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/09/why-i-choose-drone-as-ci-cd-tool/" class="wp_rp_title">為什麼我用 Drone 取代 Jenkins 及 GitLab CI</a><small class="wp_rp_comments_count"> (10)</small><br /></li><li data-position="6" data-poid="in-6992" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/03/golang-introduction-video/" class="wp_rp_title">Go 語言基礎實戰教學影片上線了</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="7" data-poid="in-6953" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/01/write-golang-in-aws-lambda/" class="wp_rp_title">在 AWS Lambda 上寫 Go 語言搭配 API Gateway</a><small class="wp_rp_comments_count"> (3)</small><br /></li><li data-position="8" data-poid="in-7029" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/06/drone-kubernetes-with-golang/" class="wp_rp_title">Drone 搭配 Kubernetes 部署 Go 語言項目</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="9" data-poid="in-6819" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/09/deploy-go-app-to-zeit-now/" class="wp_rp_title">部署 Go 語言 App 到 Now.sh</a><small class="wp_rp_comments_count"> (0)</small><br /></li></ul></div></div></p>
+<div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/appleboy/graphql-ingo-106518012" title="GraphQL IN Golang" target="_blank">GraphQL IN Golang</a> </strong> from <strong><a href="https://www.slideshare.net/appleboy" target="_blank">Bo-Yi Wu</a></strong> </div>
+<div class="wp_rp_wrap  wp_rp_plain" ><div class="wp_rp_content"><h3 class="related_post_title">Related View</h3><ul class="related_post wp_rp"><li data-position="0" data-poid="in-6198" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/04/gofight-tool-for-api-handler-testing-in-golang/" class="wp_rp_title">用 gofight 來測試 golang web API handler</a><small class="wp_rp_comments_count"> (2)</small><br /></li><li data-position="1" data-poid="in-6597" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/11/golang-gofight-support-echo-framework/" class="wp_rp_title">輕量級 Gofight 支援 Echo 框架測試</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="2" data-poid="in-6758" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/06/gopher-day-in-taipei/" class="wp_rp_title">台灣第一屆 GoPher 大會</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="3" data-poid="in-6493" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/08/build-microservices-in-golang/" class="wp_rp_title">2016 COSCUP 用 Golang 寫 Microservices</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="4" data-poid="in-6791" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/08/microservice-in-go/" class="wp_rp_title">用 Go 語言打造微服務架構</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="5" data-poid="in-6708" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/04/devops-bot-in-golang/" class="wp_rp_title">用 Go 語言打造 DevOps Bot</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="6" data-poid="in-6700" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/04/introduction-to-gitea-in-digitalocean-hsinchu/" class="wp_rp_title">在 DigitalOcean 新竹社群簡介 Gitea 開源專案</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="7" data-poid="in-6992" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/03/golang-introduction-video/" class="wp_rp_title">Go 語言基礎實戰教學影片上線了</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="8" data-poid="in-5728" data-post-type="none" ><a href="https://blog.wu-boy.com/2015/05/node-js-mocha-delay-testing/" class="wp_rp_title">Node.js Mocha 延遲測試</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="9" data-poid="in-6342" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/05/package-management-for-golang-glide/" class="wp_rp_title">Golang 套件管理工具 Glide</a><small class="wp_rp_comments_count"> (2)</small><br /></li></ul></div></div>
 
 
         
@@ -252,7 +257,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f&amp;text=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20vendor%20%e7%9b%ae%e9%8c%84&amp;via="
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180719_graphql-in-go%2f&amp;text=Go%20%e8%aa%9e%e8%a8%80%e5%af%a6%e6%88%b0%20GraphQL&amp;via="
        target="_blank" alt="" title="Share on Twitter">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -263,7 +268,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f" target="_blank" title="Share on Google Plus">
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180719_graphql-in-go%2f" target="_blank" title="Share on Google Plus">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
@@ -273,7 +278,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f" target="_blank" title="Share on Facebook">
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180719_graphql-in-go%2f" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -283,7 +288,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20vendor%20%e7%9b%ae%e9%8c%84" target="_blank" title="Share on Reddit">
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180719_graphql-in-go%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e5%af%a6%e6%88%b0%20GraphQL" target="_blank" title="Share on Reddit">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
@@ -293,7 +298,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20vendor%20%e7%9b%ae%e9%8c%84" target="_blank"
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180719_graphql-in-go%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e5%af%a6%e6%88%b0%20GraphQL" target="_blank"
        title="Share on LinkedIn">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -304,7 +309,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20vendor%20%e7%9b%ae%e9%8c%84" target="_blank"
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180719_graphql-in-go%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e5%af%a6%e6%88%b0%20GraphQL" target="_blank"
        title="Share on StumbleUpon">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -315,7 +320,7 @@ if (!doNotTrack) {
 
 
 <li>
-    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180505_what-is-vendor-in-golang%2f&amp;description=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20vendor%20%e7%9b%ae%e9%8c%84" target="_blank"
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180719_graphql-in-go%2f&amp;description=Go%20%e8%aa%9e%e8%a8%80%e5%af%a6%e6%88%b0%20GraphQL" target="_blank"
        title="Share on Pinterest">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -333,12 +338,12 @@ if (!doNotTrack) {
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="https://kalug.linux.org.tw/planet/chusiang/20180428_how-to-stable-upgrade-the-ansible.html/" data-toggle="tooltip" data-placement="top" title="怎麼無痛升級 Ansible">&larr; Previous Post</a>
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20180706_mkcert-zero-config-tool-to-make-locally-trusted-development-certificates/" data-toggle="tooltip" data-placement="top" title="在本機端快速產生網站免費憑證">&larr; Previous Post</a>
             </li>
           
           
             <li class="next">
-              <a href="https://kalug.linux.org.tw/planet/appleboy/20180514_how-to-write-testing-in-golang/" data-toggle="tooltip" data-placement="top" title="如何在 Go 專案內寫測試">Next Post &rarr;</a>
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20180727_caddy-lets-encrypt-wildcard-certificate/" data-toggle="tooltip" data-placement="top" title="用 Caddy 申請 Let’s Encrypt Wildcard 憑證">Next Post &rarr;</a>
             </li>
           
         </ul>
