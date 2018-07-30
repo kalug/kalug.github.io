@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://kalug.linux.org.tw/planet/chusiang/20180729_devops-journey-devops-engineer-sre-jobs.html/</loc>
+    <lastmod>2018-07-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.linux.org.tw/planet/appleboy/20180729_drone-with-hashicorp-packer/</loc>
+    <lastmod>2018-07-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kalug.linux.org.tw/meetups/1807/</loc>
     <lastmod>2018-07-28T00:00:00+00:00</lastmod>
   </url>
@@ -458,7 +468,7 @@
   
   <url>
     <loc>https://kalug.linux.org.tw/</loc>
-    <lastmod>2018-07-28T00:00:00+00:00</lastmod>
+    <lastmod>2018-07-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -484,7 +494,7 @@
   
   <url>
     <loc>https://kalug.linux.org.tw/planet/</loc>
-    <lastmod>2018-07-27T00:00:00+00:00</lastmod>
+    <lastmod>2018-07-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>

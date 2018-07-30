@@ -5,23 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>在本機端快速產生網站免費憑證</title>
-  <meta property="og:title" content="在本機端快速產生網站免費憑證" />
-  <meta name="twitter:title" content="在本機端快速產生網站免費憑證" />
-  <meta name="description" content="大家看到網站免費憑證，一定會想到 Let&#8217;s encrypt 服務商提供一個網域可以使用 100 個免費憑證，如果您有很多 subdomain 需求，還可以申請獨立一張 wildcard 憑證，但是這是在伺服器端">
-  <meta property="og:description" content="大家看到網站免費憑證，一定會想到 Let&#8217;s encrypt 服務商提供一個網域可以使用 100 個免費憑證，如果您有很多 subdomain 需求，還可以申請獨立一張 wildcard 憑證，但是這是在伺服器端">
-  <meta name="twitter:description" content="大家看到網站免費憑證，一定會想到 Let&#8217;s encrypt 服務商提供一個網域可以使用 100 個免費憑證，如果您有很多 subdomain 需求，還可以申請獨立一張 wildcard 憑證，但是這是在伺服器端">
+  <title>DevOps Engineer、SRE 徵才求職雜談</title>
+  <meta property="og:title" content="DevOps Engineer、SRE 徵才求職雜談" />
+  <meta name="twitter:title" content="DevOps Engineer、SRE 徵才求職雜談" />
+  <meta name="description" content="擔任 DevOps Taiwan 的社群志工的凍仁，不時會收到企業轉介 DevOps Engineer 或 SRE (Site Reliability Engineer) 的請求，因為這類的異數著實不好找。 DevOps、SRE 這兩個名詞代表著不同的意義，">
+  <meta property="og:description" content="擔任 DevOps Taiwan 的社群志工的凍仁，不時會收到企業轉介 DevOps Engineer 或 SRE (Site Reliability Engineer) 的請求，因為這類的異數著實不好找。 DevOps、SRE 這兩個名詞代表著不同的意義，">
+  <meta name="twitter:description" content="擔任 DevOps Taiwan 的社群志工的凍仁，不時會收到企業轉介 DevOps Engineer 或 SRE (Site Reliability Engineer) 的請求，因為這類的異數著實不好找。 DevOps、SRE 這兩個名詞代表著不同的意義，">
   <meta name="author" content=""/>
   <link href='https://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://kalug.linux.org.tw/img/kalug.png" />
   <meta name="twitter:image" content="https://kalug.linux.org.tw/img/kalug.png" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://kalug.linux.org.tw/planet/appleboy/20180706_mkcert-zero-config-tool-to-make-locally-trusted-development-certificates/" />
+  <meta property="og:url" content="https://kalug.linux.org.tw/planet/chusiang/20180729_devops-journey-devops-engineer-sre-jobs.html/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kaohsiung Linux User Group" />
 
   <meta name="generator" content="Hugo 0.41" />
-  <link rel="canonical" href="https://kalug.linux.org.tw/planet/appleboy/20180706_mkcert-zero-config-tool-to-make-locally-trusted-development-certificates/" />
+  <link rel="canonical" href="https://kalug.linux.org.tw/planet/chusiang/20180729_devops-journey-devops-engineer-sre-jobs.html/" />
   <link rel="alternate" href="https://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -206,7 +206,7 @@ if (!doNotTrack) {
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="blog-heading">
-              <h1>在本機端快速產生網站免費憑證</h1>
+              <h1>DevOps Engineer、SRE 徵才求職雜談</h1>
                 
                 
             </div>
@@ -222,124 +222,7 @@ if (!doNotTrack) {
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p><a href="https://www.flickr.com/photos/appleboy/43227213371/in/dateposted-public/" title="SSL-Certificate"><img src="https://i1.wp.com/farm2.staticflickr.com/1785/43227213371_a041db0810_o.png?w=840&#038;ssl=1" alt="SSL-Certificate" data-recalc-dims="1" /></a></p>
-
-<p>大家看到網站免費憑證，一定會想到 <a href="https://letsencrypt.org/">Let&#8217;s encrypt</a> 服務商提供一個網域可以使用 100 個免費憑證，如果您有很多 subdomain 需求，還可以申請獨立一張 <a href="https://community.letsencrypt.org/t/acme-v2-and-wildcard-certificate-support-is-live/55579">wildcard 憑證</a>，但是這是在伺服器端的操作，假設在本機端開發，該如何快速產生憑證，這樣開啟瀏覽器時，就可以看到綠色的 https 字眼</p>
-
-<p><a href="https://www.flickr.com/photos/appleboy/43177490822/in/dateposted-public/" title="Snip20180706_2"><img src="https://i2.wp.com/farm1.staticflickr.com/921/43177490822_974612c015_z.jpg?w=840&#038;ssl=1" alt="Snip20180706_2" data-recalc-dims="1" /></a></p>
-
-<p><span id="more-7047"></span></p>
-
-<h2>安裝 mkcert</h2>
-
-<p>本篇介紹一個用 <a href="https://golang.org">Go 語言</a>寫的工具叫做 <a href="https://github.com/FiloSottile/mkcert">mkcert</a>，此工具目前只有支援 MacOS 及 Linux 環境，未來會支援 Windows，如果有在玩 Windows 的開發者，也可以直接開 PR 啦。安裝方式非常簡單。在 MacOS 可以用 brew</p>
-
-<pre class="brush: plain; title: ; notranslate">
-$ brew install mkcert
-$ brew install nss # if you use Firefox
-</pre>
-
-<h2>使用 mkcert</h2>
-
-<p>第一步驟就是先初始化目錄</p>
-
-<pre class="brush: plain; title: ; notranslate">
-$ mkcert -install
-</pre>
-
-<p>接著看看有幾個網站 domain 需要在本機端使用可以一次申請</p>
-
-<pre class="brush: plain; title: ; notranslate">
-$ mkcert myapp.dev example.com
-Using the local CA at &quot;/Users/xxxxxx/Library/Application Support/mkcert&quot; ✨
-
-Created a new certificate valid for the following names <img src="https://s.w.org/images/core/emoji/2.3/72x72/1f4dc.png" alt="📜" class="wp-smiley" style="height: 1em; max-height: 1em;" />
- - &quot;example.com&quot;
- - &quot;myapp.dev&quot;
-
-The certificate is at &quot;./example.com+1.pem&quot; and the key at &quot;./example.com+1-key.pem&quot; ✅
-</pre>
-
-<h2>撰寫簡單 https 服務</h2>
-
-<p>這邊用 Go 語言當例子</p>
-
-<pre class="brush: go; title: ; notranslate">
-package main
-
-import (
-    &quot;log&quot;
-    &quot;net/http&quot;
-)
-
-func helloServer(w http.ResponseWriter, req *http.Request) {
-    w.Header().Set(&quot;Content-Type&quot;, &quot;text/plain&quot;)
-    w.Write([]byte(&quot;This is an example server.\n&quot;))
-}
-
-func main() {
-    log.Println(&quot;Server listen in 443 port. Please open https://localhost/hello&quot;)
-    http.HandleFunc(&quot;/hello&quot;, helloServer)
-    err := http.ListenAndServeTLS(&quot;:443&quot;, &quot;ssl/localhost.pem&quot;, &quot;ssl/localhost-key.pem&quot;, nil)
-    if err != nil {
-        log.Fatal(&quot;ListenAndServe: &quot;, err)
-    }
-}
-</pre>
-
-<p>其中 <code>ssl/localhost.pem</code> 跟 <code>ssl/localhost-key.pem</code> 就是剛剛透過 mkcert 產生出來的金鑰。透過 curl 工具，可以快速驗證是否成功:</p>
-
-<pre class="brush: plain; title: ; notranslate">
-$ curl -v https://localhost/hello
-*   Trying ::1...
-* TCP_NODELAY set
-* Connected to localhost (::1) port 443 (#0)
-* ALPN, offering h2
-* ALPN, offering http/1.1
-* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
-* successfully set certificate verify locations:
-*   CAfile: /etc/ssl/cert.pem
-  CApath: none
-* TLSv1.2 (OUT), TLS handshake, Client hello (1):
-* TLSv1.2 (IN), TLS handshake, Server hello (2):
-* TLSv1.2 (IN), TLS handshake, Certificate (11):
-* TLSv1.2 (IN), TLS handshake, Server key exchange (12):
-* TLSv1.2 (IN), TLS handshake, Server finished (14):
-* TLSv1.2 (OUT), TLS handshake, Client key exchange (16):
-* TLSv1.2 (OUT), TLS change cipher, Client hello (1):
-* TLSv1.2 (OUT), TLS handshake, Finished (20):
-* TLSv1.2 (IN), TLS change cipher, Client hello (1):
-* TLSv1.2 (IN), TLS handshake, Finished (20):
-* SSL connection using TLSv1.2 / ECDHE-RSA-AES128-GCM-SHA256
-* ALPN, server accepted to use h2
-* Server certificate:
-*  subject: O=mkcert development certificate
-*  start date: Jul  5 02:06:09 2018 GMT
-*  expire date: Jul  6 02:06:09 2028 GMT
-*  subjectAltName: host &quot;localhost&quot; matched cert&#039;s &quot;localhost&quot;
-*  issuer: O=mkcert development CA
-*  SSL certificate verify ok.
-* Using HTTP2, server supports multi-use
-* Connection state changed (HTTP/2 confirmed)
-* Copying HTTP/2 data in stream buffer to connection buffer after upgrade: len=0
-* Using Stream ID: 1 (easy handle 0x7f8fca805800)
-&gt; GET /hello HTTP/2
-&gt; Host: localhost
-&gt; User-Agent: curl/7.54.0
-&gt; Accept: */*
-&gt;
-* Connection state changed (MAX_CONCURRENT_STREAMS updated)!
-&lt; HTTP/2 200
-&lt; content-type: text/plain
-&lt; content-length: 27
-&lt; date: Fri, 06 Jul 2018 02:30:54 GMT
-&lt;
-This is an example server.
-* Connection #0 to host localhost left intact
-</pre>
-
-<p>上面範例放在 <a href="https://github.com/go-training/training/tree/master/example21-simple-golang-https-tls">go-training 專案</a>內，歡迎大家取用。<br />
-<div class="wp_rp_wrap  wp_rp_plain" ><div class="wp_rp_content"><h3 class="related_post_title">Related View</h3><ul class="related_post wp_rp"><li data-position="0" data-poid="in-7029" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/06/drone-kubernetes-with-golang/" class="wp_rp_title">Drone 搭配 Kubernetes 部署 Go 語言項目</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="1" data-poid="in-6869" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/11/gorush-a-push-notification-server-written-in-go/" class="wp_rp_title">Gorush 輕量級手機訊息發送服務</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="2" data-poid="in-6634" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/01/new-git-code-hosting-option-gitea/" class="wp_rp_title">開發者另類的自架 Git 服務選擇: Gitea</a><small class="wp_rp_comments_count"> (4)</small><br /></li><li data-position="3" data-poid="in-6481" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/08/golang-tesing-on-jenkins/" class="wp_rp_title">在 Jenkins 跑 Golang 測試</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="4" data-poid="in-6683" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/04/1-line-letsencrypt-https-servers-in-golang/" class="wp_rp_title">在 Go 語言用一行程式碼自動化安裝且更新 Let’s Encrypt 憑證</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="5" data-poid="in-6819" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/09/deploy-go-app-to-zeit-now/" class="wp_rp_title">部署 Go 語言 App 到 Now.sh</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="6" data-poid="in-7021" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/05/how-to-write-testing-in-golang/" class="wp_rp_title">如何在 Go 專案內寫測試</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="7" data-poid="in-6569" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/11/send-line-notification-using-docker-written-in-golang/" class="wp_rp_title">用 Docker 發送 Line 訊息</a><small class="wp_rp_comments_count"> (5)</small><br /></li><li data-position="8" data-poid="in-6617" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/12/send-line-message-using-drone-line/" class="wp_rp_title">用 drone-line 架設 Line webhook 及發送訊息</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="9" data-poid="in-6657" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/02/caddy-setting-with-drone-ci-server/" class="wp_rp_title">Caddy 搭配 Drone 伺服器設定</a><small class="wp_rp_comments_count"> (4)</small><br /></li></ul></div></div></p>
+        <p>擔任 DevOps Taiwan 的社群志工的凍仁，不時會收到企業轉介 DevOps Engineer 或 SRE (Site Reliability Engineer) 的請求，因為這類的異數著實不好找。<br /><br />DevOps、SRE 這兩個名詞代表著不同的意義，在社群上也不時會提出來討論。兩者的關係，就好比自由軟體與商用軟體，明明都是裝在電腦、手機和平板上使用的軟體，卻還是有些不同。這個議題實在太大，請原諒凍仁沒法在此著墨太多。<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://1.bp.blogspot.com/-t7tfpuBbKT4/W11JqN4D2pI/AAAAAAAApvs/by9pUo7NTbEGc1hg9g3wFOqQ_SyniOszgCLcBGAs/s1600/2018-07-29-devops-jobs.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="1007" data-original-width="1280" height="315" src="https://1.bp.blogspot.com/-t7tfpuBbKT4/W11JqN4D2pI/AAAAAAAApvs/by9pUo7NTbEGc1hg9g3wFOqQ_SyniOszgCLcBGAs/s400/2018-07-29-devops-jobs.png" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ <a href="https://github.com/DevOpsTW/jobs/issues">DevOps Taiwan jobs 板</a>。</td></tr></tbody></table><a name='more'></a><br />回到正題，從凍仁近幾年認識的江湖好手中，發現踏上 DevOps 之旅的工程師，大概有以下 3 種：<br /><ol><li>有伺服器管理經驗的後端工程師 (Backend Engineer)。</li><li>受夠工作一成不變，想簡化工作流程的系統工程師 (System Engineer)。</li><li>喜愛自動化的測試工程師 (Testing Engineer)。</li></ol><br />厲害的後端工程師，為了可以花更多時間專注在開發上，會把後續的部署和測試工作自動化；可系統工程師和測試工程師原先在市場上就屬小眾，會持續利用下班時間進修，並轉職的人也就相對更少了。<span class="Comment"><sup>1</sup></span><br /><br />當 DevOps Engineer 和 SRE 在導入持續整合 (Continuous Integration)、持續交付 (Continuous Delivery) 等基礎建設 (Infrastructure) 遇上阻礙時，或許就會像敝人跑去敏捷社群 (Agile Community Taiwan) 取經，尋求如何<b>保護瓶頸點</b>、<b>降低半成品</b>、<b>排除阻礙</b>、<b>增進團隊工作效率</b> … 等問題的答案，之後<b>真正地</b>踏上尋求<b>廣義 DevOps</b> 之道，「悟」出屬於自己的答案。<br /><br /><iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fchusiang.lai%2Fposts%2F10209427137514671&width=500" width="500" height="479" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe><br /><br /><ul><li>給企業的話：比起招收新的 DevOps Engineer / SRE，不如先問問貴單位有沒有一顆「變革的心」？如果沒有，那麼找來的工程師，很可能在變革上遇到過大的阻礙，最後選擇另謀高就，因為 DevOps 這一名詞，本身就代表著一場變革運動！</li><li>給工程師的話：DevOps 這個名詞代表的意義很多，求職時，請記得問清楚該單位期待的 DevOps 是什麼？<span class="Comment"><sup>2</sup></span>只要有建置一條軟體部署生產線 (pipeline) 的需求，那麼您或許會遇到工作流程變更、團隊合作 … 等各種「人」的問題，而<b>溝通</b>和<b>取捨</b>會是您的必備技藝。相信在 <a href="https://devopsdays.tw/" target="_blank">DevOpsDays Taipei 2018</a> 研討會上，您可以找到屬於自己的 DevOps 之旅方向。</li></ul><br />最後，若您有意尋求 DevOps Engineer 和 SRE 的職缺，或許凍仁能引薦幾家公司，請來信 <u><i>chusiang+jobs (at) drx.tw</i></u>，謝謝。<br /><br /><span class="Comment"><sup>1</sup> 一般來說，具備<b>成長心態</b>的系統工程師和測試工程師，沒有研發工程師來的多。長期待在具備定型心態的環境下，就算原先是一位成長心態者，也很可能受到影響，最後成定型心態者。</span><br /><span class="Comment"><sup>2</sup> 在《DevOps 实践指南》一書的第 vii 頁，譯者王磊提到 DevOps 是基於<b>精實 (Lean)</b>、<b>限制理論 (TOC)</b>、<b>豐田生產方式 (TPS)</b>、<b>學習型組織</b>、<b>康威定律 (Conway&rsquo;s Law)</b> 等知識體系的集大成者，至於怎麼解讀對方認知上的 DevOps？就只能靠<b>提問</b>了。</span><br /><br /><code class="ref">相關連結： <br /><span style="color: #ffdb00;">★</span> <a href="https://devopstw.club/" target="_blank">DevOps Taiwan Community | DevOps 台灣社群</a><br /><span style="color: #ffdb00;">★</span> <a href="https://www.facebook.com/groups/sre.taiwan/" target="_blank">Site Reliability Engineering Taiwan</a><br /><span style="color: #ffdb00;">★</span> <a href="https://www.facebook.com/AgileCommunity.tw/" target="_blank">AgileCommunity.tw</a><br /><span style="color: #ffdb00;">★</span> <a href="https://www.youtube.com/watch?v=hGxdAx7I-Ds&amp;list=PLASszPOhSouo90IxQgEC1fnH48U0ikHRp">Our DevOps Journey 001 - 凍仁翔 | YouTube</a><br /></code></p>
 
 
         
@@ -352,7 +235,7 @@ This is an example server.
 
 
 <li>
-    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180706_mkcert-zero-config-tool-to-make-locally-trusted-development-certificates%2f&amp;text=%e5%9c%a8%e6%9c%ac%e6%a9%9f%e7%ab%af%e5%bf%ab%e9%80%9f%e7%94%a2%e7%94%9f%e7%b6%b2%e7%ab%99%e5%85%8d%e8%b2%bb%e6%86%91%e8%ad%89&amp;via="
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180729_devops-journey-devops-engineer-sre-jobs.html%2f&amp;text=DevOps%20Engineer%e3%80%81SRE%20%e5%be%b5%e6%89%8d%e6%b1%82%e8%81%b7%e9%9b%9c%e8%ab%87&amp;via="
        target="_blank" alt="" title="Share on Twitter">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -363,7 +246,7 @@ This is an example server.
 
 
 <li>
-    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180706_mkcert-zero-config-tool-to-make-locally-trusted-development-certificates%2f" target="_blank" title="Share on Google Plus">
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180729_devops-journey-devops-engineer-sre-jobs.html%2f" target="_blank" title="Share on Google Plus">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
@@ -373,7 +256,7 @@ This is an example server.
 
 
 <li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180706_mkcert-zero-config-tool-to-make-locally-trusted-development-certificates%2f" target="_blank" title="Share on Facebook">
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180729_devops-journey-devops-engineer-sre-jobs.html%2f" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -383,7 +266,7 @@ This is an example server.
 
 
 <li>
-    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180706_mkcert-zero-config-tool-to-make-locally-trusted-development-certificates%2f&amp;title=%e5%9c%a8%e6%9c%ac%e6%a9%9f%e7%ab%af%e5%bf%ab%e9%80%9f%e7%94%a2%e7%94%9f%e7%b6%b2%e7%ab%99%e5%85%8d%e8%b2%bb%e6%86%91%e8%ad%89" target="_blank" title="Share on Reddit">
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180729_devops-journey-devops-engineer-sre-jobs.html%2f&amp;title=DevOps%20Engineer%e3%80%81SRE%20%e5%be%b5%e6%89%8d%e6%b1%82%e8%81%b7%e9%9b%9c%e8%ab%87" target="_blank" title="Share on Reddit">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
@@ -393,7 +276,7 @@ This is an example server.
 
 
 <li>
-    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180706_mkcert-zero-config-tool-to-make-locally-trusted-development-certificates%2f&amp;title=%e5%9c%a8%e6%9c%ac%e6%a9%9f%e7%ab%af%e5%bf%ab%e9%80%9f%e7%94%a2%e7%94%9f%e7%b6%b2%e7%ab%99%e5%85%8d%e8%b2%bb%e6%86%91%e8%ad%89" target="_blank"
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180729_devops-journey-devops-engineer-sre-jobs.html%2f&amp;title=DevOps%20Engineer%e3%80%81SRE%20%e5%be%b5%e6%89%8d%e6%b1%82%e8%81%b7%e9%9b%9c%e8%ab%87" target="_blank"
        title="Share on LinkedIn">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -404,7 +287,7 @@ This is an example server.
 
 
 <li>
-    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180706_mkcert-zero-config-tool-to-make-locally-trusted-development-certificates%2f&amp;title=%e5%9c%a8%e6%9c%ac%e6%a9%9f%e7%ab%af%e5%bf%ab%e9%80%9f%e7%94%a2%e7%94%9f%e7%b6%b2%e7%ab%99%e5%85%8d%e8%b2%bb%e6%86%91%e8%ad%89" target="_blank"
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180729_devops-journey-devops-engineer-sre-jobs.html%2f&amp;title=DevOps%20Engineer%e3%80%81SRE%20%e5%be%b5%e6%89%8d%e6%b1%82%e8%81%b7%e9%9b%9c%e8%ab%87" target="_blank"
        title="Share on StumbleUpon">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -415,7 +298,7 @@ This is an example server.
 
 
 <li>
-    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180706_mkcert-zero-config-tool-to-make-locally-trusted-development-certificates%2f&amp;description=%e5%9c%a8%e6%9c%ac%e6%a9%9f%e7%ab%af%e5%bf%ab%e9%80%9f%e7%94%a2%e7%94%9f%e7%b6%b2%e7%ab%99%e5%85%8d%e8%b2%bb%e6%86%91%e8%ad%89" target="_blank"
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180729_devops-journey-devops-engineer-sre-jobs.html%2f&amp;description=DevOps%20Engineer%e3%80%81SRE%20%e5%be%b5%e6%89%8d%e6%b1%82%e8%81%b7%e9%9b%9c%e8%ab%87" target="_blank"
        title="Share on Pinterest">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -433,13 +316,9 @@ This is an example server.
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="https://kalug.linux.org.tw/planet/chusiang/20180630_see-the-agile-from-mindset.html/" data-toggle="tooltip" data-placement="top" title="從《心態致勝》看敏捷">&larr; Previous Post</a>
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20180729_drone-with-hashicorp-packer/" data-toggle="tooltip" data-placement="top" title="用 Drone CI/CD 整合 Packer 自動產生 GCP 或 AWS 映像檔">&larr; Previous Post</a>
             </li>
           
-          
-            <li class="next">
-              <a href="https://kalug.linux.org.tw/planet/appleboy/20180719_graphql-in-go/" data-toggle="tooltip" data-placement="top" title="Go 語言實戰 GraphQL">Next Post &rarr;</a>
-            </li>
           
         </ul>
       
