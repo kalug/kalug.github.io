@@ -5,10 +5,37 @@
     <link>https://kalug.linux.org.tw/</link>
     <description>Recent content on Kaohsiung Linux User Group</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 29 Jul 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 27 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kalug.linux.org.tw/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>在 Go 語言內的 URL RawQuery 的改變</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20180827_escape-url-rawquery-on-parse-in-golang/</link>
+      <pubDate>Mon, 27 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20180827_escape-url-rawquery-on-parse-in-golang/</guid>
+      <description>更新 (2018.08.29) 感謝中國網友幫忙發個 Issue，大家有空可以關注看看，等官方怎麼回應 Go 語言內的 net/url 函式庫讓開發者可以簡單的 Parse 指定的 URL，最近 Google 上了這個</description>
+    </item>
+    
+    <item>
+      <title>《鳳凰專案》- 踏入 DevOps 之旅的第一本書</title>
+      <link>https://kalug.linux.org.tw/planet/chusiang/20180826_the-phoenix-project-book.html/</link>
+      <pubDate>Sun, 26 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/chusiang/20180826_the-phoenix-project-book.html/</guid>
+      <description>《鳳凰專案》其原文書書名為《The Phoenix Project: A Novel about IT, DevOps, and Helping Your Business Win》，是一部「IT 人藉由『DevOps』讓企業克敵制勝」的小說。 作者：Gene K</description>
+    </item>
+    
+    <item>
+      <title>Enabling the InnoDB File-Per-Table tablespaces and migrate the MySQL database for Zabbix 3.2.6 on CentOS 7</title>
+      <link>https://kalug.linux.org.tw/planet/chusiang/20180818_enabling-mysql-innodb-file-per-table-for-zabbix-3.2.6-centos-7.html/</link>
+      <pubDate>Sat, 18 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/chusiang/20180818_enabling-mysql-innodb-file-per-table-for-zabbix-3.2.6-centos-7.html/</guid>
+      <description>As the Zabbix Ops, we want to split the large ibdata1 file, so than we can reduce the obsolete data like history_uint table. [ jonny@zabbix-server ~ ] $ ls -lh /var/lib/mysql/ [Enter] total 16G -rw-rw&amp;mdash;- 1 mysql mysql 16K Aug 15 10:36 aria_log.00000001 -rw-rw&amp;mdash;- 1 mysql mysql 52 Aug 15 10:36 aria_log_control -rw-rw&amp;mdash;- 1 mysql mysql 15G Aug 15 12:45 ibdata1 -rw-rw&amp;mdash;- 1 mysql mysql 5.0M Aug 15 12:45 ib_logfile0</description>
+    </item>
     
     <item>
       <title>DevOps Engineer、SRE 徵才求職雜談</title>

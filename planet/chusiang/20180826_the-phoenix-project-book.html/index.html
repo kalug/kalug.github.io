@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>《鳳凰專案》- 踏入 DevOps 之旅的第一本書</title>
+  <meta property="og:title" content="《鳳凰專案》- 踏入 DevOps 之旅的第一本書" />
+  <meta name="twitter:title" content="《鳳凰專案》- 踏入 DevOps 之旅的第一本書" />
+  <meta name="description" content="《鳳凰專案》其原文書書名為《The Phoenix Project: A Novel about IT, DevOps, and Helping Your Business Win》，是一部「IT 人藉由『DevOps』讓企業克敵制勝」的小說。 作者：Gene K">
+  <meta property="og:description" content="《鳳凰專案》其原文書書名為《The Phoenix Project: A Novel about IT, DevOps, and Helping Your Business Win》，是一部「IT 人藉由『DevOps』讓企業克敵制勝」的小說。 作者：Gene K">
+  <meta name="twitter:description" content="《鳳凰專案》其原文書書名為《The Phoenix Project: A Novel about IT, DevOps, and Helping Your Business Win》，是一部「IT 人藉由『DevOps』讓企業克敵制勝」的小說。 作者：Gene K">
+  <meta name="author" content=""/>
+  <link href='https://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://kalug.linux.org.tw/planet/chusiang/20180826_the-phoenix-project-book.html/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kaohsiung Linux User Group" />
+
+  <meta name="generator" content="Hugo 0.41" />
+  <link rel="canonical" href="https://kalug.linux.org.tw/planet/chusiang/20180826_the-phoenix-project-book.html/" />
+  <link rel="alternate" href="https://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/highlight.min.css" /><link rel="stylesheet" href="https://kalug.linux.org.tw/css/codeblock.css" />
+<script id="chatBroEmbedCode">
+ 
+function ChatbroLoader(chats,async){async=!1!==async;var params={embedChatsParameters:chats instanceof Array?chats:[chats],lang:navigator.language||navigator.userLanguage,needLoadCode:'undefined'==typeof Chatbro,embedParamsVersion:localStorage.embedParamsVersion,chatbroScriptVersion:localStorage.chatbroScriptVersion},xhr=new XMLHttpRequest;xhr.withCredentials=!0,xhr.onload=function(){eval(xhr.responseText)},xhr.onerror=function(){console.error('Chatbro loading error')},xhr.open('GET','//www.chatbro.com/embed.js?'+btoa(unescape(encodeURIComponent(JSON.stringify(params)))),async),xhr.send()}
+ 
+ChatbroLoader({encodedChatId: '62DdK'});
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=952825024850869&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-121574418-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Meetups" href="/meetups/">Meetups</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Planet" href="/planet/">Planet</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Pages</a>
+              <div class="navlinks-children">
+                
+                  <a href="/pages/sig">Special Interest Group</a>
+                
+                  <a href="/pages/devices">Useful Devices</a>
+                
+                  <a href="/pages/life">Kaohsiung Life</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">About</a>
+              <div class="navlinks-children">
+                
+                  <a href="/about/us">us</a>
+                
+                  <a href="/about/sponsors">Sponsors</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Kaohsiung Linux User Group" href="https://kalug.linux.org.tw">
+            <img class="avatar-img" src="https://kalug.linux.org.tw/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="blog-heading">
+              <h1>《鳳凰專案》- 踏入 DevOps 之旅的第一本書</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p><a href="https://www.tenlong.com.tw/products/9789864765867" target="_blank">《鳳凰專案》</a>其原文書書名為<a href="https://www.tenlong.com.tw/products/9781942788294" target="_blank">《The Phoenix Project: A Novel about IT, DevOps, and Helping Your Business Win》</a>，是一部「IT 人藉由『DevOps』讓企業克敵制勝」的小說。<br /><br /><div style="text-align: left;"><a href="https://2.bp.blogspot.com/-wmzapzBOhxs/W4J6f6ccVuI/AAAAAAAAqh8/o3i_zv4p-0oB5bIaeIVENioQs-NEvUQ8gCLcBGAs/s1600/9789864765867_the_phoenix_project_book.jpg" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><img border="0" data-original-height="650" data-original-width="480" height="200" src="https://2.bp.blogspot.com/-wmzapzBOhxs/W4J6f6ccVuI/AAAAAAAAqh8/o3i_zv4p-0oB5bIaeIVENioQs-NEvUQ8gCLcBGAs/s200/9789864765867_the_phoenix_project_book.jpg" width="147" /></a></div><ul><li>作者：Gene Kim、Kevin Behr、George Spafford。</li><li>譯者：楊仁和。</li><li>出版商：碁峰。</li><li>出版日期：2017/09/21。</li><li>定價：NT$ 480。 </li><li>語言：繁體中文。</li><li>頁數：400。</li><li>ISBN：9789864765867。</li></ul><a name='more'></a><br />兩年前，凍仁剛接觸 Ansible 時，從一位益師益友的前輩口中得知此書的簡中譯本 －<a href="https://www.tenlong.com.tw/products/9787115403650" target="_blank">《凤凰项目》</a>，之後在天瓏書局門市，為自己買下第一本《The Phoenix Project》。<a href="http://note.drx.tw/2018/08/the-phoenix-project-book.html#1"><sup>1</sup></a><br /><br />凍仁很幸運的找著幾位前輩的導讀文章，在閱讀此書前給予不少指引，例如：<br /><ol><li>保持耐心不跳章節，先把它當成一部小說般閱讀。</li><li>先從後面的致謝 (第 355 頁) 開始看，再重頭閱讀前面的傳奇故事。</li></ol><br />雖說自己第一次是使用前者的方式進行閱讀，但相信不管用哪種方式閱讀，都會是個很棒的體驗。<br /><br />拿起此書，讀者將會很快的發現其與眾不同，特別是目錄的部份。(笑) <a href="http://note.drx.tw/2018/08/the-phoenix-project-book.html#2"><sup>2</sup></a><br /><br /><blockquote><pre>目錄：<br /><br />第一部份<br />  第 1 章 9 月 2 日，星期二                       | 007<br />  第 2 章 9 月 2 日，星期二                       | 018<br />  第 3 章 9 月 2 日，星期二                       | 030<br />  第 4 章 9 月 3 日，星期三                       | 042<br />  第 5 章 9 月 4 日，星期四                       | 058<br />  第 6 章 9 月 5 日，星期五                       | 070<br />  第 7 章 9 月 5 日，星期五                       | 081<br />  第 8 章 9 月 8 日，星期一                       | 091<br />  第 9 章 9 月 9 日，星期二                       | 102<br />  第 10 章 9 月 11 日，星期四                     | 110<br />  第 11 章 9 月 11 日，星期四                     | 119<br />  第 12 章 9 月 12 日，星期五                     | 126<br />  第 13 章 9 月 15 日，星期一                     | 140<br />  第 14 章 9 月 16 日，星期二                     | 149<br />  第 15 章 9 月 17 日，星期三                     | 158<br />  第 16 章 9 月 18 日，星期四                     | 171<br />第二部份<br />  第 17 章 9 月 22 日，星期一                     | 181<br />  第 18 章 9 月 23 日，星期二                     | 186<br />  第 19 章 9 月 23 日，星期二                     | 192<br />  第 20 章 9 月 26 日，星期五                     | 209<br />  第 21 章 9 月 26 日，星期五                     | 223<br />  第 22 章 9 月 29 日，星期一                     | 231<br />  第 23 章 10 月 7 日，星期二                     | 241<br />  第 24 章 10 月 11 日，星期六                    | 247<br />  第 25 章 10 月 14 日，星期二                    | 256<br />  第 26 章 10 月 17 日，星期五                    | 265<br />  第 27 章 10 月 21 日，星期二                    | 274<br />  第 28 章 10 月 27 日，星期一                    | 284<br />  第 29 章 11 月 3 日，星期一                     | 294<br />第三部份<br />  第 30 章 11 月 3 日，星期一                     | 305<br />  第 31 章 11 月 3 日，星期一                     | 312<br />  第 32 章 11 月 10 日，星期一                    | 320<br />  第 33 章 11 月 11 日，星期二                    | 327<br />  第 34 章 11 月 28 日，星期五                    | 335<br />  第 35 章 1 月 9 日，星期五                      | 343<br />致謝                                            | 355<br />為什麼需要 DevOps？                              | 363<br />DevOps 從何而來？                                | 368<br />關於三步工作法                                    | 370<br />DevOps 的主要迷思                                | 372<br />  DevOps 會取代 Agile？<br />  DevOps 會取代 ITIL？<br />  有了 DevOps，就無需 Ops？<br />  DevOps 只適用於開放源始碼？<br />  DevOps 只是「Infrastructure as code」或自動化？<br />  DevOps 僅適用於新創公司和「獨角獸公司」？<br />四種工作類型                                     | 376<br />延伸閱讀                                        | 381<br />注釋                                           | 394</pre></blockquote><br />《鳳凰專案》一書大致可分為 4 個部份，前 3 部份為小說，而最後則是 DevOps 的入門指南。<br /><ul><li>第一部份：述說著無極限零件公司 (Unlimited) 每況愈下，以及 IT 部門的慘烈悲歌。<a href="http://note.drx.tw/2018/08/the-phoenix-project-book.html#3"><sup>3</sup></a></li><li>第二部份：公司開始面對問題，並藉由各種 DevOps 手法，進行絕地大反攻！</li><li>第三部份：盡快取得顧客回饋，以及逆轉勝。</li><li>第四部份：解答 DevOps 是什麼？並明確指出書中提及的「三步工作法」和「四種工作類型」為何物。</li></ul><br /><b>三步工作法</b> (Flow、Feedback 和 Culture)，是實踐 DevOps 的方法之一，同時也是本書的主軸；而<b>四種工作類型</b> (Business projects、Internal IT projects、Changes 和 Unplanned work / Recovery work) 則很清楚的點出 IT 部門所需負責的工作有哪些。<br /><br />IT 部門平日除了得支援公司的業務發展，還得維護企業內大大小小的系統，更別說還有變更工作，以及變更不當所造成的例外工作 (計畫外工作)！當 IT 部門忙著救火，又怎麼能支援公司向「錢」跑呢？<br /><br />除了三步工作法和四種工作類型，書中和 DevOps 界的大師們還提及了許多實踐 DevOps 的方法：<br /><ol><li>虛擬化技術 (Virtualization)</li><li>限制理論 (Theory of Constraints)</li><li>精實生產 (Lean production)</li><li>變更管理 (Change Management)</li><li>看板方法 (Kanban Method)</li><li>敏捷開發 (Agile)</li><li>組態管理 (Configuration management)</li><li>持續交付 (Continuous Delivery)</li><li>雲端運算 (Cloud Computing)</li><li>混沌工程 (Chaos engineering)</li><li>豐田生產方式 (Toyota Production System)</li><li>系統思考 (Systems Thinking)</li><li>微服務 (Microservices)</li></ol><br />在這麼多方法中，凍仁與團隊成員是先從「<b>變更管理</b>」著手，大幅降低例外工作後，才有心力進行「<b>組態管理</b>」和「<b>持續交付</b>」。鬆綁部署瓶頸的現在，其生產力比起一年前好上太多了！<br /><br />舉例來說，我們一開始每週至少需耗費 20 小時 (5 人 x 4 小時，且不含例外工作)，部署變更到一個預備生產環境 (Pre-production environment)，如今我們可以只用 6 小時 (2 人 x 3 小時)，完成兩個環境的部署。光這部份我們就<b>節省了 6 倍的人力</b>，更別說我們還有數條管道 (pipeline)，可以一提交程式碼就進行單元測試 (Unit Testing)，之後部署到開發環境 (Development environment)。<br /><br />接著凍仁打算透過學習「<b>看板方法</b>」，來降低變革的阻力，一步步的與團隊成長；再來想學習「<b>限制理論</b>」和「<b>系統思考</b>」，藉由看見問題的全貌，即早進行改善。<br /><br />或許有人讀完此書還是對 DevOps 一詞有些陌生，讀者可以看看艦長大人正瑋所分享的<a href="https://www.slideshare.net/warfan/effective-devops-agile-tour-hsinchu-2017-83199358" target="_blank">《Effective DevOps》</a>簡報，以更進一步了解 DevOps 是什麼。<br /><br /><div style="text-align: center;"><iframe allowfullscreen="" frameborder="0" height="485" marginheight="0" marginwidth="0" scrolling="no" src="//www.slideshare.net/slideshow/embed_code/key/ji4FdfjMqxqLYt" style="border-width: 1px; border: 1px solid #ccc; margin-bottom: 5px; max-width: 100%;" width="595"> </iframe><br /><div style="margin-bottom: 5px;">▲ <a href="https://www.slideshare.net/warfan/effective-devops-agile-tour-hsinchu-2017-83199358" target="_blank" title="Effective DevOps (Agile Tour HsinChu 2017)">Effective DevOps (Agile Tour HsinChu 2017)</a> by <a href="https://www.slideshare.net/warfan" target="_blank">Chen Cheng-Wei</a> </div></div><br />以前，我們會建議讀者試著改用其他角色的觀點，多讀《鳳凰專案》幾次。<br /><br />現在，我們可以接著閱讀其姊妹書 －<a href="https://www.tenlong.com.tw/products/9781942788003" target="_blank">《The DevOps Handbook》</a><a href="http://note.drx.tw/2018/08/the-phoenix-project-book.html#4"><sup>4</sup></a>，直接參悟大師們多年來彙整而出的 DevOps 實踐心法。<br /><br />推薦以下兩部影片，給想快速了解 DevOps 的伙伴們。<br /><ol><li><a href="https://youtu.be/8_BYYe2IVsA" target="_blank">DevOps 的核心理念和實踐 by 劉征 (Martin) | DevOpsDays Taipei 2017</a><br /><iframe allow="autoplay; encrypted-media" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/8_BYYe2IVsA" width="560"></iframe><br /></li><li><a href="https://youtu.be/Kb33AveRfD4" target="_blank">DevOps 的敏捷化思維 by 李智樺 (Ruddy Lee) | Agile Tour Kaohsiung 2017</a><br /><iframe allow="autoplay; encrypted-media" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/Kb33AveRfD4" width="560"></iframe><br /></li></ol><br />最後，就讓凍仁用一句話，來總結自己踏上尋求 DevOps 的偉大航道，所尋獲的答案。<br /><br /><div style="text-align: center;">「我們不能靠聲稱獲得 DevOps，我們必須展開旅程，走向 DevOps。」<a href="http://note.drx.tw/2018/08/the-phoenix-project-book.html#5"><sup>5</sup></a></div><br /><span class="Comment"><br /><sup id="1">1</sup> 截止至今，凍仁已買了原文、簡中和繁中 3 種語言的《The Phoenix Project》，並送出十餘本繁中和簡中譯本，給過去有恩於在下的友人，和有緣的後輩。<br /><sup id="2">2</sup> 繁中版少了前三部份的目錄編排，故順手參照原著整理了一番。<br /><sup id="3">3</sup> 在原文書的第 7 章，用了穀倉效應的 Silo 一字，來形容各自為政的部門。要想在企業好好實行 DevOps，勢必得打破殼倉，才得以提高生產力。<br /><sup id="4">4</sup> 簡中譯本為<a href="https://www.tenlong.com.tw/products/9787115480170" target="_blank">《DevOps 实践指南》</a>。<br /><sup id="5">5</sup> 此句改編於<a href="https://play.google.com/store/books/details?id=XTEkDwAAQBAJ" target="_blank">《心態致勝》</a>一書，原話為「你不能靠聲稱獲得成長心態，你必須展開旅程，走向成長心態。」。</span><br /><br /><div style="text-align: center;"><span class="Comment">(<a href="https://note.drx.tw/2018/08/the-phoenix-project-book.html" target="_blank">本文</a>已授權 <a href="https://devopsdays.tw/books.html" target="_blank">DevOpsDays Taipei 2018</a> 和<a href="https://www.tenlong.com.tw/events/devops5" target="_blank">天瓏資訊圖書</a>全文轉載。)</span></div><br /><br /><code class="ref">站內連結：<br /><span style="color: #ffdb00;">★</span> <a href="http://note.drx.tw/2018/07/devops-journey-devops-engineer-sre-jobs.html" target="_blank">DevOps Engineer、SRE 徵才求職雜談</a><br /><span style="color: #ffdb00;">★</span> <a href="http://note.drx.tw/2018/07/see-the-agile-from-mindset.html" target="_blank">從《心態致勝》看敏捷</a><br /><span style="color: #ffdb00;">★</span> <a href="http://note.drx.tw/2017/09/the-phoenix-poject-workshop.html" target="_blank">一群臺灣老司機參與《鳳凰項目》沙盤的持續成長故事</a><br /><br />相關連結：<br /><span style="color: #ffdb00;">★</span> <a href="https://gitlab.com/chusiang/books2read/blob/master/the-phoenix-project.md" target="_blank">《The Phoenix Project》相關書籍 | chusiang/books2read</a><br /><span style="color: #ffdb00;">★</span> <a href="https://ruddyblog.wordpress.com/2016/01/26/the-phoenix-project-%E5%B0%8E%E8%AE%80/" target="_blank">The Phoenix project 導讀 | Ruddy Lee 分享空間</a><br /><span style="color: #ffdb00;">★</span> <a href="https://school.soft-arch.net/p/on-the-phoenix-project" target="_blank">除了 DevOps 之外，鳳凰項目還說了什麼？| Software Architecture School</a><br /><span style="color: #ffdb00;">★</span> <a href="https://www.tenlong.com.tw/products/9789864765867" target="_blank">鳳凰專案：看 IT 部門如何讓公司從谷底翻身的傳奇故事 | 天瓏網路書店</a><br /></code><br /></p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180826_the-phoenix-project-book.html%2f&amp;text=%e3%80%8a%e9%b3%b3%e5%87%b0%e5%b0%88%e6%a1%88%e3%80%8b-%20%e8%b8%8f%e5%85%a5%20DevOps%20%e4%b9%8b%e6%97%85%e7%9a%84%e7%ac%ac%e4%b8%80%e6%9c%ac%e6%9b%b8&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180826_the-phoenix-project-book.html%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180826_the-phoenix-project-book.html%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180826_the-phoenix-project-book.html%2f&amp;title=%e3%80%8a%e9%b3%b3%e5%87%b0%e5%b0%88%e6%a1%88%e3%80%8b-%20%e8%b8%8f%e5%85%a5%20DevOps%20%e4%b9%8b%e6%97%85%e7%9a%84%e7%ac%ac%e4%b8%80%e6%9c%ac%e6%9b%b8" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180826_the-phoenix-project-book.html%2f&amp;title=%e3%80%8a%e9%b3%b3%e5%87%b0%e5%b0%88%e6%a1%88%e3%80%8b-%20%e8%b8%8f%e5%85%a5%20DevOps%20%e4%b9%8b%e6%97%85%e7%9a%84%e7%ac%ac%e4%b8%80%e6%9c%ac%e6%9b%b8" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180826_the-phoenix-project-book.html%2f&amp;title=%e3%80%8a%e9%b3%b3%e5%87%b0%e5%b0%88%e6%a1%88%e3%80%8b-%20%e8%b8%8f%e5%85%a5%20DevOps%20%e4%b9%8b%e6%97%85%e7%9a%84%e7%ac%ac%e4%b8%80%e6%9c%ac%e6%9b%b8" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180826_the-phoenix-project-book.html%2f&amp;description=%e3%80%8a%e9%b3%b3%e5%87%b0%e5%b0%88%e6%a1%88%e3%80%8b-%20%e8%b8%8f%e5%85%a5%20DevOps%20%e4%b9%8b%e6%97%85%e7%9a%84%e7%ac%ac%e4%b8%80%e6%9c%ac%e6%9b%b8" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://kalug.linux.org.tw/planet/chusiang/20180818_enabling-mysql-innodb-file-per-table-for-zabbix-3.2.6-centos-7.html/" data-toggle="tooltip" data-placement="top" title="Enabling the InnoDB File-Per-Table tablespaces and migrate the MySQL database for Zabbix 3.2.6 on CentOS 7">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20180827_escape-url-rawquery-on-parse-in-golang/" data-toggle="tooltip" data-placement="top" title="在 Go 語言內的 URL RawQuery 的改變">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "kalug-linux-org-tw" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://www.facebook.com/groups/kalug.tw" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalug" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/joinchat/Bqbim0F9EuW-GMUbYg9geA" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://kalug.linux.org.tw/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.41</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/main.js"></script>
+<script src="https://kalug.linux.org.tw/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

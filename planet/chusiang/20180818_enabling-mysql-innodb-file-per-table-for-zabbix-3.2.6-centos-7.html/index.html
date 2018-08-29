@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Enabling the InnoDB File-Per-Table tablespaces and migrate the MySQL database for Zabbix 3.2.6 on CentOS 7</title>
+  <meta property="og:title" content="Enabling the InnoDB File-Per-Table tablespaces and migrate the MySQL database for Zabbix 3.2.6 on CentOS 7" />
+  <meta name="twitter:title" content="Enabling the InnoDB File-Per-Table tablespaces and migrate the MySQL …" />
+  <meta name="description" content="As the Zabbix Ops, we want to split the large ibdata1 file, so than we can reduce the obsolete data like history_uint table. [ jonny@zabbix-server ~ ] $ ls -lh /var/lib/mysql/ [Enter] total 16G -rw-rw&mdash;- 1 mysql mysql 16K Aug 15 10:36 aria_log.00000001 -rw-rw&mdash;- 1 mysql mysql 52 Aug 15 10:36 aria_log_control -rw-rw&mdash;- 1 mysql mysql 15G Aug 15 12:45 ibdata1 -rw-rw&mdash;- 1 mysql mysql 5.0M Aug 15 12:45 ib_logfile0">
+  <meta property="og:description" content="As the Zabbix Ops, we want to split the large ibdata1 file, so than we can reduce the obsolete data like history_uint table. [ jonny@zabbix-server ~ ] $ ls -lh /var/lib/mysql/ [Enter] total 16G -rw-rw&mdash;- 1 mysql mysql 16K Aug 15 10:36 aria_log.00000001 -rw-rw&mdash;- 1 mysql mysql 52 Aug 15 10:36 aria_log_control -rw-rw&mdash;- 1 mysql mysql 15G Aug 15 12:45 ibdata1 -rw-rw&mdash;- 1 mysql mysql 5.0M Aug 15 12:45 ib_logfile0">
+  <meta name="twitter:description" content="As the Zabbix Ops, we want to split the large ibdata1 file, so than we can reduce the obsolete data like history_uint table. [ jonny@zabbix-server ~ ] $ ls -lh /var/lib/mysql/ [Enter] total 16G …">
+  <meta name="author" content=""/>
+  <link href='https://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://kalug.linux.org.tw/planet/chusiang/20180818_enabling-mysql-innodb-file-per-table-for-zabbix-3.2.6-centos-7.html/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kaohsiung Linux User Group" />
+
+  <meta name="generator" content="Hugo 0.41" />
+  <link rel="canonical" href="https://kalug.linux.org.tw/planet/chusiang/20180818_enabling-mysql-innodb-file-per-table-for-zabbix-3.2.6-centos-7.html/" />
+  <link rel="alternate" href="https://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/highlight.min.css" /><link rel="stylesheet" href="https://kalug.linux.org.tw/css/codeblock.css" />
+<script id="chatBroEmbedCode">
+ 
+function ChatbroLoader(chats,async){async=!1!==async;var params={embedChatsParameters:chats instanceof Array?chats:[chats],lang:navigator.language||navigator.userLanguage,needLoadCode:'undefined'==typeof Chatbro,embedParamsVersion:localStorage.embedParamsVersion,chatbroScriptVersion:localStorage.chatbroScriptVersion},xhr=new XMLHttpRequest;xhr.withCredentials=!0,xhr.onload=function(){eval(xhr.responseText)},xhr.onerror=function(){console.error('Chatbro loading error')},xhr.open('GET','//www.chatbro.com/embed.js?'+btoa(unescape(encodeURIComponent(JSON.stringify(params)))),async),xhr.send()}
+ 
+ChatbroLoader({encodedChatId: '62DdK'});
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=952825024850869&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-121574418-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Meetups" href="/meetups/">Meetups</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Planet" href="/planet/">Planet</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Pages</a>
+              <div class="navlinks-children">
+                
+                  <a href="/pages/sig">Special Interest Group</a>
+                
+                  <a href="/pages/devices">Useful Devices</a>
+                
+                  <a href="/pages/life">Kaohsiung Life</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">About</a>
+              <div class="navlinks-children">
+                
+                  <a href="/about/us">us</a>
+                
+                  <a href="/about/sponsors">Sponsors</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Kaohsiung Linux User Group" href="https://kalug.linux.org.tw">
+            <img class="avatar-img" src="https://kalug.linux.org.tw/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="blog-heading">
+              <h1>Enabling the InnoDB File-Per-Table tablespaces and migrate the MySQL database for Zabbix 3.2.6 on CentOS 7</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>As the <b>Zabbix Ops</b>, we want to <b>split the large <i>ibdata1</i> file</b>, so than <b>we can reduce the obsolete data like <i>history_uint</i> table</b>.<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@zabbix-server</span> <span style="color: #ad7fa8;">~</span> ]<br />$ ls -lh /var/lib/mysql/ <span class="Ctrl">[Enter]</span><br /><pre>total 16G<br />-rw-rw&mdash;- 1 mysql mysql  16K Aug 15 10:36 aria_log.00000001<br />-rw-rw&mdash;- 1 mysql mysql   52 Aug 15 10:36 aria_log_control<br />-rw-rw&mdash;- 1 mysql mysql  15G Aug 15 12:45 ibdata1<br />-rw-rw&mdash;- 1 mysql mysql 5.0M Aug 15 12:45 ib_logfile0<br />-rw-rw&mdash;- 1 mysql mysql 5.0M Aug 15 12:45 ib_logfile1<br />drwx&mdash;&mdash; 2 mysql mysql 4.0K Aug 15 10:36 mysql<br />srwxrwxrwx 1 mysql mysql    0 Aug 15 10:44 mysql.sock<br />drwx&mdash;&mdash; 2 mysql mysql 4.0K Aug 15 10:36 performance_schema<br />drwx&mdash;&mdash; 2 mysql mysql    6 Aug 15 10:36 test<br />drwx&mdash;&mdash; 2 mysql mysql 8.0K Aug 15 13:59 zabbix</pre></blockquote><div style="text-align: center;">▲ We can see the <i>ibdata1</i> filesize is very large.</div><a name='more'></a><br />My Environment:<br /><ul><li>CentOS: 7.3.1611</li><li>Kernel: 3.10.0-862.6.3</li><li>Zabbix: 3.2.6-1</li><li>MariaDB: 5.5.52-1</li><li>Apache: 2.4.6-45</li><li>PHP: 5.4.45</li></ul><br /><span class="Comment">※ The innodb_file-per-table option default is enabling after MySQL 5.6.6, but it’s not in this case.</span><br /><br /><h3>Stop the zabbix service</h3>Before my start, we need stop the zabbix-server service.<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@zabbix-server</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo systemctl stop zabbix-server <span class="Ctrl">[Enter]</span></blockquote><br /><h3>Backup the Database</h3>If the disk was full, please add the other storage, and mount to <i>/mnt/</i>, or someone path first.<br /><br />1. <b>Snapshot (Important)</b>: If this Zabbix server is built on Virtual Machine, please snapshot it. <b>If we get some problem, we can use this to quick recovery.</b><br /><br />2. Use the <i>mysqldump</i> command.<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@zabbix-server</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo su -c &ldquo;mysqldump -u zabbix -p &ndash;all-databases &ndash;add-drop-table &gt; zabbix_db.sql&rdquo; <span class="Ctrl">[Enter]</span><br /><br />[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@zabbix-server</span> <span style="color: #ad7fa8;">~</span> ]<br />$ ls -lh zabbix_db.sql <span class="Ctrl">[Enter]</span><br />-rw-r&ndash;r&ndash; 1 root root 6.3G Aug 15 03:43 zabbix_db.sql</blockquote><br />3. Backup the <i>/var/lib/mysql</i> directory.<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@zabbix-server</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo rsync -avP /var/lib/mysql /mnt/</blockquote><br /><h3>Enable the File-Per-Table tablespaces</h3>1. Stop the <b>MariaDB</b> service.<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@zabbix-server</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo systemctl stop mariadb <span class="Ctrl">[Enter]</span> </blockquote><br />2. Backup the <i>/etc/my.cnf</i>.<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@zabbix-server</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo cp /etc/my.cnf /etc/my.cnf.20180815 <span class="Ctrl">[Enter]</span></blockquote><br />3. Add <i>innodb_file_per_table=1</i> under <i>[mysqld]</i> in <i>/etc/my.cnf</i>.<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@zabbix-server</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo vim /etc/my.cnf <span class="Ctrl">[Enter]</span><br />[mysqld]<br />&hellip;<br /><br /><span class="Comment"># Enable the File-Per-Table tablespaces.</span><br />innodb_file_per_table=1</blockquote><br /><h3>Rebuild the Database</h3>Please make sure the backup is working, <b>this step will clean up all data</b>.<br /><br />1. Remove all files under <i>/var/lib/mysql/</i>. (I was try only remove ib<em>, but it&rsquo;s not working.)<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@zabbix-server</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo rm -rf /var/lib/mysql/</em> <span class="Ctrl">[Enter]</span></blockquote><br />2. Initialization the MySQL.<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@zabbix-server</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo /usr/bin/mysql_install_db <span class="Ctrl">[Enter]</span><br />Installing MariaDB/MySQL system tables in &lsquo;/var/lib/mysql&rsquo; &hellip;<br />180815 10:36:15 [Note] /usr/libexec/mysqld (mysqld 5.5.52-MariaDB) starting as process 14533 &hellip;<br />OK<br />Filling help tables&hellip;<br />180815 10:36:15 [Note] /usr/libexec/mysqld (mysqld 5.5.52-MariaDB) starting as process 14543 &hellip;<br />OK<br /><br />To start mysqld at boot time you have to copy<br />support-files/mysql.server to the right place for your system<br /><br />PLEASE REMEMBER TO SET A PASSWORD FOR THE MariaDB root USER !<br />To do so, start the server, then issue the following commands:<br /><br />&rsquo;/usr/bin/mysqladmin&rsquo; -u root password &lsquo;new-password&rsquo;<br />&rsquo;/usr/bin/mysqladmin&rsquo; -u root -h zabbix-server.example.tw password &lsquo;new-password&rsquo;<br /><br />Alternatively you can run:<br />&rsquo;/usr/bin/mysql_secure_installation&rsquo;<br /><br />which will also give you the option of removing the test<br />databases and anonymous user created by default.  This is<br />strongly recommended for production servers.<br /><br />See the MariaDB Knowledgebase at <a href="http://mariadb.com/kb">http://mariadb.com/kb</a> or the<br />MySQL manual for more instructions.<br /><br />You can start the MariaDB daemon with:<br />cd &lsquo;/usr&rsquo; ; /usr/bin/mysqld_safe &ndash;datadir=&lsquo;/var/lib/mysql&rsquo;<br /><br />You can test the MariaDB daemon with mysql-test-run.pl<br />cd &lsquo;/usr/mysql-test&rsquo; ; perl mysql-test-run.pl<br /><br />Please report any problems at <a href="http://mariadb.org/jira">http://mariadb.org/jira</a><br /><br />The latest information about MariaDB is available at <a href="http://mariadb.org/">http://mariadb.org/</a>.<br />You can find additional information about the MySQL part at:<br /><a href="http://dev.mysql.com">http://dev.mysql.com</a><br />Support MariaDB development by buying support/new features from MariaDB<br />Corporation Ab. You can contact us about this at sales@mariadb.com.<br />Alternatively consider joining our community based development effort:<br /><a href="http://mariadb.com/kb/en/contributing-to-the-mariadb-project/">http://mariadb.com/kb/en/contributing-to-the-mariadb-project/</a></blockquote><br />3. List the database directory after we initialization.<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@zabbix-server</span> <span style="color: #ad7fa8;">~</span> ]<br />$ ls -lh /var/lib/mysql <span class="Ctrl">[Enter]</span><br /><pre>total 28K<br />-rw-rw&mdash;- 1 root root  16K Aug 15 10:36 aria_log.00000001<br />-rw-rw&mdash;- 1 root root   52 Aug 15 10:36 aria_log_control<br />drwx&mdash;&mdash; 2 root root 4.0K Aug 15 10:36 mysql<br />drwx&mdash;&mdash; 2 root root 4.0K Aug 15 10:36 performance_schema<br />drwx&mdash;&mdash; 2 root root    6 Aug 15 10:36 test</pre></blockquote><br />4. Change the file permission.<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@zabbix-server</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo chown -R mysql:mysql /var/lib/mysql/ <span class="Ctrl">[Enter]</span> </blockquote><br />5. List the database directory again.<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@zabbix-server</span> <span style="color: #ad7fa8;">~</span> ]<br />$ ls -l /var/lib/mysql <span class="Ctrl">[Enter]</span><br /><pre>total 28700<br />-rw-rw&mdash;- 1 mysql mysql    16384 Aug 15 10:36 aria_log.00000001<br />-rw-rw&mdash;- 1 mysql mysql       52 Aug 15 10:36 aria_log_control<br />-rw-rw&mdash;- 1 mysql mysql 18874368 Aug 15 10:41 ibdata1<br />-rw-rw&mdash;- 1 mysql mysql  5242880 Aug 15 10:41 ib_logfile0<br />-rw-rw&mdash;- 1 mysql mysql  5242880 Aug 15 10:40 ib_logfile1<br />drwx&mdash;&mdash; 2 mysql mysql     4096 Aug 15 10:36 mysql<br />drwx&mdash;&mdash; 2 mysql mysql     4096 Aug 15 10:36 performance_schema<br />drwx&mdash;&mdash; 2 mysql mysql        6 Aug 15 10:36 test</pre></blockquote><br />6. Start the MariaDB service.<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@zabbix-server</span> <span style="color: #ad7fa8;">~</span> ]<br />$ sudo systemctl start mariadb <span class="Ctrl">[Enter]</span></blockquote><br /><h4>Rebuild the account</h4>1. Login the MySQL shell with <i>root</i>, and switch to <i>mysql</i> database.<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@zabbix-server</span> <span style="color: #ad7fa8;">~</span> ]<br />$ mysql -u root -p <span class="Ctrl">[Enter]</span><br />Enter password:<br /><pre>Welcome to the MariaDB monitor.  Commands end with ; or \g.<br />Your MariaDB connection id is 10<br />Server version: 5.5.52-MariaDB MariaDB Server<br /><br />Copyright &copy; 2000, 2016, Oracle, MariaDB Corporation Ab and others.<br /><br />Type &lsquo;help;&rsquo; or &lsquo;\h&rsquo; for help. Type &lsquo;\c&rsquo; to clear the current input statement.<br /><br />MariaDB [(none)]&gt; use mysql;<br />Reading table information for completion of table and column names<br />You can turn off this feature to get a quicker startup with -A<br /><br />Database changed<br />MariaDB [mysql]&gt;</pre></blockquote><br />2. Change the database admin password.<br /><blockquote>MariaDB [mysql]&gt; UPDATE user SET Password=PASSWORD(&rdquo;&lt;FIXME&gt;&rdquo;) WHERE User=&ldquo;root&rdquo;;<br />Query OK, 4 rows affected (0.00 sec)<br />Rows matched: 4  Changed: 4  Warnings: 0</blockquote><br />3. Create a database for Zabbix.<br /><blockquote>MariaDB [mysql]&gt; CREATE DATABASE zabbix;<br />Query OK, 1 row affected (0.00 sec)</blockquote><br />4. Create a database account for Zabbix.<br /><blockquote>MariaDB [mysql]&gt; CREATE USER &lsquo;zabbix&rsquo;@&lsquo;localhost&rsquo; IDENTIFIED BY &lsquo;&lt;FIXME&gt;&rsquo;;<br />Query OK, 0 rows affected (0.00 sec)</blockquote><br />5. Setting permission of Zabbix account.<br /><blockquote>MariaDB [mysql]&gt; GRANT ALL PRIVILEGES ON zabbix.* TO &lsquo;zabbix&rsquo;@&lsquo;localhost&rsquo;;<br />Query OK, 0 rows affected (0.00 sec)</blockquote><br />6. Immediately apply this permission.<br /><blockquote>MariaDB [mysql]&gt; FLUSH PRIVILEGES;<br />Query OK, 0 rows affected (0.00 sec)</blockquote><br /><h3>Verify the per_table setting</h3>Before we import before backup data, please verify the <i>innodb_file_per_table</i> value is ON.<br /><blockquote>MariaDB [mysql]&gt; show variables like &lsquo;%per_table%&lsquo;;<br /><pre>+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;-+<br />| Variable_name         | Value |<br />+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;-+<br />| innodb_file_per_table | ON    |<br />+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;-+<br />1 row in set (0.00 sec)<br /><br />MariaDB [mysql]&gt;</pre></blockquote><br /><h3>Recovery with import before backup sql file</h3><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@zabbix-server</span> <span style="color: #ad7fa8;">~</span> ]<br />$ time mysql -u zabbix -p zabbix &lt; zabbix_db.sql <span class="Ctrl">[Enter]</span><br />Enter password:<br /><pre>real    31m57.704s<br />user    0m50.054s<br />sys     0m1.945s</pre></blockquote><br /><span class="Comment">※ It maybe need much time, we can drink coffee or do something else.</span><br /><br /><h3>Reduce the large table</h3>1. Find the large tables.<br /><blockquote>[ <span style="color: #ffdb00;">root</span><span style="color: red;">@zabbix-server</span> <span style="color: #ad7fa8;">~</span> ]<br /># ls -lhtrS /var/lib/mysql/zabbix | tail <span class="Ctrl">[Enter]</span><br />&hellip;<br /><pre>-rw-rw&mdash;- 1 mysql mysql 192M Aug 15 14:01 events.ibd<br />-rw-rw&mdash;- 1 mysql mysql 288M Aug 15 14:01 trends.ibd<br />-rw-rw&mdash;- 1 mysql mysql 660M Aug 15 14:01 trends_uint.ibd<br />-rw-rw&mdash;- 1 mysql mysql 1.1G Aug 15 14:01 history.ibd<br />-rw-rw&mdash;- 1 mysql mysql  14G Aug 15 13:53 history_uint.ibd</pre></blockquote><br />2. Login the MySQl shell with zabbix, and switch to zabbix database.<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@zabbix-server</span> <span style="color: #ad7fa8;">~</span> ]<br />$ mysql -u zabbix -p <span class="Ctrl">[Enter]</span><br />Enter password:<br /><pre>Welcome to the MariaDB monitor.  Commands end with ; or \g.<br />Your MariaDB connection id is 957<br />Server version: 5.5.52-MariaDB MariaDB Server<br /><br />Copyright &copy; 2000, 2016, Oracle, MariaDB Corporation Ab and others.<br /><br />Type &lsquo;help;&rsquo; or &lsquo;\h&rsquo; for help. Type &lsquo;\c&rsquo; to clear the current input statement.<br /><br />MariaDB [(none)]&gt; use zabbix;<br />Reading table information for completion of table and column names<br />You can turn off this feature to get a quicker startup with -A<br /><br />Database changed</pre></blockquote><br />3. Count the <i>history_uint</i> table.<br /><blockquote>MariaDB [zabbix]&gt; select count(itemid) from history_uint;<br /><pre>+&mdash;&mdash;&mdash;&mdash;&mdash;+<br />| count(itemid) |<br />+&mdash;&mdash;&mdash;&mdash;&mdash;+<br />|     177487167 |<br />+&mdash;&mdash;&mdash;&mdash;&mdash;+<br />1 row in set (1 min 14.37 sec)</pre></blockquote><br />4. Clean up the <i>history_uint</i> table.<br /><blockquote>MariaDB [zabbix]&gt; truncate table history_uint;<br />Query OK, 0 rows affected (0.38 sec)</blockquote><br />5. Count the <i>history_uint</i> table again.<br /><blockquote>MariaDB [zabbix]&gt; select count(itemid) from history_uint;<br /><pre>+&mdash;&mdash;&mdash;&mdash;&mdash;+<br />| count(itemid) |<br />+&mdash;&mdash;&mdash;&mdash;&mdash;+<br />|           107 |<br />+&mdash;&mdash;&mdash;&mdash;&mdash;+<br />1 row in set (0.00 sec)</pre></blockquote><br />6. See the disk usage.<br /><blockquote>[ <span style="color: #ffdb00;">jonny</span><span style="color: red;">@zabbix-server</span> <span style="color: #ad7fa8;">~</span> ]<br />$ df -h <span class="Ctrl">[Enter]</span><br /><pre>Filesystem           Size  Used Avail Use% Mounted on<br />/dev/mapper/cl-root   22G  5.1G   17G  24% /<br />devtmpfs             1.9G     0  1.9G   0% /dev<br />tmpfs                1.9G     0  1.9G   0% /dev/shm<br />tmpfs                1.9G  8.5M  1.9G   1% /run<br />tmpfs                1.9G     0  1.9G   0% /sys/fs/cgroup<br />/dev/vda1           1014M  322M  693M  32% /boot<br />tmpfs                379M     0  379M   0% /run/user/8002<br />/dev/vdb1             32G   23G  9.7G  70% /mnt</pre></blockquote><br />7. Find the large tables again.<br /><blockquote>[ <span style="color: #ffdb00;">root</span><span style="color: red;">@zabbix-server</span> <span style="color: #ad7fa8;">~</span> ]<br /># ls -lhtrS /var/lib/mysql/zabbix | tail <span class="Ctrl">[Enter]</span><br />&hellip;<br /><pre>-rw-rw&mdash;- 1 mysql mysql 192M Aug 15 14:01 events.ibd<br />-rw-rw&mdash;- 1 mysql mysql 288M Aug 15 14:01 trends.ibd<br />-rw-rw&mdash;- 1 mysql mysql 660M Aug 15 14:01 trends_uint.ibd<br />-rw-rw&mdash;- 1 mysql mysql 1.1G Aug 15 14:01 history.ibd</pre></blockquote><br />Good luck, have fun.<br /><br /><div style="text-align: center;"><span class="Comment">Synchronized on <a href="https://medium.com/@chusiang/change-the-mysql-innodb-tablespaces-to-file-per-table-for-zabbix-3-2-6-on-centos-7-dd86ab3179a4" target="_blank">Enabling the InnoDB File-Per-Table tablespaces and migrate the MySQL database for Zabbix 3.2.6 on CentOS 7 | Medium</a>.</span></div><br /><code class="ref">Reference:<br /><span style="color: #ffdb00;">★</span> <a href="https://hk.saowen.com/a/be12ba3c8e46982c00f09c7a8c26e772b8c69152e05d9d1d0e35f48bf8115d70" target="_blank">處理 MySQL 的 ibdata1 文檔過大問題 | 掃文資訊</a><br /><span style="color: #ffdb00;">★</span> <a href="https://dev.mysql.com/doc/refman/5.6/en/tablespace-enabling.html" target="_blank">[MySQL :: MySQL 5.6 Reference Manual :: 14.7.4.1 Enabling and Disabling File-Per-Table Tablespaces&rdquo;</a><br /><span style="color: #ffdb00;">★</span> <a href="https://www.phpini.com/mysql/mysql-enable-innodb_file_per_table-convert-table" target="_blank">MySQL 開啟 innodb_file_per_table 及轉換現有資料表 | Linux 技術手札</a><br /><span style="color: #ffdb00;">★</span> <a href="https://www.phpini.com/mysql/mysql-add-new-users-databases-privileges" target="_blank">MySQL 新增使用者及建立資料庫權限 | Linux 技術手札</a><br /><span style="color: #ffdb00;">★</span> <a href="http://emn178.pixnet.net/blog/post/87659567-mysql%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A2%BC%E8%88%87%E5%BF%98%E8%A8%98%E5%AF%86%E7%A2%BC%E9%87%8D%E8%A8%AD" target="_blank">MySQL 修改密碼與忘記密碼重設 @ 小殘的程式光廊</a><br /></code></p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180818_enabling-mysql-innodb-file-per-table-for-zabbix-3.2.6-centos-7.html%2f&amp;text=Enabling%20the%20InnoDB%20File-Per-Table%20tablespaces%20and%20migrate%20the%20MySQL%20database%20for%20Zabbix%203.2.6%20on%20CentOS%207&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180818_enabling-mysql-innodb-file-per-table-for-zabbix-3.2.6-centos-7.html%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180818_enabling-mysql-innodb-file-per-table-for-zabbix-3.2.6-centos-7.html%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180818_enabling-mysql-innodb-file-per-table-for-zabbix-3.2.6-centos-7.html%2f&amp;title=Enabling%20the%20InnoDB%20File-Per-Table%20tablespaces%20and%20migrate%20the%20MySQL%20database%20for%20Zabbix%203.2.6%20on%20CentOS%207" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180818_enabling-mysql-innodb-file-per-table-for-zabbix-3.2.6-centos-7.html%2f&amp;title=Enabling%20the%20InnoDB%20File-Per-Table%20tablespaces%20and%20migrate%20the%20MySQL%20database%20for%20Zabbix%203.2.6%20on%20CentOS%207" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180818_enabling-mysql-innodb-file-per-table-for-zabbix-3.2.6-centos-7.html%2f&amp;title=Enabling%20the%20InnoDB%20File-Per-Table%20tablespaces%20and%20migrate%20the%20MySQL%20database%20for%20Zabbix%203.2.6%20on%20CentOS%207" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180818_enabling-mysql-innodb-file-per-table-for-zabbix-3.2.6-centos-7.html%2f&amp;description=Enabling%20the%20InnoDB%20File-Per-Table%20tablespaces%20and%20migrate%20the%20MySQL%20database%20for%20Zabbix%203.2.6%20on%20CentOS%207" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://kalug.linux.org.tw/planet/chusiang/20180729_devops-journey-devops-engineer-sre-jobs.html/" data-toggle="tooltip" data-placement="top" title="DevOps Engineer、SRE 徵才求職雜談">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://kalug.linux.org.tw/planet/chusiang/20180826_the-phoenix-project-book.html/" data-toggle="tooltip" data-placement="top" title="《鳳凰專案》- 踏入 DevOps 之旅的第一本書">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "kalug-linux-org-tw" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://www.facebook.com/groups/kalug.tw" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalug" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/joinchat/Bqbim0F9EuW-GMUbYg9geA" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://kalug.linux.org.tw/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.41</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/main.js"></script>
+<script src="https://kalug.linux.org.tw/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+
