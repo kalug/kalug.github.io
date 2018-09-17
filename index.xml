@@ -5,10 +5,37 @@
     <link>https://kalug.linux.org.tw/</link>
     <description>Recent content on Kaohsiung Linux User Group</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 27 Aug 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 16 Sep 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kalug.linux.org.tw/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Go 語言的 graphQL-go 套件正式支援 Concurrent Resolvers</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20180916_graphql-go-library-support-concurrent-resolvers/</link>
+      <pubDate>Sun, 16 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20180916_graphql-go-library-support-concurrent-resolvers/</guid>
+      <description>要在 Go 語言寫 graphQL，大家一定對 graphql-go 不陌生，討論度最高的套件，但是我先說，雖然討論度是最高，但是效能是最差的，如果大家很要求效能，可以先</description>
+    </item>
+    
+    <item>
+      <title>「系統思考的四堂課」與「萬人敵」</title>
+      <link>https://kalug.linux.org.tw/planet/chusiang/20180902_systems-thinking-workshop-of-devops.html/</link>
+      <pubDate>Sun, 02 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/chusiang/20180902_systems-thinking-workshop-of-devops.html/</guid>
+      <description>系統思考 (Systems Thinking)，是一項用因果關係，推導出系統整體，進而看見世界全貌的高深技藝。凍仁第一次見到它，是在 DevOpsDays Taipei 2017 的場子，聽 Ruddy Lee 老師分</description>
+    </item>
+    
+    <item>
+      <title>在 PostgreSQL 時區轉換及計算時間</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20180902_converting-timestamp-to-timestamp-in-a-specific-time-zone-in-postgres/</link>
+      <pubDate>Sun, 02 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20180902_converting-timestamp-to-timestamp-in-a-specific-time-zone-in-postgres/</guid>
+      <description>通常在使用資料表時，都會在每一筆紀錄上面寫入當下時間，而這個時間會根據目前系統所在的時區而有所不同，當然我們都會使用 UTC+0 作為標準時區，而欄位我</description>
+    </item>
     
     <item>
       <title>在 Go 語言內的 URL RawQuery 的改變</title>

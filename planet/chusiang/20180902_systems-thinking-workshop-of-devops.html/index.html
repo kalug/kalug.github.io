@@ -5,23 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>在 Go 語言內的 URL RawQuery 的改變</title>
-  <meta property="og:title" content="在 Go 語言內的 URL RawQuery 的改變" />
-  <meta name="twitter:title" content="在 Go 語言內的 URL RawQuery 的改變" />
-  <meta name="description" content="更新 (2018.08.29) 感謝中國網友幫忙發個 Issue，大家有空可以關注看看，等官方怎麼回應 Go 語言內的 net/url 函式庫讓開發者可以簡單的 Parse 指定的 URL，最近 Google 上了這個">
-  <meta property="og:description" content="更新 (2018.08.29) 感謝中國網友幫忙發個 Issue，大家有空可以關注看看，等官方怎麼回應 Go 語言內的 net/url 函式庫讓開發者可以簡單的 Parse 指定的 URL，最近 Google 上了這個">
-  <meta name="twitter:description" content="更新 (2018.08.29) 感謝中國網友幫忙發個 Issue，大家有空可以關注看看，等官方怎麼回應 Go 語言內的 net/url 函式庫讓開發者可以簡單的 Parse 指定的 URL，最近 Google 上了這個">
+  <title>「系統思考的四堂課」與「萬人敵」</title>
+  <meta property="og:title" content="「系統思考的四堂課」與「萬人敵」" />
+  <meta name="twitter:title" content="「系統思考的四堂課」與「萬人敵」" />
+  <meta name="description" content="系統思考 (Systems Thinking)，是一項用因果關係，推導出系統整體，進而看見世界全貌的高深技藝。凍仁第一次見到它，是在 DevOpsDays Taipei 2017 的場子，聽 Ruddy Lee 老師分">
+  <meta property="og:description" content="系統思考 (Systems Thinking)，是一項用因果關係，推導出系統整體，進而看見世界全貌的高深技藝。凍仁第一次見到它，是在 DevOpsDays Taipei 2017 的場子，聽 Ruddy Lee 老師分">
+  <meta name="twitter:description" content="系統思考 (Systems Thinking)，是一項用因果關係，推導出系統整體，進而看見世界全貌的高深技藝。凍仁第一次見到它，是在 DevOpsDays Taipei 2017 的場子，聽 Ruddy Lee 老師分">
   <meta name="author" content=""/>
   <link href='https://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://kalug.linux.org.tw/img/kalug.png" />
   <meta name="twitter:image" content="https://kalug.linux.org.tw/img/kalug.png" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://kalug.linux.org.tw/planet/appleboy/20180827_escape-url-rawquery-on-parse-in-golang/" />
+  <meta property="og:url" content="https://kalug.linux.org.tw/planet/chusiang/20180902_systems-thinking-workshop-of-devops.html/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kaohsiung Linux User Group" />
 
   <meta name="generator" content="Hugo 0.41" />
-  <link rel="canonical" href="https://kalug.linux.org.tw/planet/appleboy/20180827_escape-url-rawquery-on-parse-in-golang/" />
+  <link rel="canonical" href="https://kalug.linux.org.tw/planet/chusiang/20180902_systems-thinking-workshop-of-devops.html/" />
   <link rel="alternate" href="https://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -206,7 +206,7 @@ if (!doNotTrack) {
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="blog-heading">
-              <h1>在 Go 語言內的 URL RawQuery 的改變</h1>
+              <h1>「系統思考的四堂課」與「萬人敵」</h1>
                 
                 
             </div>
@@ -222,116 +222,7 @@ if (!doNotTrack) {
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p><strong>更新 (2018.08.29) 感謝中國網友幫忙發個 <a href="https://github.com/golang/go/issues/27302">Issue</a>，大家有空可以關注看看，等官方怎麼回應</strong></p>
-
-<p><a href="https://www.flickr.com/photos/appleboy/40093179410/in/dateposted-public/" title="Go-Logo_Blue"><img src="https://i1.wp.com/farm1.staticflickr.com/908/40093179410_53df4bb9e8_z.jpg?w=840&#038;ssl=1" alt="Go-Logo_Blue" data-recalc-dims="1" /></a></p>
-
-<p><a href="https://golang.org/">Go 語言</a>內的 <code>net/url</code> 函式庫讓開發者可以簡單的 Parse 指定的 URL，最近 Google 上了這個 <a href="https://github.com/golang/go/commit/1040626c0ce4a1bc2b312aa0866ffeb2ff53c1ab">Patch</a>，這個 Patch 讓原本的 RawQuery 值產生了變化，原先沒有驗證 RawQuery 是否包含了不合法的字元，現在只要 RawQuesy 內含有任意的不合法字元，就會直接被 <code>QueryEscape</code> 函式轉換，這個 Patch 不影響這次 <a href="https://blog.golang.org/go1.11">Go 1.11 版本</a>，會影響的是明年 2019 年釋出的 Go 1.12 版本，但是大家都知道在 <a href="https://github.com">GitHub</a> 上面有在寫測試的話，都會在 <a href="https://travis-ci.org">Travis</a> 內加入 <code>master</code> 版本當作驗證，如果有用到 RawQuery 的話，肯定會遇到這問題，底下來描述為什麼會出現這問題。</p>
-
-<p><span id="more-7068"></span></p>
-
-<h2>RawQuery 含有不合法字元</h2>
-
-<p>首先來看看在 Go 1.11 版本時本來應該輸出什麼，請直接線上看<a href="https://play.golang.org/p/ZvZ-SoUjK16">例子</a>。</p>
-
-<pre class="brush: go; title: ; notranslate">
-package main
-
-import (
-    &quot;log&quot;
-    &quot;net/url&quot;
-)
-
-func main() {
-    u, err := url.Parse(&quot;http://bing.com/search?k=v&amp;id=main&amp;id=omit&amp;array[]=first&amp;array[]=second&amp;ids<em></em>=111&amp;ids[j]=3.14&quot;)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if u.RawQuery != &quot;k=v&amp;id=main&amp;id=omit&amp;array[]=first&amp;array[]=second&amp;ids<em></em>=111&amp;ids[j]=3.14&quot; {
-        log.Fatal(&quot;RawQuery error&quot;)
-    }
-
-    log.Printf(&quot;%#v&quot;, u.Query())
-}
-</pre>
-
-<p>在 Go 1.11 以前，你會直接看到底下輸出:</p>
-
-<blockquote>
-  url.Values{&#8220;k&#8221;:[]string{&#8220;v&#8221;}, &#8220;id&#8221;:[]string{&#8220;main&#8221;, &#8220;omit&#8221;}, &#8220;array[]&#8221;:[]string{&#8220;first&#8221;, &#8220;second&#8221;}, &#8220;ids<em></em>&#8220;:[]string{&#8220;111&#8221;}, &#8220;ids[j]&#8221;:[]string{&#8220;3.14&#8221;}}
-</blockquote>
-
-<p><a href="https://golang.org/pkg/net/url/">url 函式庫</a>幫忙把 RawQuery 整理成 map[string][]string 格式，所以在 URL 內可以直接 Parse <code>array[]=first&amp;array[]=second</code> 多個 Array 值。這個預設行為在最新的 Go 語言被換掉了，現在執行 <code>u.Query()</code> 你會看到變成底下，整串的 Raw Query String 被當長一個 Key 值了。</p>
-
-<blockquote>
-  url.Values{&#8220;k=v&amp;id=main&amp;id=omit&amp;array[]=first&amp;array[]=second&amp;ids<em></em>=111&amp;ids[j]=3.14&#8243;: []string{&#8220;&#8221;}}
-</blockquote>
-
-<p>這就是最大的改變，造成在 Travis 執行錯誤。</p>
-
-<h2>如何修正</h2>
-
-<p>修正方式其實很簡單，自己在寫個小型 Parser 把原本的格式在轉換就好，請參考<a href="https://play.golang.org/p/wO9vR3Ylliq">線上解法</a></p>
-
-<pre class="brush: go; title: ; notranslate">
-package main
-
-import (
-    &quot;log&quot;
-    &quot;net/url&quot;
-    &quot;strings&quot;
-)
-
-func main() {
-    u, err := url.Parse(&quot;http://bing.com/search?k=v&amp;id=main&amp;id=omit&amp;array[]=first&amp;array[]=second&amp;ids<em></em>=111&amp;ids[j]=3.14&quot;)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if u.RawQuery != &quot;k=v&amp;id=main&amp;id=omit&amp;array[]=first&amp;array[]=second&amp;ids<em></em>=111&amp;ids[j]=3.14&quot; {
-        log.Fatal(&quot;RawQuery error&quot;)
-    }
-
-    log.Printf(&quot;%#v&quot;, u.Query())
-
-    query := resetQuery(map[string][]string{&quot;k=v&amp;id=main&amp;id=omit&amp;array[]=first&amp;array[]=second&amp;ids<em></em>=111&amp;ids[j]=3.14&quot;: []string{&quot;&quot;}})
-    log.Printf(&quot;%#v&quot;, query)
-}
-
-func resetQuery(m map[string][]string) map[string][]string {
-    dicts := make(map[string][]string)
-    for k, v := range m {
-        lists := strings.Split(k, &quot;&amp;&quot;)
-        if len(lists) == 1 {
-            dicts[k] = v
-            continue
-        }
-        for _, vv := range lists {
-            p := strings.Split(vv, &quot;=&quot;)
-            dicts[p[0]] = append(dicts[p[0]], p[1])
-        }
-    }
-    return dicts
-}
-</pre>
-
-<p>只要 RawQuery 裡面有包含底下字元，就會被 escape 掉</p>
-
-<pre class="brush: plain; title: ; notranslate">
-// validQuery reports whether s is a valid query string per RFC 3986
-// Section 3.4:
-//     query       = *( pchar / &quot;/&quot; / &quot;?&quot; )
-//     pchar       = unreserved / pct-encoded / sub-delims / &quot;:&quot; / &quot;@&quot;
-//     unreserved  = ALPHA / DIGIT / &quot;-&quot; / &quot;.&quot; / &quot;_&quot; / &quot;~&quot;
-//     sub-delims  = &quot;!&quot; / &quot;$&quot; / &quot;&amp;&quot; / &quot;&#039;&quot; / &quot;(&quot; / &quot;)&quot;
-//                   / &quot;*&quot; / &quot;+&quot; / &quot;,&quot; / &quot;;&quot; / &quot;=&quot;
-</pre>
-
-<h2>後記</h2>
-
-<p>現在含以前的版本都不會遇到這問題，如果你有用一些 Framework 請務必在明年釋出下一版後，一起跟著升級，<a href="https://github.com/gin-gonic/gin">Gin</a> 現在已經發 <a href="https://github.com/gin-gonic/gin/pull/1510">Patch</a> 修正了。<br />
-<div class="wp_rp_wrap  wp_rp_plain" ><div class="wp_rp_content"><h3 class="related_post_title">Related View</h3><ul class="related_post wp_rp"><li data-position="0" data-poid="in-6671" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/03/error-handler-in-golang/" class="wp_rp_title">Go 語言的錯誤訊息處理</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="1" data-poid="in-7021" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/05/how-to-write-testing-in-golang/" class="wp_rp_title">如何在 Go 專案內寫測試</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="2" data-poid="in-6869" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/11/gorush-a-push-notification-server-written-in-go/" class="wp_rp_title">Gorush 輕量級手機訊息發送服務</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="3" data-poid="in-6661" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/02/write-command-line-in-golang/" class="wp_rp_title">用 Golang 寫 Command line 工具</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="4" data-poid="in-6721" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/05/go-struct-method-pointer-or-value/" class="wp_rp_title">Go 語言內 struct methods 該使用 pointer 或 value 傳值?</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="5" data-poid="in-6963" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/02/simply-output-go-html-template-execution-to-strings/" class="wp_rp_title">將 Go Html Template 存入 String 變數</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="6" data-poid="in-7047" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/07/mkcert-zero-config-tool-to-make-locally-trusted-development-certificates/" class="wp_rp_title">在本機端快速產生網站免費憑證</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="7" data-poid="in-6772" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/07/go-framework-gin-release-v1-2/" class="wp_rp_title">Go 語言框架 Gin 終於發佈 v1.2 版本</a><small class="wp_rp_comments_count"> (2)</small><br /></li><li data-position="8" data-poid="in-7013" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/04/init-func-in-golang/" class="wp_rp_title">Go 語言的 init 函式</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="9" data-poid="in-6877" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/11/grpc-health-check-in-go/" class="wp_rp_title">Go 語言實現 gRPC Health 驗證</a><small class="wp_rp_comments_count"> (0)</small><br /></li></ul></div></div></p>
+        <p>系統思考 (Systems Thinking)，是一項用因果關係，推導出系統整體，進而看見世界全貌的高深技藝。凍仁第一次見到它，是在 <a href="https://devopsdays.tw/2017/agenda.html" target="_blank">DevOpsDays Taipei 2017</a> 的場子，聽 Ruddy Lee 老師分享<a href="https://onedrive.live.com/?authkey=%21AIhPyhAlSCD59wI&amp;id=68B24674607C69D9%21128284&amp;cid=68B24674607C69D9" target="_blank">《開啟 DevOps 之路的系統思維》</a>，其運用「<b>因果回饋圖 (Causal Loop Diagram, CLD)</b>」一步步解答<a href="https://www.tenlong.com.tw/products/9789867889188" target="_blank">《人月神話》</a>書中遇到的問題，讓許多人留下深刻的印象。<br /><br />上週五 (2018/08/31)，是凍仁參與 William Yeh 老兄開設「<a href="https://devopsdays.tw/workshop.html#workshop0831" target="_blank">系統思考的四堂課 / DevOps 特別版</a>」的日子，也是凍仁往 DevOps 之道向前邁進一步的日子。<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://1.bp.blogspot.com/-U5UE2moakYw/W4xA2howpLI/AAAAAAAArD4/rKZKhS_uz1YJ52d9pxoyHmtG3HNaR5DgwCKgBGAs/s1600/IMG_20180831_155402.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="1291" data-original-width="1600" height="322" src="https://1.bp.blogspot.com/-U5UE2moakYw/W4xA2howpLI/AAAAAAAArD4/rKZKhS_uz1YJ52d9pxoyHmtG3HNaR5DgwCKgBGAs/s400/IMG_20180831_155402.jpg" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 這次的上課地點，是<a href="http://www.cmoney.com.tw/cmweb/classroom/index.html" target="_blank">達文西空間</a>裡，很有氣氛的羅馬廳。</td></tr></tbody></table><a name='more'></a><br />此次工作坊會取名為「系統思考的四堂課」，是因為這原本是 1 週 1 堂，連續 4 週的系統思考工作坊。<br /><ul><li>第一堂：因果分析 (1.5hr)</li><li>第二堂：系統動力學 (1.5hr)</li><li>第三堂：系統基模 (2hr)</li><li>第四堂：DevOps 與商業模式的分析應用 (2hr)</li></ul><br />講者一開始引經據典的簡介「<b>思維模式</b><sup>1</sup>」和「<b>系統思考</b>」，並藉由「<b>因果分析</b>」引領我們入門。接著講解「<b>系統動力學</b>」和「<b>系統基模</b>」，最後藉由 <b>CLD</b> 現場推演<b>康威定律 (Conway&rsquo;s Law)</b>，證明其背後的運作模式，與課堂上提及的種種商業模式案例同出一轍。<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://4.bp.blogspot.com/-ll7wtEe-vyc/W4w_R5fjPBI/AAAAAAAArDs/IYAw8ADGDFs-qoe-v5HdaaQk7D2fjwvzgCKgBGAs/s1600/IMG_20180831_125208.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="1600" data-original-width="1307" height="400" src="https://4.bp.blogspot.com/-ll7wtEe-vyc/W4w_R5fjPBI/AAAAAAAArDs/IYAw8ADGDFs-qoe-v5HdaaQk7D2fjwvzgCKgBGAs/s400/IMG_20180831_125208.jpg" width="326" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 實用且精美的講義、午餐和本次所用到的工具組。照片中立起講義的<b>看書架</b>，在課前和課中，都給需看大量文件的凍仁不少幫助。</td></tr></tbody></table><br />這堂課雖有一位好老師領路，但凍仁卻不時在<b>因果邏輯分析</b>上卡關。這就好比自己 5 年前初學習嘸蝦米，雖知曉該輸入法的種種拆碼規則，但因長期使用注音輸入法，腦中只記得「讀音」，不太記得字的「形狀」，卡在「認字」這個基礎關卡上。<sup>2</sup><br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://1.bp.blogspot.com/-LielZzmvzN8/W4y7tRvysPI/AAAAAAAArEc/lVOIL4Puo-4Z4K3vgdcqjCNkdSqh6AQlACKgBGAs/s1600/2018-09-03-systems-thinking-workshop-hw1.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="1600" data-original-width="965" height="400" src="https://1.bp.blogspot.com/-LielZzmvzN8/W4y7tRvysPI/AAAAAAAArEc/lVOIL4Puo-4Z4K3vgdcqjCNkdSqh6AQlACKgBGAs/s400/2018-09-03-systems-thinking-workshop-hw1.jpg" width="241" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 未完成的<a href="https://www.dropbox.com/s/x1zca3ctbks3v5t/系統思考的四堂課・DevOps社群特別版・課前作業.pdf" target="_blank">課前作業</a>。看著講義許久，才終於理解該怎麼作這份作業，也因為自己事前沒法花太多時間預習和問問題，才有如此結果。</td></tr></tbody></table><br />一天的課程下來，讓凍仁有種回到在學時，那喜愛解數學題的成就感。<br /><blockquote>分析題目、找出規則、一步步推導，之後在一堆算式最後，得到解答；但如果我們思考不周，就如同跳過算式般，很可能會得到不正確的答案。</blockquote><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://4.bp.blogspot.com/-f-AwlK6buGY/W4w-JAz04EI/AAAAAAAArDg/GYTZlrWqfHYENAgSgq8p8NesOKin6D7KQCKgBGAs/s1600/IMG_20180831_134033.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="1600" data-original-width="958" height="400" src="https://4.bp.blogspot.com/-f-AwlK6buGY/W4w-JAz04EI/AAAAAAAArDg/GYTZlrWqfHYENAgSgq8p8NesOKin6D7KQCKgBGAs/s400/IMG_20180831_134033.jpg" width="240" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 與課程資訊電視牆合影。</td></tr></tbody></table><br />為什麼凍仁會對系統思考這麼有興趣呢？想必是自己受了<a href="http://www.books.com.tw/products/0010668495" target="_blank">《砍掉重練》</a>一書很大的影響。<br /><blockquote>劍，一人敵，不足學，學萬人敵。<br /><br />-《史記．項羽本記》</blockquote><br />若把 Ansible、Docker、GitLab CI 等 DevOps Tools 比喻成可以贏過一人的「<b>劍</b>」；那「<b>系統思考</b>」就有如作者 Winston Chen 所言，是種可以學習萬人敵、實戰萬人敵，然後從萬人中勝出的技藝！<br /><br />企業實踐 DevOps 的方式百百種，但要怎麼進行才最合適自己？每個團隊的狀況不同，其解法也不同。相信藉由系統思考和前人的經驗，可以在每個時期指引我們，找出正確的方向。<br /><blockquote>系統思考，是門無法速成的技藝；但卻是門提升 IT 職場思維，值得 DevOps 人投資的學科。</blockquote><br />接下來，就照著講者的提議，先在日常領域刻意練習，等較為熟識後，再往專業領域前進。相信到時候<a href="https://play.google.com/store/books/details?id=MN8tDwAAQBAJ" target="_blank">《第五項修練》</a>一書和講者這本精心設計的講義，都會是很棒的教材！<br /><br /><span class="Comment"><sup>1</sup>: 凍仁目前掌握度最高的思維模式，即為《心態致勝》一書提及的「定型心態」和「成長心態」。雖說它們相較系統思考簡單許多，但還是可以在「捨末逐本」和「飲鴆止渴」等系統基模中看到它們的影子！<br /><sup>2</sup>: 嘸蝦米輸入法與倉頡一樣，都是藉由字的「形狀」拆碼而成，與注音輸入法的「讀音」有很大的不同。而文中提到的落差早已隨著時間的累積有所善。如今若遇見認不得的字，會拿起手機，試著先用 Google 語音辦識來「查字」。<br /><br /><center>(本文已授權<a href="https://school.soft-arch.net/blog/1791681/sys-thinking-workshop" target="_blank">系統思考的四堂課</a>課程引述。)</center></span><br /><br /><code class="ref">資料來源：<br /><span style="color: #ffdb00;">★</span> <a href="https://devopsdays.tw/workshop.html#workshop0831" target="_blank">系統思考的四堂課 / DevOps 特別版 | DevOpsDays Taipei 2018 實戰工作坊</a><br /><span style="color: #ffdb00;">★</span> <a href="https://school.soft-arch.net/blog/1791681/sys-thinking-workshop" target="_blank">系統思考的四堂課 | Software Architecture School</a><br /><br />相關連結：<br /><span style="color: #ffdb00;">★</span> <a href="https://school.soft-arch.net/blog/2000124/thinking-weight-training" target="_blank">思維的重量訓練 | Software Architecture School</a><br /><span style="color: #ffdb00;">★</span> <a href="https://medium.com/@suci/4-classes-of-systems-thinking-with-devops-becdfe4a84f0" target="_blank">4 Classes of Systems Thinking with DevOps | Suci Lin</a><br /><span style="color: #ffdb00;">★</span> <a href="https://play.google.com/store/books/details?id=MN8tDwAAQBAJ" target="_blank">《第五項修練 (全新增訂版)：學習型組織的藝術與實務》 by Peter M. Senge</a><br /><span style="color: #ffdb00;">★</span> <a href="https://school.soft-arch.net/blog/1192576/devops-a-system-dynamics-perspective" target="_blank">從系統思考看 DevOps by William Yeh @ 2017/10/26</a><br /><span style="color: #ffdb00;">★</span> <a href="https://www.slideshare.net/williamyeh/agile-transition-a-toc-perspective" target="_blank">從限制理論角度談敏捷導入階段 by William Yeh @ 2018/06/29</a><br /><span style="color: #ffdb00;">★</span> <a href="https://startuplatte.com/2017/08/22/dont-make-plans-and-brands/" target="_blank">不要做「生涯規劃」！不要經營「個人品牌」！臉書營運長桑德伯格：要在網路時代成功，必須有不同做法 | 創新拿鐵</a><br /><span style="color: #ffdb00;">★</span> <a href="https://medium.com/chichatalk/%E4%BB%80%E9%BA%BC%E6%98%AF%E6%B7%B1%E5%BA%A6%E6%80%9D%E8%80%83-%E7%94%A8%E6%80%9D%E7%B6%AD%E6%A8%A1%E5%9E%8B%E7%9C%8B%E6%B8%85%E4%B8%96%E7%95%8C-%E7%94%A8%E8%87%A8%E7%95%8C%E7%9F%A5%E8%AD%98%E8%A7%A3%E6%B1%BA%E5%95%8F%E9%A1%8C-bc3e848d9dd1" target="_blank">什麼是深度思考？用思維模型看清世界，用臨界知識解決問題！| 思維精煉室</a><br /><span style="color: #ffdb00;">★</span> <a href="https://www.hbrtaiwan.com/article_content_AR0000135.html" target="_blank">建立學習型組織 | 哈佛商業評論</a><br /></code></p>
 
 
         
@@ -344,7 +235,7 @@ func resetQuery(m map[string][]string) map[string][]string {
 
 
 <li>
-    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180827_escape-url-rawquery-on-parse-in-golang%2f&amp;text=%e5%9c%a8%20Go%20%e8%aa%9e%e8%a8%80%e5%85%a7%e7%9a%84%20URL%20RawQuery%20%e7%9a%84%e6%94%b9%e8%ae%8a&amp;via="
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180902_systems-thinking-workshop-of-devops.html%2f&amp;text=%e3%80%8c%e7%b3%bb%e7%b5%b1%e6%80%9d%e8%80%83%e7%9a%84%e5%9b%9b%e5%a0%82%e8%aa%b2%e3%80%8d%e8%88%87%e3%80%8c%e8%90%ac%e4%ba%ba%e6%95%b5%e3%80%8d&amp;via="
        target="_blank" alt="" title="Share on Twitter">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -355,7 +246,7 @@ func resetQuery(m map[string][]string) map[string][]string {
 
 
 <li>
-    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180827_escape-url-rawquery-on-parse-in-golang%2f" target="_blank" title="Share on Google Plus">
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180902_systems-thinking-workshop-of-devops.html%2f" target="_blank" title="Share on Google Plus">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
@@ -365,7 +256,7 @@ func resetQuery(m map[string][]string) map[string][]string {
 
 
 <li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180827_escape-url-rawquery-on-parse-in-golang%2f" target="_blank" title="Share on Facebook">
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180902_systems-thinking-workshop-of-devops.html%2f" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -375,7 +266,7 @@ func resetQuery(m map[string][]string) map[string][]string {
 
 
 <li>
-    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180827_escape-url-rawquery-on-parse-in-golang%2f&amp;title=%e5%9c%a8%20Go%20%e8%aa%9e%e8%a8%80%e5%85%a7%e7%9a%84%20URL%20RawQuery%20%e7%9a%84%e6%94%b9%e8%ae%8a" target="_blank" title="Share on Reddit">
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180902_systems-thinking-workshop-of-devops.html%2f&amp;title=%e3%80%8c%e7%b3%bb%e7%b5%b1%e6%80%9d%e8%80%83%e7%9a%84%e5%9b%9b%e5%a0%82%e8%aa%b2%e3%80%8d%e8%88%87%e3%80%8c%e8%90%ac%e4%ba%ba%e6%95%b5%e3%80%8d" target="_blank" title="Share on Reddit">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
@@ -385,7 +276,7 @@ func resetQuery(m map[string][]string) map[string][]string {
 
 
 <li>
-    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180827_escape-url-rawquery-on-parse-in-golang%2f&amp;title=%e5%9c%a8%20Go%20%e8%aa%9e%e8%a8%80%e5%85%a7%e7%9a%84%20URL%20RawQuery%20%e7%9a%84%e6%94%b9%e8%ae%8a" target="_blank"
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180902_systems-thinking-workshop-of-devops.html%2f&amp;title=%e3%80%8c%e7%b3%bb%e7%b5%b1%e6%80%9d%e8%80%83%e7%9a%84%e5%9b%9b%e5%a0%82%e8%aa%b2%e3%80%8d%e8%88%87%e3%80%8c%e8%90%ac%e4%ba%ba%e6%95%b5%e3%80%8d" target="_blank"
        title="Share on LinkedIn">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -396,7 +287,7 @@ func resetQuery(m map[string][]string) map[string][]string {
 
 
 <li>
-    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180827_escape-url-rawquery-on-parse-in-golang%2f&amp;title=%e5%9c%a8%20Go%20%e8%aa%9e%e8%a8%80%e5%85%a7%e7%9a%84%20URL%20RawQuery%20%e7%9a%84%e6%94%b9%e8%ae%8a" target="_blank"
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180902_systems-thinking-workshop-of-devops.html%2f&amp;title=%e3%80%8c%e7%b3%bb%e7%b5%b1%e6%80%9d%e8%80%83%e7%9a%84%e5%9b%9b%e5%a0%82%e8%aa%b2%e3%80%8d%e8%88%87%e3%80%8c%e8%90%ac%e4%ba%ba%e6%95%b5%e3%80%8d" target="_blank"
        title="Share on StumbleUpon">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -407,7 +298,7 @@ func resetQuery(m map[string][]string) map[string][]string {
 
 
 <li>
-    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180827_escape-url-rawquery-on-parse-in-golang%2f&amp;description=%e5%9c%a8%20Go%20%e8%aa%9e%e8%a8%80%e5%85%a7%e7%9a%84%20URL%20RawQuery%20%e7%9a%84%e6%94%b9%e8%ae%8a" target="_blank"
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20180902_systems-thinking-workshop-of-devops.html%2f&amp;description=%e3%80%8c%e7%b3%bb%e7%b5%b1%e6%80%9d%e8%80%83%e7%9a%84%e5%9b%9b%e5%a0%82%e8%aa%b2%e3%80%8d%e8%88%87%e3%80%8c%e8%90%ac%e4%ba%ba%e6%95%b5%e3%80%8d" target="_blank"
        title="Share on Pinterest">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -425,12 +316,12 @@ func resetQuery(m map[string][]string) map[string][]string {
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="https://kalug.linux.org.tw/planet/chusiang/20180826_the-phoenix-project-book.html/" data-toggle="tooltip" data-placement="top" title="《鳳凰專案》- 踏入 DevOps 之旅的第一本書">&larr; Previous Post</a>
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20180902_converting-timestamp-to-timestamp-in-a-specific-time-zone-in-postgres/" data-toggle="tooltip" data-placement="top" title="在 PostgreSQL 時區轉換及計算時間">&larr; Previous Post</a>
             </li>
           
           
             <li class="next">
-              <a href="https://kalug.linux.org.tw/planet/appleboy/20180902_converting-timestamp-to-timestamp-in-a-specific-time-zone-in-postgres/" data-toggle="tooltip" data-placement="top" title="在 PostgreSQL 時區轉換及計算時間">Next Post &rarr;</a>
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20180916_graphql-go-library-support-concurrent-resolvers/" data-toggle="tooltip" data-placement="top" title="Go 語言的 graphQL-go 套件正式支援 Concurrent Resolvers">Next Post &rarr;</a>
             </li>
           
         </ul>

@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://kalug.linux.org.tw/planet/appleboy/20180916_graphql-go-library-support-concurrent-resolvers/</loc>
+    <lastmod>2018-09-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.linux.org.tw/planet/chusiang/20180902_systems-thinking-workshop-of-devops.html/</loc>
+    <lastmod>2018-09-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.linux.org.tw/planet/appleboy/20180902_converting-timestamp-to-timestamp-in-a-specific-time-zone-in-postgres/</loc>
+    <lastmod>2018-09-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kalug.linux.org.tw/planet/appleboy/20180827_escape-url-rawquery-on-parse-in-golang/</loc>
     <lastmod>2018-08-27T00:00:00+00:00</lastmod>
   </url>
@@ -483,7 +498,7 @@
   
   <url>
     <loc>https://kalug.linux.org.tw/</loc>
-    <lastmod>2018-08-27T00:00:00+00:00</lastmod>
+    <lastmod>2018-09-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -509,7 +524,7 @@
   
   <url>
     <loc>https://kalug.linux.org.tw/planet/</loc>
-    <lastmod>2018-08-27T00:00:00+00:00</lastmod>
+    <lastmod>2018-09-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
