@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://kalug.linux.org.tw/planet/appleboy/20180925_gofight-support-upload-file-testing/</loc>
+    <lastmod>2018-09-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.linux.org.tw/planet/appleboy/20180920_golang-project-quality/</loc>
+    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.linux.org.tw/planet/slat-tw/20180918_2018-internal-day-against-drm.html/</loc>
+    <lastmod>2018-09-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kalug.linux.org.tw/planet/appleboy/20180916_graphql-go-library-support-concurrent-resolvers/</loc>
     <lastmod>2018-09-16T00:00:00+00:00</lastmod>
   </url>
@@ -498,7 +513,7 @@
   
   <url>
     <loc>https://kalug.linux.org.tw/</loc>
-    <lastmod>2018-09-16T00:00:00+00:00</lastmod>
+    <lastmod>2018-09-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -524,7 +539,7 @@
   
   <url>
     <loc>https://kalug.linux.org.tw/planet/</loc>
-    <lastmod>2018-09-16T00:00:00+00:00</lastmod>
+    <lastmod>2018-09-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
