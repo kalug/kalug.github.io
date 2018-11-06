@@ -5,23 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Go 語言的 graphQL-go 套件正式支援 Concurrent Resolvers</title>
-  <meta property="og:title" content="Go 語言的 graphQL-go 套件正式支援 Concurrent Resolvers" />
-  <meta name="twitter:title" content="Go 語言的 graphQL-go 套件正式支援 Concurrent Resolvers" />
-  <meta name="description" content="要在 Go 語言寫 graphQL，大家一定對 graphql-go 不陌生，討論度最高的套件，但是我先說，雖然討論度是最高，但是效能是最差的，如果大家很要求效能，可以先">
-  <meta property="og:description" content="要在 Go 語言寫 graphQL，大家一定對 graphql-go 不陌生，討論度最高的套件，但是我先說，雖然討論度是最高，但是效能是最差的，如果大家很要求效能，可以先">
-  <meta name="twitter:description" content="要在 Go 語言寫 graphQL，大家一定對 graphql-go 不陌生，討論度最高的套件，但是我先說，雖然討論度是最高，但是效能是最差的，如果大家很要求效能，可以先">
+  <title>Go 語言 1.11 版本推出 go module</title>
+  <meta property="og:title" content="Go 語言 1.11 版本推出 go module" />
+  <meta name="twitter:title" content="Go 語言 1.11 版本推出 go module" />
+  <meta name="description" content="本篇來聊聊 Go 語言在 1.11 版本推出的 新功能，相信大家也許還不知道此功能是做什麼用的，我們來回顧看看在初學 Go 語言的時候，最令人困擾的就是 GOPATH">
+  <meta property="og:description" content="本篇來聊聊 Go 語言在 1.11 版本推出的 新功能，相信大家也許還不知道此功能是做什麼用的，我們來回顧看看在初學 Go 語言的時候，最令人困擾的就是 GOPATH">
+  <meta name="twitter:description" content="本篇來聊聊 Go 語言在 1.11 版本推出的 新功能，相信大家也許還不知道此功能是做什麼用的，我們來回顧看看在初學 Go 語言的時候，最令人困擾的就是 GOPATH">
   <meta name="author" content=""/>
   <link href='https://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://kalug.linux.org.tw/img/kalug.png" />
   <meta name="twitter:image" content="https://kalug.linux.org.tw/img/kalug.png" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://kalug.linux.org.tw/planet/appleboy/20180916_graphql-go-library-support-concurrent-resolvers/" />
+  <meta property="og:url" content="https://kalug.linux.org.tw/planet/appleboy/20181016_go-1-11-support-go-module/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kaohsiung Linux User Group" />
 
   <meta name="generator" content="Hugo 0.41" />
-  <link rel="canonical" href="https://kalug.linux.org.tw/planet/appleboy/20180916_graphql-go-library-support-concurrent-resolvers/" />
+  <link rel="canonical" href="https://kalug.linux.org.tw/planet/appleboy/20181016_go-1-11-support-go-module/" />
   <link rel="alternate" href="https://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -206,7 +206,7 @@ if (!doNotTrack) {
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="blog-heading">
-              <h1>Go 語言的 graphQL-go 套件正式支援 Concurrent Resolvers</h1>
+              <h1>Go 語言 1.11 版本推出 go module</h1>
                 
                 
             </div>
@@ -222,208 +222,120 @@ if (!doNotTrack) {
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p><a href="https://www.flickr.com/photos/appleboy/30836371338/in/dateposted-public/" title="GraphQL_Logo.svg"><img src="https://i2.wp.com/farm2.staticflickr.com/1852/30836371338_14b636b465_z.jpg?w=840&#038;ssl=1" alt="GraphQL_Logo.svg" data-recalc-dims="1" /></a></p>
+        <p><a href="https://www.flickr.com/photos/appleboy/40093179410/in/dateposted-public/" title="Go-Logo_Blue"><img src="https://i1.wp.com/farm1.staticflickr.com/908/40093179410_53df4bb9e8_z.jpg?w=840&#038;ssl=1" alt="Go-Logo_Blue" data-recalc-dims="1" /></a></p>
 
-<p>要在 <a href="https://golang.org">Go 語言</a>寫 graphQL，大家一定對 <a href="https://github.com/graphql-go/graphql">graphql-go</a> 不陌生，討論度最高的套件，但是我先說，雖然討論度是最高，但是效能是最差的，如果大家很要求效能，可以先參考此<a href="https://github.com/appleboy/golang-graphql-benchmark">專案</a>，裡面有目前 Go 語言的 graphQL 套件比較效能，有機會在寫另外一篇介紹。最近 graphql-go 的作者把 Concurrent Resolvers 的解法寫了一篇 <a href="https://github.com/graphql-go/graphql/issues/389">Issue 來討論</a>，最終採用了 <a href="https://github.com/graphql-go/graphql/pull/388">Resolver returns a Thunk</a> 方式來解決 Concurrent 問題，這個 PR 沒有用到額外的 goroutines，使用方式也最簡單</p>
+<p>本篇來聊聊 <a href="https://golang.org">Go 語言</a>在 1.11 版本推出的 <a href="https://github.com/golang/go/wiki/Modules">新功能</a>，相信大家也許還不知道此功能是做什麼用的，我們來回顧看看在初學 Go 語言的時候，最令人困擾的就是 <code>GOPATH</code>，所有的專案都必須要在 GOPATH 底下開發，然而在更久前還沒有 Vendor 時候，兩個專案用不同版本的同一個 Package 就必須要使用多個 GOPATH 來解決，但是隨著 Vendor 在 1.5 版的推出，解決了這問題，所以現在只要把專案放在 GOPATH 底下，剩下的 Package 管理都透過 Vendor 目錄來控管，在很多大型開源專案都可以看到把 Vendor 目錄放入版本控制已經是基本的 Best Practice，而 go module 推出最大功能用來解決 GOPATH 問題，也就是未來開發專案，<strong>隨意讓開發者 clone 專案到任何地方都可以</strong>，另外也統一個 Package 套件管理，不再需要 <code>Vendor</code> 目錄，底下舉個實際例子來說明。</p>
 
-<pre class="brush: go; title: ; notranslate">
-&quot;pullRequests&quot;: &amp;graphql.Field{
-    Type: graphql.NewList(PullRequestType),
-    Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-        ch := make(chan []PullRequest)
-        // Concurrent work via Goroutines.
-        go func() {
-            // Async work to obtain pullRequests.
-            ch &lt;- pullRequests
-        }()
-        return func() interface{} {
-            return &lt;-ch
-        }, nil
-    },
-},
-</pre>
+<p><span id="more-7098"></span></p>
 
-<p><span id="more-7081"></span></p>
+<h2>影片介紹</h2>
 
-<h2>使用方式</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MXjYRrZnHh0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-<p>先用一個簡單例子來解釋之前的寫法會是什麼形式</p>
+<hr />
+
+<p>此影片同步在 <a href="https://www.udemy.com/golang-fight/?couponCode=GOLANG-TOP">Udemy 課程</a>內，如果有購買課程的朋友們，也可以在 Udemy 上面觀看，如果想學習更多 Go 語言教學，現在可以透過 <strong>$1800</strong> 價格購買。</p>
+
+<h2>傳統 go vendor 管理</h2>
+
+<p>先看個例子:</p>
 
 <pre class="brush: go; title: ; notranslate">
 package main
 
 import (
-    &quot;encoding/json&quot;
     &quot;fmt&quot;
-    &quot;log&quot;
-    &quot;time&quot;
 
-    &quot;github.com/graphql-go/graphql&quot;
+    &quot;github.com/appleboy/com/random&quot;
 )
 
-type Foo struct {
-    Name string
-}
-
-var FieldFooType = graphql.NewObject(graphql.ObjectConfig{
-    Name: &quot;Foo&quot;,
-    Fields: graphql.Fields{
-        &quot;name&quot;: &amp;graphql.Field{Type: graphql.String},
-    },
-})
-
-type Bar struct {
-    Name string
-}
-
-var FieldBarType = graphql.NewObject(graphql.ObjectConfig{
-    Name: &quot;Bar&quot;,
-    Fields: graphql.Fields{
-        &quot;name&quot;: &amp;graphql.Field{Type: graphql.String},
-    },
-})
-
-// QueryType fields: `concurrentFieldFoo` and `concurrentFieldBar` are resolved
-// concurrently because they belong to the same field-level and their `Resolve`
-// function returns a function (thunk).
-var QueryType = graphql.NewObject(graphql.ObjectConfig{
-    Name: &quot;Query&quot;,
-    Fields: graphql.Fields{
-        &quot;concurrentFieldFoo&quot;: &amp;graphql.Field{
-            Type: FieldFooType,
-            Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-                type result struct {
-                    data interface{}
-                    err  error
-                }
-                ch := make(chan *result, 1)
-                go func() {
-                    defer close(ch)
-                    time.Sleep(1 * time.Second)
-                    foo := &amp;Foo{Name: &quot;Foo&#039;s name&quot;}
-                    ch &lt;- &amp;result{data: foo, err: nil}
-                }()
-                r := &lt;-ch
-                return r.data, r.err
-            },
-        },
-        &quot;concurrentFieldBar&quot;: &amp;graphql.Field{
-            Type: FieldBarType,
-            Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-                type result struct {
-                    data interface{}
-                    err  error
-                }
-                ch := make(chan *result, 1)
-                go func() {
-                    defer close(ch)
-                    time.Sleep(1 * time.Second)
-                    bar := &amp;Bar{Name: &quot;Bar&#039;s name&quot;}
-                    ch &lt;- &amp;result{data: bar, err: nil}
-                }()
-                r := &lt;-ch
-                return r.data, r.err
-            },
-        },
-    },
-})
-
 func main() {
-    schema, err := graphql.NewSchema(graphql.SchemaConfig{
-        Query: QueryType,
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    query := `
-        query {
-            concurrentFieldFoo {
-                name
-            }
-            concurrentFieldBar {
-                name
-            }
-        }
-    `
-    result := graphql.Do(graphql.Params{
-        RequestString: query,
-        Schema:        schema,
-    })
-    b, err := json.Marshal(result)
-    if err != nil {
-        log.Fatal(err)
-    }
-    fmt.Printf(&quot;%s&quot;, b)
-    /*
-        {
-          &quot;data&quot;: {
-            &quot;concurrentFieldBar&quot;: {
-              &quot;name&quot;: &quot;Bar&#039;s name&quot;
-            },
-            &quot;concurrentFieldFoo&quot;: {
-              &quot;name&quot;: &quot;Foo&#039;s name&quot;
-            }
-          }
-        }
-    */
+    fmt.Println(random.String(10))
 }
 </pre>
 
-<p>接著看看需要多少時間來完成執行</p>
+<p>將此專案放在 <code>$GOPATH/src/github.com/appleboy/test</code> 這是大家寫專案必定遵守的目錄規則，而 vendor 管理則會從 <a href="https://github.com/golang/go/wiki/PackageManagementTools">PackageManagementTools</a> 選擇一套。底下是用 <a href="https://github.com/kardianos/govendor">govendor</a> 來當作例子</p>
 
 <pre class="brush: plain; title: ; notranslate">
-$ time go run examples/concurrent-resolvers/main.go | jq
-{
-  &quot;data&quot;: {
-    &quot;concurrentFieldBar&quot;: {
-      &quot;name&quot;: &quot;Bar&#039;s name&quot;
-    },
-    &quot;concurrentFieldFoo&quot;: {
-      &quot;name&quot;: &quot;Foo&#039;s name&quot;
-    }
-  }
-}
-
-real    0m4.186s
-user    0m0.508s
-sys     0m0.925s
+$ govendor init
+$ govendor fetch github.com/appleboy/com/random
 </pre>
 
-<p>總共花費了四秒，原因是每個 resolver 都是依序執行，所以都需要等每個 goroutines 執行完成才能進入到下一個 resolver，上面例子該如何改成 Concurrent 呢，很簡單，只要將 return 的部分換成</p>
-
-<pre class="brush: go; title: ; notranslate">
-                return func() (interface{}, error) {
-                    r := &lt;-ch
-                    return r.data, r.err
-                }, nil
-</pre>
-
-<p>執行時間如下</p>
+<p>最後用 <code>go build</code> 產生 binary</p>
 
 <pre class="brush: plain; title: ; notranslate">
-$ time go run examples/concurrent-resolvers/main.go | jq
-{
-  &quot;data&quot;: {
-    &quot;concurrentFieldBar&quot;: {
-      &quot;name&quot;: &quot;Bar&#039;s name&quot;
-    },
-    &quot;concurrentFieldFoo&quot;: {
-      &quot;name&quot;: &quot;Foo&#039;s name&quot;
-    }
-  }
-}
-
-real    0m1.499s
-user    0m0.417s
-sys     0m0.242s
+$ go build -v -o main .
 </pre>
 
-<p>從原本的 4 秒多，變成 1.5 秒，原因就是兩個 resolver 的 goroutines 會同時執行，最後才拿結果。</p>
+<p>如果您不在 GOPATH 裡面工作，就會遇到底下錯誤訊息:</p>
+
+<pre class="brush: plain; title: ; notranslate">
+Error: Package &quot;xxxx&quot; not a go package or not in GOPAT
+</pre>
+
+<p>如果換到 Go 1.11 版本的 module 功能就能永久解決此問題</p>
+
+<h2>使用 go module</h2>
+
+<p>用 go module 解決兩個問題，第一專案內不必再使用 vendor 管理套件，第二開發者可以任意 clone 專案到任何地方，直接下 go build 就可以拿到執行檔了。底下是使用方式</p>
+
+<pre class="brush: plain; title: ; notranslate">
+project
+--&gt; main.go
+--&gt; main_test.go
+</pre>
+
+<p>初始化專案，先啟動 <code>GO111MODULE</code> 變數，在 go 1.11 預設是 <code>auto</code></p>
+
+<pre class="brush: plain; title: ; notranslate">
+$ export GO111MODULE=on
+$ go mod init github.com/appleboy/project
+</pre>
+
+<p>可以看到專案會多出一個 <code>go.mod</code> 檔案，用來記錄使用到的套件版本，如果本身已經在使用 vendor 管理，那麼 <code>mod init</code> 會自動將 vendor 紀錄的版本寫入到 <code>go.mod</code>。接著執行下載</p>
+
+<pre class="brush: plain; title: ; notranslate">
+$ go mod download
+</pre>
+
+<p>專案內會多出 <code>go.sum</code> 檔案，其實根本不用執行 <code>go mod download</code>，只要在專案內下任何 <code>go build|test|install</code> 指令，就會自動將 pkg 下載到 <code>GOPATH/pkg/mod</code> 內</p>
+
+<pre class="brush: plain; title: ; notranslate">
+$ tree ~/go/pkg/mod/github.com/
+/Users/mtk10671/git/go/pkg/mod/github.com/
+└── appleboy
+    └── com@v0.0.0-20180410030638-c0b5901f9622
+        ├── LICENSE
+        ├── Makefile
+        ├── README.md
+        ├── array
+        │   ├── array.go
+        │   └── array_test.go
+        ├── convert
+        │   ├── convert.go
+        │   └── convert_test.go
+        ├── file
+        │   ├── file.go
+        │   └── file_test.go
+        ├── random
+        │   ├── random.go
+        │   └── random_test.go
+        └── vendor
+            └── vendor.json
+</pre>
+
+<p>目前 go module 還在實驗階段，如果升級套件或下載套件有任何問題，請透過底下指令將 pkg 目錄清空就可以了。</p>
+
+<pre class="brush: plain; title: ; notranslate">
+$ go clean -i -x -modcache
+</pre>
 
 <h2>心得</h2>
 
-<p>有了這功能後，比較複雜的 graphQL 語法，就可以用此方式加速執行時間。作者也用 Mogodb + graphql 寫了一個<a href="https://gist.github.com/chris-ramon/e90e245ae79d664ec2f22e4c5682ea3b">範例</a>，大家可以參考看看。<br />
-<div class="wp_rp_wrap  wp_rp_plain" ><div class="wp_rp_content"><h3 class="related_post_title">Related View</h3><ul class="related_post wp_rp"><li data-position="0" data-poid="in-7052" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/07/graphql-in-go/" class="wp_rp_title">Go 語言實戰 GraphQL</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="1" data-poid="in-6671" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/03/error-handler-in-golang/" class="wp_rp_title">Go 語言的錯誤訊息處理</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="2" data-poid="in-6963" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/02/simply-output-go-html-template-execution-to-strings/" class="wp_rp_title">將 Go Html Template 存入 String 變數</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="3" data-poid="in-7047" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/07/mkcert-zero-config-tool-to-make-locally-trusted-development-certificates/" class="wp_rp_title">在本機端快速產生網站免費憑證</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="4" data-poid="in-7021" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/05/how-to-write-testing-in-golang/" class="wp_rp_title">如何在 Go 專案內寫測試</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="5" data-poid="in-7092" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/09/gofight-support-upload-file-testing/" class="wp_rp_title">gofight 支援多個檔案上傳測試</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="6" data-poid="in-6385" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/05/scaledrone-websocket-from-nodejs-to-go/" class="wp_rp_title">ScaleDrone Websocket 平台從 Node.js 轉換到 Golang</a><small class="wp_rp_comments_count"> (2)</small><br /></li><li data-position="7" data-poid="in-6877" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/11/grpc-health-check-in-go/" class="wp_rp_title">Go 語言實現 gRPC Health 驗證</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="8" data-poid="in-7040" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/06/how-to-write-benchmark-in-go/" class="wp_rp_title">如何在 Go 語言內寫效能測試</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="9" data-poid="in-6634" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/01/new-git-code-hosting-option-gitea/" class="wp_rp_title">開發者另類的自架 Git 服務選擇: Gitea</a><small class="wp_rp_comments_count"> (4)</small><br /></li></ul></div></div></p>
+<p>由於 go module 的出現，現在所有的開源專案都相繼支援，但是又要相容於 1.10 版本之前 (含 1.10)，所以變成要維護 <code>go.mod</code> 及 <code>vendor</code> 兩種版本。我個人感覺 go module 解決 GOPATH 問題，不再依賴此環境變數，讓想入門 Go 語言的開發者，可以快速融入開發環境。</p>
+
+<p><h1><a href="https://github.com/go-training/training/tree/master/example22-go-module-in-go.11">程式碼範例</a></h1><br />
+<div class="wp_rp_wrap  wp_rp_plain" ><div class="wp_rp_content"><h3 class="related_post_title">Related View</h3><ul class="related_post wp_rp"><li data-position="0" data-poid="in-6342" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/05/package-management-for-golang-glide/" class="wp_rp_title">Golang 套件管理工具 Glide</a><small class="wp_rp_comments_count"> (2)</small><br /></li><li data-position="1" data-poid="in-6772" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/07/go-framework-gin-release-v1-2/" class="wp_rp_title">Go 語言框架 Gin 終於發佈 v1.2 版本</a><small class="wp_rp_comments_count"> (2)</small><br /></li><li data-position="2" data-poid="in-6674" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/03/golang-dependency-management-tool-dep/" class="wp_rp_title">Go 語言官方推出的 dep 使用心得</a><small class="wp_rp_comments_count"> (6)</small><br /></li><li data-position="3" data-poid="in-6661" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/02/write-command-line-in-golang/" class="wp_rp_title">用 Golang 寫 Command line 工具</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="4" data-poid="in-7068" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/08/escape-url-rawquery-on-parse-in-golang/" class="wp_rp_title">在 Go 語言內的 URL RawQuery 的改變</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="5" data-poid="in-7013" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/04/init-func-in-golang/" class="wp_rp_title">Go 語言的 init 函式</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="6" data-poid="in-6671" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/03/error-handler-in-golang/" class="wp_rp_title">Go 語言的錯誤訊息處理</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="7" data-poid="in-7087" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/09/golang-project-quality/" class="wp_rp_title">Go 語言專案程式碼品質</a><small class="wp_rp_comments_count"> (2)</small><br /></li><li data-position="8" data-poid="in-6714" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/04/build-minimal-docker-container-using-multi-stage-for-go-app/" class="wp_rp_title">用 Docker Multi-Stage 編譯出 Go 語言最小 Image</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="9" data-poid="in-7092" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/09/gofight-support-upload-file-testing/" class="wp_rp_title">gofight 支援多個檔案上傳測試</a><small class="wp_rp_comments_count"> (0)</small><br /></li></ul></div></div></p>
 
 
         
@@ -436,7 +348,7 @@ sys     0m0.242s
 
 
 <li>
-    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180916_graphql-go-library-support-concurrent-resolvers%2f&amp;text=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20graphQL-go%20%e5%a5%97%e4%bb%b6%e6%ad%a3%e5%bc%8f%e6%94%af%e6%8f%b4%20Concurrent%20Resolvers&amp;via="
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181016_go-1-11-support-go-module%2f&amp;text=Go%20%e8%aa%9e%e8%a8%80%201.11%20%e7%89%88%e6%9c%ac%e6%8e%a8%e5%87%ba%20go%20module&amp;via="
        target="_blank" alt="" title="Share on Twitter">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -447,7 +359,7 @@ sys     0m0.242s
 
 
 <li>
-    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180916_graphql-go-library-support-concurrent-resolvers%2f" target="_blank" title="Share on Google Plus">
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181016_go-1-11-support-go-module%2f" target="_blank" title="Share on Google Plus">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
@@ -457,7 +369,7 @@ sys     0m0.242s
 
 
 <li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180916_graphql-go-library-support-concurrent-resolvers%2f" target="_blank" title="Share on Facebook">
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181016_go-1-11-support-go-module%2f" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -467,7 +379,7 @@ sys     0m0.242s
 
 
 <li>
-    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180916_graphql-go-library-support-concurrent-resolvers%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20graphQL-go%20%e5%a5%97%e4%bb%b6%e6%ad%a3%e5%bc%8f%e6%94%af%e6%8f%b4%20Concurrent%20Resolvers" target="_blank" title="Share on Reddit">
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181016_go-1-11-support-go-module%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%201.11%20%e7%89%88%e6%9c%ac%e6%8e%a8%e5%87%ba%20go%20module" target="_blank" title="Share on Reddit">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
@@ -477,7 +389,7 @@ sys     0m0.242s
 
 
 <li>
-    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180916_graphql-go-library-support-concurrent-resolvers%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20graphQL-go%20%e5%a5%97%e4%bb%b6%e6%ad%a3%e5%bc%8f%e6%94%af%e6%8f%b4%20Concurrent%20Resolvers" target="_blank"
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181016_go-1-11-support-go-module%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%201.11%20%e7%89%88%e6%9c%ac%e6%8e%a8%e5%87%ba%20go%20module" target="_blank"
        title="Share on LinkedIn">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -488,7 +400,7 @@ sys     0m0.242s
 
 
 <li>
-    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180916_graphql-go-library-support-concurrent-resolvers%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20graphQL-go%20%e5%a5%97%e4%bb%b6%e6%ad%a3%e5%bc%8f%e6%94%af%e6%8f%b4%20Concurrent%20Resolvers" target="_blank"
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181016_go-1-11-support-go-module%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%201.11%20%e7%89%88%e6%9c%ac%e6%8e%a8%e5%87%ba%20go%20module" target="_blank"
        title="Share on StumbleUpon">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -499,7 +411,7 @@ sys     0m0.242s
 
 
 <li>
-    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180916_graphql-go-library-support-concurrent-resolvers%2f&amp;description=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20graphQL-go%20%e5%a5%97%e4%bb%b6%e6%ad%a3%e5%bc%8f%e6%94%af%e6%8f%b4%20Concurrent%20Resolvers" target="_blank"
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181016_go-1-11-support-go-module%2f&amp;description=Go%20%e8%aa%9e%e8%a8%80%201.11%20%e7%89%88%e6%9c%ac%e6%8e%a8%e5%87%ba%20go%20module" target="_blank"
        title="Share on Pinterest">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -517,12 +429,12 @@ sys     0m0.242s
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="https://kalug.linux.org.tw/planet/chusiang/20180902_systems-thinking-workshop-of-devops.html/" data-toggle="tooltip" data-placement="top" title="「系統思考的四堂課」與「萬人敵」">&larr; Previous Post</a>
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20180925_gofight-support-upload-file-testing/" data-toggle="tooltip" data-placement="top" title="gofight 支援多個檔案上傳測試">&larr; Previous Post</a>
             </li>
           
           
             <li class="next">
-              <a href="https://kalug.linux.org.tw/planet/slat-tw/20180918_2018-internal-day-against-drm.html/" data-toggle="tooltip" data-placement="top" title="2018 軟體自由日：國際反數位版權鎖日（Internal Day Against DRM, IDAD）">Next Post &rarr;</a>
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20181025_deploy-app-to-aws-lambda-using-up-tool-in-ten-minutes/" data-toggle="tooltip" data-placement="top" title="用 10 分鐘部署專案到 AWS Lambda">Next Post &rarr;</a>
             </li>
           
         </ul>

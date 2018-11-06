@@ -5,23 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Go 語言的 graphQL-go 套件正式支援 Concurrent Resolvers</title>
-  <meta property="og:title" content="Go 語言的 graphQL-go 套件正式支援 Concurrent Resolvers" />
-  <meta name="twitter:title" content="Go 語言的 graphQL-go 套件正式支援 Concurrent Resolvers" />
-  <meta name="description" content="要在 Go 語言寫 graphQL，大家一定對 graphql-go 不陌生，討論度最高的套件，但是我先說，雖然討論度是最高，但是效能是最差的，如果大家很要求效能，可以先">
-  <meta property="og:description" content="要在 Go 語言寫 graphQL，大家一定對 graphql-go 不陌生，討論度最高的套件，但是我先說，雖然討論度是最高，但是效能是最差的，如果大家很要求效能，可以先">
-  <meta name="twitter:description" content="要在 Go 語言寫 graphQL，大家一定對 graphql-go 不陌生，討論度最高的套件，但是我先說，雖然討論度是最高，但是效能是最差的，如果大家很要求效能，可以先">
+  <title>用 10 分鐘部署專案到 AWS Lambda</title>
+  <meta property="og:title" content="用 10 分鐘部署專案到 AWS Lambda" />
+  <meta name="twitter:title" content="用 10 分鐘部署專案到 AWS Lambda" />
+  <meta name="description" content="看到這標題也許非常聳動，也可能覺得不可思議，今天來探討如何將專案直接部署到 AWS Lambda 並且自動化將 API Gateway 設定完成。當然要做到完全自動化，必須要使用一些">
+  <meta property="og:description" content="看到這標題也許非常聳動，也可能覺得不可思議，今天來探討如何將專案直接部署到 AWS Lambda 並且自動化將 API Gateway 設定完成。當然要做到完全自動化，必須要使用一些">
+  <meta name="twitter:description" content="看到這標題也許非常聳動，也可能覺得不可思議，今天來探討如何將專案直接部署到 AWS Lambda 並且自動化將 API Gateway 設定完成。當然要做到完全自動化，必須要使用一些">
   <meta name="author" content=""/>
   <link href='https://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://kalug.linux.org.tw/img/kalug.png" />
   <meta name="twitter:image" content="https://kalug.linux.org.tw/img/kalug.png" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://kalug.linux.org.tw/planet/appleboy/20180916_graphql-go-library-support-concurrent-resolvers/" />
+  <meta property="og:url" content="https://kalug.linux.org.tw/planet/appleboy/20181025_deploy-app-to-aws-lambda-using-up-tool-in-ten-minutes/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kaohsiung Linux User Group" />
 
   <meta name="generator" content="Hugo 0.41" />
-  <link rel="canonical" href="https://kalug.linux.org.tw/planet/appleboy/20180916_graphql-go-library-support-concurrent-resolvers/" />
+  <link rel="canonical" href="https://kalug.linux.org.tw/planet/appleboy/20181025_deploy-app-to-aws-lambda-using-up-tool-in-ten-minutes/" />
   <link rel="alternate" href="https://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -206,7 +206,7 @@ if (!doNotTrack) {
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="blog-heading">
-              <h1>Go 語言的 graphQL-go 套件正式支援 Concurrent Resolvers</h1>
+              <h1>用 10 分鐘部署專案到 AWS Lambda</h1>
                 
                 
             </div>
@@ -222,208 +222,168 @@ if (!doNotTrack) {
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p><a href="https://www.flickr.com/photos/appleboy/30836371338/in/dateposted-public/" title="GraphQL_Logo.svg"><img src="https://i2.wp.com/farm2.staticflickr.com/1852/30836371338_14b636b465_z.jpg?w=840&#038;ssl=1" alt="GraphQL_Logo.svg" data-recalc-dims="1" /></a></p>
+        <p><a href="https://www.flickr.com/photos/appleboy/43711539730/in/dateposted-public/" title="Screen Shot 2018-10-24 at 9.37.49 AM"><img src="https://i1.wp.com/farm2.staticflickr.com/1956/43711539730_7bd9f610c3_z.jpg?w=840&#038;ssl=1" alt="Screen Shot 2018-10-24 at 9.37.49 AM" data-recalc-dims="1" /></a></p>
 
-<p>要在 <a href="https://golang.org">Go 語言</a>寫 graphQL，大家一定對 <a href="https://github.com/graphql-go/graphql">graphql-go</a> 不陌生，討論度最高的套件，但是我先說，雖然討論度是最高，但是效能是最差的，如果大家很要求效能，可以先參考此<a href="https://github.com/appleboy/golang-graphql-benchmark">專案</a>，裡面有目前 Go 語言的 graphQL 套件比較效能，有機會在寫另外一篇介紹。最近 graphql-go 的作者把 Concurrent Resolvers 的解法寫了一篇 <a href="https://github.com/graphql-go/graphql/issues/389">Issue 來討論</a>，最終採用了 <a href="https://github.com/graphql-go/graphql/pull/388">Resolver returns a Thunk</a> 方式來解決 Concurrent 問題，這個 PR 沒有用到額外的 goroutines，使用方式也最簡單</p>
+<p>看到這標題也許非常聳動，也可能覺得不可思議，今天來探討如何將專案直接部署到 <a href="https://aws.amazon.com/tw/lambda/">AWS Lambda</a> 並且自動化將 <a href="https://aws.amazon.com/tw/api-gateway/">API Gateway</a> 設定完成。當然要做到完全自動化，必須要使用一些工具才能完成，本篇將介紹由 <a href="https://github.com/tj">TJ</a> 所開發的 <a href="https://github.com/apex/up">apex/up</a> 工具，如果您不熟悉 EC2 也不太懂 Command line 操作，本文非常適合您，不需要管理任何 EC2 機器，也不需要在熟悉任何 Linux Command 就可以完成簡單的專案部署。首先為什麼我選擇 apex/up 而不是選擇 <a href="https://github.com/apex/apex">apex/apex</a>，原因是使用 up 工具，您的專案是不用更動任何程式碼，就可以將專案直接執行在 AWS Lambda，那 API Gateway 部分也會一並設定完成，將所有 Request 直接 Proxy 到該 Lambda function。如果您希望對於 AWS Lambda 有更多進階操作，我會建議您用 <a href="https://github.com/apex/apex">apex/apex</a> 或 <a href="https://serverless.com/">Serverless</a>。您可以想像使用 up 就可以將 AWS Lambda 當作小型的 EC2 服務，但是不用自己管理 EC2，現在 up 支援 <a href="https://golang.org">Golang</a>, <a href="https://nodejs.org/en/">Node.js</a>, <a href="https://www.python.org/">Python</a> 或 Java 程式語言，用一行 command 就可以將專案部署到雲端了。</p>
 
-<pre class="brush: go; title: ; notranslate">
-&quot;pullRequests&quot;: &amp;graphql.Field{
-    Type: graphql.NewList(PullRequestType),
-    Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-        ch := make(chan []PullRequest)
-        // Concurrent work via Goroutines.
-        go func() {
-            // Async work to obtain pullRequests.
-            ch &lt;- pullRequests
-        }()
-        return func() interface{} {
-            return &lt;-ch
-        }, nil
-    },
-},
-</pre>
+<p><span id="more-7108"></span></p>
 
-<p><span id="more-7081"></span></p>
+<h2>影片教學</h2>
 
-<h2>使用方式</h2>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/Z2vp-L3bZwU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-<p>先用一個簡單例子來解釋之前的寫法會是什麼形式</p>
+<p>本系列影片不只有介紹 up 工具，還包含『設定 custom domain 在 API Gateway』及『用 drone 搭配 apex/up 自動化部署 AWS Lambda』。有興趣可以參考底下:</p>
+
+<ul>
+<li>使用 apex/up 工具部署 Go 專案到 AWS Lambda <a href="https://www.youtube.com/watch?v=Z2vp-L3bZwU">Youtube</a>, <a href="https://www.udemy.com/golang-fight/learn/v4/t/lecture/12246918">Udemy</a></li>
+<li>設定 Custom Domain Names 在 API Gateway 上 <a href="https://www.udemy.com/golang-fight/learn/v4/t/lecture/12249324">Udemy</a></li>
+<li>用 drone-apex-up 自動化更新 Go 專案到 AWS Lambda <a href="https://www.udemy.com/golang-fight/learn/v4/t/lecture/12270902">Udemy</a></li>
+</ul>
+
+<p>買了結果沒興趣想退費怎麼辦？沒關係，在 Udemy 平台 30 天內都可以全額退費，所以不用擔心買了後悔。如果你對 Go 語言 (現在 $1800) 及 Drone 自動化部署 (現在 $1800) 都有興趣，想要一起購買，你可以直接匯款到底下帳戶，有合購優惠價</p>
+
+<ul>
+<li>富邦銀行: 012</li>
+<li>富邦帳號: 746168268370</li>
+<li>匯款金額: 台幣 $3400 元</li>
+</ul>
+
+<h2>使用 up 工具</h2>
+
+<p><a href="https://up.docs.apex.sh/#introduction">up</a> 可以在幾秒鐘的時間將專案直接部署到 AWS Lambda，透過 up 可以快速將 Staging 及 Productoon 環境建置完成。底下直接用 GO 語言當例子。</p>
 
 <pre class="brush: go; title: ; notranslate">
 package main
 
 import (
-    &quot;encoding/json&quot;
-    &quot;fmt&quot;
-    &quot;log&quot;
-    &quot;time&quot;
+    &quot;os&quot;
 
-    &quot;github.com/graphql-go/graphql&quot;
+    &quot;github.com/gin-gonic/gin&quot;
 )
 
-type Foo struct {
-    Name string
-}
-
-var FieldFooType = graphql.NewObject(graphql.ObjectConfig{
-    Name: &quot;Foo&quot;,
-    Fields: graphql.Fields{
-        &quot;name&quot;: &amp;graphql.Field{Type: graphql.String},
-    },
-})
-
-type Bar struct {
-    Name string
-}
-
-var FieldBarType = graphql.NewObject(graphql.ObjectConfig{
-    Name: &quot;Bar&quot;,
-    Fields: graphql.Fields{
-        &quot;name&quot;: &amp;graphql.Field{Type: graphql.String},
-    },
-})
-
-// QueryType fields: `concurrentFieldFoo` and `concurrentFieldBar` are resolved
-// concurrently because they belong to the same field-level and their `Resolve`
-// function returns a function (thunk).
-var QueryType = graphql.NewObject(graphql.ObjectConfig{
-    Name: &quot;Query&quot;,
-    Fields: graphql.Fields{
-        &quot;concurrentFieldFoo&quot;: &amp;graphql.Field{
-            Type: FieldFooType,
-            Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-                type result struct {
-                    data interface{}
-                    err  error
-                }
-                ch := make(chan *result, 1)
-                go func() {
-                    defer close(ch)
-                    time.Sleep(1 * time.Second)
-                    foo := &amp;Foo{Name: &quot;Foo&#039;s name&quot;}
-                    ch &lt;- &amp;result{data: foo, err: nil}
-                }()
-                r := &lt;-ch
-                return r.data, r.err
-            },
-        },
-        &quot;concurrentFieldBar&quot;: &amp;graphql.Field{
-            Type: FieldBarType,
-            Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-                type result struct {
-                    data interface{}
-                    err  error
-                }
-                ch := make(chan *result, 1)
-                go func() {
-                    defer close(ch)
-                    time.Sleep(1 * time.Second)
-                    bar := &amp;Bar{Name: &quot;Bar&#039;s name&quot;}
-                    ch &lt;- &amp;result{data: bar, err: nil}
-                }()
-                r := &lt;-ch
-                return r.data, r.err
-            },
-        },
-    },
-})
-
 func main() {
-    schema, err := graphql.NewSchema(graphql.SchemaConfig{
-        Query: QueryType,
+    port := &quot;:&quot; + os.Getenv(&quot;PORT&quot;)
+    stage := os.Getenv(&quot;UP_STAGE&quot;)
+
+    r := gin.Default()
+    r.GET(&quot;/&quot;, func(c *gin.Context) {
+        c.JSON(200, gin.H{
+            &quot;message&quot;: &quot;pong &quot; + stage,
+        })
     })
-    if err != nil {
-        log.Fatal(err)
-    }
-    query := `
-        query {
-            concurrentFieldFoo {
-                name
-            }
-            concurrentFieldBar {
-                name
-            }
-        }
-    `
-    result := graphql.Do(graphql.Params{
-        RequestString: query,
-        Schema:        schema,
+
+    r.GET(&quot;/v1&quot;, func(c *gin.Context) {
+        c.JSON(200, gin.H{
+            &quot;message&quot;: &quot;pong &quot; + stage + &quot; v1 ++ drone&quot;,
+        })
     })
-    b, err := json.Marshal(result)
-    if err != nil {
-        log.Fatal(err)
-    }
-    fmt.Printf(&quot;%s&quot;, b)
-    /*
-        {
-          &quot;data&quot;: {
-            &quot;concurrentFieldBar&quot;: {
-              &quot;name&quot;: &quot;Bar&#039;s name&quot;
-            },
-            &quot;concurrentFieldFoo&quot;: {
-              &quot;name&quot;: &quot;Foo&#039;s name&quot;
-            }
-          }
-        }
-    */
+
+    r.Run(port)
 }
 </pre>
 
-<p>接著看看需要多少時間來完成執行</p>
+<p>接著在專案內放置 <code>up.json</code> 檔案，內容如下:</p>
 
 <pre class="brush: plain; title: ; notranslate">
-$ time go run examples/concurrent-resolvers/main.go | jq
 {
-  &quot;data&quot;: {
-    &quot;concurrentFieldBar&quot;: {
-      &quot;name&quot;: &quot;Bar&#039;s name&quot;
-    },
-    &quot;concurrentFieldFoo&quot;: {
-      &quot;name&quot;: &quot;Foo&#039;s name&quot;
-    }
-  }
+  &quot;name&quot;: &quot;demo&quot;,
+  &quot;profile&quot;: &quot;default&quot;,
+  &quot;regions&quot;: [
+    &quot;ap-southeast-1&quot;
+  ]
 }
-
-real    0m4.186s
-user    0m0.508s
-sys     0m0.925s
 </pre>
 
-<p>總共花費了四秒，原因是每個 resolver 都是依序執行，所以都需要等每個 goroutines 執行完成才能進入到下一個 resolver，上面例子該如何改成 Concurrent 呢，很簡單，只要將 return 的部分換成</p>
-
-<pre class="brush: go; title: ; notranslate">
-                return func() (interface{}, error) {
-                    r := &lt;-ch
-                    return r.data, r.err
-                }, nil
-</pre>
-
-<p>執行時間如下</p>
+<p><code>name</code> 代表 aws lambda 函數名稱，<code>profile</code> 會讀 <code>~/.aws/credentials</code> 底下的 profile 設定。接著執行 <code>up -v</code></p>
 
 <pre class="brush: plain; title: ; notranslate">
-$ time go run examples/concurrent-resolvers/main.go | jq
-{
-  &quot;data&quot;: {
-    &quot;concurrentFieldBar&quot;: {
-      &quot;name&quot;: &quot;Bar&#039;s name&quot;
-    },
-    &quot;concurrentFieldFoo&quot;: {
-      &quot;name&quot;: &quot;Foo&#039;s name&quot;
-    }
-  }
-}
-
-real    0m1.499s
-user    0m0.417s
-sys     0m0.242s
+$ up -v
 </pre>
 
-<p>從原本的 4 秒多，變成 1.5 秒，原因就是兩個 resolver 的 goroutines 會同時執行，最後才拿結果。</p>
+<p><a href="https://www.flickr.com/photos/appleboy/45494403542/in/dateposted-public/" title="up_json_—_training"><img src="https://i1.wp.com/farm2.staticflickr.com/1963/45494403542_a91463e6cc_z.jpg?w=840&#038;ssl=1" alt="up_json_—_training" data-recalc-dims="1" /></a></p>
+
+<p>從上圖可以看到預設編譯行為是</p>
+
+<pre class="brush: plain; title: ; notranslate">
+$ GOOS=linux GOARCH=amd64 go build -o server *.go
+</pre>
+
+<p>並且上傳完成後會將 <code>server</code> 移除。登入 AWS Lambda 入口，可以看到 up 幫忙建立了兩個環境，一個是 <code>staging</code> 另一個是 <code>production</code>，假設要部署專案到 production 環境可以下</p>
+
+<pre class="brush: plain; title: ; notranslate">
+$ up deploy production -v
+</pre>
+
+<p>部署完成後，可以直接透過 up 拿到 API Gateway 給的測試 URL，可以在瀏覽器瀏覽</p>
+
+<pre class="brush: plain; title: ; notranslate">
+$ up url
+https://xxxxxxx.execute-api.ap-southeast-1.amazonaws.com/staging/
+</pre>
+
+<p>當然也可以到 API Gateway 那邊設定好 Custom Domain 就可以直接用自己的 Domain，而不會有 <code>/staging/</code> 字眼在 URL 路徑上。</p>
+
+<h2>搭配 Drone 自動化部署</h2>
+
+<p>在自己電腦測試完成後，接著要設定 CI/CD 來達到自動化部署，本文直接拿 <a href="https://github.com/drone/drone">Drone</a> 來串接。底下是 .drone.yml 設定檔</p>
+
+<pre class="brush: plain; title: ; notranslate">
+pipeline:
+  build:
+    image: golang:1.11
+    pull: true
+    environment:
+      TAGS: sqlite
+      GO111MODULE: &quot;on&quot;
+    commands:
+      - cd example23-deploy-go-application-with-up &amp;&amp; GOOS=linux GOARCH=amd64 go build -o server *.go
+  up:
+    image: appleboy/drone-apex-up
+    pull: true
+    secrets: [aws_secret_access_key, aws_access_key_id]
+    stage:
+      - staging
+    directory: ./example23-deploy-go-application-with-up
+    when:
+      event: push
+      branch: master
+
+  up:
+    image: appleboy/drone-apex-up
+    pull: true
+    secrets: [aws_secret_access_key, aws_access_key_id]
+    stage:
+      - production
+    directory: ./example23-deploy-go-application-with-up
+    when:
+      event: tag
+</pre>
+
+<p>上面可以很清楚看到，只要是 push 到 master branch 就會觸發 staging 環境部署。而下 Tag 則是部署到 Production。要注意的是由於 up 會有預設編譯行為，但是專案複雜的話就需要透過其他指令去執行。只要去蓋掉預設行為就可以。</p>
+
+<pre class="brush: plain; title: ; notranslate">
+{
+  &quot;name&quot;: &quot;demo&quot;,
+  &quot;profile&quot;: &quot;default&quot;,
+  &quot;regions&quot;: [
+    &quot;ap-southeast-1&quot;
+  ],
+  &quot;hooks&quot;: {
+    &quot;build&quot;: [
+      &quot;up version&quot;
+    ],
+    &quot;clean&quot;: [
+    ]
+  }
+}
+</pre>
+
+<p>看到 <code>hooks</code> 階段，其中 build 部分需要填寫，不可以是空白。</p>
 
 <h2>心得</h2>
 
-<p>有了這功能後，比較複雜的 graphQL 語法，就可以用此方式加速執行時間。作者也用 Mogodb + graphql 寫了一個<a href="https://gist.github.com/chris-ramon/e90e245ae79d664ec2f22e4c5682ea3b">範例</a>，大家可以參考看看。<br />
-<div class="wp_rp_wrap  wp_rp_plain" ><div class="wp_rp_content"><h3 class="related_post_title">Related View</h3><ul class="related_post wp_rp"><li data-position="0" data-poid="in-7052" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/07/graphql-in-go/" class="wp_rp_title">Go 語言實戰 GraphQL</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="1" data-poid="in-6671" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/03/error-handler-in-golang/" class="wp_rp_title">Go 語言的錯誤訊息處理</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="2" data-poid="in-6963" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/02/simply-output-go-html-template-execution-to-strings/" class="wp_rp_title">將 Go Html Template 存入 String 變數</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="3" data-poid="in-7047" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/07/mkcert-zero-config-tool-to-make-locally-trusted-development-certificates/" class="wp_rp_title">在本機端快速產生網站免費憑證</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="4" data-poid="in-7021" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/05/how-to-write-testing-in-golang/" class="wp_rp_title">如何在 Go 專案內寫測試</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="5" data-poid="in-7092" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/09/gofight-support-upload-file-testing/" class="wp_rp_title">gofight 支援多個檔案上傳測試</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="6" data-poid="in-6385" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/05/scaledrone-websocket-from-nodejs-to-go/" class="wp_rp_title">ScaleDrone Websocket 平台從 Node.js 轉換到 Golang</a><small class="wp_rp_comments_count"> (2)</small><br /></li><li data-position="7" data-poid="in-6877" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/11/grpc-health-check-in-go/" class="wp_rp_title">Go 語言實現 gRPC Health 驗證</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="8" data-poid="in-7040" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/06/how-to-write-benchmark-in-go/" class="wp_rp_title">如何在 Go 語言內寫效能測試</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="9" data-poid="in-6634" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/01/new-git-code-hosting-option-gitea/" class="wp_rp_title">開發者另類的自架 Git 服務選擇: Gitea</a><small class="wp_rp_comments_count"> (4)</small><br /></li></ul></div></div></p>
+<p>如果您想快速的架設好 API 後端，或者是靜態網站，我相信 up 是一套不錯的工具，可以快速架設好開發或測試環境。而且可以省下不少開 EC2 費用，如果有興趣的話大家可以參考看看 up 工具。<br />
+<div class="wp_rp_wrap  wp_rp_plain" ><div class="wp_rp_content"><h3 class="related_post_title">Related View</h3><ul class="related_post wp_rp"><li data-position="0" data-poid="in-6953" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/01/write-golang-in-aws-lambda/" class="wp_rp_title">在 AWS Lambda 上寫 Go 語言搭配 API Gateway</a><small class="wp_rp_comments_count"> (3)</small><br /></li><li data-position="1" data-poid="in-6992" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/03/golang-introduction-video/" class="wp_rp_title">Go 語言基礎實戰教學影片上線了</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="2" data-poid="in-7029" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/06/drone-kubernetes-with-golang/" class="wp_rp_title">Drone 搭配 Kubernetes 部署 Go 語言項目</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="3" data-poid="in-6869" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/11/gorush-a-push-notification-server-written-in-go/" class="wp_rp_title">Gorush 輕量級手機訊息發送服務</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="4" data-poid="in-6657" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/02/caddy-setting-with-drone-ci-server/" class="wp_rp_title">Caddy 搭配 Drone 伺服器設定</a><small class="wp_rp_comments_count"> (4)</small><br /></li><li data-position="5" data-poid="in-6758" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/06/gopher-day-in-taipei/" class="wp_rp_title">台灣第一屆 GoPher 大會</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="6" data-poid="in-6617" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/12/send-line-message-using-drone-line/" class="wp_rp_title">用 drone-line 架設 Line webhook 及發送訊息</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="7" data-poid="in-6569" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/11/send-line-notification-using-docker-written-in-golang/" class="wp_rp_title">用 Docker 發送 Line 訊息</a><small class="wp_rp_comments_count"> (10)</small><br /></li><li data-position="8" data-poid="in-7056" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/07/drone-with-hashicorp-packer/" class="wp_rp_title">用 Drone CI/CD 整合 Packer 自動產生 GCP 或 AWS 映像檔</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="9" data-poid="in-6907" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/11/downsize-node-modules-with-golang/" class="wp_rp_title">用 Go 語言減少 node_modules 容量來加速部署</a><small class="wp_rp_comments_count"> (0)</small><br /></li></ul></div></div></p>
 
 
         
@@ -436,7 +396,7 @@ sys     0m0.242s
 
 
 <li>
-    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180916_graphql-go-library-support-concurrent-resolvers%2f&amp;text=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20graphQL-go%20%e5%a5%97%e4%bb%b6%e6%ad%a3%e5%bc%8f%e6%94%af%e6%8f%b4%20Concurrent%20Resolvers&amp;via="
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181025_deploy-app-to-aws-lambda-using-up-tool-in-ten-minutes%2f&amp;text=%e7%94%a8%2010%20%e5%88%86%e9%90%98%e9%83%a8%e7%bd%b2%e5%b0%88%e6%a1%88%e5%88%b0%20AWS%20Lambda&amp;via="
        target="_blank" alt="" title="Share on Twitter">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -447,7 +407,7 @@ sys     0m0.242s
 
 
 <li>
-    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180916_graphql-go-library-support-concurrent-resolvers%2f" target="_blank" title="Share on Google Plus">
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181025_deploy-app-to-aws-lambda-using-up-tool-in-ten-minutes%2f" target="_blank" title="Share on Google Plus">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
@@ -457,7 +417,7 @@ sys     0m0.242s
 
 
 <li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180916_graphql-go-library-support-concurrent-resolvers%2f" target="_blank" title="Share on Facebook">
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181025_deploy-app-to-aws-lambda-using-up-tool-in-ten-minutes%2f" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -467,7 +427,7 @@ sys     0m0.242s
 
 
 <li>
-    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180916_graphql-go-library-support-concurrent-resolvers%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20graphQL-go%20%e5%a5%97%e4%bb%b6%e6%ad%a3%e5%bc%8f%e6%94%af%e6%8f%b4%20Concurrent%20Resolvers" target="_blank" title="Share on Reddit">
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181025_deploy-app-to-aws-lambda-using-up-tool-in-ten-minutes%2f&amp;title=%e7%94%a8%2010%20%e5%88%86%e9%90%98%e9%83%a8%e7%bd%b2%e5%b0%88%e6%a1%88%e5%88%b0%20AWS%20Lambda" target="_blank" title="Share on Reddit">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
@@ -477,7 +437,7 @@ sys     0m0.242s
 
 
 <li>
-    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180916_graphql-go-library-support-concurrent-resolvers%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20graphQL-go%20%e5%a5%97%e4%bb%b6%e6%ad%a3%e5%bc%8f%e6%94%af%e6%8f%b4%20Concurrent%20Resolvers" target="_blank"
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181025_deploy-app-to-aws-lambda-using-up-tool-in-ten-minutes%2f&amp;title=%e7%94%a8%2010%20%e5%88%86%e9%90%98%e9%83%a8%e7%bd%b2%e5%b0%88%e6%a1%88%e5%88%b0%20AWS%20Lambda" target="_blank"
        title="Share on LinkedIn">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -488,7 +448,7 @@ sys     0m0.242s
 
 
 <li>
-    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180916_graphql-go-library-support-concurrent-resolvers%2f&amp;title=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20graphQL-go%20%e5%a5%97%e4%bb%b6%e6%ad%a3%e5%bc%8f%e6%94%af%e6%8f%b4%20Concurrent%20Resolvers" target="_blank"
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181025_deploy-app-to-aws-lambda-using-up-tool-in-ten-minutes%2f&amp;title=%e7%94%a8%2010%20%e5%88%86%e9%90%98%e9%83%a8%e7%bd%b2%e5%b0%88%e6%a1%88%e5%88%b0%20AWS%20Lambda" target="_blank"
        title="Share on StumbleUpon">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -499,7 +459,7 @@ sys     0m0.242s
 
 
 <li>
-    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20180916_graphql-go-library-support-concurrent-resolvers%2f&amp;description=Go%20%e8%aa%9e%e8%a8%80%e7%9a%84%20graphQL-go%20%e5%a5%97%e4%bb%b6%e6%ad%a3%e5%bc%8f%e6%94%af%e6%8f%b4%20Concurrent%20Resolvers" target="_blank"
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181025_deploy-app-to-aws-lambda-using-up-tool-in-ten-minutes%2f&amp;description=%e7%94%a8%2010%20%e5%88%86%e9%90%98%e9%83%a8%e7%bd%b2%e5%b0%88%e6%a1%88%e5%88%b0%20AWS%20Lambda" target="_blank"
        title="Share on Pinterest">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -517,12 +477,12 @@ sys     0m0.242s
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="https://kalug.linux.org.tw/planet/chusiang/20180902_systems-thinking-workshop-of-devops.html/" data-toggle="tooltip" data-placement="top" title="「系統思考的四堂課」與「萬人敵」">&larr; Previous Post</a>
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20181016_go-1-11-support-go-module/" data-toggle="tooltip" data-placement="top" title="Go 語言 1.11 版本推出 go module">&larr; Previous Post</a>
             </li>
           
           
             <li class="next">
-              <a href="https://kalug.linux.org.tw/planet/slat-tw/20180918_2018-internal-day-against-drm.html/" data-toggle="tooltip" data-placement="top" title="2018 軟體自由日：國際反數位版權鎖日（Internal Day Against DRM, IDAD）">Next Post &rarr;</a>
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20181106_drone-ci-cd-platform-in-mopconf/" data-toggle="tooltip" data-placement="top" title="高雄 Mopcon 濁水溪以南最大研討會 – Drone CI/CD 介紹">Next Post &rarr;</a>
             </li>
           
         </ul>

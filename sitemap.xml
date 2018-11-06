@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://kalug.linux.org.tw/planet/appleboy/20181106_drone-ci-cd-platform-in-mopconf/</loc>
+    <lastmod>2018-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.linux.org.tw/planet/appleboy/20181025_deploy-app-to-aws-lambda-using-up-tool-in-ten-minutes/</loc>
+    <lastmod>2018-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.linux.org.tw/planet/appleboy/20181016_go-1-11-support-go-module/</loc>
+    <lastmod>2018-10-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kalug.linux.org.tw/planet/appleboy/20180925_gofight-support-upload-file-testing/</loc>
     <lastmod>2018-09-25T00:00:00+00:00</lastmod>
   </url>
@@ -513,7 +528,7 @@
   
   <url>
     <loc>https://kalug.linux.org.tw/</loc>
-    <lastmod>2018-09-25T00:00:00+00:00</lastmod>
+    <lastmod>2018-11-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -539,7 +554,7 @@
   
   <url>
     <loc>https://kalug.linux.org.tw/planet/</loc>
-    <lastmod>2018-09-25T00:00:00+00:00</lastmod>
+    <lastmod>2018-11-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>

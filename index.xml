@@ -5,13 +5,40 @@
     <link>https://kalug.linux.org.tw/</link>
     <description>Recent content on Kaohsiung Linux User Group</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 25 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 06 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kalug.linux.org.tw/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>gofight 支援檔案上傳測試</title>
+      <title>高雄 Mopcon 濁水溪以南最大研討會 – Drone CI/CD 介紹</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20181106_drone-ci-cd-platform-in-mopconf/</link>
+      <pubDate>Tue, 06 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20181106_drone-ci-cd-platform-in-mopconf/</guid>
+      <description>今年又以講者身份參加 Mopcon 南區最大研討會，此次回高雄最主要推廣 Drone 這套 CI/CD 平台。大家可以從過去的 Blog 或影片可以知道我在北部推廣了很多次 Drone 開源軟體，唯獨</description>
+    </item>
+    
+    <item>
+      <title>用 10 分鐘部署專案到 AWS Lambda</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20181025_deploy-app-to-aws-lambda-using-up-tool-in-ten-minutes/</link>
+      <pubDate>Thu, 25 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20181025_deploy-app-to-aws-lambda-using-up-tool-in-ten-minutes/</guid>
+      <description>看到這標題也許非常聳動，也可能覺得不可思議，今天來探討如何將專案直接部署到 AWS Lambda 並且自動化將 API Gateway 設定完成。當然要做到完全自動化，必須要使用一些</description>
+    </item>
+    
+    <item>
+      <title>Go 語言 1.11 版本推出 go module</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20181016_go-1-11-support-go-module/</link>
+      <pubDate>Tue, 16 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20181016_go-1-11-support-go-module/</guid>
+      <description>本篇來聊聊 Go 語言在 1.11 版本推出的 新功能，相信大家也許還不知道此功能是做什麼用的，我們來回顧看看在初學 Go 語言的時候，最令人困擾的就是 GOPATH</description>
+    </item>
+    
+    <item>
+      <title>gofight 支援多個檔案上傳測試</title>
       <link>https://kalug.linux.org.tw/planet/appleboy/20180925_gofight-support-upload-file-testing/</link>
       <pubDate>Tue, 25 Sep 2018 00:00:00 +0000</pubDate>
       
