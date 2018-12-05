@@ -5,10 +5,37 @@
     <link>https://kalug.linux.org.tw/</link>
     <description>Recent content on Kaohsiung Linux User Group</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 06 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kalug.linux.org.tw/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Flutter 推出 1.0 版本</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20181205_flutter-release-1-0-0-version/</link>
+      <pubDate>Wed, 05 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20181205_flutter-release-1-0-0-version/</guid>
+      <description>很高興看到台灣時間 12&amp;frasl;5 號 Flutter 正式推出 1.0 版本，相信很多人都不知道什麼是 Flutter，簡單來說開發者只要學會 Flutter 就可以維護一套程式碼，並且同時編譯出</description>
+    </item>
+    
+    <item>
+      <title>Microsoft Office 2016 &amp; 365 不只傳送「軟體診斷資料」，還私下傳送了...</title>
+      <link>https://kalug.linux.org.tw/planet/slat-tw/20181116_windows-office-2016-365.html/</link>
+      <pubDate>Fri, 16 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/slat-tw/20181116_windows-office-2016-365.html/</guid>
+      <description>原文出處：https://www.zdnet.com/article/dutch-government-report-says-micros</description>
+    </item>
+    
+    <item>
+      <title>Raw 檔顯色器軟體 darktable 徵求翻譯中</title>
+      <link>https://kalug.linux.org.tw/planet/slat-tw/20181113_darktable-translation-bounty.html/</link>
+      <pubDate>Tue, 13 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/slat-tw/20181113_darktable-translation-bounty.html/</guid>
+      <description>現代數位攝影領域中，以 Raw 檔顯色器編修原始相片的過程，已取代傳統的暗房洗片與顯色。自由軟體世界中，亦有 darktable 這樣的 Raw 檔顯色軟體開放給任何人自由使用</description>
+    </item>
     
     <item>
       <title>高雄 Mopcon 濁水溪以南最大研討會 – Drone CI/CD 介紹</title>
