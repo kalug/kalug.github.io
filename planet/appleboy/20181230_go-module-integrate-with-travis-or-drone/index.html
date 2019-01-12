@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Go Module 導入到專案內且搭配 Travis CI 或 Drone 工具</title>
+  <meta property="og:title" content="Go Module 導入到專案內且搭配 Travis CI 或 Drone 工具" />
+  <meta name="twitter:title" content="Go Module 導入到專案內且搭配 Travis CI 或 Drone 工具" />
+  <meta name="description" content="相信各位 Go 語言開發者陸陸續續都將專案從各種 Vendor 工具轉換到 Go Module，本篇會帶大家一步一步從舊專案轉換到 Go Module，或是該如何導入新專案">
+  <meta property="og:description" content="相信各位 Go 語言開發者陸陸續續都將專案從各種 Vendor 工具轉換到 Go Module，本篇會帶大家一步一步從舊專案轉換到 Go Module，或是該如何導入新專案">
+  <meta name="twitter:description" content="相信各位 Go 語言開發者陸陸續續都將專案從各種 Vendor 工具轉換到 Go Module，本篇會帶大家一步一步從舊專案轉換到 Go Module，或是該如何導入新專案">
+  <meta name="author" content=""/>
+  <link href='https://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://kalug.linux.org.tw/planet/appleboy/20181230_go-module-integrate-with-travis-or-drone/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kaohsiung Linux User Group" />
+
+  <meta name="generator" content="Hugo 0.41" />
+  <link rel="canonical" href="https://kalug.linux.org.tw/planet/appleboy/20181230_go-module-integrate-with-travis-or-drone/" />
+  <link rel="alternate" href="https://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/highlight.min.css" /><link rel="stylesheet" href="https://kalug.linux.org.tw/css/codeblock.css" />
+<script id="chatBroEmbedCode">
+ 
+function ChatbroLoader(chats,async){async=!1!==async;var params={embedChatsParameters:chats instanceof Array?chats:[chats],lang:navigator.language||navigator.userLanguage,needLoadCode:'undefined'==typeof Chatbro,embedParamsVersion:localStorage.embedParamsVersion,chatbroScriptVersion:localStorage.chatbroScriptVersion},xhr=new XMLHttpRequest;xhr.withCredentials=!0,xhr.onload=function(){eval(xhr.responseText)},xhr.onerror=function(){console.error('Chatbro loading error')},xhr.open('GET','//www.chatbro.com/embed.js?'+btoa(unescape(encodeURIComponent(JSON.stringify(params)))),async),xhr.send()}
+ 
+ChatbroLoader({encodedChatId: '62DdK'});
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=952825024850869&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-121574418-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Meetups" href="/meetups/">Meetups</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Planet" href="/planet/">Planet</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Pages</a>
+              <div class="navlinks-children">
+                
+                  <a href="/pages/sig">Special Interest Group</a>
+                
+                  <a href="/pages/devices">Useful Devices</a>
+                
+                  <a href="/pages/life">Kaohsiung Life</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">About</a>
+              <div class="navlinks-children">
+                
+                  <a href="/about/us">us</a>
+                
+                  <a href="/about/sponsors">Sponsors</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Kaohsiung Linux User Group" href="https://kalug.linux.org.tw">
+            <img class="avatar-img" src="https://kalug.linux.org.tw/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="blog-heading">
+              <h1>Go Module 導入到專案內且搭配 Travis CI 或 Drone 工具</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p><p><a href='https://photos.google.com/share/AF1QipPZ8MkcLAazbfRWwBrT1CQpipCL8N_1uAcYosJmJ-o6du2XRRHNEokVarxey5Bp8w?key=clctLU9JYVMzcEdHYWR2dUlVTVZ6YnZUUjlYRG9B&#038;source=ctrlq.org'><img src='https://lh3.googleusercontent.com/Q5CP9S-xtRHxnDRvxDpWWkvBsEVw5C5uRyb5EiBh-UpYkrp_dkZp_oN8yi1WtqwruhSgnwNMB5QjJPxO94ABjG9oLBqmcRjlouNTNmrChIWbQcsAAbuV9eWB1wbsK-x-OY6iolb5ahc=w2400' /></a></p><br />
+<p>相信各位 <a href="http://golang.org">Go 語言</a>開發者陸陸續續都將專案從各種 <a href="https://github.com/golang/go/wiki/PackageManagementTools">Vendor 工具</a>轉換到 <a href="https://github.com/golang/go/wiki/Modules">Go Module</a>，本篇會帶大家一步一步從舊專案轉換到 Go Module，或是該如何導入新專案，最後會結合 CI/CD 著名的兩套工具 <a href="https://travis-ci.org/">Travis</a> 或 <a href="https://drone.io/">Drone</a> 搭配 Go Module 測試。</p><br />
+<span id="more-7170"></span><br />
+<h2>影片介紹</h2><br />
+<iframe width="560" height="315" src="https://www.youtube.com/embed/n1CvIb2-D8s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br />
+<ol><br />
+<li>舊專案內 vendor 轉換成 go module 設定 (1:15)</li><br />
+<li>新專案如何啟用  go module (6:20)</li><br />
+<li>在 Travis CI 或 Drone 如何使用 go module (8:31)</li><br />
+<li>在開源專案內並存 vendor 及 go module (介紹 Gin 如何使用 vendor 及 go module) (15:00)</li><br />
+</ol><br />
+<p>更多實戰影片可以參考我的 <a href="https://www.udemy.com/golang-fight/?couponCode=GOLANG-TOP" title="Udemy 教學系列">Udemy 教學系列</a></p><br />
+<h2>舊專案</h2><br />
+<p>假設原本的專案有導入 vendor 工具類似 <a href="https://github.com/kardianos/govendor" title="govendor">govendor</a> 或 <a href="https://github.com/golang/dep" title="dep">dep</a>，可以在目錄底下找到 <code>vendor/vendor.json</code> 或 <code>Gopkg.toml</code>，這時候請在專案目錄底下執行</p><br />
+<pre><code class="language-bash">$ go mod init github.com/appleboy/drone-line<br />
+$ go mod download</code></pre><br />
+<p>您會發現 go module 會從 <code>vendor/vendor.json</code> 或 <code>Gopkg.toml</code> 讀取相關套件資訊，接著寫進去 <code>go.mod</code> 檔案，完成後可以下 <code>go mod dowload</code> 下載所有套件到 <code>$HOME/go/pkg/mod</code></p><br />
+<h2>新專案</h2><br />
+<p>新專案只需要兩個步驟就可以把相關套件設定好</p><br />
+<pre><code class="language-bash">$ go mod init github.com/appleboy/drone-line<br />
+$ go mod tidy</code></pre><br />
+<p>其中 tidy 可以確保 <code>go.mod</code> 或 <code>go.sum</code> 裡面的內容都跟專案內所以資料同步，假設在程式碼內移除了 package，這樣 tidy 會確保同步性移除相關 package。</p><br />
+<h2>整合 Travis 或 Drone</h2><br />
+<p>go module 在 1.11 版本預設是不啟動的，那在 Travis 要把 <code>GO111MODULE</code> 環境變數打開</p><br />
+<pre><code class="language-yaml">matrix:<br />
+  fast_finish: true<br />
+  include:<br />
+  - go: 1.11.x<br />
+    env: GO111MODULE=on</code></pre><br />
+<p>完成後可以到 <a href="https://travis-ci.org/gin-contrib/expvar/jobs/473545874http://" title="Travis 的環境">Travis 的環境</a>看到底下 <code>go get</code> 紀錄</p><br />
+<p><a href='https://photos.google.com/share/AF1QipOdciWDnbJ3B9GsdYMXJqZbjtNE6rVMSvPSSFavowykZXxvZsATX_aA_Tib3q88aw?key=eWFTcDNIeGhjWlRJSzFaVjhKRFZ3a0YyMXlqcm5B&#038;source=ctrlq.org'><img src='https://lh3.googleusercontent.com/GRLzV6tA4qUB7kBMqf4jJ341-cRfgzVz-0PhhrtO-shEP2S7fijs3gTzdlWHkX8wLUOtYaguHbIUWjYihnXg8G2-w6LJG9V92g1pZlmatre1ZyY6uh5ChPU-CszxUWm1uDxo-Lc6oMI=w2400' /></a></p><br />
+<p>而在 <a href="https://github.com/appleboy/drone-facebook/blob/082f8901c8d56cf485ef7709466de56468f0b5cf/.drone.yml#L11-L21" title="Drone 的設定">Drone 的設定</a>如下:</p><br />
+<pre><code class="language-yaml">steps:<br />
+  - name: testing<br />
+    image: golang:1.11<br />
+    pull: true<br />
+    environment:<br />
+      GO111MODULE: on<br />
+    commands:<br />
+      - make vet<br />
+      - make lint<br />
+      - make misspell-check<br />
+      - make fmt-check<br />
+      - make build_linux_amd64<br />
+      - make test</code></pre><br />
+<p><a href='https://photos.google.com/share/AF1QipOqJHtB3zHBNRz5ulb7yqtzeh7QVA0EZjlzGrzEN1CVbMntlM-bPaPl3TZCUpquAg?key=QW9WTF9xYzFlcmN0WE9ab0FqZXUtNHJrd2FjaHpB&#038;source=ctrlq.org'><img src='https://lh3.googleusercontent.com/90qm06Jcs6b8C1eJFlky1gWk_jXuPZpnYhElFTZMlmyP37olX0lOet0w4XCrgRVZyr8Cftb0nKqmBNYIkYNlGy1TK26-8OYQJXPbVJObY4RdGfmrsEXq3lHOZVfXp-puQGHTbwWSsYM=w2400' /></a></p><br />
+<h2>結論</h2><br />
+<p>在開源專案內為了相容 Go 舊版本，所以 <a href="https://github.com/gin-gonic/gin" title="Gin">Gin</a> 同時支援了 govendor 及 go module，其實還蠻難維護的，但是可以透過 travis 環境變數的判斷來達成目的:</p><br />
+<pre><code class="language-yaml">language: go<br />
+sudo: false<br />
+go:<br />
+  - 1.6.x<br />
+  - 1.7.x<br />
+  - 1.8.x<br />
+  - 1.9.x<br />
+  - 1.10.x<br />
+  - 1.11.x<br />
+  - master</p>
+
+<p>matrix:<br />
+  fast_finish: true<br />
+  include:<br />
+  - go: 1.11.x<br />
+    env: GO111MODULE=on</p>
+
+<p>git:<br />
+  depth: 10</p>
+
+<p>before_install:<br />
+  - if [[ &ldquo;${GO111MODULE}&rdquo; = &ldquo;on&rdquo; ]]; then mkdir &ldquo;${HOME}/go&rdquo;; export GOPATH=&ldquo;${HOME}/go&rdquo;; fi</p>
+
+<p>install:<br />
+  - if [[ &ldquo;${GO111MODULE}&rdquo; = &ldquo;on&rdquo; ]]; then go mod download; else make install; fi<br />
+  - if [[ &ldquo;${GO111MODULE}&rdquo; = &ldquo;on&rdquo; ]]; then export PATH=&ldquo;${GOPATH}/bin:${GOROOT}/bin:${PATH}&ldquo;; fi<br />
+  - if [[ &ldquo;${GO111MODULE}&rdquo; = &ldquo;on&rdquo; ]]; then make tools; fi</code></pre><br />
+<p>詳細設定請<a href="https://github.com/gin-gonic/gin/blob/master/.travis.yml">參考 .travis 設定</a></p><br />
+<div class="wp_rp_wrap  wp_rp_plain" ><div class="wp_rp_content"><h3 class="related_post_title">Related View</h3><ul class="related_post wp_rp"><li data-position="0" data-poid="in-7029" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/06/drone-kubernetes-with-golang/" class="wp_rp_title">Drone 搭配 Kubernetes 部署 Go 語言項目</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="1" data-poid="in-7193" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/01/deploy-service-using-traefik-and-docker/" class="wp_rp_title">用 Traefik 搭配 Docker 快速架設服務</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="2" data-poid="in-6869" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/11/gorush-a-push-notification-server-written-in-go/" class="wp_rp_title">Gorush 輕量級手機訊息發送服務</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="3" data-poid="in-7115" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/11/drone-release-1-0-0-rc1/" class="wp_rp_title">開源專案 Drone 推出 1.0.0 RC1 版本</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="4" data-poid="in-7108" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/10/deploy-app-to-aws-lambda-using-up-tool-in-ten-minutes/" class="wp_rp_title">用 10 分鐘部署專案到 AWS Lambda</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="5" data-poid="in-6992" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/03/golang-introduction-video/" class="wp_rp_title">Go 語言基礎實戰教學影片上線了</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="6" data-poid="in-6758" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/06/gopher-day-in-taipei/" class="wp_rp_title">台灣第一屆 GoPher 大會</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="7" data-poid="in-7120" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/11/install-drone-in-single-machine/" class="wp_rp_title">Drone 支援單機版安裝 (內附影片)</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="8" data-poid="in-6517" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/09/upload-docker-image-to-registry-using-travis/" class="wp_rp_title">用 Travis 自動上傳 Docker Image 到 Docker Registry</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="9" data-poid="in-6526" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/09/docker-cache-on-travis/" class="wp_rp_title">在 Travis 實現 Docker Cache</a><small class="wp_rp_comments_count"> (0)</small><br /></li></ul></div></div></p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181230_go-module-integrate-with-travis-or-drone%2f&amp;text=Go%20Module%20%e5%b0%8e%e5%85%a5%e5%88%b0%e5%b0%88%e6%a1%88%e5%85%a7%e4%b8%94%e6%90%ad%e9%85%8d%20Travis%20CI%20%e6%88%96%20Drone%20%e5%b7%a5%e5%85%b7&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181230_go-module-integrate-with-travis-or-drone%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181230_go-module-integrate-with-travis-or-drone%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181230_go-module-integrate-with-travis-or-drone%2f&amp;title=Go%20Module%20%e5%b0%8e%e5%85%a5%e5%88%b0%e5%b0%88%e6%a1%88%e5%85%a7%e4%b8%94%e6%90%ad%e9%85%8d%20Travis%20CI%20%e6%88%96%20Drone%20%e5%b7%a5%e5%85%b7" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181230_go-module-integrate-with-travis-or-drone%2f&amp;title=Go%20Module%20%e5%b0%8e%e5%85%a5%e5%88%b0%e5%b0%88%e6%a1%88%e5%85%a7%e4%b8%94%e6%90%ad%e9%85%8d%20Travis%20CI%20%e6%88%96%20Drone%20%e5%b7%a5%e5%85%b7" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181230_go-module-integrate-with-travis-or-drone%2f&amp;title=Go%20Module%20%e5%b0%8e%e5%85%a5%e5%88%b0%e5%b0%88%e6%a1%88%e5%85%a7%e4%b8%94%e6%90%ad%e9%85%8d%20Travis%20CI%20%e6%88%96%20Drone%20%e5%b7%a5%e5%85%b7" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20181230_go-module-integrate-with-travis-or-drone%2f&amp;description=Go%20Module%20%e5%b0%8e%e5%85%a5%e5%88%b0%e5%b0%88%e6%a1%88%e5%85%a7%e4%b8%94%e6%90%ad%e9%85%8d%20Travis%20CI%20%e6%88%96%20Drone%20%e5%b7%a5%e5%85%b7" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://kalug.linux.org.tw/planet/slat-tw/20181230_5.html/" data-toggle="tooltip" data-placement="top" title="付費軟體才是好？5 個超實用自由軟體，免費而且功能超強大！">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://kalug.linux.org.tw/planet/chusiang/20181231_devops-practice-of-system-engineer.html/" data-toggle="tooltip" data-placement="top" title="系統工程師的 DevOps 實踐之道">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "kalug-linux-org-tw" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://www.facebook.com/groups/kalug.tw" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalug" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/joinchat/Bqbim0F9EuW-GMUbYg9geA" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://kalug.linux.org.tw/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2019
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.41</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/main.js"></script>
+<script src="https://kalug.linux.org.tw/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

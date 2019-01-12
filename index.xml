@@ -5,10 +5,73 @@
     <link>https://kalug.linux.org.tw/</link>
     <description>Recent content on Kaohsiung Linux User Group</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 05 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 08 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kalug.linux.org.tw/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>用 Traefik 搭配 Docker 快速架設服務</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20190108_deploy-service-using-traefik-and-docker/</link>
+      <pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20190108_deploy-service-using-traefik-and-docker/</guid>
+      <description>更新: 2019.01.10 新增教學影片 相信大家在架設服務肯定會選一套像是 HAProxy, Nginx, Apache 或 Caddy，這四套架設的難度差不多，如果要搭配 Let&amp;#8217;s Encrypt 前面兩套需要自己串接 (Nginx, Apa</description>
+    </item>
+    
+    <item>
+      <title>系統工程師的 DevOps 實踐之道</title>
+      <link>https://kalug.linux.org.tw/planet/chusiang/20181231_devops-practice-of-system-engineer.html/</link>
+      <pubDate>Mon, 31 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/chusiang/20181231_devops-practice-of-system-engineer.html/</guid>
+      <description>系統思考 (Systems Thinking)，一是門需要刻意練習的技藝！趁著在新竹敏捷之旅 (Agile Tour Hsinchu 2018) 和高雄敏捷之旅 (Agile Tour Kaohsiung 2018) 上台分享的機會，凍仁試著使用因果循環</description>
+    </item>
+    
+    <item>
+      <title>Go Module 導入到專案內且搭配 Travis CI 或 Drone 工具</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20181230_go-module-integrate-with-travis-or-drone/</link>
+      <pubDate>Sun, 30 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20181230_go-module-integrate-with-travis-or-drone/</guid>
+      <description>相信各位 Go 語言開發者陸陸續續都將專案從各種 Vendor 工具轉換到 Go Module，本篇會帶大家一步一步從舊專案轉換到 Go Module，或是該如何導入新專案</description>
+    </item>
+    
+    <item>
+      <title>付費軟體才是好？5 個超實用自由軟體，免費而且功能超強大！</title>
+      <link>https://kalug.linux.org.tw/planet/slat-tw/20181230_5.html/</link>
+      <pubDate>Sun, 30 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/slat-tw/20181230_5.html/</guid>
+      <description>主筆／劉宇馨、黃俊元&amp;nbsp; &amp;nbsp;協作／洪靖雯、黃閔貞、凌郁涵 你還在使用付費或盜版軟體嗎？使用自由軟體（free software）</description>
+    </item>
+    
+    <item>
+      <title>用 Docker 整合測試 Flutter 框架</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20181226_docker-testing-with-flutter-sdk/</link>
+      <pubDate>Wed, 26 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20181226_docker-testing-with-flutter-sdk/</guid>
+      <description>Flutter 是一套以 Dart 語言為主體的手機 App 開發框架，讓開發者可以寫一種語言產生 iOS 及 Android，只要裝好 Flutter 框架，就可以在個人電腦上面同時測試 iOS 及 Android 流程</description>
+    </item>
+    
+    <item>
+      <title>將 Flickr 相簿備份到 Google Photos</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20181220_upload-flickr-to-google-photos/</link>
+      <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20181220_upload-flickr-to-google-photos/</guid>
+      <description>Flickr 在 2019 年一月會開始將免費會員照片刪除到剩下 1000 張，這次透過 Go 工具 來將備份好的 Flickr 相簿上傳到 Google Photos，此工具只適合用在 MacOS 及 Linux 上面，Windo</description>
+    </item>
+    
+    <item>
+      <title>Drone CI/CD 推出 Cloud 服務支援開源專案</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20181209_drone-cloud-service/</link>
+      <pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20181209_drone-cloud-service/</guid>
+      <description>Drone 在上個月宣布推出 Cloud 服務 整合 GitHub 帳戶內的 Repo，只要登入後就可以跑 GitHub 上面的專案自動化整合及測試，原先在 GitHub 上面常見的就是 Travis 或 CircleCI，</description>
+    </item>
     
     <item>
       <title>Flutter 推出 1.0 版本</title>
