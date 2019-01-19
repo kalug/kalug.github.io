@@ -47,6 +47,15 @@
     </item>
     
     <item>
+      <title>KaLUG 1812聚會</title>
+      <link>https://kalug.linux.org.tw/meetups/1812/</link>
+      <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/meetups/1812/</guid>
+      <description>Louis - QGIS 系统 https://www.facebook.com/photo.php?fbid=10156202263772523&amp;amp;set=gm.10156775586295429&amp;amp;type=3&amp;amp;theater&amp;amp;ifg=1</description>
+    </item>
+    
+    <item>
       <title>用 Docker 整合測試 Flutter 框架</title>
       <link>https://kalug.linux.org.tw/planet/appleboy/20181226_docker-testing-with-flutter-sdk/</link>
       <pubDate>Wed, 26 Dec 2018 00:00:00 +0000</pubDate>
@@ -83,6 +92,15 @@
     </item>
     
     <item>
+      <title>KaLUG 1811聚會</title>
+      <link>https://kalug.linux.org.tw/meetups/1811/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/meetups/1811/</guid>
+      <description>1811 11&amp;frasl;24 同選舉日活動時間延後至下午四點開始 雲凱 - 如何貢獻 denite.vim 魏炎 - 海外期貨交易系統概述</description>
+    </item>
+    
+    <item>
       <title>Microsoft Office 2016 &amp; 365 不只傳送「軟體診斷資料」，還私下傳送了...</title>
       <link>https://kalug.linux.org.tw/planet/slat-tw/20181116_windows-office-2016-365.html/</link>
       <pubDate>Fri, 16 Nov 2018 00:00:00 +0000</pubDate>
@@ -110,6 +128,15 @@
     </item>
     
     <item>
+      <title>KaLUG 1810聚會</title>
+      <link>https://kalug.linux.org.tw/meetups/1810/</link>
+      <pubDate>Sat, 27 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/meetups/1810/</guid>
+      <description>KaLUG 20 周年特别聚會 地點: 睦工廠 鹽埕店 自助吧大食團 + Lighting talk (以下開放 Lighting talk 報名) 經典回顧</description>
+    </item>
+    
+    <item>
       <title>用 10 分鐘部署專案到 AWS Lambda</title>
       <link>https://kalug.linux.org.tw/planet/appleboy/20181025_deploy-app-to-aws-lambda-using-up-tool-in-ten-minutes/</link>
       <pubDate>Thu, 25 Oct 2018 00:00:00 +0000</pubDate>
@@ -125,6 +152,15 @@
       
       <guid>https://kalug.linux.org.tw/planet/appleboy/20181016_go-1-11-support-go-module/</guid>
       <description>本篇來聊聊 Go 語言在 1.11 版本推出的 新功能，相信大家也許還不知道此功能是做什麼用的，我們來回顧看看在初學 Go 語言的時候，最令人困擾的就是 GOPATH</description>
+    </item>
+    
+    <item>
+      <title>KaLUG 1809聚會</title>
+      <link>https://kalug.linux.org.tw/meetups/1809/</link>
+      <pubDate>Sat, 29 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/meetups/1809/</guid>
+      <description> Rick - raspberry pi cluster Shawn - Bootstrap Kubernetes </description>
     </item>
     
     <item>
@@ -200,6 +236,15 @@
     </item>
     
     <item>
+      <title>KaLUG 1808聚會</title>
+      <link>https://kalug.linux.org.tw/meetups/1808/</link>
+      <pubDate>Sat, 25 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/meetups/1808/</guid>
+      <description>Rick68: Rust ABC 最近大家都在玩新語言, Rick要來幫我們介紹一下Rust Louis: 介紹高雄港站與臨港線 好久不見的Louis 要帶給我們一些鐵道相關 一些訊息 COSCUP 08/11~08/12 COSCUP</description>
+    </item>
+    
+    <item>
       <title>Enabling the InnoDB File-Per-Table tablespaces and migrate the MySQL database for Zabbix 3.2.6 on CentOS 7</title>
       <link>https://kalug.linux.org.tw/planet/chusiang/20180818_enabling-mysql-innodb-file-per-table-for-zabbix-3.2.6-centos-7.html/</link>
       <pubDate>Sat, 18 Aug 2018 00:00:00 +0000</pubDate>
@@ -232,7 +277,7 @@
       <pubDate>Sat, 28 Jul 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kalug.linux.org.tw/meetups/1807/</guid>
-      <description>時間：2018/07/28 14:00(+0800)</description>
+      <description>時間：2018/07/28 14:00(+0800) Qerter: 怎麼逆向Linux elf程式 (Radare2) https://github.com/radare/radare2 Hawk 給了一個例子為了個要逆向 dlink zero day https://www.zdnet.com/article/10-d-link-zero-day-router-flaws-exposed/ Hawk: Gopher Puzzlers 藉由許多想都沒想過的問題來學習到gol</description>
     </item>
     
     <item>
