@@ -5,10 +5,100 @@
     <link>https://kalug.linux.org.tw/</link>
     <description>Recent content on Kaohsiung Linux User Group</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 08 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 02 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kalug.linux.org.tw/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>〈系統思考培訓工作坊 Lv1〉與「中級學徒」</title>
+      <link>https://kalug.linux.org.tw/planet/chusiang/20190402_systems-thinking-training-lv1-intermediate-apprentice.html/</link>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/chusiang/20190402_systems-thinking-training-lv1-intermediate-apprentice.html/</guid>
+      <description>知曉系統思考 (Systems Thinking) 至今兩年的凍仁，雖早在半年前入門這項技藝，但為了更快、更有效地的學習，在敏捷老司機 James Wang 的介紹，報名了 2019/03/15-16 的〈系統思考培訓工作坊</description>
+    </item>
+    
+    <item>
+      <title>10 分鐘內用 Traefik 架設 Drone 搭配 GitHub 服務</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20190322_setup-traefik-with-drone-ci-cd-in-ten-minutes/</link>
+      <pubDate>Fri, 22 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20190322_setup-traefik-with-drone-ci-cd-in-ten-minutes/</guid>
+      <description>這標題也許有點誇張，但是如果實際操作一次，肯定可以在 10 分鐘內操作完成。本篇來教大家如何用 Traefik 當作前端 Proxy，後端搭配 Drone 服務接 GitHub，</description>
+    </item>
+    
+    <item>
+      <title>開源專案 Gitea 支援 OAuth Provider</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20190309_gitea-support-oauth-provider/</link>
+      <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20190309_gitea-support-oauth-provider/</guid>
+      <description>很高興看到 Gitea 正式支援 OAuth Provider 了，此功能經歷了四個月終於正式合併進 master 分支，預計會在 1.8 版本釋出，由於此功能已經進 master，這樣我們就可以把原本 Drone</description>
+    </item>
+    
+    <item>
+      <title>解決「嘸蝦米輸入法 v2.6.4」未預期中止問題 on Android 8.0</title>
+      <link>https://kalug.linux.org.tw/planet/chusiang/20190226_fixed-boshiamy-ime-v2.6.4-oops-error-on-android-8.0.html/</link>
+      <pubDate>Tue, 26 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/chusiang/20190226_fixed-boshiamy-ime-v2.6.4-oops-error-on-android-8.0.html/</guid>
+      <description>嘸蝦米 (Boshiamy IME) Android 版，自從 2019/02/18 釋出 v2.6.4 後，除造成不少 Android 用戶無法正常使用嘸蝦米，還會一直跳出「未預期中止的錯誤訊息」視窗阻礙操作。相信部份使用者，正因如</description>
+    </item>
+    
+    <item>
+      <title>在 docker-in-docker 環境中使用 cache-from 提升編譯速度</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20190224_using-cache-from-can-speed-up-your-docker-builds/</link>
+      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20190224_using-cache-from-can-speed-up-your-docker-builds/</guid>
+      <description>在現代 CI/CD 的環境流程中，使用 Docker In Docker 來編譯容器已經相當流行了，像是 GitLab CI 或 Drone 都是全走 Docker 環境，然而有很多人建議盡量不要在 CI 環境使用 Docker In Docker，</description>
+    </item>
+    
+    <item>
+      <title>快速部署網站到 Heroku 雲平台</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20190218_deploy-golang-app-to-heroku/</link>
+      <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20190218_deploy-golang-app-to-heroku/</guid>
+      <description>大家在寫開源專案時，一定需要一個免費的雲空間來放置網站，方便其他開發者在 GitHub 看到時，可以先點選 Demo 網站來試用，也許開發者可以使用 GitHub 提供的免費靜態</description>
+    </item>
+    
+    <item>
+      <title>軟體自由協會 2019 年度會員大會將在 3 月 23 日舉行</title>
+      <link>https://kalug.linux.org.tw/planet/slat-tw/20190218_2019-3-23-slat-general-assembly.html/</link>
+      <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/slat-tw/20190218_2019-3-23-slat-general-assembly.html/</guid>
+      <description>軟體自由協會 2019 年 年度會員大會 3 月 23 日下午二時 於 A+A Space 舉行 地圖：Open Street Map、Google Map 本次會員大會 將改選 第十屆理監事會 敬請出席參與</description>
+    </item>
+    
+    <item>
+      <title>有效率的用 jsonnet 撰寫  Drone CI/CD 設定檔</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20190125_converts-a-jsonnet-configuration-file-to-a-yaml-in-drone/</link>
+      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20190125_converts-a-jsonnet-configuration-file-to-a-yaml-in-drone/</guid>
+      <description>Drone 在 1.0 版本推出了用 jsonnet 來撰寫 YAML 設定檔，方便開發者可以維護多個專案設定。不知道大家有無遇過在啟動新的專案後，需要從舊的專案複製設定到新專案，或者</description>
+    </item>
+    
+    <item>
+      <title>Seagate 2.5吋 4TB 外接硬碟 好市多 2699 元</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20190120_costco-seagate-usb-hard-disk-2699/</link>
+      <pubDate>Sun, 20 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20190120_costco-seagate-usb-hard-disk-2699/</guid>
+      <description>本週 Costco 正在特價 Seagate 4TB 外接硬碟特價 2699 元，本來只有 3TB 特價 2699 元活動，後來廠商供應數量不夠，只好拿 4TB 一起來特價 2699 元，所以我去賣場發現一樣價錢，但是足足</description>
+    </item>
+    
+    <item>
+      <title>Traefik 搭配 Docker 自動更新 Let’s Encrypt 憑證</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20190120_traefik-docker-and-lets-encrypt/</link>
+      <pubDate>Sun, 20 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20190120_traefik-docker-and-lets-encrypt/</guid>
+      <description>之前寫過蠻多篇 Let&amp;#8217;s Encrypt 的使用教學，但是這次要跟大家介紹一套非常好用的工具 Traefik 搭配自動化更新 Let&amp;#8217;s Encrypt 憑證，為什麼會推薦 Traefik 呢，原因在於 Traefik 可以自動偵測 Docker 容器</description>
+    </item>
     
     <item>
       <title>用 Traefik 搭配 Docker 快速架設服務</title>
@@ -160,7 +250,7 @@
       <pubDate>Sat, 29 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kalug.linux.org.tw/meetups/1809/</guid>
-      <description> Rick - raspberry pi cluster Shawn - Bootstrap Kubernetes </description>
+      <description>Rick - raspberry pi cluster Shawn - Bootstrap Kubernetes</description>
     </item>
     
     <item>
@@ -1087,7 +1177,15 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://kalug.linux.org.tw/readme/</guid>
-      <description>Source of KaLUG HUGO site master branch: only store content data build branch: configs/layouts/themes of hugo ~ $ git clone -b build git@github.com:kalug/kalug.git ~ $ cd kalug kalug $ git worktree add content origin/master kalug $ hugo server How To Contribute 歡迎一起豐富網站內容, 可以直接修改 master branch 比如想要改 首頁 (_index.md) 在c</description>
+      <description>Source of KaLUG HUGO site 
+master branch: only store content data
+build branch: configs/layouts/themes of hugo
+~ $ git clone -b build git@github.com:kalug/kalug.git ~ $ cd kalug kalug $ git worktree add content origin/master kalug $ hugo server How To Contribute 歡迎一起豐富網站內容, 可以直接修改 master branch
+比如想要改 首頁 (_index.md)
+在content頁面上 加上 Edit me   就可以產生 Edit me的button 連結github讓大家比較好編輯
+可以直接透過 github的edit 功能直接修改
+https://github.com/kalug/kalug/blob/content/_index.md
+或是一起加入開發</description>
     </item>
     
     <item>
@@ -1096,7 +1194,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://kalug.linux.org.tw/about/sponsors/</guid>
-      <description>贊助 Funmula.com - BigGo.com Edit me</description>
+      <description> 贊助 Funmula.com - BigGo.com Edit me   </description>
     </item>
     
     <item>
@@ -1105,7 +1203,17 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://kalug.linux.org.tw/pages/devices/</guid>
-      <description>神兵利器 Edit me Laptop Thinkpad T470: Shawn 個人偏好 X系列雖然更輕巧些, 螢幕大點 還是舒服些, 14吋 攜帶跟重量算方便 內建一顆小電池 還有一顆外加電池 目前約可撐 10小時,</description>
+      <description>神兵利器 Edit me   Laptop  Thinkpad T470: Shawn
+ 個人偏好 X系列雖然更輕巧些, 螢幕大點 還是舒服些, 14吋 攜帶跟重量算方便
+ 內建一顆小電池 還有一顆外加電池 目前約可撐 10小時, 官網可以自行調整配備, 電池備品好買
+ Type-C 充電好方便,出門只要帶一顆充電器 PS. 我原廠的充電線被兔子要壞, 買了一個小米的
+ 環境: Ubuntu + i3wn i3 用C寫的 穩定性很棒
+   Chromebook  ASUS C302C: LLoyd
+ 可觸控, 螢幕翻轉360度
+ 環境: ChromeOS + chromebrew
+  Acer 某款: ChungYu Hsu
+ 環境: ChromeOS + chroot debian
+ hotkey 切換 ChromeOS / debian</description>
     </item>
     
     <item>
@@ -1114,7 +1222,24 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://kalug.linux.org.tw/pages/life/</guid>
-      <description>高雄生活 工作 高雄軟體園區 加工出口區(?) 不確定有沒有軟體公司 幸福高雄移居津貼 遠端工作 Best Practice 開公司 funmula/biggo webduino 說服老闆開南部分公司 KKBOX 高雄分公司 高軟 QNAP 四維</description>
+      <description>高雄生活 工作  高雄軟體園區
+ 加工出口區(?) 不確定有沒有軟體公司
+ 幸福高雄移居津貼
+ 遠端工作
+  Best Practice 開公司  funmula/biggo
+ webduino
+  說服老闆開南部分公司  KKBOX 高雄分公司 高軟
+ QNAP 四維路
+ 緯創
+ 鴻海
+  找工作經驗  [心得] 高雄非新人找工作心得
+  Coworking Space  作伙共同生活空間
+  學校  高雄大學
+ 中山大學
+ 高雄科技大學 (高應大+第一科+高雄海科)
+  咖啡廳  TadyCoffee 高雄市三民區旅順街8號 老闆親自烘豆『客製化』
+ 多一點
+  餐廳  Mars睦工場</description>
     </item>
     
     <item>
@@ -1123,7 +1248,26 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://kalug.linux.org.tw/pages/sig/</guid>
-      <description>Special Interest Group 為了方便排定每個月分享的主題, 我們讓各各不同興趣的同好一起安排主題分享的頻率, 也歡迎給 推薦書單/網站/youtube Edit me Ubuntu Who: Tim, Shawn 半年一</description>
+      <description>Special Interest Group 為了方便排定每個月分享的主題,
+我們讓各各不同興趣的同好一起安排主題分享的頻率,
+也歡迎給 推薦書單/網站/youtube
+Edit me   Ubuntu  Who: Tim, Shawn
+ 半年一次 Release Party
+ 外部社群:
+ Ubuntu-TW
+  推薦書單
+ 完全用 GNU/Linux 工作
+   Python  Who: Tim, Shawn
+ 外部社群:
+ 高雄.py 聚會時間:週間晚上
+   GoLang  Who: Hawk, Shawn, Rick
+ 每三個月
+ 外部社群:
+ Gopher Taipei
+  推薦書單:
+ https://golang.org/doc/effective_go.html
+ https://talks.golang.org/2013/bestpractices.slide#30
+   Rust  Rick86</description>
     </item>
     
     <item>

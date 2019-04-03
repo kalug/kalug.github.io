@@ -15,7 +15,17 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://kalug.linux.org.tw/pages/devices/</guid>
-      <description>神兵利器 Edit me Laptop Thinkpad T470: Shawn 個人偏好 X系列雖然更輕巧些, 螢幕大點 還是舒服些, 14吋 攜帶跟重量算方便 內建一顆小電池 還有一顆外加電池 目前約可撐 10小時,</description>
+      <description>神兵利器 Edit me   Laptop  Thinkpad T470: Shawn
+ 個人偏好 X系列雖然更輕巧些, 螢幕大點 還是舒服些, 14吋 攜帶跟重量算方便
+ 內建一顆小電池 還有一顆外加電池 目前約可撐 10小時, 官網可以自行調整配備, 電池備品好買
+ Type-C 充電好方便,出門只要帶一顆充電器 PS. 我原廠的充電線被兔子要壞, 買了一個小米的
+ 環境: Ubuntu + i3wn i3 用C寫的 穩定性很棒
+   Chromebook  ASUS C302C: LLoyd
+ 可觸控, 螢幕翻轉360度
+ 環境: ChromeOS + chromebrew
+  Acer 某款: ChungYu Hsu
+ 環境: ChromeOS + chroot debian
+ hotkey 切換 ChromeOS / debian</description>
     </item>
     
     <item>
@@ -24,7 +34,24 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://kalug.linux.org.tw/pages/life/</guid>
-      <description>高雄生活 工作 高雄軟體園區 加工出口區(?) 不確定有沒有軟體公司 幸福高雄移居津貼 遠端工作 Best Practice 開公司 funmula/biggo webduino 說服老闆開南部分公司 KKBOX 高雄分公司 高軟 QNAP 四維</description>
+      <description>高雄生活 工作  高雄軟體園區
+ 加工出口區(?) 不確定有沒有軟體公司
+ 幸福高雄移居津貼
+ 遠端工作
+  Best Practice 開公司  funmula/biggo
+ webduino
+  說服老闆開南部分公司  KKBOX 高雄分公司 高軟
+ QNAP 四維路
+ 緯創
+ 鴻海
+  找工作經驗  [心得] 高雄非新人找工作心得
+  Coworking Space  作伙共同生活空間
+  學校  高雄大學
+ 中山大學
+ 高雄科技大學 (高應大+第一科+高雄海科)
+  咖啡廳  TadyCoffee 高雄市三民區旅順街8號 老闆親自烘豆『客製化』
+ 多一點
+  餐廳  Mars睦工場</description>
     </item>
     
     <item>
@@ -33,7 +60,26 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://kalug.linux.org.tw/pages/sig/</guid>
-      <description>Special Interest Group 為了方便排定每個月分享的主題, 我們讓各各不同興趣的同好一起安排主題分享的頻率, 也歡迎給 推薦書單/網站/youtube Edit me Ubuntu Who: Tim, Shawn 半年一</description>
+      <description>Special Interest Group 為了方便排定每個月分享的主題,
+我們讓各各不同興趣的同好一起安排主題分享的頻率,
+也歡迎給 推薦書單/網站/youtube
+Edit me   Ubuntu  Who: Tim, Shawn
+ 半年一次 Release Party
+ 外部社群:
+ Ubuntu-TW
+  推薦書單
+ 完全用 GNU/Linux 工作
+   Python  Who: Tim, Shawn
+ 外部社群:
+ 高雄.py 聚會時間:週間晚上
+   GoLang  Who: Hawk, Shawn, Rick
+ 每三個月
+ 外部社群:
+ Gopher Taipei
+  推薦書單:
+ https://golang.org/doc/effective_go.html
+ https://talks.golang.org/2013/bestpractices.slide#30
+   Rust  Rick86</description>
     </item>
     
   </channel>

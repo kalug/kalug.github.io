@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>有效率的用 jsonnet 撰寫  Drone CI/CD 設定檔</title>
+  <meta property="og:title" content="有效率的用 jsonnet 撰寫  Drone CI/CD 設定檔" />
+  <meta name="twitter:title" content="有效率的用 jsonnet 撰寫  Drone CI/CD 設定檔" />
+  <meta name="description" content="Drone 在 1.0 版本推出了用 jsonnet 來撰寫 YAML 設定檔，方便開發者可以維護多個專案設定。不知道大家有無遇過在啟動新的專案後，需要從舊的專案複製設定到新專案，或者">
+  <meta property="og:description" content="Drone 在 1.0 版本推出了用 jsonnet 來撰寫 YAML 設定檔，方便開發者可以維護多個專案設定。不知道大家有無遇過在啟動新的專案後，需要從舊的專案複製設定到新專案，或者">
+  <meta name="twitter:description" content="Drone 在 1.0 版本推出了用 jsonnet 來撰寫 YAML 設定檔，方便開發者可以維護多個專案設定。不知道大家有無遇過在啟動新的專案後，需要從舊的專案複製設定到新專案，或者">
+  <meta name="author" content=""/>
+  <link href='https://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://kalug.linux.org.tw/planet/appleboy/20190125_converts-a-jsonnet-configuration-file-to-a-yaml-in-drone/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kaohsiung Linux User Group" />
+
+  <meta name="generator" content="Hugo 0.54.0" />
+  <link rel="canonical" href="https://kalug.linux.org.tw/planet/appleboy/20190125_converts-a-jsonnet-configuration-file-to-a-yaml-in-drone/" />
+  <link rel="alternate" href="https://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/highlight.min.css" /><link rel="stylesheet" href="https://kalug.linux.org.tw/css/codeblock.css" />
+<script id="chatBroEmbedCode">
+ 
+function ChatbroLoader(chats,async){async=!1!==async;var params={embedChatsParameters:chats instanceof Array?chats:[chats],lang:navigator.language||navigator.userLanguage,needLoadCode:'undefined'==typeof Chatbro,embedParamsVersion:localStorage.embedParamsVersion,chatbroScriptVersion:localStorage.chatbroScriptVersion},xhr=new XMLHttpRequest;xhr.withCredentials=!0,xhr.onload=function(){eval(xhr.responseText)},xhr.onerror=function(){console.error('Chatbro loading error')},xhr.open('GET','//www.chatbro.com/embed.js?'+btoa(unescape(encodeURIComponent(JSON.stringify(params)))),async),xhr.send()}
+ 
+ChatbroLoader({encodedChatId: '62DdK'});
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=952825024850869&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-121574418-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Meetups" href="/meetups/">Meetups</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Planet" href="/planet/">Planet</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Pages</a>
+              <div class="navlinks-children">
+                
+                  <a href="/pages/sig">Special Interest Group</a>
+                
+                  <a href="/pages/devices">Useful Devices</a>
+                
+                  <a href="/pages/life">Kaohsiung Life</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">About</a>
+              <div class="navlinks-children">
+                
+                  <a href="/about/us">us</a>
+                
+                  <a href="/about/sponsors">Sponsors</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Kaohsiung Linux User Group" href="https://kalug.linux.org.tw">
+            <img class="avatar-img" src="https://kalug.linux.org.tw/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="blog-heading">
+              <h1>有效率的用 jsonnet 撰寫  Drone CI/CD 設定檔</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p><p><a href="https://lh3.googleusercontent.com/z8q-kl8yaWy9LtUDNEluPfDiHouz0Q7GnQZDStid8j4CmOwgP9uZJsTOCXjmSzTTApmL6fukANr6UbEGAaebb5_iJ1j5LoXPFKtrrf_FdLOGFpt9zyYvdPo8OdpzrZ3qJDDx9CkanNM=w1920-h1080" title="Jsonnet + Drone"><img src="https://lh3.googleusercontent.com/z8q-kl8yaWy9LtUDNEluPfDiHouz0Q7GnQZDStid8j4CmOwgP9uZJsTOCXjmSzTTApmL6fukANr6UbEGAaebb5_iJ1j5LoXPFKtrrf_FdLOGFpt9zyYvdPo8OdpzrZ3qJDDx9CkanNM=w1920-h1080" alt="Jsonnet + Drone" title="Jsonnet + Drone" /></a></p><br />
+<p><a href="https://github.com/drone/drone">Drone</a> 在 1.0 版本推出了用 <a href="https://jsonnet.org">jsonnet</a> 來撰寫 <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> 設定檔，方便開發者可以維護多個專案設定。不知道大家有無遇過在啟動新的專案後，需要從舊的專案複製設定到新專案，或者是在 <code>.drone.yml</code> 內有非常多重複性的設定，假設 <a href="https://golang.org" title="Go 語言">Go 語言</a>的開源專案需要將執行檔包成 ARM64 及 AMD64 的映像檔，並且上傳到 <a href="https://hub.docker.com/" title="Docker Hub">Docker Hub</a>，底下是 AMD64 的設定檔範例。剛好在 <a href="https://www.udemy.com/devops-oneday" title="Udemy 課程">Udemy 課程</a>內有學員詢問到<a href="https://www.udemy.com/devops-oneday/learn/v4/questions/6162884">相關問題</a>。</p><br />
+<pre><code class="language-yaml">&mdash;<br />
+kind: pipeline<br />
+name: linux-arm64</p>
+
+<p>platform:<br />
+  os: linux<br />
+  arch: arm64</p>
+
+<p>steps:<br />
+- name: build-push<br />
+  pull: always<br />
+  image: golang:1.11<br />
+  commands:<br />
+  - &ldquo;go build -v -ldflags \&ldquo;-X main.build=${DRONE_BUILD_NUMBER}\&rdquo; -a -o release/linux/arm64/drone-discord&rdquo;<br />
+  environment:<br />
+    CGO_ENABLED: 0<br />
+    GO111MODULE: on<br />
+  when:<br />
+    event:<br />
+    - push<br />
+    - pull_request</p>
+
+<ul>
+<li><p>name: build-tag<br />
+pull: always<br />
+image: golang:1.11<br />
+commands:</p>
+
+<ul>
+<li>&ldquo;go build -v -ldflags \&ldquo;-X main.version=${DRONE_TAG##v} -X main.build=${DRONE_BUILD_NUMBER}\&rdquo; -a -o release/linux/arm64/drone-discord&rdquo;<br />
+environment:<br />
+CGO_ENABLED: 0<br />
+GO111MODULE: on<br />
+when:<br />
+event:<br /></li>
+<li>tag<br />
+<br /></li>
+</ul></li>
+
+<li><p>name: executable<br />
+pull: always<br />
+image: golang:1.11<br />
+commands:</p>
+
+<ul>
+<li>./release/linux/arm64/drone-discord &ndash;help<br />
+<br /></li>
+</ul></li>
+
+<li><p>name: dryrun<br />
+pull: always<br />
+image: plugins/docker:linux-arm64<br />
+settings:<br />
+dockerfile: docker/Dockerfile.linux.arm64<br />
+dry_run: true<br />
+password:<br />
+  from_secret: docker_password<br />
+repo: appleboy/drone-discord<br />
+tags: linux-arm64<br />
+username:<br />
+  from_secret: docker_username<br />
+when:<br />
+event:</p>
+
+<ul>
+<li>pull_request<br />
+<br /></li>
+</ul></li>
+
+<li><p>name: publish<br />
+pull: always<br />
+image: plugins/docker:linux-arm64<br />
+settings:<br />
+auto_tag: true<br />
+auto_tag_suffix: linux-arm64<br />
+dockerfile: docker/Dockerfile.linux.arm64<br />
+password:<br />
+  from_secret: docker_password<br />
+repo: appleboy/drone-discord<br />
+username:<br />
+  from_secret: docker_username<br />
+when:<br />
+event:</p>
+
+<ul>
+<li>push<br /></li>
+<li>tag<br />
+<br /></li>
+</ul></li>
+</ul>
+
+<p>trigger:<br />
+  branch:<br />
+  - master</code></pre><br />
+<span id="more-7226"></span><br />
+<p>大家可以看到上面總共快 80 行，如果要再支援 ARM 64，這時候就需要重新複製再貼上，並且把相關設定改掉，有沒有覺得這樣非常難維護 <code>.drone.yml</code>。Drone 的作者聽到大家的聲音了，在 1.0 版本整合了 <a href="https://jsonnet.org/">jsonnet</a> 這套 Data Templating Language，讓您可以寫一次代碼並產生出好幾種環境。底下簡單看一個例子:</p><br />
+<pre><code class="language-json">// A function that returns an object.<br />
+local Person(name=&lsquo;Alice&rsquo;) = {<br />
+  name: name,<br />
+  welcome: &lsquo;Hello &rsquo; + name + &lsquo;!&rsquo;,<br />
+};<br />
+{<br />
+  person1: Person(),<br />
+  person2: Person(&lsquo;Bob&rsquo;),<br />
+}</code></pre><br />
+<p>透過 jsonnet 指令可以轉換如下:</p><br />
+<pre><code class="language-json">{<br />
+  &ldquo;person1&rdquo;: {<br />
+    &ldquo;name&rdquo;: &ldquo;Alice&rdquo;,<br />
+    &ldquo;welcome&rdquo;: &ldquo;Hello Alice!&rdquo;<br />
+  },<br />
+  &ldquo;person2&rdquo;: {<br />
+    &ldquo;name&rdquo;: &ldquo;Bob&rdquo;,<br />
+    &ldquo;welcome&rdquo;: &ldquo;Hello Bob!&rdquo;<br />
+  }<br />
+}</code></pre><br />
+<p>那該如何改 drone 設定檔方便未來多個專案一起維護呢？</p><br />
+<h2>影片教學</h2><br />
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ySqjSdeWzQw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br />
+<ul><br />
+<li>Go 語言實戰課程: <a href="http://bit.ly/golang-2019">http://bit.ly/golang-2019</a></li><br />
+<li>Drone 自動化課程: <a href="http://bit.ly/drone-2019">http://bit.ly/drone-2019</a></li><br />
+</ul><br />
+<h2>安裝 drone CLI 執行檔</h2><br />
+<p>請直接參考<a href="https://docs.drone.io/cli/install/">官方文件</a>就可以了，這邊不再詳細介紹，底下是 Mac 範例 (安裝的是 <a href="https://github.com/drone/drone-cli/releases/tag/v1.0.5" title="Drone v1.0.5">Drone v1.0.5</a>):</p><br />
+<pre><code class="language-sh">$ curl -L <a href="https://github.com/drone/drone-cli/releases/download/v1.0.5/drone_darwin_amd64.tar.gz">https://github.com/drone/drone-cli/releases/download/v1.0.5/drone_darwin_amd64.tar.gz</a> | tar zx<br />
+$ sudo cp drone /usr/local/bin</code></pre><br />
+<p>安裝完成後，還需要設定<a href="https://docs.drone.io/cli/setup/">環境變數</a>，才可以跟您的 Drone 伺服器溝通。</p><br />
+<pre><code class="language-sh">$ drone<br />
+NAME:<br />
+   drone - command line utility</p>
+
+<p>USAGE:<br />
+   drone [global options] command [command options] [arguments&hellip;]</p>
+
+<p>VERSION:<br />
+   1.0.5</p>
+
+<p>COMMANDS:<br />
+     build      manage builds<br />
+     cron       manage cron jobs<br />
+     log        manage logs<br />
+     encrypt    encrypt a secret<br />
+     exec       execute a local build<br />
+     info       show information about the current user<br />
+     repo       manage repositories<br />
+     user       manage users<br />
+     secret     manage secrets<br />
+     server     manage servers<br />
+     queue      queue operations<br />
+     autoscale  manage autoscaling<br />
+     fmt        format the yaml file<br />
+     convert    convert legacy format<br />
+     lint       lint the yaml file<br />
+     sign       sign the yaml file<br />
+     jsonnet    generate .drone.yml from jsonnet<br />
+     plugins    plugin helper functions</code></pre><br />
+<h2>撰寫 .drone.jsonnet 檔案</h2><br />
+<p>在專案目錄內放置 <code>.drone.jsonnet</code> 檔案，拿 Go 專案當範例：</p><br />
+<ol><br />
+<li>驗證程式碼品質</li><br />
+<li>編譯執行檔 </li><br />
+<li>包成 Docker 容器 </li><br />
+<li>上傳到 Docker Hub </li><br />
+<li>消息通知</li><br />
+</ol><br />
+<pre><code class="language-json">local PipelineTesting = {<br />
+  kind: &ldquo;pipeline&rdquo;,<br />
+  name: &ldquo;testing&rdquo;,<br />
+  platform: {<br />
+    os: &ldquo;linux&rdquo;,<br />
+    arch: &ldquo;amd64&rdquo;,<br />
+  },<br />
+  steps: [<br />
+    {<br />
+      name: &ldquo;vet&rdquo;,<br />
+      image: &ldquo;golang:1.11&rdquo;,<br />
+      pull: &ldquo;always&rdquo;,<br />
+      environment: {<br />
+        GO111MODULE: &ldquo;on&rdquo;,<br />
+      },<br />
+      commands: [<br />
+        &ldquo;make vet&rdquo;,<br />
+      ],<br />
+    },<br />
+    {<br />
+      name: &ldquo;lint&rdquo;,<br />
+      image: &ldquo;golang:1.11&rdquo;,<br />
+      pull: &ldquo;always&rdquo;,<br />
+      environment: {<br />
+        GO111MODULE: &ldquo;on&rdquo;,<br />
+      },<br />
+      commands: [<br />
+        &ldquo;make lint&rdquo;,<br />
+      ],<br />
+    },<br />
+    {<br />
+      name: &ldquo;misspell&rdquo;,<br />
+      image: &ldquo;golang:1.11&rdquo;,<br />
+      pull: &ldquo;always&rdquo;,<br />
+      environment: {<br />
+        GO111MODULE: &ldquo;on&rdquo;,<br />
+      },<br />
+      commands: [<br />
+        &ldquo;make misspell-check&rdquo;,<br />
+      ],<br />
+    },<br />
+    {<br />
+      name: &ldquo;test&rdquo;,<br />
+      image: &ldquo;golang:1.11&rdquo;,<br />
+      pull: &ldquo;always&rdquo;,<br />
+      environment: {<br />
+        GO111MODULE: &ldquo;on&rdquo;,<br />
+        WEBHOOK_ID: { &ldquo;from_secret&rdquo;: &ldquo;webhook_id&rdquo; },<br />
+        WEBHOOK_TOKEN: { &ldquo;from_secret&rdquo;: &ldquo;webhook_token&rdquo; },<br />
+      },<br />
+      commands: [<br />
+        &ldquo;make test&rdquo;,<br />
+        &ldquo;make coverage&rdquo;,<br />
+      ],<br />
+    },<br />
+    {<br />
+      name: &ldquo;codecov&rdquo;,<br />
+      image: &ldquo;robertstettner/drone-codecov&rdquo;,<br />
+      pull: &ldquo;always&rdquo;,<br />
+      settings: {<br />
+        token: { &ldquo;from_secret&rdquo;: &ldquo;codecov_token&rdquo; },<br />
+      },<br />
+    },<br />
+  ],<br />
+  trigger: {<br />
+    branch: [ &ldquo;master&rdquo; ],<br />
+  },<br />
+};</p>
+
+<p>local PipelineBuild(os=&ldquo;linux&rdquo;, arch=&ldquo;amd64&rdquo;) = {<br />
+  kind: &ldquo;pipeline&rdquo;,<br />
+  name: os + &ldquo;-&rdquo; + arch,<br />
+  platform: {<br />
+    os: os,<br />
+    arch: arch,<br />
+  },<br />
+  steps: [<br />
+    {<br />
+      name: &ldquo;build-push&rdquo;,<br />
+      image: &ldquo;golang:1.11&rdquo;,<br />
+      pull: &ldquo;always&rdquo;,<br />
+      environment: {<br />
+        CGO_ENABLED: &ldquo;0&rdquo;,<br />
+        GO111MODULE: &ldquo;on&rdquo;,<br />
+      },<br />
+      commands: [<br />
+        &ldquo;go build -v -ldflags \&ldquo;-X main.build=${DRONE_BUILD_NUMBER}\&rdquo; -a -o release/&rdquo; + os + &ldquo;/&rdquo; + arch + &ldquo;/drone-discord&rdquo;,<br />
+      ],<br />
+      when: {<br />
+        event: [ &ldquo;push&rdquo;, &ldquo;pull_request&rdquo; ],<br />
+      },<br />
+    },<br />
+    {<br />
+      name: &ldquo;build-tag&rdquo;,<br />
+      image: &ldquo;golang:1.11&rdquo;,<br />
+      pull: &ldquo;always&rdquo;,<br />
+      environment: {<br />
+        CGO_ENABLED: &ldquo;0&rdquo;,<br />
+        GO111MODULE: &ldquo;on&rdquo;,<br />
+      },<br />
+      commands: [<br />
+        &ldquo;go build -v -ldflags \&ldquo;-X main.version=${DRONE_TAG##v} -X main.build=${DRONE_BUILD_NUMBER}\&rdquo; -a -o release/&rdquo; + os + &ldquo;/&rdquo; + arch + &ldquo;/drone-discord&rdquo;,<br />
+      ],<br />
+      when: {<br />
+        event: [ &ldquo;tag&rdquo; ],<br />
+      },<br />
+    },<br />
+    {<br />
+      name: &ldquo;executable&rdquo;,<br />
+      image: &ldquo;golang:1.11&rdquo;,<br />
+      pull: &ldquo;always&rdquo;,<br />
+      commands: [<br />
+        &ldquo;./release/&rdquo; + os + &ldquo;/&rdquo; + arch + &ldquo;/drone-discord &ndash;help&rdquo;,<br />
+      ],<br />
+    },<br />
+    {<br />
+      name: &ldquo;dryrun&rdquo;,<br />
+      image: &ldquo;plugins/docker:&rdquo; + os + &ldquo;-&rdquo; + arch,<br />
+      pull: &ldquo;always&rdquo;,<br />
+      settings: {<br />
+        dry_run: true,<br />
+        tags: os + &ldquo;-&rdquo; + arch,<br />
+        dockerfile: &ldquo;docker/Dockerfile.&rdquo; + os + &ldquo;.&rdquo; + arch,<br />
+        repo: &ldquo;appleboy/drone-discord&rdquo;,<br />
+        username: { &ldquo;from_secret&rdquo;: &ldquo;docker_username&rdquo; },<br />
+        password: { &ldquo;from_secret&rdquo;: &ldquo;docker_password&rdquo; },<br />
+      },<br />
+      when: {<br />
+        event: [ &ldquo;pull_request&rdquo; ],<br />
+      },<br />
+    },<br />
+    {<br />
+      name: &ldquo;publish&rdquo;,<br />
+      image: &ldquo;plugins/docker:&rdquo; + os + &ldquo;-&rdquo; + arch,<br />
+      pull: &ldquo;always&rdquo;,<br />
+      settings: {<br />
+        auto_tag: true,<br />
+        auto_tag_suffix: os + &ldquo;-&rdquo; + arch,<br />
+        dockerfile: &ldquo;docker/Dockerfile.&rdquo; + os + &ldquo;.&rdquo; + arch,<br />
+        repo: &ldquo;appleboy/drone-discord&rdquo;,<br />
+        username: { &ldquo;from_secret&rdquo;: &ldquo;docker_username&rdquo; },<br />
+        password: { &ldquo;from_secret&rdquo;: &ldquo;docker_password&rdquo; },<br />
+      },<br />
+      when: {<br />
+        event: [ &ldquo;push&rdquo;, &ldquo;tag&rdquo; ],<br />
+      },<br />
+    },<br />
+  ],<br />
+  depends_on: [<br />
+    &ldquo;testing&rdquo;,<br />
+  ],<br />
+  trigger: {<br />
+    branch: [ &ldquo;master&rdquo; ],<br />
+  },<br />
+};</p>
+
+<p>local PipelineNotifications = {<br />
+  kind: &ldquo;pipeline&rdquo;,<br />
+  name: &ldquo;notifications&rdquo;,<br />
+  platform: {<br />
+    os: &ldquo;linux&rdquo;,<br />
+    arch: &ldquo;amd64&rdquo;,<br />
+  },<br />
+  clone: {<br />
+    disable: true,<br />
+  },<br />
+  steps: [<br />
+    {<br />
+      name: &ldquo;microbadger&rdquo;,<br />
+      image: &ldquo;plugins/webhook:1&rdquo;,<br />
+      pull: &ldquo;always&rdquo;,<br />
+      settings: {<br />
+        url: { &ldquo;from_secret&rdquo;: &ldquo;microbadger_url&rdquo; },<br />
+      },<br />
+    },<br />
+  ],<br />
+  depends_on: [<br />
+    &ldquo;linux-amd64&rdquo;,<br />
+    &ldquo;linux-arm64&rdquo;,<br />
+    &ldquo;linux-arm&rdquo;,<br />
+  ],<br />
+  trigger: {<br />
+    branch: [ &ldquo;master&rdquo; ],<br />
+    event: [ &ldquo;push&rdquo;, &ldquo;tag&rdquo; ],<br />
+  },<br />
+};</p>
+
+<p>[<br />
+  PipelineTesting,<br />
+  PipelineBuild(&ldquo;linux&rdquo;, &ldquo;amd64&rdquo;),<br />
+  PipelineBuild(&ldquo;linux&rdquo;, &ldquo;arm64&rdquo;),<br />
+  PipelineBuild(&ldquo;linux&rdquo;, &ldquo;arm&rdquo;),<br />
+  PipelineNotifications,<br />
+]</code></pre><br />
+<p>大家可以看到 <code>local PipelineBuild</code> 就是一個 func 函數，可以用來產生不同的環境代碼</p><br />
+<pre><code class="language-sh">  PipelineBuild(&ldquo;linux&rdquo;, &ldquo;amd64&rdquo;),<br />
+  PipelineBuild(&ldquo;linux&rdquo;, &ldquo;arm64&rdquo;),<br />
+  PipelineBuild(&ldquo;linux&rdquo;, &ldquo;arm&rdquo;),</code></pre><br />
+<p>完成後，直接在專案目錄下執行</p><br />
+<pre><code class="language-sh">$ drone jsonnet &ndash;stream</code></pre><br />
+<p>您會發現專案下的 <code>.drone.yml</code> 已經成功修正，未來只要將變動部分抽成變數，就可以產生不同專案的環境，開發者就不需要每次手動修改很多變動的地方。至於要不要把 <code>.drone.jsonnet</code> 放入專案內進行版本控制就看情境了。其實可以另外開一個新的 Repo 放置 <code>.drone.jsonnet</code>，未來新專案開案，就可以快速 clone 下來，並且產生新專案的 <code>.drone.yml</code> 設定檔。底下是 Drone 執行結果:</p><br />
+<p><a href="https://lh3.googleusercontent.com/n--AFC5iMIrQGufEyoiM2dag3ibgEyQACRzx4ZapvNDsJz-WjY1qRzei4a6Ov0URrjsVGX6S9eEa4p9cw3so08AtPpRM1iANCGxtRhh109cnV21ZXC-Bg1a6GzltV0G8QxCfqpMiIsc=w1920-h1080" title="Drone Output"><img src="https://lh3.googleusercontent.com/n--AFC5iMIrQGufEyoiM2dag3ibgEyQACRzx4ZapvNDsJz-WjY1qRzei4a6Ov0URrjsVGX6S9eEa4p9cw3so08AtPpRM1iANCGxtRhh109cnV21ZXC-Bg1a6GzltV0G8QxCfqpMiIsc=w1920-h1080" alt="Drone Output" title="Drone Output" /></a></p><br />
+<div class="wp_rp_wrap  wp_rp_plain" ><div class="wp_rp_content"><h3 class="related_post_title">Related View</h3><ul class="related_post wp_rp"><li data-position="0" data-poid="in-7170" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/12/go-module-integrate-with-travis-or-drone/" class="wp_rp_title">Go Module 導入到專案內且搭配 Travis CI 或 Drone 工具</a><small class="wp_rp_comments_count"> (2)</small><br /></li><li data-position="1" data-poid="in-7115" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/11/drone-release-1-0-0-rc1/" class="wp_rp_title">開源專案 Drone 推出 1.0.0 RC1 版本</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="2" data-poid="in-7029" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/06/drone-kubernetes-with-golang/" class="wp_rp_title">Drone 搭配 Kubernetes 部署 Go 語言項目</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="3" data-poid="in-7193" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/01/deploy-service-using-traefik-and-docker/" class="wp_rp_title">用 Traefik 搭配 Docker 快速架設服務</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="4" data-poid="in-6869" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/11/gorush-a-push-notification-server-written-in-go/" class="wp_rp_title">Gorush 輕量級手機訊息發送服務</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="5" data-poid="in-7120" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/11/install-drone-in-single-machine/" class="wp_rp_title">Drone 支援單機版安裝 (內附影片)</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="6" data-poid="in-7108" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/10/deploy-app-to-aws-lambda-using-up-tool-in-ten-minutes/" class="wp_rp_title">用 10 分鐘部署專案到 AWS Lambda</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="7" data-poid="in-6992" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/03/golang-introduction-video/" class="wp_rp_title">Go 語言基礎實戰教學影片上線了</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="8" data-poid="in-6925" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/12/drone-cli-local-testing/" class="wp_rp_title">在本機端導入 Drone CLI 做專案測試</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="9" data-poid="in-7280" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/03/gitea-support-oauth-provider/" class="wp_rp_title">開源專案 Gitea 支援 OAuth Provider</a><small class="wp_rp_comments_count"> (0)</small><br /></li></ul></div></div></p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190125_converts-a-jsonnet-configuration-file-to-a-yaml-in-drone%2f&amp;text=%e6%9c%89%e6%95%88%e7%8e%87%e7%9a%84%e7%94%a8%20jsonnet%20%e6%92%b0%e5%af%ab%20%20Drone%20CI%2fCD%20%e8%a8%ad%e5%ae%9a%e6%aa%94&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190125_converts-a-jsonnet-configuration-file-to-a-yaml-in-drone%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190125_converts-a-jsonnet-configuration-file-to-a-yaml-in-drone%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190125_converts-a-jsonnet-configuration-file-to-a-yaml-in-drone%2f&amp;title=%e6%9c%89%e6%95%88%e7%8e%87%e7%9a%84%e7%94%a8%20jsonnet%20%e6%92%b0%e5%af%ab%20%20Drone%20CI%2fCD%20%e8%a8%ad%e5%ae%9a%e6%aa%94" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190125_converts-a-jsonnet-configuration-file-to-a-yaml-in-drone%2f&amp;title=%e6%9c%89%e6%95%88%e7%8e%87%e7%9a%84%e7%94%a8%20jsonnet%20%e6%92%b0%e5%af%ab%20%20Drone%20CI%2fCD%20%e8%a8%ad%e5%ae%9a%e6%aa%94" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190125_converts-a-jsonnet-configuration-file-to-a-yaml-in-drone%2f&amp;title=%e6%9c%89%e6%95%88%e7%8e%87%e7%9a%84%e7%94%a8%20jsonnet%20%e6%92%b0%e5%af%ab%20%20Drone%20CI%2fCD%20%e8%a8%ad%e5%ae%9a%e6%aa%94" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190125_converts-a-jsonnet-configuration-file-to-a-yaml-in-drone%2f&amp;description=%e6%9c%89%e6%95%88%e7%8e%87%e7%9a%84%e7%94%a8%20jsonnet%20%e6%92%b0%e5%af%ab%20%20Drone%20CI%2fCD%20%e8%a8%ad%e5%ae%9a%e6%aa%94" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20190120_costco-seagate-usb-hard-disk-2699/" data-toggle="tooltip" data-placement="top" title="Seagate 2.5吋 4TB 外接硬碟 好市多 2699 元">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://kalug.linux.org.tw/planet/slat-tw/20190218_2019-3-23-slat-general-assembly.html/" data-toggle="tooltip" data-placement="top" title="軟體自由協會 2019 年度會員大會將在 3 月 23 日舉行">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "kalug-linux-org-tw" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://www.facebook.com/groups/kalug.tw" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalug" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/joinchat/Bqbim0F9EuW-GMUbYg9geA" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://kalug.linux.org.tw/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2019
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/main.js"></script>
+<script src="https://kalug.linux.org.tw/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

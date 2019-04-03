@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>解決「嘸蝦米輸入法 v2.6.4」未預期中止問題 on Android 8.0</title>
+  <meta property="og:title" content="解決「嘸蝦米輸入法 v2.6.4」未預期中止問題 on Android 8.0" />
+  <meta name="twitter:title" content="解決「嘸蝦米輸入法 v2.6.4」未預期中止問題 on Android 8.0" />
+  <meta name="description" content="嘸蝦米 (Boshiamy IME) Android 版，自從 2019/02/18 釋出 v2.6.4 後，除造成不少 Android 用戶無法正常使用嘸蝦米，還會一直跳出「未預期中止的錯誤訊息」視窗阻礙操作。相信部份使用者，正因如">
+  <meta property="og:description" content="嘸蝦米 (Boshiamy IME) Android 版，自從 2019/02/18 釋出 v2.6.4 後，除造成不少 Android 用戶無法正常使用嘸蝦米，還會一直跳出「未預期中止的錯誤訊息」視窗阻礙操作。相信部份使用者，正因如">
+  <meta name="twitter:description" content="嘸蝦米 (Boshiamy IME) Android 版，自從 2019/02/18 釋出 v2.6.4 後，除造成不少 Android 用戶無法正常使用嘸蝦米，還會一直跳出「未預期中止的錯誤訊息」視窗阻礙操作。相信部份使用者，正因如">
+  <meta name="author" content=""/>
+  <link href='https://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://kalug.linux.org.tw/planet/chusiang/20190226_fixed-boshiamy-ime-v2.6.4-oops-error-on-android-8.0.html/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kaohsiung Linux User Group" />
+
+  <meta name="generator" content="Hugo 0.54.0" />
+  <link rel="canonical" href="https://kalug.linux.org.tw/planet/chusiang/20190226_fixed-boshiamy-ime-v2.6.4-oops-error-on-android-8.0.html/" />
+  <link rel="alternate" href="https://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/highlight.min.css" /><link rel="stylesheet" href="https://kalug.linux.org.tw/css/codeblock.css" />
+<script id="chatBroEmbedCode">
+ 
+function ChatbroLoader(chats,async){async=!1!==async;var params={embedChatsParameters:chats instanceof Array?chats:[chats],lang:navigator.language||navigator.userLanguage,needLoadCode:'undefined'==typeof Chatbro,embedParamsVersion:localStorage.embedParamsVersion,chatbroScriptVersion:localStorage.chatbroScriptVersion},xhr=new XMLHttpRequest;xhr.withCredentials=!0,xhr.onload=function(){eval(xhr.responseText)},xhr.onerror=function(){console.error('Chatbro loading error')},xhr.open('GET','//www.chatbro.com/embed.js?'+btoa(unescape(encodeURIComponent(JSON.stringify(params)))),async),xhr.send()}
+ 
+ChatbroLoader({encodedChatId: '62DdK'});
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=952825024850869&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-121574418-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Meetups" href="/meetups/">Meetups</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Planet" href="/planet/">Planet</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Pages</a>
+              <div class="navlinks-children">
+                
+                  <a href="/pages/sig">Special Interest Group</a>
+                
+                  <a href="/pages/devices">Useful Devices</a>
+                
+                  <a href="/pages/life">Kaohsiung Life</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">About</a>
+              <div class="navlinks-children">
+                
+                  <a href="/about/us">us</a>
+                
+                  <a href="/about/sponsors">Sponsors</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Kaohsiung Linux User Group" href="https://kalug.linux.org.tw">
+            <img class="avatar-img" src="https://kalug.linux.org.tw/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="blog-heading">
+              <h1>解決「嘸蝦米輸入法 v2.6.4」未預期中止問題 on Android 8.0</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>嘸蝦米 (Boshiamy IME) Android 版，自從 2019/02/18 釋出 <b>v2.6.4</b> 後，除造成不少 Android 用戶無法正常使用嘸蝦米，還會一直跳出「未預期中止的錯誤訊息」視窗阻礙操作。相信部份使用者，正因如此花錢 (NT$200) 另購嘸蝦米輸入法 Pro (Android 版)。<br /><br />凍仁交叉測試後得知：<b>只需開啟嘸蝦米 APP 的「聯絡人」權限，即可修復此問題，並暫時繼續在 Android 8.0 上正常使用。</b><br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://2.bp.blogspot.com/-oX0nKIOSebA/XHV0cK5e9-I/AAAAAAAA0d4/Av5DShPYvcASy4pxiUjlyAlplNQFG-5LACLcBGAs/s1600/2019-02-26-boshiamy-oops-1.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="472" data-original-width="603" height="312" src="https://2.bp.blogspot.com/-oX0nKIOSebA/XHV0cK5e9-I/AAAAAAAA0d4/Av5DShPYvcASy4pxiUjlyAlplNQFG-5LACLcBGAs/s400/2019-02-26-boshiamy-oops-1.jpg" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 從 2019/02/18 開始跳不停的嘸蝦米輸入法 (Android 版) 錯誤訊息。</td></tr></tbody></table><a name='more'></a><br />環境說明：<br /><ul><li>手機硬體：小米 Note 2。</li><li>作業系統：Android 8.0.0。</li><li>嘸蝦米輸入法：Android 版 v2.6.4。</li></ul><br />修復步驟：<br /><ol><li>若您已經移除舊版的「嘸蝦米輸入法 Boshiamy IME」，可從以下連結安裝。(現在在 Google Play 直接搜尋「嘸蝦米」，已找不到舊版的嘸蝦米。)<br />▌ <a href="https://play.google.com/store/apps/details?id=com.boshiamy.boshiamyime.integrated">https://play.google.com/store/apps/details?id=com.boshiamy.boshiamyime.integrated</a></li><li>開啟嘸蝦米輸入法的應用程式設定：設定 → 更多應用 → 嘸蝦米輸入法。</li><li>點選「應用權限管理」。<br /><div class="separator" style="clear: both; text-align: center;"><a href="https://1.bp.blogspot.com/-D8IH9KdFfCo/XHV0mq8C8EI/AAAAAAAA0d8/r02V4v1x4Ygrt96-6ihTnEH_MGRXIsD0wCLcBGAs/s1600/2019-02-26-boshiamy-oops-2.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="1280" data-original-width="720" height="400" src="https://1.bp.blogspot.com/-D8IH9KdFfCo/XHV0mq8C8EI/AAAAAAAA0d8/r02V4v1x4Ygrt96-6ihTnEH_MGRXIsD0wCLcBGAs/s400/2019-02-26-boshiamy-oops-2.jpg" width="225" /></a></div></li><li>允許嘸蝦米輸入法 APP 使用「聯絡人」的權限。</li><div class="separator" style="clear: both; text-align: center;"><a href="https://2.bp.blogspot.com/-1Dq3S60qLWA/XHV1Dfl9edI/AAAAAAAA0eI/17JrE5GyEhgkJ0kUokqJ3WoBE-9BztTqQCLcBGAs/s1600/2019-02-26-boshiamy-oops-3.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="1280" data-original-width="720" height="400" src="https://2.bp.blogspot.com/-1Dq3S60qLWA/XHV1Dfl9edI/AAAAAAAA0eI/17JrE5GyEhgkJ0kUokqJ3WoBE-9BztTqQCLcBGAs/s400/2019-02-26-boshiamy-oops-3.jpg" width="225" /></a></div><li>設置完畢。<br /><div class="separator" style="clear: both; text-align: center;"><a href="https://4.bp.blogspot.com/-na21TMvfQSA/XHV1hb6oI5I/AAAAAAAA0eQ/hD7D8wmzqIshUmtAwomfxdnxfmCxFeelACLcBGAs/s1600/2019-02-26-boshiamy-oops-4.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="1280" data-original-width="720" height="400" src="https://4.bp.blogspot.com/-na21TMvfQSA/XHV1hb6oI5I/AAAAAAAA0eQ/hD7D8wmzqIshUmtAwomfxdnxfmCxFeelACLcBGAs/s400/2019-02-26-boshiamy-oops-4.jpg" width="225" /></a></div></li><li>找個地方，用「嘸蝦米」打打字吧！<br /><div class="separator" style="clear: both; text-align: center;"><a href="https://3.bp.blogspot.com/-Fs7mvFj1dJQ/XHV1lQPGfnI/AAAAAAAA0eU/IYRNql96yWkUhFX4po5L5JEob9icGhLWgCLcBGAs/s1600/2019-02-26-boshiamy-oops-5.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="1280" data-original-width="720" height="400" src="https://3.bp.blogspot.com/-Fs7mvFj1dJQ/XHV1lQPGfnI/AAAAAAAA0eU/IYRNql96yWkUhFX4po5L5JEob9icGhLWgCLcBGAs/s400/2019-02-26-boshiamy-oops-5.jpg" width="225" /></a></div></li><li>若遇到「99999 錯誤代碼」或「授權失敗」等問題，可藉由<b>多點幾次</b>「嘸蝦米鍵盤設定」裡最下方的<b>「重新取得授權」按鈕</b>恢復。</li><li>若修復問題後，還有些不放心？那不妨先把「啟用自動更新」的功能停用吧！<br /><div class="separator" style="clear: both; text-align: center;"><a href="https://2.bp.blogspot.com/-r5rj4v4weCU/XHgPkQEXeUI/AAAAAAAA0ic/xCUc0dRalNcwr-uIyuHPane8PspUepOwACLcBGAs/s1600/2019-03-01-boshiamy-disable-auto-upgrade.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="1280" data-original-width="720" height="320" src="https://2.bp.blogspot.com/-r5rj4v4weCU/XHgPkQEXeUI/AAAAAAAA0ic/xCUc0dRalNcwr-uIyuHPane8PspUepOwACLcBGAs/s320/2019-03-01-boshiamy-disable-auto-upgrade.jpg" width="180" /></a></div></li></ol><br />以上的 bug，不是人人都會遇到，像凍仁自己就沒遇到，此為成功修復家人手機的筆記。<br /><br /><div style="text-align: center;"><table class="dark"><tbody><tr>     <th></th>     <th>嘸蝦米 (Android 版)</th>     <th>嘸蝦米 Pro (Android 版)</th>   </tr><tr><td>官網連結</td>   <td><a href="http://boshiamy.com/product_android_android.php" target="_blank"><a href="http://boshiamy.com/product_android_android.php">http://boshiamy.com/product_android_android.php</a></a></td>   <td><a href="http://boshiamy.com/product_android_pro.php" target="_blank"><a href="http://boshiamy.com/product_android_pro.php">http://boshiamy.com/product_android_pro.php</a></a></td> </tr><tr><td>Google Play 連結</td>   <td><a href="https://play.google.com/store/apps/details?id=com.boshiamy.boshiamyime.integrated" target="_blank"><a href="https://play.google.com/store/apps/details?id=com.boshiamy.boshiamyime.integrated">https://play.google.com/store/apps/details?id=com.boshiamy.boshiamyime.integrated</a></a></td>   <td><a href="https://play.google.com/store/apps/details?id=com.boshiamy.boshiamyime.professional" target="_blank"><a href="https://play.google.com/store/apps/details?id=com.boshiamy.boshiamyime.professional">https://play.google.com/store/apps/details?id=com.boshiamy.boshiamyime.professional</a></a></td> </tr><tr>     <td>Google Play 開放搜尋</td>   <td>不開放。<br />(可透過連結開啟)</td>   <td>開放。</td> </tr><tr>     <td>版本說明</td>     <td>1. 嘸蝦米™輸入法（Boshiamy™ IME）Android 版。<br />2. 授權對象：無限制。<br />3. 詳細功能及版本差異。</td>   <td>1. 嘸蝦米™輸入法（Boshiamy™ IME）Pro (Android 版)。<br />2. 授權對象：無限制。<br />3. 詳細功能及版本差異。</td>   </tr><tr><td>作業系統</td>   <td>Android 2.2 ~ 5.x。</td>   <td>Android 4.1 ~ 8.0.0。<br />(8.0.0 為實測最高版本)</td></tr><tr><td>定價</td>   <td>NT$ 199</td>   <td>NT$ 200</td> </tr></tbody></table><br />▲ Android 版嘸蝦米、嘸蝦米 Pro 簡易對照表。</div><br />從行易官網提供的資訊可以得知，嘸蝦米 (Android 版) 僅支援 Android 2.2 ~ 5.x，要<b>嘸蝦米 Pro (Android 版) 才支援 Android 8.0</b>。或許下次改版，還會有其它 bug，畢竟前者應已被列入<a href="https://zh.wikipedia.org/zh-tw/%E7%94%A2%E5%93%81%E5%A3%BD%E5%91%BD%E7%B5%90%E6%9D%9F" target="_blank">產品壽命結束 (End-of-life, EOL)</a> 和停止維護的狀態；而後者在 Google Play 的評價還不是很好，看來新版的使用者體驗還有待加強。<br /><br /><code class="ref">資料來源：<br /><span style="color: #ffdb00;">★</span> <a href="https://play.google.com/store/apps/details?id=com.boshiamy.boshiamyime.integrated&amp;reviewId=gp%3AAOqpTOGQyOJy36EM27zlUhIx_HJgInIm69AEM51cj8FtQRltel1L_ZfHkzCoq3zLpqqD09AvqpySA0fR_9masHI" target="_blank">Edwin Ling&rsquo;s feedback | 嘸蝦米輸入法 Boshiamy IME - Google Play 應用程式</a><br /><br />相關連結：<br /><span style="color: #ffdb00;">★</span> <a href="http://boshiamy.com/product_android_android.php" target="_blank">嘸蝦米輸入法 Android 版 | 行易有限公易</a><br /><span style="color: #ffdb00;">★</span> <a href="http://boshiamy.com/product_android_pro.php" target="_blank">嘸蝦米輸入法 Pro (Android 版) | 行易有限公司</a><br /></code><br /></p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190226_fixed-boshiamy-ime-v2.6.4-oops-error-on-android-8.0.html%2f&amp;text=%e8%a7%a3%e6%b1%ba%e3%80%8c%e5%98%b8%e8%9d%a6%e7%b1%b3%e8%bc%b8%e5%85%a5%e6%b3%95%20v2.6.4%e3%80%8d%e6%9c%aa%e9%a0%90%e6%9c%9f%e4%b8%ad%e6%ad%a2%e5%95%8f%e9%a1%8c%20on%20Android%208.0&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190226_fixed-boshiamy-ime-v2.6.4-oops-error-on-android-8.0.html%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190226_fixed-boshiamy-ime-v2.6.4-oops-error-on-android-8.0.html%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190226_fixed-boshiamy-ime-v2.6.4-oops-error-on-android-8.0.html%2f&amp;title=%e8%a7%a3%e6%b1%ba%e3%80%8c%e5%98%b8%e8%9d%a6%e7%b1%b3%e8%bc%b8%e5%85%a5%e6%b3%95%20v2.6.4%e3%80%8d%e6%9c%aa%e9%a0%90%e6%9c%9f%e4%b8%ad%e6%ad%a2%e5%95%8f%e9%a1%8c%20on%20Android%208.0" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190226_fixed-boshiamy-ime-v2.6.4-oops-error-on-android-8.0.html%2f&amp;title=%e8%a7%a3%e6%b1%ba%e3%80%8c%e5%98%b8%e8%9d%a6%e7%b1%b3%e8%bc%b8%e5%85%a5%e6%b3%95%20v2.6.4%e3%80%8d%e6%9c%aa%e9%a0%90%e6%9c%9f%e4%b8%ad%e6%ad%a2%e5%95%8f%e9%a1%8c%20on%20Android%208.0" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190226_fixed-boshiamy-ime-v2.6.4-oops-error-on-android-8.0.html%2f&amp;title=%e8%a7%a3%e6%b1%ba%e3%80%8c%e5%98%b8%e8%9d%a6%e7%b1%b3%e8%bc%b8%e5%85%a5%e6%b3%95%20v2.6.4%e3%80%8d%e6%9c%aa%e9%a0%90%e6%9c%9f%e4%b8%ad%e6%ad%a2%e5%95%8f%e9%a1%8c%20on%20Android%208.0" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190226_fixed-boshiamy-ime-v2.6.4-oops-error-on-android-8.0.html%2f&amp;description=%e8%a7%a3%e6%b1%ba%e3%80%8c%e5%98%b8%e8%9d%a6%e7%b1%b3%e8%bc%b8%e5%85%a5%e6%b3%95%20v2.6.4%e3%80%8d%e6%9c%aa%e9%a0%90%e6%9c%9f%e4%b8%ad%e6%ad%a2%e5%95%8f%e9%a1%8c%20on%20Android%208.0" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20190224_using-cache-from-can-speed-up-your-docker-builds/" data-toggle="tooltip" data-placement="top" title="在 docker-in-docker 環境中使用 cache-from 提升編譯速度">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20190309_gitea-support-oauth-provider/" data-toggle="tooltip" data-placement="top" title="開源專案 Gitea 支援 OAuth Provider">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "kalug-linux-org-tw" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://www.facebook.com/groups/kalug.tw" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalug" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/joinchat/Bqbim0F9EuW-GMUbYg9geA" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://kalug.linux.org.tw/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2019
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/main.js"></script>
+<script src="https://kalug.linux.org.tw/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

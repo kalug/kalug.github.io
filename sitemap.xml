@@ -3,6 +3,56 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://kalug.linux.org.tw/planet/chusiang/20190402_systems-thinking-training-lv1-intermediate-apprentice.html/</loc>
+    <lastmod>2019-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.linux.org.tw/planet/appleboy/20190322_setup-traefik-with-drone-ci-cd-in-ten-minutes/</loc>
+    <lastmod>2019-03-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.linux.org.tw/planet/appleboy/20190309_gitea-support-oauth-provider/</loc>
+    <lastmod>2019-03-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.linux.org.tw/planet/chusiang/20190226_fixed-boshiamy-ime-v2.6.4-oops-error-on-android-8.0.html/</loc>
+    <lastmod>2019-02-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.linux.org.tw/planet/appleboy/20190224_using-cache-from-can-speed-up-your-docker-builds/</loc>
+    <lastmod>2019-02-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.linux.org.tw/planet/appleboy/20190218_deploy-golang-app-to-heroku/</loc>
+    <lastmod>2019-02-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.linux.org.tw/planet/slat-tw/20190218_2019-3-23-slat-general-assembly.html/</loc>
+    <lastmod>2019-02-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.linux.org.tw/planet/appleboy/20190125_converts-a-jsonnet-configuration-file-to-a-yaml-in-drone/</loc>
+    <lastmod>2019-01-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.linux.org.tw/planet/appleboy/20190120_costco-seagate-usb-hard-disk-2699/</loc>
+    <lastmod>2019-01-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kalug.linux.org.tw/planet/appleboy/20190120_traefik-docker-and-lets-encrypt/</loc>
+    <lastmod>2019-01-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kalug.linux.org.tw/planet/appleboy/20190108_deploy-service-using-traefik-and-docker/</loc>
     <lastmod>2019-01-08T00:00:00+00:00</lastmod>
   </url>
@@ -603,7 +653,7 @@
   
   <url>
     <loc>https://kalug.linux.org.tw/</loc>
-    <lastmod>2019-01-08T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -629,7 +679,7 @@
   
   <url>
     <loc>https://kalug.linux.org.tw/planet/</loc>
-    <lastmod>2019-01-08T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
