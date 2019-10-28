@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>15 分鐘學習 Go 語言如何處理多個 Channel 通道</title>
+  <meta property="og:title" content="15 分鐘學習 Go 語言如何處理多個 Channel 通道" />
+  <meta name="twitter:title" content="15 分鐘學習 Go 語言如何處理多個 Channel 通道" />
+  <meta name="description" content="大家在初學 Go 語言時，肯定很少用到 Go Channel，也不太確定使用的時機點，其實在官方 Blog 有提供一篇不錯的文章『Go Concurrency Patterns: Pipelines and cancellati">
+  <meta property="og:description" content="大家在初學 Go 語言時，肯定很少用到 Go Channel，也不太確定使用的時機點，其實在官方 Blog 有提供一篇不錯的文章『Go Concurrency Patterns: Pipelines and cancellati">
+  <meta name="twitter:description" content="大家在初學 Go 語言時，肯定很少用到 Go Channel，也不太確定使用的時機點，其實在官方 Blog 有提供一篇不錯的文章『Go Concurrency Patterns: Pipelines and cancellati">
+  <meta name="author" content=""/>
+  <link href='https://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://kalug.linux.org.tw/planet/appleboy/20190513_handle-multiple-channel-in-15-minutes/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kaohsiung Linux User Group" />
+
+  <meta name="generator" content="Hugo 0.54.0" />
+  <link rel="canonical" href="https://kalug.linux.org.tw/planet/appleboy/20190513_handle-multiple-channel-in-15-minutes/" />
+  <link rel="alternate" href="https://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/highlight.min.css" /><link rel="stylesheet" href="https://kalug.linux.org.tw/css/codeblock.css" />
+<script id="chatBroEmbedCode">
+ 
+function ChatbroLoader(chats,async){async=!1!==async;var params={embedChatsParameters:chats instanceof Array?chats:[chats],lang:navigator.language||navigator.userLanguage,needLoadCode:'undefined'==typeof Chatbro,embedParamsVersion:localStorage.embedParamsVersion,chatbroScriptVersion:localStorage.chatbroScriptVersion},xhr=new XMLHttpRequest;xhr.withCredentials=!0,xhr.onload=function(){eval(xhr.responseText)},xhr.onerror=function(){console.error('Chatbro loading error')},xhr.open('GET','//www.chatbro.com/embed.js?'+btoa(unescape(encodeURIComponent(JSON.stringify(params)))),async),xhr.send()}
+ 
+ChatbroLoader({encodedChatId: '62DdK'});
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=952825024850869&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-121574418-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Meetups" href="/meetups/">Meetups</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Planet" href="/planet/">Planet</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Pages</a>
+              <div class="navlinks-children">
+                
+                  <a href="/pages/sig">Special Interest Group</a>
+                
+                  <a href="/pages/devices">Useful Devices</a>
+                
+                  <a href="/pages/life">Kaohsiung Life</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">About</a>
+              <div class="navlinks-children">
+                
+                  <a href="/about/us">us</a>
+                
+                  <a href="/about/sponsors">Sponsors</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Kaohsiung Linux User Group" href="https://kalug.linux.org.tw">
+            <img class="avatar-img" src="https://kalug.linux.org.tw/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="blog-heading">
+              <h1>15 分鐘學習 Go 語言如何處理多個 Channel 通道</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p><p><a href="https://lh3.googleusercontent.com/jsocHCR9A9yEfDVUTrU0m42_aHhTEVDGW5p5PsQSx7GSlkt3gLjohfXH3S7P7p982332ruU_e-EtW0LwmiuZjvN65VIcyME-zE35C6EM0IV1nqY6KoNw3dwW2djjid3F-T5YgnJothA=w1920-h1080" title="golang logo"><img src="https://lh3.googleusercontent.com/jsocHCR9A9yEfDVUTrU0m42_aHhTEVDGW5p5PsQSx7GSlkt3gLjohfXH3S7P7p982332ruU_e-EtW0LwmiuZjvN65VIcyME-zE35C6EM0IV1nqY6KoNw3dwW2djjid3F-T5YgnJothA=w1920-h1080" alt="golang logo" title="golang logo" /></a></p><br />
+<p>大家在初學 <a href="https://golang.org">Go 語言</a>時，肯定很少用到 Go Channel，也不太確定使用的時機點，其實在官方 Blog 有提供一篇不錯的文章『<a href="https://blog.golang.org/pipelines">Go Concurrency Patterns: Pipelines and cancellation</a>』，相信大家剛跨入學習新語言時，不會馬上看 Go Channel，底下我來用一個簡單的例子來說明如何使用 Go Channel，使用情境非常簡單，就是假設今天要同時處理 20 個背景工作，一定想到要使用 <a href="https://tour.golang.org/concurrency/1">Goroutines</a>，但是又想要收到這 20 個 JOB 處理的結果，並顯示在畫面上，如果其中一個 Job 失敗，就跳出 main 函式，當然又會希望這 20 個 JOB 預期在一分鐘內執行結束，如果超過一分鐘，也是一樣跳出 main 函式。針對這個問題，我們可以整理需要三個 Channel + 一個 Timeout 機制。</p><br />
+<ul><br />
+<li>使用 outChan 顯示各個 JOB 完成狀況</li><br />
+<li>使用 errChan 顯示 JOB 發生錯誤並且跳出 main 主程式</li><br />
+<li>使用 finishChan 通知全部 JOB 已經完成</li><br />
+<li>設定 Timeout 機制 (1 秒之內要完成所有 job)</li><br />
+</ul><br />
+<p>在看此文章之前，也許可以先理解什麼是『<a href="https://blog.wu-boy.com/2019/04/understand-unbuffered-vs-buffered-channel-in-five-minutes/">buffer vs unbuffer channel</a>』。</p><br />
+<span id="more-7384"></span><br />
+<h2>教學影片</h2><br />
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Eak_-_9E3Bc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br />
+<p>更多實戰影片可以參考我的 Udemy 教學系列</p><br />
+<ul><br />
+<li>Go 語言實戰課程: <a href="http://bit.ly/golang-2019">http://bit.ly/golang-2019</a></li><br />
+<li>Drone CI/CD 自動化課程: <a href="http://bit.ly/drone-2019">http://bit.ly/drone-2019</a></li><br />
+</ul><br />
+<h2>實戰範例</h2><br />
+<p>針對上述的問題，先透過 Sync 套件的 WaitGroup 來確保 20 個 JOB 處理完成後才結束 main 函式。</p><br />
+<pre><code class="language-go">package main</p>
+
+<p>import (<br />
+    &quot;fmt&quot;<br />
+    &quot;math/rand&quot;<br />
+    &quot;sync&quot;<br />
+    &quot;time&quot;<br />
+)</p>
+
+<p>func main() {<br />
+    wg := sync.WaitGroup{}<br />
+    wg.Add(100)<br />
+    for i := 0; i &lt; 100; i++ {<br />
+        go func(val int, wg *sync.WaitGroup) {<br />
+            time.Sleep(time.Duration(rand.Int31n(1000)) * time.Millisecond)<br />
+            fmt.Println(&quot;finished job id:&quot;, val)<br />
+            wg.Done()<br />
+        }(i, &amp;wg)<br />
+    }</p>
+<div class="highlight"><pre class="chroma">wg.Wait()</pre></div>
+<p>}</code></pre><br />
+<p>大家可以先拿上面的範例來練習看看如何達到需求，而不是在 go func 內直接印出結果。</p><br />
+<h2>處理多個 Channel 通道</h2><br />
+<p>首先在 main 宣告三個 Channel 通道</p><br />
+<pre><code class="language-go">    outChan := make(chan int)<br />
+    errChan := make(chan error)<br />
+    finishChan := make(chan struct{})</code></pre><br />
+<p>接著要在最後直接讀取這三個 Channel 值，可以透過 Select，由於 outChan 會傳入 20 個值，所以需要搭配 for 迴圈方式來讀取多個值</p><br />
+<pre><code class="language-go">Loop:<br />
+    for {<br />
+        select {<br />
+        case val := &lt;-outChan:<br />
+            fmt.Println(&quot;finished:&quot;, val)<br />
+        case err := &lt;-errChan:<br />
+            fmt.Println(&quot;error:&quot;, err)<br />
+            break Loop<br />
+        case &lt;-finishChan:<br />
+            break Loop<br />
+        }<br />
+    }</code></pre><br />
+<p>這邊我們看到需要加上 <code>Loop</code> 自定義 Tag，來達到 break for 迴圈，而不是 break select 函式。但是有沒有發現程式碼會一直卡在 <code>wg.Wait()</code>，不會進入到 for 迴圈內，這時候就必須將 <code>wg.Wait()</code> 丟到背景。</p><br />
+<pre><code class="language-go">    go func() {<br />
+        wg.Wait()<br />
+        fmt.Println(&quot;finish all job&quot;)<br />
+        close(finishChan)<br />
+    }()</code></pre><br />
+<p>也就是當 20 個 job 都完成後，會觸發 <code>close(finishChan)</code>，就可以在 for 迴圈內結束整個 main 函式。最後需要設定 timout 機制，請把 select 多補上一個 <code>time.After()</code></p><br />
+<pre><code class="language-go">Loop:<br />
+    for {<br />
+        select {<br />
+        case val := &lt;-outChan:<br />
+            fmt.Println(&quot;finished:&quot;, val)<br />
+        case err := &lt;-errChan:<br />
+            fmt.Println(&quot;error:&quot;, err)<br />
+            break Loop<br />
+        case &lt;-finishChan:<br />
+            break Loop<br />
+        case &lt;-time.After(100000 * time.Millisecond):<br />
+            break Loop<br />
+        }<br />
+    }</code></pre><br />
+<p>來看看 go func 內怎麼將值丟到 Channel</p><br />
+<pre><code class="language-go">    for i := 0; i &lt; 20; i++ {<br />
+        go func(outChan chan&lt;- int, errChan chan&lt;- error, val int, wg *sync.WaitGroup) {<br />
+            defer wg.Done()<br />
+            time.Sleep(time.Duration(rand.Int31n(1000)) * time.Millisecond)<br />
+            fmt.Println(&quot;finished job id:&quot;, val)<br />
+            outChan &lt;- val<br />
+            if val == 11 {<br />
+                errChan &lt;- errors.New(&quot;error in 60&quot;)<br />
+            }</p>
+<div class="highlight"><pre class="chroma">    }(outChan, errChan, i, &amp;amp;wg)
+}&lt;/code&gt;&lt;/pre&gt;</pre></div>
+<p><p>宣告 <code>chan&lt;- int</code> 代表在 go func 只能將訊息丟到通道內，而不能讀取通道。</p><br />
+<h2>心得</h2><br />
+<p>希望透過上述簡單的例子，讓大家初學 Go 的時候有個基礎的理解。用法其實不難，但是請參考專案內容特性來決定如何使用 Channel，最後附上完整的程式碼:</p><br />
+<pre><code class="language-go">package main</p>
+
+<p>import (<br />
+    &quot;errors&quot;<br />
+    &quot;fmt&quot;<br />
+    &quot;math/rand&quot;<br />
+    &quot;sync&quot;<br />
+    &quot;time&quot;<br />
+)</p>
+
+<p>func main() {<br />
+    outChan := make(chan int)<br />
+    errChan := make(chan error)<br />
+    finishChan := make(chan struct{})<br />
+    wg := sync.WaitGroup{}<br />
+    wg.Add(100)<br />
+    for i := 0; i &lt; 100; i++ {<br />
+        go func(outChan chan&lt;- int, errChan chan&lt;- error, val int, wg *sync.WaitGroup) {<br />
+            defer wg.Done()<br />
+            time.Sleep(time.Duration(rand.Int31n(1000)) * time.Millisecond)<br />
+            fmt.Println(&quot;finished job id:&quot;, val)<br />
+            outChan &lt;- val<br />
+            if val == 60 {<br />
+                errChan &lt;- errors.New(&quot;error in 60&quot;)<br />
+            }</p>
+<div class="highlight"><pre class="chroma">    }(outChan, errChan, i, &amp;amp;wg)
+}
+
+go func() {
+    wg.Wait()
+    fmt.Println(&amp;quot;finish all job&amp;quot;)
+    close(finishChan)
+}()</pre></div>
+<p>Loop:<br />
+    for {<br />
+        select {<br />
+        case val := &lt;-outChan:<br />
+            fmt.Println(&quot;finished:&quot;, val)<br />
+        case err := &lt;-errChan:<br />
+            fmt.Println(&quot;error:&quot;, err)<br />
+            break Loop<br />
+        case &lt;-finishChan:<br />
+            break Loop<br />
+        case &lt;-time.After(100000 * time.Millisecond):<br />
+            break Loop<br />
+        }<br />
+    }<br />
+}</code></pre><br />
+<p>也可以在 <a href="https://play.golang.org/p/gMwNVc4Ve8b">Go Playground 試試看</a>。</p><br />
+<div class="wp_rp_wrap  wp_rp_plain" ><div class="wp_rp_content"><h3 class="related_post_title">Related View</h3><ul class="related_post wp_rp"><li data-position="0" data-poid="in-7352" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/04/install-specific-go-version-in-appveyor/" class="wp_rp_title">在 appveyor 內指定 Go 語言編譯版本</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="1" data-poid="in-7330" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/04/understand-unbuffered-vs-buffered-channel-in-five-minutes/" class="wp_rp_title">用五分鐘了解什麼是 unbuffered vs buffered channel</a><small class="wp_rp_comments_count"> (2)</small><br /></li><li data-position="2" data-poid="in-7346" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/04/how-to-load-env-file-in-go/" class="wp_rp_title">用 Go 語言讀取專案內 .env 環境變數</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="3" data-poid="in-7376" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/05/what-is-different-between-pointer-and-value-in-golang/" class="wp_rp_title">[Go 語言教學影片] 在 struct 內的 pointers 跟 values 差異</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="4" data-poid="in-6385" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/05/scaledrone-websocket-from-nodejs-to-go/" class="wp_rp_title">ScaleDrone Websocket 平台從 Node.js 轉換到 Golang</a><small class="wp_rp_comments_count"> (2)</small><br /></li><li data-position="5" data-poid="in-6772" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/07/go-framework-gin-release-v1-2/" class="wp_rp_title">Go 語言框架 Gin 終於發佈 v1.2 版本</a><small class="wp_rp_comments_count"> (2)</small><br /></li><li data-position="6" data-poid="in-7040" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/06/how-to-write-benchmark-in-go/" class="wp_rp_title">如何在 Go 語言內寫效能測試</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="7" data-poid="in-7081" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/09/graphql-go-library-support-concurrent-resolvers/" class="wp_rp_title">Go 語言的 graphQL-go 套件正式支援 Concurrent Resolvers</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="8" data-poid="in-7397" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/06/how-to-release-the-v2-or-higher-version-in-go-module/" class="wp_rp_title">Go Module 如何發佈 v2 以上版本</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="9" data-poid="in-7405" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/07/speed-up-go-module-download-using-go-proxy-athens/" class="wp_rp_title">架設 Go Proxy 服務加速 go module 下載速度</a><small class="wp_rp_comments_count"> (7)</small><br /></li></ul></div></div></p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190513_handle-multiple-channel-in-15-minutes%2f&amp;text=15%20%e5%88%86%e9%90%98%e5%ad%b8%e7%bf%92%20Go%20%e8%aa%9e%e8%a8%80%e5%a6%82%e4%bd%95%e8%99%95%e7%90%86%e5%a4%9a%e5%80%8b%20Channel%20%e9%80%9a%e9%81%93&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190513_handle-multiple-channel-in-15-minutes%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190513_handle-multiple-channel-in-15-minutes%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190513_handle-multiple-channel-in-15-minutes%2f&amp;title=15%20%e5%88%86%e9%90%98%e5%ad%b8%e7%bf%92%20Go%20%e8%aa%9e%e8%a8%80%e5%a6%82%e4%bd%95%e8%99%95%e7%90%86%e5%a4%9a%e5%80%8b%20Channel%20%e9%80%9a%e9%81%93" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190513_handle-multiple-channel-in-15-minutes%2f&amp;title=15%20%e5%88%86%e9%90%98%e5%ad%b8%e7%bf%92%20Go%20%e8%aa%9e%e8%a8%80%e5%a6%82%e4%bd%95%e8%99%95%e7%90%86%e5%a4%9a%e5%80%8b%20Channel%20%e9%80%9a%e9%81%93" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190513_handle-multiple-channel-in-15-minutes%2f&amp;title=15%20%e5%88%86%e9%90%98%e5%ad%b8%e7%bf%92%20Go%20%e8%aa%9e%e8%a8%80%e5%a6%82%e4%bd%95%e8%99%95%e7%90%86%e5%a4%9a%e5%80%8b%20Channel%20%e9%80%9a%e9%81%93" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190513_handle-multiple-channel-in-15-minutes%2f&amp;description=15%20%e5%88%86%e9%90%98%e5%ad%b8%e7%bf%92%20Go%20%e8%aa%9e%e8%a8%80%e5%a6%82%e4%bd%95%e8%99%95%e7%90%86%e5%a4%9a%e5%80%8b%20Channel%20%e9%80%9a%e9%81%93" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20190506_what-is-different-between-pointer-and-value-in-golang/" data-toggle="tooltip" data-placement="top" title="[Go 語言教學影片] 在 struct 內的 pointers 跟 values 差異">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20190521_introduction-to-github-actions/" data-toggle="tooltip" data-placement="top" title="GitHub 推出 CI/CD 服務 Actions 之踩雷經驗">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "kalug-linux-org-tw" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://www.facebook.com/groups/kalug.tw" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalug" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/joinchat/KBcnM0F9EuVT54cda-t-yg" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://kalug.linux.org.tw/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2019
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/main.js"></script>
+<script src="https://kalug.linux.org.tw/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

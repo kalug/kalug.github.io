@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>架設 Go Proxy 服務加速 go module 下載速度</title>
+  <meta property="og:title" content="架設 Go Proxy 服務加速 go module 下載速度" />
+  <meta name="twitter:title" content="架設 Go Proxy 服務加速 go module 下載速度" />
+  <meta name="description" content="Go 語言在 1.11 推出 go module 來統一市面上不同管理 Go 套件的工具，像是 dep 或 govendor 等，還不知道如何使用 go module，可以參考之前寫的一篇文章『Go Module 導入到專案">
+  <meta property="og:description" content="Go 語言在 1.11 推出 go module 來統一市面上不同管理 Go 套件的工具，像是 dep 或 govendor 等，還不知道如何使用 go module，可以參考之前寫的一篇文章『Go Module 導入到專案">
+  <meta name="twitter:description" content="Go 語言在 1.11 推出 go module 來統一市面上不同管理 Go 套件的工具，像是 dep 或 govendor 等，還不知道如何使用 go module，可以參考之前寫的一篇文章『Go Module 導入到專案">
+  <meta name="author" content=""/>
+  <link href='https://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://kalug.linux.org.tw/planet/appleboy/20190710_speed-up-go-module-download-using-go-proxy-athens/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kaohsiung Linux User Group" />
+
+  <meta name="generator" content="Hugo 0.54.0" />
+  <link rel="canonical" href="https://kalug.linux.org.tw/planet/appleboy/20190710_speed-up-go-module-download-using-go-proxy-athens/" />
+  <link rel="alternate" href="https://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/highlight.min.css" /><link rel="stylesheet" href="https://kalug.linux.org.tw/css/codeblock.css" />
+<script id="chatBroEmbedCode">
+ 
+function ChatbroLoader(chats,async){async=!1!==async;var params={embedChatsParameters:chats instanceof Array?chats:[chats],lang:navigator.language||navigator.userLanguage,needLoadCode:'undefined'==typeof Chatbro,embedParamsVersion:localStorage.embedParamsVersion,chatbroScriptVersion:localStorage.chatbroScriptVersion},xhr=new XMLHttpRequest;xhr.withCredentials=!0,xhr.onload=function(){eval(xhr.responseText)},xhr.onerror=function(){console.error('Chatbro loading error')},xhr.open('GET','//www.chatbro.com/embed.js?'+btoa(unescape(encodeURIComponent(JSON.stringify(params)))),async),xhr.send()}
+ 
+ChatbroLoader({encodedChatId: '62DdK'});
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=952825024850869&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-121574418-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Meetups" href="/meetups/">Meetups</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Planet" href="/planet/">Planet</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Pages</a>
+              <div class="navlinks-children">
+                
+                  <a href="/pages/sig">Special Interest Group</a>
+                
+                  <a href="/pages/devices">Useful Devices</a>
+                
+                  <a href="/pages/life">Kaohsiung Life</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">About</a>
+              <div class="navlinks-children">
+                
+                  <a href="/about/us">us</a>
+                
+                  <a href="/about/sponsors">Sponsors</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Kaohsiung Linux User Group" href="https://kalug.linux.org.tw">
+            <img class="avatar-img" src="https://kalug.linux.org.tw/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="blog-heading">
+              <h1>架設 Go Proxy 服務加速 go module 下載速度</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p><p><a href="https://lh3.googleusercontent.com/jsocHCR9A9yEfDVUTrU0m42_aHhTEVDGW5p5PsQSx7GSlkt3gLjohfXH3S7P7p982332ruU_e-EtW0LwmiuZjvN65VIcyME-zE35C6EM0IV1nqY6KoNw3dwW2djjid3F-T5YgnJothA=w1920-h1080" title="golang logo"><img src="https://lh3.googleusercontent.com/jsocHCR9A9yEfDVUTrU0m42_aHhTEVDGW5p5PsQSx7GSlkt3gLjohfXH3S7P7p982332ruU_e-EtW0LwmiuZjvN65VIcyME-zE35C6EM0IV1nqY6KoNw3dwW2djjid3F-T5YgnJothA=w1920-h1080" alt="golang logo" title="golang logo" /></a></p><br />
+<p><a href="https://golang.org">Go 語言</a>在 1.11 推出 go module 來統一市面上不同管理 Go 套件的工具，像是 <a href="https://github.com/golang/dep">dep</a> 或 govendor 等，還不知道如何使用 go module，可以參考之前寫的一篇文章『<a href="https://blog.wu-boy.com/2018/12/go-module-integrate-with-travis-or-drone/">Go Module 導入到專案內且搭配 Travis CI 或 Drone 工具</a>』，在團隊內如果每個人在開發專案時，都透過網路去下載專案使用到的套件，這樣 10 個人就會浪費 10 個人的下載時間，並且佔用公司網路頻寬，所以我建議在公司內部架設一台 Go Proxy 服務，減少團隊在初始化專案所需要的時間，也可以減少在跑 CI/CD 流程時，所需要花費的時間，測試過公司 CI/CD 流程，有架設 Go Proxy，一般來說可以省下 1 ~ 2 分鐘時間，根據專案使用到的相依性套件用量來決定花費時間。本篇來介紹如何架設 <a href="https://github.com/gomods/athens">ATHENS</a> 這套開源 Go Proxy 專案。</p><br />
+<span id="more-7405"></span><br />
+<h2>教學影片</h2><br />
+<iframe width="560" height="315" src="https://www.youtube.com/embed/964fZJPVHDI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br />
+<ul><br />
+<li>Go 語言實戰課程: <a href="http://bit.ly/golang-2019">http://bit.ly/golang-2019</a></li><br />
+<li>Drone CI/CD 自動化課程: <a href="http://bit.ly/drone-2019">http://bit.ly/drone-2019</a></li><br />
+</ul><br />
+<h2>架設 ATHENS 服務</h2><br />
+<p>你也可以使用外面公開的 GO Proxy 服務，非 China 地區請使用 <a href="https://goproxy.io/">goproxy.io</a>，如果在中國內地，請使用 <a href="https://github.com/goproxy/goproxy.cn">gorpoxy.cn</a>，會降低不少 CI/CD 時間。架設 ATHENS 並不難，只需要透過 <a href="https://www.docker.com/">Docker</a> 一個指令就可以完成，更詳細的步驟可以參考<a href="https://docs.gomods.io/install/">官方文件</a></p><br />
+<pre><code class="language-bash">export ATHENS_STORAGE=~/athens-storage<br />
+mkdir -p $ATHENS_STORAGE<br />
+docker run -d -v $ATHENS_STORAGE:/var/lib/athens <br />
+   -e ATHENS_DISK_STORAGE_ROOT=/var/lib/athens <br />
+   -e ATHENS_STORAGE_TYPE=disk <br />
+   &ndash;name athens-proxy <br />
+   &ndash;restart always <br />
+   -p 3000:3000 <br />
+   gomods/athens:latest</code></pre><br />
+<p>其中 <code>ATHENS_STORAGE</code> 請定義一個實體空間路徑，存放從網路抓下來的第三方套件，當然 ATHENS 還有支援不同的 storage type，像是 Memory, AWS S3 或公司內部有架設 <a href="https://min.io/">Minio</a>，都是可以設定的。</p><br />
+<h2>如何使用 Go Proxy</h2><br />
+<p>使用方式非常簡單，只要在您的開發環境加上一些環境變數</p><br />
+<pre><code class="language-bash">$ export GO111MODULE=on<br />
+$ export GOPROXY=<a href="http://127.0.0.1:3000">http://127.0.0.1:3000</a></code></pre><br />
+<p>接著專案使用的任何 Go 指令，只要需要 Donwload 第三方套件，都會先詢問公司內部的 Proxy 服務，如果沒有就會透過 Proxy 抓一份下來 Cache，下次有團隊同仁需要用到，就不需要上 Internet 抓取了。</p><br />
+<p>至於 CI/CD 流程該如何設定呢？非常簡單，底下是 <a href="https://github.com/drone/drone">drone</a> 的設定方式:</p><br />
+<pre><code class="language-yml">- name: embedmd<br />
+  pull: always<br />
+  image: golang:1.12<br />
+  commands:<br />
+  - make embedmd<br />
+  environment:<br />
+    GO111MODULE: on<br />
+    GOPROXY: <a href="http://127.0.0.1:3000">http://127.0.0.1:3000</a><br />
+  volumes:<br />
+  - name: gopath<br />
+    path: /go</code></pre><br />
+<h2>心得</h2><br />
+<p>團隊如果尚未導入 GO Proxy 的朋友們，請務必導入，不然就要自己 cache mod 目錄，但是我覺得不是很方便就是了，架設一台 Proxy，不用一分鐘，但是可以省下團隊開發及部署很多時間，這項投資很值得的。</p><br />
+<div class="wp_rp_wrap  wp_rp_plain" ><div class="wp_rp_content"><h3 class="related_post_title">Related View</h3><ul class="related_post wp_rp"><li data-position="0" data-poid="in-7170" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/12/go-module-integrate-with-travis-or-drone/" class="wp_rp_title">Go Module 導入到專案內且搭配 Travis CI 或 Drone 工具</a><small class="wp_rp_comments_count"> (3)</small><br /></li><li data-position="1" data-poid="in-7352" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/04/install-specific-go-version-in-appveyor/" class="wp_rp_title">在 appveyor 內指定 Go 語言編譯版本</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="2" data-poid="in-7397" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/06/how-to-release-the-v2-or-higher-version-in-go-module/" class="wp_rp_title">Go Module 如何發佈 v2 以上版本</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="3" data-poid="in-7029" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/06/drone-kubernetes-with-golang/" class="wp_rp_title">Drone 搭配 Kubernetes 部署 Go 語言項目</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="4" data-poid="in-6869" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/11/gorush-a-push-notification-server-written-in-go/" class="wp_rp_title">Gorush 輕量級手機訊息發送服務</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="5" data-poid="in-7452" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/08/golang-project-layout-and-practice/" class="wp_rp_title">Go 語言目錄結構與實踐</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="6" data-poid="in-7193" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/01/deploy-service-using-traefik-and-docker/" class="wp_rp_title">用 Traefik 搭配 Docker 快速架設服務</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="7" data-poid="in-7250" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/02/deploy-golang-app-to-heroku/" class="wp_rp_title">快速部署網站到 Heroku 雲平台</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="8" data-poid="in-6758" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/06/gopher-day-in-taipei/" class="wp_rp_title">台灣第一屆 GoPher 大會</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="9" data-poid="in-7108" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/10/deploy-app-to-aws-lambda-using-up-tool-in-ten-minutes/" class="wp_rp_title">用 10 分鐘部署專案到 AWS Lambda</a><small class="wp_rp_comments_count"> (0)</small><br /></li></ul></div></div></p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190710_speed-up-go-module-download-using-go-proxy-athens%2f&amp;text=%e6%9e%b6%e8%a8%ad%20Go%20Proxy%20%e6%9c%8d%e5%8b%99%e5%8a%a0%e9%80%9f%20go%20module%20%e4%b8%8b%e8%bc%89%e9%80%9f%e5%ba%a6&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190710_speed-up-go-module-download-using-go-proxy-athens%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190710_speed-up-go-module-download-using-go-proxy-athens%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190710_speed-up-go-module-download-using-go-proxy-athens%2f&amp;title=%e6%9e%b6%e8%a8%ad%20Go%20Proxy%20%e6%9c%8d%e5%8b%99%e5%8a%a0%e9%80%9f%20go%20module%20%e4%b8%8b%e8%bc%89%e9%80%9f%e5%ba%a6" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190710_speed-up-go-module-download-using-go-proxy-athens%2f&amp;title=%e6%9e%b6%e8%a8%ad%20Go%20Proxy%20%e6%9c%8d%e5%8b%99%e5%8a%a0%e9%80%9f%20go%20module%20%e4%b8%8b%e8%bc%89%e9%80%9f%e5%ba%a6" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190710_speed-up-go-module-download-using-go-proxy-athens%2f&amp;title=%e6%9e%b6%e8%a8%ad%20Go%20Proxy%20%e6%9c%8d%e5%8b%99%e5%8a%a0%e9%80%9f%20go%20module%20%e4%b8%8b%e8%bc%89%e9%80%9f%e5%ba%a6" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20190710_speed-up-go-module-download-using-go-proxy-athens%2f&amp;description=%e6%9e%b6%e8%a8%ad%20Go%20Proxy%20%e6%9c%8d%e5%8b%99%e5%8a%a0%e9%80%9f%20go%20module%20%e4%b8%8b%e8%bc%89%e9%80%9f%e5%ba%a6" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20190617_install-drone-ci-cd-using-ansible/" data-toggle="tooltip" data-placement="top" title="用 Ansible 安裝 Drone CI/CD 開源專案">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20190730_trigger-the-drone-job-via-promotion/" data-toggle="tooltip" data-placement="top" title="透過 Drone CLI 手動觸發 CI/CD 流程">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "kalug-linux-org-tw" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://www.facebook.com/groups/kalug.tw" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalug" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/joinchat/KBcnM0F9EuVT54cda-t-yg" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://kalug.linux.org.tw/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2019
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/main.js"></script>
+<script src="https://kalug.linux.org.tw/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

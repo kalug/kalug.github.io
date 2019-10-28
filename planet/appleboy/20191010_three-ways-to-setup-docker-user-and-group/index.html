@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>在 Docker 內設定使用者及群組權限的三種方式</title>
+  <meta property="og:title" content="在 Docker 內設定使用者及群組權限的三種方式" />
+  <meta name="twitter:title" content="在 Docker 內設定使用者及群組權限的三種方式" />
+  <meta name="description" content="如果平常本身有在玩 Docker 的開發者肯定知道透過 docker command 啟動的容器預設是使用 root 來當作預設使用者及群組，這邊會遇到一個問題，當 Host 環境你有 root 權限就沒有此問題">
+  <meta property="og:description" content="如果平常本身有在玩 Docker 的開發者肯定知道透過 docker command 啟動的容器預設是使用 root 來當作預設使用者及群組，這邊會遇到一個問題，當 Host 環境你有 root 權限就沒有此問題">
+  <meta name="twitter:description" content="如果平常本身有在玩 Docker 的開發者肯定知道透過 docker command 啟動的容器預設是使用 root 來當作預設使用者及群組，這邊會遇到一個問題，當 Host 環境你有 root 權限就沒有此問題">
+  <meta name="author" content=""/>
+  <link href='https://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://kalug.linux.org.tw/planet/appleboy/20191010_three-ways-to-setup-docker-user-and-group/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kaohsiung Linux User Group" />
+
+  <meta name="generator" content="Hugo 0.54.0" />
+  <link rel="canonical" href="https://kalug.linux.org.tw/planet/appleboy/20191010_three-ways-to-setup-docker-user-and-group/" />
+  <link rel="alternate" href="https://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/highlight.min.css" /><link rel="stylesheet" href="https://kalug.linux.org.tw/css/codeblock.css" />
+<script id="chatBroEmbedCode">
+ 
+function ChatbroLoader(chats,async){async=!1!==async;var params={embedChatsParameters:chats instanceof Array?chats:[chats],lang:navigator.language||navigator.userLanguage,needLoadCode:'undefined'==typeof Chatbro,embedParamsVersion:localStorage.embedParamsVersion,chatbroScriptVersion:localStorage.chatbroScriptVersion},xhr=new XMLHttpRequest;xhr.withCredentials=!0,xhr.onload=function(){eval(xhr.responseText)},xhr.onerror=function(){console.error('Chatbro loading error')},xhr.open('GET','//www.chatbro.com/embed.js?'+btoa(unescape(encodeURIComponent(JSON.stringify(params)))),async),xhr.send()}
+ 
+ChatbroLoader({encodedChatId: '62DdK'});
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=952825024850869&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-121574418-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Meetups" href="/meetups/">Meetups</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Planet" href="/planet/">Planet</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Pages</a>
+              <div class="navlinks-children">
+                
+                  <a href="/pages/sig">Special Interest Group</a>
+                
+                  <a href="/pages/devices">Useful Devices</a>
+                
+                  <a href="/pages/life">Kaohsiung Life</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">About</a>
+              <div class="navlinks-children">
+                
+                  <a href="/about/us">us</a>
+                
+                  <a href="/about/sponsors">Sponsors</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Kaohsiung Linux User Group" href="https://kalug.linux.org.tw">
+            <img class="avatar-img" src="https://kalug.linux.org.tw/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="blog-heading">
+              <h1>在 Docker 內設定使用者及群組權限的三種方式</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p><p><a href="https://lh3.googleusercontent.com/CDrKX9nVEAkUnrVNX26Mf0HY1iW73gM6z8WCITgo5QUWx3yXZPOzAI6op59p-YxKYgPkBQalH-rWUb2gElpc2gwjZ3M5jgKeHQ4MI88DkMXjxzkAhQX-zgIqjbGpRrlV38uXLFDxcMU=w1920-h1080" title="docker"><img src="https://lh3.googleusercontent.com/CDrKX9nVEAkUnrVNX26Mf0HY1iW73gM6z8WCITgo5QUWx3yXZPOzAI6op59p-YxKYgPkBQalH-rWUb2gElpc2gwjZ3M5jgKeHQ4MI88DkMXjxzkAhQX-zgIqjbGpRrlV38uXLFDxcMU=w1920-h1080" alt="docker" title="docker" /></a></p><br />
+<p>如果平常本身有在玩 <a href="https://www.docker.com/">Docker</a> 的開發者肯定知道透過 docker command 啟動的容器預設是使用 <code>root</code> 來當作預設使用者及群組，這邊會遇到一個問題，當 Host 環境你有 root 權限就沒有此問題，如果你沒有 root 權限，又有需求在 Docker 容器內掛上 Volume，會發現產生出來的檔案皆會是 root 權限，這時候在 Host 完全無法寫入。本篇教大家使用三種方式來設定容器使用者權限。</p><br />
+<span id="more-7481"></span><br />
+<h2>使用 docker 指令時指定使用者</h2><br />
+<p>進入 Ubuntu 容器會透過底下指令:</p><br />
+<pre><code class="language-bash">docker run -ti ubuntu /bin/bash</code></pre><br />
+<p>這時候可以透過 <code>-u</code> 方式將使用者 uid 及群組 gid 傳入容器內。</p><br />
+<pre><code class="language-bash">mkdir tmp<br />
+docker run -ti -v $PWD/tmp:/test <br />
+  -u uid:gid ubuntu /bin/bash</code></pre><br />
+<p>如何找到目前使用者 uid 及 gid 呢，可以透過底下方式</p><br />
+<pre><code class="language-bash">id -u<br />
+id -g</code></pre><br />
+<p>上述指令可以改成:</p><br />
+<pre><code class="language-bash">docker run -ti -v $PWD/tmp:/test <br />
+  -u $(id -u):$(id -g) ubuntu /bin/bash</code></pre><br />
+<h2>使用 Dockerfile 指定使用者</h2><br />
+<p>也可以直接在 <a href="https://docs.docker.com/engine/reference/builder/">dockerfile</a> 內直接指定使用者:</p><br />
+<pre><code class="language-bash"># Dockerfile</p>
+
+<p>USER 1000:1000</code></pre><br />
+<p>我個人不是很推薦這方式，除非是在 container 內獨立建立使用者，並且指定權限。</p><br />
+<h2>透過 docker-compose 指定權限</h2><br />
+<p>透過 <a href="https://docs.docker.com/compose/">docker-compose</a> 可以一次啟動多個服務。用 <code>user</code> 可以指定使用者權限來寫入特定的 volume</p><br />
+<pre><code class="language-yaml">services:<br />
+  agent:<br />
+    image: xxxxxxxx<br />
+    restart: always<br />
+    networks:<br />
+      - proxy<br />
+    logging:<br />
+      options:<br />
+        max-size: &quot;100k&quot;<br />
+        max-file: &quot;3&quot;<br />
+    volumes:<br />
+      - ${STORAGE_PATH}:/data<br />
+    user: ${CURRENT_UID}</code></pre><br />
+<p>接著可以透過 <code>.env</code> 來指定變數值</p><br />
+<pre><code class="language-bash">STORAGE_PATH=/home/deploy/xxxx<br />
+CURRENT_UID=1001:1001</code></pre><br />
+<h2>心得</h2><br />
+<p>會指定使用者權限通常都是有掛載 Host volume 進入容器內，但是您又沒有 root 權限，如果沒有這樣做，這樣產生出來的檔案都會是 root 權限，一般使用者無法寫入，只能讀取，這時就需要用到此方法。</p><br />
+<div class="wp_rp_wrap  wp_rp_plain" ><div class="wp_rp_content"><h3 class="related_post_title">Related View</h3><ul class="related_post wp_rp"><li data-position="0" data-poid="in-7137" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/12/docker-testing-with-flutter-sdk/" class="wp_rp_title">用 Docker 整合測試 Flutter 框架</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="1" data-poid="in-6191" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/03/docker-commands-and-best-practices-cheat-sheet/" class="wp_rp_title">Docker 實用指令及 Best Practices Cheat Sheet 圖表</a><small class="wp_rp_comments_count"> (2)</small><br /></li><li data-position="2" data-poid="in-6054" data-post-type="none" ><a href="https://blog.wu-boy.com/2015/12/docker-images-network-timed-out/" class="wp_rp_title">Docker 下載 Images 遇到 Network timed out</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="3" data-poid="in-7217" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/01/traefik-docker-and-lets-encrypt/" class="wp_rp_title">Traefik 搭配 Docker 自動更新 Let&#8217;s Encrypt 憑證</a><small class="wp_rp_comments_count"> (5)</small><br /></li><li data-position="4" data-poid="in-7298" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/03/setup-traefik-with-drone-ci-cd-in-ten-minutes/" class="wp_rp_title">10 分鐘內用 Traefik 架設 Drone 搭配 GitHub 服務</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="5" data-poid="in-7263" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/02/using-cache-from-can-speed-up-your-docker-builds/" class="wp_rp_title">在 docker-in-docker 環境中使用 cache-from 提升編譯速度</a><small class="wp_rp_comments_count"> (5)</small><br /></li><li data-position="6" data-poid="in-7120" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/11/install-drone-in-single-machine/" class="wp_rp_title">Drone 支援單機版安裝 (內附影片)</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="7" data-poid="in-6714" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/04/build-minimal-docker-container-using-multi-stage-for-go-app/" class="wp_rp_title">用 Docker Multi-Stage 編譯出 Go 語言最小 Image</a><small class="wp_rp_comments_count"> (2)</small><br /></li><li data-position="8" data-poid="in-6467" data-post-type="none" ><a href="https://blog.wu-boy.com/2016/07/upgrade-docker-and-docker-compose-on-travis/" class="wp_rp_title">在 Travis 升級 Docker 和 docker-compose 版本</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="9" data-poid="in-7458" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/09/upload-docker-image-to-github-registry-using-drone/" class="wp_rp_title">用 Drone 自動化上傳 Docker Image 到 GitHub Docker Registry</a><small class="wp_rp_comments_count"> (0)</small><br /></li></ul></div></div></p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20191010_three-ways-to-setup-docker-user-and-group%2f&amp;text=%e5%9c%a8%20Docker%20%e5%85%a7%e8%a8%ad%e5%ae%9a%e4%bd%bf%e7%94%a8%e8%80%85%e5%8f%8a%e7%be%a4%e7%b5%84%e6%ac%8a%e9%99%90%e7%9a%84%e4%b8%89%e7%a8%ae%e6%96%b9%e5%bc%8f&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20191010_three-ways-to-setup-docker-user-and-group%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20191010_three-ways-to-setup-docker-user-and-group%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20191010_three-ways-to-setup-docker-user-and-group%2f&amp;title=%e5%9c%a8%20Docker%20%e5%85%a7%e8%a8%ad%e5%ae%9a%e4%bd%bf%e7%94%a8%e8%80%85%e5%8f%8a%e7%be%a4%e7%b5%84%e6%ac%8a%e9%99%90%e7%9a%84%e4%b8%89%e7%a8%ae%e6%96%b9%e5%bc%8f" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20191010_three-ways-to-setup-docker-user-and-group%2f&amp;title=%e5%9c%a8%20Docker%20%e5%85%a7%e8%a8%ad%e5%ae%9a%e4%bd%bf%e7%94%a8%e8%80%85%e5%8f%8a%e7%be%a4%e7%b5%84%e6%ac%8a%e9%99%90%e7%9a%84%e4%b8%89%e7%a8%ae%e6%96%b9%e5%bc%8f" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20191010_three-ways-to-setup-docker-user-and-group%2f&amp;title=%e5%9c%a8%20Docker%20%e5%85%a7%e8%a8%ad%e5%ae%9a%e4%bd%bf%e7%94%a8%e8%80%85%e5%8f%8a%e7%be%a4%e7%b5%84%e6%ac%8a%e9%99%90%e7%9a%84%e4%b8%89%e7%a8%ae%e6%96%b9%e5%bc%8f" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20191010_three-ways-to-setup-docker-user-and-group%2f&amp;description=%e5%9c%a8%20Docker%20%e5%85%a7%e8%a8%ad%e5%ae%9a%e4%bd%bf%e7%94%a8%e8%80%85%e5%8f%8a%e7%be%a4%e7%b5%84%e6%ac%8a%e9%99%90%e7%9a%84%e4%b8%89%e7%a8%ae%e6%96%b9%e5%bc%8f" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20191003_ansible-setup-google-container-registry-and-upload-image-via-drone-ci-cd/" data-toggle="tooltip" data-placement="top" title="Ansible 設定 Google Container Registry 搭配 Drone 自動上傳">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://kalug.linux.org.tw/planet/chusiang/20191010_kobo-meetup-1st-x-kobo-libra-h2o-intro.html/" data-toggle="tooltip" data-placement="top" title="Kobo 社群小聚 1st x Kobo Libra H2O 介紹">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "kalug-linux-org-tw" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://www.facebook.com/groups/kalug.tw" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalug" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/joinchat/KBcnM0F9EuVT54cda-t-yg" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://kalug.linux.org.tw/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2019
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/main.js"></script>
+<script src="https://kalug.linux.org.tw/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

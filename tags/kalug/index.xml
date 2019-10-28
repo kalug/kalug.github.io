@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kalug on Kaohsiung Linux User Group</title>
+    <link>https://kalug.linux.org.tw/tags/kalug/</link>
+    <description>Recent content in Kalug on Kaohsiung Linux User Group</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 20 Oct 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://kalug.linux.org.tw/tags/kalug/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>https://kalug.linux.org.tw/</link>
+      <pubDate>Sun, 20 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/</guid>
+      <description>KaLUG 共筆 1906 06/22 E-ink 大亂鬥、初探 Jetson Nano 邊緣運算開發平台 Shawn 會帶新買的 Onyx Boox Max2 用來外接跑Terminal paar (如果可以出席) yotaphone/boox n9/富士通全反射彩色电纸书护眼</description>
+    </item>
+    
+  </channel>
+</rss>

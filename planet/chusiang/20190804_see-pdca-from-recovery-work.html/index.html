@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>從「計畫外工作」看 PDCA</title>
+  <meta property="og:title" content="從「計畫外工作」看 PDCA" />
+  <meta name="twitter:title" content="從「計畫外工作」看 PDCA" />
+  <meta name="description" content="計畫外工作 (recovery work)，源自《鳳凰專案》一書的四種工作類型，又稱之為例外 (outage) 和救火工作。它是四種工作中最容易被忽視，且殺傷力最強的。一旦計畫外">
+  <meta property="og:description" content="計畫外工作 (recovery work)，源自《鳳凰專案》一書的四種工作類型，又稱之為例外 (outage) 和救火工作。它是四種工作中最容易被忽視，且殺傷力最強的。一旦計畫外">
+  <meta name="twitter:description" content="計畫外工作 (recovery work)，源自《鳳凰專案》一書的四種工作類型，又稱之為例外 (outage) 和救火工作。它是四種工作中最容易被忽視，且殺傷力最強的。一旦計畫外">
+  <meta name="author" content=""/>
+  <link href='https://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://kalug.linux.org.tw/planet/chusiang/20190804_see-pdca-from-recovery-work.html/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kaohsiung Linux User Group" />
+
+  <meta name="generator" content="Hugo 0.54.0" />
+  <link rel="canonical" href="https://kalug.linux.org.tw/planet/chusiang/20190804_see-pdca-from-recovery-work.html/" />
+  <link rel="alternate" href="https://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/highlight.min.css" /><link rel="stylesheet" href="https://kalug.linux.org.tw/css/codeblock.css" />
+<script id="chatBroEmbedCode">
+ 
+function ChatbroLoader(chats,async){async=!1!==async;var params={embedChatsParameters:chats instanceof Array?chats:[chats],lang:navigator.language||navigator.userLanguage,needLoadCode:'undefined'==typeof Chatbro,embedParamsVersion:localStorage.embedParamsVersion,chatbroScriptVersion:localStorage.chatbroScriptVersion},xhr=new XMLHttpRequest;xhr.withCredentials=!0,xhr.onload=function(){eval(xhr.responseText)},xhr.onerror=function(){console.error('Chatbro loading error')},xhr.open('GET','//www.chatbro.com/embed.js?'+btoa(unescape(encodeURIComponent(JSON.stringify(params)))),async),xhr.send()}
+ 
+ChatbroLoader({encodedChatId: '62DdK'});
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=952825024850869&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-121574418-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Meetups" href="/meetups/">Meetups</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Planet" href="/planet/">Planet</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Pages</a>
+              <div class="navlinks-children">
+                
+                  <a href="/pages/sig">Special Interest Group</a>
+                
+                  <a href="/pages/devices">Useful Devices</a>
+                
+                  <a href="/pages/life">Kaohsiung Life</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">About</a>
+              <div class="navlinks-children">
+                
+                  <a href="/about/us">us</a>
+                
+                  <a href="/about/sponsors">Sponsors</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Kaohsiung Linux User Group" href="https://kalug.linux.org.tw">
+            <img class="avatar-img" src="https://kalug.linux.org.tw/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="blog-heading">
+              <h1>從「計畫外工作」看 PDCA</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>計畫外工作 (recovery work)，源自<a href="https://note.drx.tw/2018/08/the-phoenix-project-book.html?showComment=1564928533651#c6674176413731102829" target="_blank">《鳳凰專案》</a>一書的四種工作類型，又稱之為例外 (outage) 和救火工作。它是四種工作中最容易被忽視，且殺傷力最強的。一旦計畫外工作出現，通常得耗費大量的時間和人力成本才得以解決，最後拖累其它三種工作的進度。<br /><br />自從踏上學習 <a href="https://note.drx.tw/search/label/DevOps" target="_blank">DevOps</a> 和敏捷開發 (<a href="https://note.drx.tw/search/label/Agile" target="_blank">Agile</a>) 的旅程，凍仁不時在各個地方聽到 PDCA。為了將這項知識融會貫通，便開始應用在日常的生活中。<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://2.bp.blogspot.com/-CSn5dLvU0Go/XUbmr8UQ-YI/AAAAAAAA-VQ/RzBhlmJT_bkhVd7QPT04lWp7EXwcwojWgCKgBGAs/s1600/my_devops_tour_2.1.007.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="768" data-original-width="1024" height="300" src="https://2.bp.blogspot.com/-CSn5dLvU0Go/XUbmr8UQ-YI/AAAAAAAA-VQ/RzBhlmJT_bkhVd7QPT04lWp7EXwcwojWgCKgBGAs/s400/my_devops_tour_2.1.007.png" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 先前在<a href="https://note.drx.tw/2018/12/devops-practice-of-system-engineer.html" target="_blank">〈系統工程師的 DevOps 實踐之道 (2/e) 〉</a>簡報第 7 頁，即在述說凍仁曾過著天天打火的日子。</td></tr></tbody></table><br /><div style="text-align: center;">(此為凍仁的工作和學習心得整理，其結論可能不適用於所有人，請小心慎入。)</div><a name='more'></a><br /><blockquote>PDCA (Plan-Do-Check-Act 的簡稱) 循環式品質管理，針對品質工作按規劃、執行、查核與行動來進行活動，以確保可靠度目標之達成，並進而促使品質持續改善。由美國學者愛德華茲・戴明提出，因此也稱戴明環。這個四步的循環一般用來提高產品品質和改善產品生產過程。<br />- <a href="https://zh.wikipedia.org/zh-tw/PDCA" target="_blank">維基百科</a></blockquote><br />凍仁<a href="https://www.facebook.com/photo.php?fbid=10211392962459066" target="_blank">先前</a>曾試著把 PDCA 套在軟體開發和 Git 版本控制流程上。<br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://1.bp.blogspot.com/-QvaMhqSV_nY/XUcpIFiegCI/AAAAAAAA-Ww/TUdlLxEW0iQhMieMx6oqxl9OaLuJXIn3wCLcBGAs/s1600/2019-08-05-git-x-pdca.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="768" data-original-width="1024" height="300" src="https://1.bp.blogspot.com/-QvaMhqSV_nY/XUcpIFiegCI/AAAAAAAA-Ww/TUdlLxEW0iQhMieMx6oqxl9OaLuJXIn3wCLcBGAs/s400/2019-08-05-git-x-pdca.png" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 軟體開發與 Git 版本控制流程的 PDCA 循環圖。</td></tr></tbody></table><br />如今也認為它很適合應用在 IT 維運上，便畫了張「計畫外工作」與 PDCA 的對應圖。<br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://1.bp.blogspot.com/-FIlgNcGv490/XUcfZZj7u_I/AAAAAAAA-Wg/QeQITLUFBXMrF1fIFaEcyRrRA8DMnFfgQCLcBGAs/s1600/2019-08-05-recovery-work-x-pdca-01.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="768" data-original-width="1024" height="300" src="https://1.bp.blogspot.com/-FIlgNcGv490/XUcfZZj7u_I/AAAAAAAA-Wg/QeQITLUFBXMrF1fIFaEcyRrRA8DMnFfgQCLcBGAs/s400/2019-08-05-recovery-work-x-pdca-01.png" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 持續改善計畫外工作的 PDCA 循環圖。</td></tr></tbody></table><ul><li>規劃 (Plan)：計畫外工作 (problem, outage)。</li><li>執行 (Do)：修理問題 (fix problem)。</li><li>查核 (Check)：驗證修好的問題 (verify after fixed)。</li><li>行動 (Act)：改善問題 (improve)。</li></ul><br /><h3>從系統思考看「計畫外工作」與 PDCA</h3>用 CLD 推敲上述的因果關係，就可得知 PDCA 是靠 <b>Act (問題改善數)</b> 來減少 <b>Plan (計畫外工作量)</b>，進而形成<b>調節環路 (Balancing Loop)</b>。也就是在 <b>Plan</b>、<b>Do (修理問題的時間)</b>、<b>Check (驗證修好問題的時間)</b> 都在增加的同時，靠 <b>Act</b> 來降低 <b>Plan</b>。但由於 <b>Act 不會馬上生效</b>，故兩者的關係還多了<b>時間延遲 (delay)</b>。<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://1.bp.blogspot.com/-IHbzjrZNTdw/XUcU6d2INHI/AAAAAAAA-WA/RtG7uJFCE-wr2S-dNDlWZVC3pCmpgkwSACLcBGAs/s1600/2019-08-05-recovery-work-x-pdca-02.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="768" data-original-width="1024" height="300" src="https://1.bp.blogspot.com/-IHbzjrZNTdw/XUcU6d2INHI/AAAAAAAA-WA/RtG7uJFCE-wr2S-dNDlWZVC3pCmpgkwSACLcBGAs/s400/2019-08-05-recovery-work-x-pdca-02.png" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 藉由 Act，形成持續改善的調節環路。</td></tr></tbody></table><br />一旦貪快，<b>跳過 Act</b> 這一步，CLD 則會形成<b>增強環路 (Reinforcing Loop)</b>。也就是 <b>Plan (計劃外工作量)</b>、<b>Do (修理問題的時間)</b>、<b>Check (驗證修好問題的時間)</b> 會一直增長，最後成了火越燒越旺的<b>救火日常</b>。<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://1.bp.blogspot.com/-UIxSKfn5S04/XUcU6RWuelI/AAAAAAAA-WE/JZG3TfZkk1sM1dQl08WyNSspFgqdFzymACLcBGAs/s1600/2019-08-05-recovery-work-x-pdca-03.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="768" data-original-width="1024" height="300" src="https://1.bp.blogspot.com/-UIxSKfn5S04/XUcU6RWuelI/AAAAAAAA-WE/JZG3TfZkk1sM1dQl08WyNSspFgqdFzymACLcBGAs/s400/2019-08-05-recovery-work-x-pdca-03.png" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 沒了 Act，成了救火日常的增強環路。</td></tr></tbody></table><div class="separator" style="clear: both; text-align: center;"></div><br /><h3>怎麼才能減少計畫外工作？</h3>看完《鳳凰專案》一書後，凍仁不時問著自己：怎樣才能減少計畫外工作的發生？怎樣才能保護瓶頸點，讓團隊可以更有效率？<br /><br />凍仁認為：我們得先改善問題，才可預防同樣狀況再次發生。也就是所謂的<b>預防勝於治療</b>。<br /><ol><li>儘可能在每次修復問題後，留點時間解析前因後果。</li><li>提出至少 3 項的改善工作 (improvement tasks)。</li><li>分析可行性，並從最先可行的部份著手改善。例如：</li><ul><li>增加監控警報 (alert) 的可行性大於架設實體警示燈，故應先從前者著手。</li></ul></ol><br />相信藉由前人提倡的觀點，只要從過往經驗中，不斷學習並持續改善 (continuous improvement) 問題，就一定可以逐漸減少處理例外狀況的時間，並提早下班的！<br /><br /><h3>後語</h3>從 2018 年開始，凍仁漸漸在研討會、工作坊和書上看到「思維模型」一詞，現在總算能用自己的話語來解釋何謂思維模型。<br /><blockquote>「系統基模就好比數學公式，是世人證實有效且通用的算式；而<b>思維模型就好比算式</b>，一旦推演過，就可跳過許多步驟，得知其問題的答案。<br /><br />思維模型既然是算式，那就很可能在某個步驟算錯，所以每隔一段時日，待習得更多知識後，得回頭驗算並加以修正。」</blockquote><br />最後就用<a href="https://note.drx.tw/2018/09/systems-thinking-workshop-of-devops.html" target="_blank">〈系統思考的四堂課〉</a>課中的一段名言佳句，來簡要敘述凍仁為何要進行這般的建模練習吧！<br /><blockquote>「你必須擁有多種思維模型。如果只能使用一、兩個，研究人性的心理學顯示，你會去扭曲現實，直到現實符合你的思維模型，或者至少到你認為符合為止。就像諺語所說：『在手裡拿著鐵錘的人眼中，世界就像一根釘子。』」<br />- 《窮查理的普通常識》</blockquote><br /><br /><code class="ref">站內連結：<br /><span style="color: #ffdb00;">★</span> <a href="https://note.drx.tw/2018/08/the-phoenix-project-book.html" target="_blank">《鳳凰專案》- 踏入 DevOps 之旅的第一本書</a><br /><span style="color: #ffdb00;">★</span> <a href="https://note.drx.tw/2019/05/systems-thinking-the-forest-and-the-tree.html" target="_blank">見樹又見林的系統思考</a><br /><span style="color: #ffdb00;">★</span> <a href="https://note.drx.tw/2018/09/systems-thinking-workshop-of-devops.html" target="_blank">「系統思考的四堂課」與「萬人敵」</a><br /><span style="color: #ffdb00;">★</span> <a href="https://note.drx.tw/2018/12/devops-practice-of-system-engineer.html" target="_blank">系統工程師的 DevOps 實踐之道</a><br /><br />相關連結：<br /><span style="color: #ffdb00;">★</span> <a href="https://zh.wikipedia.org/zh-tw/PDCA" target="_blank">PDCA | 維基百科</a><br /><span style="color: #ffdb00;">★</span> <a href="https://www.facebook.com/chusiang.lai/posts/10211552513287737" target="_blank">[PDCA x 計畫外工作] 要怎麼逃離計畫外工作的日常？| Facebook</a><br /><span style="color: #ffdb00;">★</span> <a href="https://blog.xuite.net/sama01/blog/394934717-%E3%80%90%E6%95%B8%E5%AD%B8%E3%80%91%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E9%80%99%E6%A8%A3%E5%AF%AB%E7%AE%97%E5%BC%8F%EF%BC%9F" target="_blank">【數學】為什麼要這樣寫算式？ | sama 記事本</a><br /><span style="color: #ffdb00;">★</span> <a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F" target="_blank">數學公式 | 維基百科</a><br /><span style="color: #ffdb00;">★</span> <a href="https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%A4%BA%E5%BC%8F" target="_blank">表示式 | 維基百科</a><br /><span style="color: #ffdb00;">★</span> <a href="https://www.books.com.tw/products/0010817729" target="_blank">《窮查理的普通常識 (增修版)：巴菲特 50 年智慧合夥人查理．蒙格的人生哲學》| 博客來</a><br /><span style="color: #ffdb00;">★</span> <a href="https://kknews.cc/finance/m2pemxp.html" target="_blank">什麼是普世智慧 | 每日頭條</a><br /></code><br /></p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190804_see-pdca-from-recovery-work.html%2f&amp;text=%e5%be%9e%e3%80%8c%e8%a8%88%e7%95%ab%e5%a4%96%e5%b7%a5%e4%bd%9c%e3%80%8d%e7%9c%8b%20PDCA&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190804_see-pdca-from-recovery-work.html%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190804_see-pdca-from-recovery-work.html%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190804_see-pdca-from-recovery-work.html%2f&amp;title=%e5%be%9e%e3%80%8c%e8%a8%88%e7%95%ab%e5%a4%96%e5%b7%a5%e4%bd%9c%e3%80%8d%e7%9c%8b%20PDCA" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190804_see-pdca-from-recovery-work.html%2f&amp;title=%e5%be%9e%e3%80%8c%e8%a8%88%e7%95%ab%e5%a4%96%e5%b7%a5%e4%bd%9c%e3%80%8d%e7%9c%8b%20PDCA" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190804_see-pdca-from-recovery-work.html%2f&amp;title=%e5%be%9e%e3%80%8c%e8%a8%88%e7%95%ab%e5%a4%96%e5%b7%a5%e4%bd%9c%e3%80%8d%e7%9c%8b%20PDCA" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190804_see-pdca-from-recovery-work.html%2f&amp;description=%e5%be%9e%e3%80%8c%e8%a8%88%e7%95%ab%e5%a4%96%e5%b7%a5%e4%bd%9c%e3%80%8d%e7%9c%8b%20PDCA" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20190730_trigger-the-drone-job-via-promotion/" data-toggle="tooltip" data-placement="top" title="透過 Drone CLI 手動觸發 CI/CD 流程">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20190805_drone-multiple-machine/" data-toggle="tooltip" data-placement="top" title="[Drone] 將單一 Job 分配到多台機器，降低部署執行時間">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "kalug-linux-org-tw" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://www.facebook.com/groups/kalug.tw" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalug" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/joinchat/KBcnM0F9EuVT54cda-t-yg" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://kalug.linux.org.tw/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2019
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/main.js"></script>
+<script src="https://kalug.linux.org.tw/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

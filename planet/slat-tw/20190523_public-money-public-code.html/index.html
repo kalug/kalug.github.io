@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>從台鐵售票系統看 Public Money Public Code 的必要性</title>
+  <meta property="og:title" content="從台鐵售票系統看 Public Money Public Code 的必要性" />
+  <meta name="twitter:title" content="從台鐵售票系統看 Public Money Public Code 的必要性" />
+  <meta name="description" content="*Public Money, Public Code (PMPC):&nbsp;用納稅人的錢所製作的軟體系統，應該要開放源碼供大眾檢驗並再利用。 五月份是報綜合所得稅的季節，每逢這時期想必">
+  <meta property="og:description" content="*Public Money, Public Code (PMPC):&nbsp;用納稅人的錢所製作的軟體系統，應該要開放源碼供大眾檢驗並再利用。 五月份是報綜合所得稅的季節，每逢這時期想必">
+  <meta name="twitter:description" content="*Public Money, Public Code (PMPC):&nbsp;用納稅人的錢所製作的軟體系統，應該要開放源碼供大眾檢驗並再利用。 五月份是報綜合所得稅的季節，每逢這時期想必">
+  <meta name="author" content=""/>
+  <link href='https://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://kalug.linux.org.tw/planet/slat-tw/20190523_public-money-public-code.html/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kaohsiung Linux User Group" />
+
+  <meta name="generator" content="Hugo 0.54.0" />
+  <link rel="canonical" href="https://kalug.linux.org.tw/planet/slat-tw/20190523_public-money-public-code.html/" />
+  <link rel="alternate" href="https://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/highlight.min.css" /><link rel="stylesheet" href="https://kalug.linux.org.tw/css/codeblock.css" />
+<script id="chatBroEmbedCode">
+ 
+function ChatbroLoader(chats,async){async=!1!==async;var params={embedChatsParameters:chats instanceof Array?chats:[chats],lang:navigator.language||navigator.userLanguage,needLoadCode:'undefined'==typeof Chatbro,embedParamsVersion:localStorage.embedParamsVersion,chatbroScriptVersion:localStorage.chatbroScriptVersion},xhr=new XMLHttpRequest;xhr.withCredentials=!0,xhr.onload=function(){eval(xhr.responseText)},xhr.onerror=function(){console.error('Chatbro loading error')},xhr.open('GET','//www.chatbro.com/embed.js?'+btoa(unescape(encodeURIComponent(JSON.stringify(params)))),async),xhr.send()}
+ 
+ChatbroLoader({encodedChatId: '62DdK'});
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=952825024850869&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-121574418-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Meetups" href="/meetups/">Meetups</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Planet" href="/planet/">Planet</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Pages</a>
+              <div class="navlinks-children">
+                
+                  <a href="/pages/sig">Special Interest Group</a>
+                
+                  <a href="/pages/devices">Useful Devices</a>
+                
+                  <a href="/pages/life">Kaohsiung Life</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">About</a>
+              <div class="navlinks-children">
+                
+                  <a href="/about/us">us</a>
+                
+                  <a href="/about/sponsors">Sponsors</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Kaohsiung Linux User Group" href="https://kalug.linux.org.tw">
+            <img class="avatar-img" src="https://kalug.linux.org.tw/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="blog-heading">
+              <h1>從台鐵售票系統看 Public Money Public Code 的必要性</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p><span style="font-size: x-small;">*Public Money, Public Code (PMPC):&nbsp;<span style="color: blue;"><b>用納稅人的錢所製作的軟體系統，應該要開放源碼供大眾檢驗並再利用。</b></span></span><br /><br />五月份是報綜合所得稅的季節，每逢這時期想必大家心裡都不怎麼好過。然後今天早上剛好又看到臉書動態牆上有這麼一則抱怨：<br /><br />「台鐵訂票系統還是很讓人佩服啊！！只要其中一站沒座位，就會直接噴無坐票給你看；搞得我還要一個一個區間慢慢查，從高雄到花蓮要買四張車票。阿不是說有『自動分段湊票』功能？？？」<br /><a name='more'></a><br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="https://2.bp.blogspot.com/-NgdBnUAvQeM/XOYpQx3LerI/AAAAAAAAgo0/TbXJ4KwkvGs6jLN6yi3DDcRSGks2RGuaQCLcBGAs/s1600/Screenshot_20190522_170747.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img alt="朋友的臉書動態" border="0" data-original-height="900" data-original-width="1600" height="225" src="https://2.bp.blogspot.com/-NgdBnUAvQeM/XOYpQx3LerI/AAAAAAAAgo0/TbXJ4KwkvGs6jLN6yi3DDcRSGks2RGuaQCLcBGAs/s400/Screenshot_20190522_170747.png" title="朋友的臉書動態，順便曬一下我的 ezgo 桌面" width="400" /></a></div><div class="separator" style="clear: both; text-align: center;">朋友的臉書動態，順便曬一下我的 ezgo 桌面</div><br />這個貼文當然立刻讓我想到，四月份協會裡的<span style="font-size: large;">前輩</span>找我去參加記者會的事情。其實<span style="font-size: large;">前輩</span>並不是臨時找我，我們最早在一月左右就已經在討論這個問題了。我們看到的問題很簡單：為什麼十億預算做出來的系統，跟原來的台鐵購票系統感覺不出任何差異？到底這十億改進了什麼？<br /><br />在這幾年到各地討論開放文件格式政策與數位路平等議題時，其實我也看到了類似的問題。政府單位開了標案，花了錢找了廠商，做出了一套系統。或許該系統一開始是符合要求的；但隨著時間的演進，自然也有可能出現新的需求。就以公文系統為例，一開始公文製作、簽核、交換等系統通通綁在 IE 瀏覽器上，或許不是什麼問題。但隨著新的系統、新的瀏覽器出現，公文系統卻仍然被綁在 IE8 上，還不能升級到 IE9，否則就崩潰給你看！為此許多學校、單位不得不留一台 XP 並保留 IE8；而政府單位向開發廠商提出希望將公文系統改版成可以跨瀏覽器時，開發廠商的反應是雙手一攤，「我們不會做！」最讓人匪夷所思的是，政府單位面對這樣的廠商，居然完全沒辦法！<br /><br />當然，各地軟體、硬體廠商有各地的生態、舒適圈，裡面盤根錯結的結構糾葛我也不是不知道；而台鐵的這個「新」售票系統在我看來，也是相同的結構放大之後的產物。硬體設備上有改進，很好，這是看得見的，也容易被監督。但軟體系統呢？改了什麼？我們感覺不出來，那麼我們可以進去檢視嗎？如果不行，為什麼不行？如果不行，我們要怎麼知道在軟體開發這個層面上，有哪些問題，是否可以透過民間力量解決？<br /><br />因此，在一月那次的討論中，我向<span style="font-size: large;">前輩</span>與在場的朋友們提出了在台灣推動 PMPC 立法的概念。因為一方面，PMPC 政策能讓這個一向存在於黑盒之中的結構透進一些陽光，減少這類問題，甚至推動產業升級；另一方面 PMPC 也正是我們推動軟體自由運動所追求的目標。<br /><br />回到台鐵這個系統，其實今天這個系統所呈現出來的最大的問題，就是這一句話：「這個系統的<b>價格</b>與<b>價值</b>有嚴重的落差！」雖說價格是客觀數字，價值是主觀感受；但再怎麼主觀，總有些很基本的要求應該被滿足，本文一開始舉的例子就屬於此。說好的「自動分段湊票」功能，可能是一般民眾最直接可以感受到新舊系統間差異的功能。結果仍然不行！那麼，這個系統的軟體開發到底在做些什麼？<br /><br />所以，先前在討論時，我對台鐵的需求書與預算書的內容提出了一些疑問。關於新系統的開發費用，最有可能的就是灌在人事費用內（也就是<u>負責開發系統程式的人</u>，以及<u>負責管理這些負責開發系統程式的人的人</u>，當然可能還有<u>負責管理這些負責管理這些負責開發系統程式的人的人的人</u>等等）；其次就是開發用的工具（所謂的「中介軟體」與「工具軟體」）。而我注意到，光這些「中介軟體」與「工具軟體」預算就編了三億！我非常好奇，這些「中介軟體」跟「工具軟體」到底是些什麼？<br /><br />原本預期這個問題在我前陣子透過前輩拿到的一份台鐵的報告[1]中應該有交待，結果看到報告的時候我還是被驚呆了！報告中對所謂的「中介軟體」與「工具軟體」，完全沒有提到「使用哪些軟體」，而是以「票務入口管理網」、「資料庫軟體」、「商業智慧工具軟體」這樣的字眼帶過。「資料庫軟體」到底是哪一個？或許我們還可以透過「軟體供應商」來猜，大概就是 Oracle 的資料庫管理系統。可是資料庫管理系統百百種，有很貴的專有系統，也有自由開源的資料庫管理系統；有關聯式、也有非關聯式的系統。為什麼選用 Oracle，而不是臉書所採用的 Apache Cassandra 開源分散式資料庫？既然臉書都採用，想必大型系統的處理效能等不會是問題，只是適不適合而已。而這個「適不適合」，有沒有做過任何評估？此外還有沒有其他的選擇？上面所說還只是我所看到的第一眼印象而已。相信再深入追下去，一定可以看到更多「盤根錯節」的景象。<br /><br />或許大家還會問，剛剛講的這些，跟我前面所提到的 PMPC：「用納稅人的錢所製作的軟體系統，應該要開放源碼供大眾檢驗並再利用」有什麼關係？事實上是有的。PMPC 在歐洲目前立法的情況，以義大利最為先進；他們的法律中，不單是要求政府單位所開發的系統要開源，同時也明訂<b><span style="color: red;">當技術和經濟分析表明無法以較低的價格獲得開源解決方案，或重用內部開發的解決方案時，才允許購買專有授權的方案</span></b>。[2][3]這裡的「購買方案」，當然包括了購買現有的方案，以及購買勞務開發新的方案。不管是哪一種，<b><span style="color: red;">「開源解決方案」都必須是優先的選擇</span></b>。如此一來，除了莫名的「工具軟體」或「中介軟體」肯定可以節省下大量的費用，也鼓勵開發商善用現有的開源方案、站在巨人的肩膀上來堆砌出創新的方案。<br /><br />這一篇我們先談到這裡。結尾還是要呼籲一下：請台鐵公開這些開發經費所購置的「工具軟體」與「中介軟體」的詳細清單，讓臥虎藏龍的民間高手檢驗，到底有哪些是不必要的浪費，還有它們可行的替代方案為何。此外，也請各黨立法委員正視此問題，提出 PMPC 法案，節省納稅人的錢，也為政府單位找到更多的選擇。<br /><br /><br />[1]&nbsp;這份報告的原檔居然還是docx格式！我們的單位還要無視開放文件格式政策到何時呢？！<em>7pupu</em><br />[2]&nbsp;<a href="https://joinup.ec.europa.eu/news/priority-open-source-th" target="_blank"><a href="https://joinup.ec.europa.eu/news/priority-open-source-th&nbsp;">https://joinup.ec.europa.eu/news/priority-open-source-th&nbsp;</a></a><br />[3]&nbsp;<a href="https://medium.com/team-per-la-trasformazione-digitale/open-source-italian-public-administration-guidelines-software-acquisition-reuse-dba6c733e1b7">https://medium.com/team-per-la-trasformazione-digitale/open-source-italian-public-administration-guidelines-software-acquisition-reuse-dba6c733e1b7</a><br /><br /><br /></p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fslat-tw%2f20190523_public-money-public-code.html%2f&amp;text=%e5%be%9e%e5%8f%b0%e9%90%b5%e5%94%ae%e7%a5%a8%e7%b3%bb%e7%b5%b1%e7%9c%8b%20Public%20Money%20Public%20Code%20%e7%9a%84%e5%bf%85%e8%a6%81%e6%80%a7&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fslat-tw%2f20190523_public-money-public-code.html%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fslat-tw%2f20190523_public-money-public-code.html%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fslat-tw%2f20190523_public-money-public-code.html%2f&amp;title=%e5%be%9e%e5%8f%b0%e9%90%b5%e5%94%ae%e7%a5%a8%e7%b3%bb%e7%b5%b1%e7%9c%8b%20Public%20Money%20Public%20Code%20%e7%9a%84%e5%bf%85%e8%a6%81%e6%80%a7" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fslat-tw%2f20190523_public-money-public-code.html%2f&amp;title=%e5%be%9e%e5%8f%b0%e9%90%b5%e5%94%ae%e7%a5%a8%e7%b3%bb%e7%b5%b1%e7%9c%8b%20Public%20Money%20Public%20Code%20%e7%9a%84%e5%bf%85%e8%a6%81%e6%80%a7" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fslat-tw%2f20190523_public-money-public-code.html%2f&amp;title=%e5%be%9e%e5%8f%b0%e9%90%b5%e5%94%ae%e7%a5%a8%e7%b3%bb%e7%b5%b1%e7%9c%8b%20Public%20Money%20Public%20Code%20%e7%9a%84%e5%bf%85%e8%a6%81%e6%80%a7" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fslat-tw%2f20190523_public-money-public-code.html%2f&amp;description=%e5%be%9e%e5%8f%b0%e9%90%b5%e5%94%ae%e7%a5%a8%e7%b3%bb%e7%b5%b1%e7%9c%8b%20Public%20Money%20Public%20Code%20%e7%9a%84%e5%bf%85%e8%a6%81%e6%80%a7" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20190521_introduction-to-github-actions/" data-toggle="tooltip" data-placement="top" title="GitHub 推出 CI/CD 服務 Actions 之踩雷經驗">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://kalug.linux.org.tw/planet/chusiang/20190530_systems-thinking-the-forest-and-the-tree.html/" data-toggle="tooltip" data-placement="top" title="見樹又見林的系統思考">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "kalug-linux-org-tw" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://www.facebook.com/groups/kalug.tw" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalug" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/joinchat/KBcnM0F9EuVT54cda-t-yg" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://kalug.linux.org.tw/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2019
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/main.js"></script>
+<script src="https://kalug.linux.org.tw/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>系統工程師的打怪升級之旅</title>
+  <meta property="og:title" content="系統工程師的打怪升級之旅" />
+  <meta name="twitter:title" content="系統工程師的打怪升級之旅" />
+  <meta name="description" content="從大學畢業、進入職場，經歷 SI、IT、RD &hellip; 等許多角色，凍仁目前最喜歡的是「系統工程師 (System Engineer)」這個稱號，而〈系統工程師的打怪升">
+  <meta property="og:description" content="從大學畢業、進入職場，經歷 SI、IT、RD &hellip; 等許多角色，凍仁目前最喜歡的是「系統工程師 (System Engineer)」這個稱號，而〈系統工程師的打怪升">
+  <meta name="twitter:description" content="從大學畢業、進入職場，經歷 SI、IT、RD &hellip; 等許多角色，凍仁目前最喜歡的是「系統工程師 (System Engineer)」這個稱號，而〈系統工程師的打怪升">
+  <meta name="author" content=""/>
+  <link href='https://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://kalug.linux.org.tw/planet/chusiang/20190917_my-devops-tour-0.1.html/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kaohsiung Linux User Group" />
+
+  <meta name="generator" content="Hugo 0.54.0" />
+  <link rel="canonical" href="https://kalug.linux.org.tw/planet/chusiang/20190917_my-devops-tour-0.1.html/" />
+  <link rel="alternate" href="https://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/highlight.min.css" /><link rel="stylesheet" href="https://kalug.linux.org.tw/css/codeblock.css" />
+<script id="chatBroEmbedCode">
+ 
+function ChatbroLoader(chats,async){async=!1!==async;var params={embedChatsParameters:chats instanceof Array?chats:[chats],lang:navigator.language||navigator.userLanguage,needLoadCode:'undefined'==typeof Chatbro,embedParamsVersion:localStorage.embedParamsVersion,chatbroScriptVersion:localStorage.chatbroScriptVersion},xhr=new XMLHttpRequest;xhr.withCredentials=!0,xhr.onload=function(){eval(xhr.responseText)},xhr.onerror=function(){console.error('Chatbro loading error')},xhr.open('GET','//www.chatbro.com/embed.js?'+btoa(unescape(encodeURIComponent(JSON.stringify(params)))),async),xhr.send()}
+ 
+ChatbroLoader({encodedChatId: '62DdK'});
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=952825024850869&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-121574418-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Meetups" href="/meetups/">Meetups</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Planet" href="/planet/">Planet</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Pages</a>
+              <div class="navlinks-children">
+                
+                  <a href="/pages/sig">Special Interest Group</a>
+                
+                  <a href="/pages/devices">Useful Devices</a>
+                
+                  <a href="/pages/life">Kaohsiung Life</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">About</a>
+              <div class="navlinks-children">
+                
+                  <a href="/about/us">us</a>
+                
+                  <a href="/about/sponsors">Sponsors</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Kaohsiung Linux User Group" href="https://kalug.linux.org.tw">
+            <img class="avatar-img" src="https://kalug.linux.org.tw/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="blog-heading">
+              <h1>系統工程師的打怪升級之旅</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>從大學畢業、進入職場，經歷 SI、IT、RD &hellip; 等許多角色，凍仁目前最喜歡的是「系統工程師 (<b>S</b>ystem <b>E</b>ngineer)」這個稱號，而〈系統工程師的打怪升級之旅〉就是在述說凍仁自己 DevOps 冒險之旅 (journey) 的故事。<br /><br />莫約兩個月前，凍仁收到 <a href="https://words.bobchao.net/" target="_blank">Bob Chao</a> 前輩的邀請，並有此榮幸可以在 <a href="https://coscup.org/2019/" target="_blank">COSCUP 2019</a> 的「開源 x 職涯」<sup>1</sup> 議程軌中，分享些 DevOps 的學習心得。<br /><br /><div style="text-align: center;"><script async="" class="speakerdeck-embed" data-id="34357eaa102948068b1656389b1adc4e" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script><br />▲ 凍仁於 COSCUP 2019 分享的「開源 x 職涯 x DevOps」投影片。</div><a name='more'></a><br />這次的上台分享，除一開始用自己的職涯小故事開場外，還提了以下 3 點：<br /><ol><li>用「狹義的 DevOps vs. 廣義的 DevOps」來<b>介紹 DevOps 是什麼</b>。<sup><a href="https://speakerdeck.com/chusiang/my-devops-tour-0-dot-1?slide=18" target="_blank">p.18</a></sup></li><li>用<b>生命歷程圖</b>繪出技能樹以<b>自我反思</b>，並給予這條路的伙伴一點建議。<sup><a href="https://speakerdeck.com/chusiang/my-devops-tour-0-dot-1?slide=25" target="_blank">p.25</a></sup><br /><br />「畫一張生命歷程圖，反思自己的過往。如果我可以重活一次。」<br />ー <a href="https://ruddyblog.wordpress.com/2017/07/23/%E5%AF%A6%E8%A1%8C%E5%80%8B%E4%BA%BA%E7%9C%8B%E6%9D%BF%E5%89%8D%E8%A9%B2%E5%81%9A%E7%9A%84%E4%BA%8B/">實行個人看板前該做的事 by Ruddy Lee</a><br /><br /></li><li>提及 DevOps 三步工作法 (Flow、Feedback)，並<b>將各種開源工具與其二結合</b>。<sup><a href="https://speakerdeck.com/chusiang/my-devops-tour-0-dot-1?slide=28" target="_blank">p.28</a></sup></li></ol><br />接著，凍仁在 <a href="https://devopsdays.tw/" target="_blank">DevOpsDays Taipei 2019</a> 分享的〈企業導入 Ansible 自動化真的容易嗎〉主題，才會對<b>文化 (Culture)</b> 有較多的涉略。<sup><a href="https://speakerdeck.com/chusiang/my-devops-tour-0-dot-1?slide=37" target="_blank">p.37</a></sup><br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://2.bp.blogspot.com/-sWeMXe-RKvM/XYECGljOZ6I/AAAAAAABAJI/fPdS22B07wsbN53cXuQRo--KPwp3U1S6ACLcBGAsYHQ/s1600/2019-08-17-talking-on-coscup-2019-black.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="1200" data-original-width="1600" height="300" src="https://2.bp.blogspot.com/-sWeMXe-RKvM/XYECGljOZ6I/AAAAAAABAJI/fPdS22B07wsbN53cXuQRo--KPwp3U1S6ACLcBGAsYHQ/s400/2019-08-17-talking-on-coscup-2019-black.jpg" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ 感謝 <a href="https://www.facebook.com/photo.php?fbid=10211565371528320&amp;set=a.1654209533537" target="_blank">Kuro Hsu</a> 大大於議程中拍攝。</td></tr></tbody></table><br />短短 25 分鐘能講的不多，若還想深入了解 <a href="http://note.drx.tw/search/label/DevOps" target="_blank">DevOps</a>，可依序觀看凍仁過去的文章。<br /><ol><li><a href="https://note.drx.tw/2018/08/the-phoenix-project-book.html" target="_blank">《鳳凰專案》- 踏入 DevOps 之旅的第一本書</a> / 2018-08-26</li><li><a href="https://note.drx.tw/2017/09/the-phoenix-poject-workshop.html" target="_blank">一群臺灣老司機參與《鳳凰項目》沙盤的持續成長故事</a> / 2017-09-02</li><li><a href="https://note.drx.tw/2019/08/see-pdca-from-recovery-work.html" target="_blank">從「計畫外工作」看 PDCA</a> / 2019-08-05</li><li><a href="https://note.drx.tw/2017/12/from-one-persons-devops-to-one-DevOps-team.html" target="_blank">從一個人的 DevOps，到一個 DevOps 的團隊</a> / 2017-12-25</li><li><a href="https://note.drx.tw/2018/12/devops-practice-of-system-engineer.html" target="_blank">系統工程師的 DevOps 實踐之道</a> / 2018-12-31</li><li><a href="https://note.drx.tw/2018/07/devops-journey-devops-engineer-sre-jobs.html" target="_blank">DevOps Engineer、SRE 徵才求職雜談</a> / 2018-07-29</li></ol><br />DevOps Tools 部份，則可參考以下教學文。<br /><ol><li><a href="https://note.drx.tw/2015/05/git-and-github-basic-with-sourcetree.html" target="_blank">手殘救星 - Git &amp; GitHub</a> / 2015-05-08</li><li><a href="http://note.drx.tw/2016/05/automate-with-ansible-basic.html" target="_blank">現代 IT 人一定要知道的 Ansible 自動化組態技巧</a> / 2016-05-29</li><li><a href="https://note.drx.tw/2017/03/automate-with-ansible-basic-3e.html" target="_blank">現代 IT 人一定要知道的 Ansible 自動化組態技巧 (3/e)</a> / 2017-03-27</li><li><a href="https://note.drx.tw/2016/07/automate-with-ansible-roles-windows.html" target="_blank">現代 IT 人一定要知道的 Ansible 自動化組態技巧 Ⅱ - Roles &amp; Windows</a> / 2016-07-26</li><li><a href="https://note.drx.tw/2016/07/virtualization-with-docker-container-basic-for-f2e.html" target="_blank">前端工程師一定要知道的 Docker 虛擬化容器技巧</a> / 2016-07-08</li><li><a href="https://note.drx.tw/2017/08/continuous-delivery-with-ansible-x-gitlab-ci.html" target="_blank">DevOps 人一定要知道的 Ansible &amp; GitLab CI 持續交付技巧</a> / 2017-08-30</li><li><a href="https://note.drx.tw/2017/11/continuous-delivery-workshop-with-ansible-x-gitlab-ci.html" target="_blank">DevOps 人一定要知道的持續交付技巧 - Ansible &amp; GitLab CI 實戰演練工作坊</a> / 2017-11-13</li><li><a href="https://note.drx.tw/2018/06/zabbix-the-easy-to-use-monitoring-tools.html" target="_blank">簡單易用的 Zabbix 監控服務</a> / 2018-06-01</li></ol><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://2.bp.blogspot.com/-IgXrMfT2ArI/XYECxcBjgMI/AAAAAAABAJQ/WNgOWvvhGcg2XLnxkPmbRwXFNUTF2oQ5gCLcBGAsYHQ/s1600/2019-08-17-talking-on-coscup-2019-end.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" data-original-height="1199" data-original-width="1600" height="300" src="https://2.bp.blogspot.com/-IgXrMfT2ArI/XYECxcBjgMI/AAAAAAABAJQ/WNgOWvvhGcg2XLnxkPmbRwXFNUTF2oQ5gCLcBGAsYHQ/s400/2019-08-17-talking-on-coscup-2019-end.jpg" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">▲ COSCUP 2019 IB305 教室的講者視角。</td></tr></tbody></table><br />最後的 Q&amp;A 和 END 雖已快速提及幾個要點，但稍嫌不足。凍仁在此簡單整理 <a href="https://sakanamax.github.io/" target="_blank">Chun-Hung Huang (@sakanamax)</a> 前輩和自己的課中補充。<br /><br /><h3>Q&amp;A</h3><ol><li>怎麼拿捏在社群分享知識的範圍？<br /><ol><li>純技術分享，只談技術並避開較私秘的話題。</li><li>改用<b>私人帳號</b>和<b>拋棄式玩具</b> (可參閱《學徒模式》一書) 環境進行 demo 和練習，而不是直接使用公司的 AWS、GCP &hellip; 等帳號。</li></ol></li><li>怎麼找 DevOps 的工作？怎麼知道該公司背後所使用的核心技術？<br /><ol><li>雲端 : 地端 = DevOps : OpsDev = Programming &gt; Operation : Programming &lt; Operation。</li><li>向面試官詢問該企業主攻的程式語言是哪些個？Python / Ruby / C# &hellip;？並從中推敲其背後的架構。<br /><span class="Comment">我們所學的技能和工具很多時候與我們選擇的企業有關。</span><br /></li><li>請面試官介紹他一天的日常。</li></ol></li><li>請問較專注開發的人，要怎麼與負責 DevOps 的伙伴合作，有什麼需注意的地方？<sup>2</sup><br /><ol><li>寫個安裝文件吧！或者透過 Pair programming 的方式一起寫組態設定工具 (CM Tools)。</li><li>藉由站立會議 (Stand-up meeting) 來即時同步變更工作，例如：<br /><ol><li>某專案加了一個新參數，不加新設定服務會跑不起來等等。</li><li>下午要變更開發環境的系統架構，並請有維運業務的同事協助，切勿一人自幹。<br /><br />「當工作上出現問題時，禁止任意判斷解決，因為工作並不是憑個人好惡去做的事情。自己擅自處理，往往會把問題擴大。」<br />ー 秋山利輝，<a href="https://www.books.com.tw/products/0010666857" target="_blank">《匠人精神》</a><br /></li></ol></li></ol></li></ol><br /><h3>養成之路的一點小建議</h3><ol><li>記得時常更新並經營 LinkedIn 上的履歷 (Resume)。</li><li>履歷上只有提技能名稱，是沒有鑑別度的。最好分別補充靠哪些技能做過哪些事情？並達成什麼成就？</li><li>求職時<a href="https://www.hbrtaiwan.com/article_content_AR0008950.html" target="_blank">〈不必完全符合資格才去應徵工作〉</a>，加分條件就只是加分而已，不會還是可以去面試。</li><li>不要害怕面試，我們也可從多個面試官口中，推演出當下業界<b>真正</b>想找的人才需具備哪些技能、經歷和特質？再回頭補足所需的技藝。</li><li>可參閱<a href="https://opensource.com/article/19/7/how-transition-career-devops-engineer" target="_blank">〈How to transition into a career as a DevOps engineer〉</a><sup>3</sup> 和 <a href="https://note.drx.tw/2018/07/devops-journey-devops-engineer-sre-jobs.html" target="_blank">〈DevOps Engineer、SRE 徵才求職雜談〉</a>二文。</li><li>多利用免費資源學習新技術。例如 <a href="https://labs.play-with-docker.com/" target="_blank">Play on Docker</a>、<a href="https://labs.play-with-k8s.com/" target="_blank">Play with Kubernetes</a>。</li><li>我們可以藉由 <a href="https://ifttt.com/" target="_blank">iFTTT</a> 的服務蒐集來自各個地方的資訊，如 RSS、Twitter ..。 但只是看是不夠的，還需自行實作！</li><li>只靠圖形界面 (GUI) 操作系統是不夠，身為一位專業的 Infrastructure / DevOps 工程師，我們還得透過 cli 進行操作，這樣才有機會自動化！<br /><br />「做好自動化，遠離肝硬化。」<br />ー <a href="https://mp.weixin.qq.com/s?__biz=MjM5NjM5NTg0MA%3D%3D&amp;mid=2651700954&amp;idx=1&amp;sn=cf211ab6084eb219daac4b64635c56bb">DevOps 做好自动化，远离&rdquo;肝硬化&rdquo; | 全栈学苑</a><br /></li></ol><br /><h3>推薦讀物</h3>在這 3、4 年的旅途中，這 8 本書給予凍仁不少幫助，在此與大家分享。<sup><a href="https://speakerdeck.com/chusiang/my-devops-tour-0-dot-1?slide=43" target="_blank">p.43</a></sup><br /><br /><h4>自我成長</h4><ol><li><a href="https://www.tenlong.com.tw/products/9789864791897" target="_blank">心態致勝：全新成功心理學</a> (<a href="https://www.books.com.tw/products/F011278032" target="_blank">Mindset: The New Psychology of Success</a>) by Carol S. Dweck</li><li><a href="https://www.tenlong.com.tw/products/9789862762561" target="_blank">學徒模式：優秀軟體開發者的養成之路</a> (<a href="https://www.tenlong.com.tw/products/9780596518387?list_name=trs-f" target="_blank">Apprenticeship Patterns: Guidance for the Aspiring Software Craftsman</a>) by Dave Hoover, Adewale Oshineye</li><li><a href="https://www.books.com.tw/products/0010668495" target="_blank">砍掉重練：30 歲開始也不遲的工作術</a> by 陳昭穎</li><li><a href="https://www.books.com.tw/products/0010641668" target="_blank">3 年後，你的工作還在嗎？：掌握關鍵職能，迎向工匠、總管與行腳商人的時代！</a> by 姚詩豪、張國洋</li></ol><h4>DevOps</h4><ol><li><a href="https://www.tenlong.com.tw/products/9789864765867" target="_blank">鳳凰專案：看 IT 部門如何讓公司從谷底翻身的傳奇故事</a> (<a href="https://www.tenlong.com.tw/products/9780988262508" target="_blank">The Phoenix Project: A Novel about IT, DevOps, and Helping Your Business Win</a>) by Gene Kim, Kevin Behr, George Spafford</li><li><a href="https://www.tenlong.com.tw/products/9789865020941" target="_blank">DevOps Handbook 中文版：打造世界級技術組織的實踐指南</a> (<a href="https://www.tenlong.com.tw/products/9781942788003" target="_blank">The DevOps Handbook: How to Create World-Class Agility, Reliability, and Security in Technology Organizations</a>) by Gene Kim, Patrick Debois, John Willis, Jez Humble</li><li><a href="https://www.tenlong.com.tw/products/9789864768264" target="_blank">Ansible 建置與執行：輕鬆完成自動化管理與部署</a> (<a href="https://www.tenlong.com.tw/products/9781491979808" target="_blank">Ansible Up and Running: Automating Configuration Management and Deployment the Easy Way</a>) by Lorin Hochstein, Rene Moser</li><li><a href="https://www.tenlong.com.tw/products/9787115441102" target="_blank">软件开发本质论: 追求简约、体现价值、逐步构建</a> (<a href="https://www.tenlong.com.tw/products/9781941222379" target="_blank">The Nature of Software Development: Keep It Simple, Make It Valuable, Build It Piece by Piece</a>) by Ron Jeffries</li></ol><br />如果只能挑兩本，那凍仁會推《學徒模式》與《软件开发本质论》二書。最後，就用改編自《心態致勝》一書的金句 END 了！<sup><a href="https://speakerdeck.com/chusiang/my-devops-tour-0-dot-1?slide=45" target="_blank">p.45</a></sup><br /><br /><div style="text-align: center;">「不論你有什麼<b>本事</b>，唯有努力才能點燃那些<b>技藝</b>，把它們轉化爲真正的成就。」</div><br /><h3>後語</h3>事隔一個月，總算補了這麼篇演講回顧文。雖這次的分享與先前<a href="https://note.drx.tw/2017/12/from-one-persons-devops-to-one-DevOps-team.html" target="_blank">〈從一個人的 DevOps，到一個 DevOps 的團隊〉</a>和<a href="https://speakerdeck.com/chusiang/writing-skills-for-information-technology" target="_blank">〈IT 人一定要知道的寫作技巧〉</a>演講相似，但凍仁卻把這次定位在 DevOps 入門和 overall。希望能給予即將踏上 DevOps 旅程的伙伴們一點忙。<br /><br />緊接著凍仁得開始著手準備 <sup>10</sup>&frasl;<sub>17</sub>-18 DevOpsDays Taipei 和 <sup>12</sup>&frasl;<sub>21</sub> Agile Tour Kaohsiung 的上台簡報。各位 DevOpser，我們 DevOpsDays Taipei 2019 見了！<br /><br /><span class="Comment"><br /><sup>1</sup> 許多友人一開始都把「開源 x 職涯」聽成了「開源植牙」，真讓身為講者的敝人想哭又想笑啊！<br /><sup>2</sup> <a href="https://ysitd.licson.net/channel/coscup/2019-08-17#5d576b1c577cc91bbffd0b32">https://ysitd.licson.net/channel/coscup/2019-08-17#5d576b1c577cc91bbffd0b32</a><br /><sup>3</sup> 簡中譯文：<a href="https://mp.weixin.qq.com/s/9XYOVAFE5mRZiBvphUw3qQ" target="_blank">〈职业生涯如何转变成 DevOps 工程师〉</a>。<br /></span><br /><br /><code class="ref">資料來源：<br /><span style="color: #ffdb00;">★</span> <a href="https://xebialabs.com/devops-diagram-generator/?t%5B30%5D%5B%5D=5593&amp;t%5B30%5D%5B%5D=5592&amp;t%5B32%5D%5B%5D=5651&amp;t%5B35%5D%5B%5D=5503&amp;t%5B39%5D%5B%5D=5917&amp;t%5B39%5D%5B%5D=5567&amp;t%5B41%5D%5B%5D=5844&amp;t%5B41%5D%5B%5D=5846&amp;t%5B41%5D%5B%5D=5575&amp;t%5B45%5D%5B%5D=5524&amp;t%5B45%5D%5B%5D=5526&amp;t%5B45%5D%5B%5D=5617&amp;t%5B45%5D%5B%5D=5636&amp;t%5B45%5D%5B%5D=5585&amp;t%5B48%5D%5B%5D=5590&amp;t%5B48%5D%5B%5D=5915&amp;t%5B50%5D%5B%5D=5849&amp;t%5B50%5D%5B%5D=5512&amp;t%5B50%5D%5B%5D=5520&amp;t%5B55%5D%5B%5D=5484&amp;t%5B55%5D%5B%5D=5479&amp;t%5B55%5D%5B%5D=5477&amp;t%5B55%5D%5B%5D=5481&amp;t%5B55%5D%5B%5D=5903&amp;t%5B98%5D%5B%5D=5900&amp;t%5B98%5D%5B%5D=5660&amp;t%5B98%5D%5B%5D=5591&amp;t%5B102%5D%5B%5D=5710&amp;t%5B112%5D%5B%5D=5553&amp;t%5B112%5D%5B%5D=5549&amp;t%5B112%5D%5B%5D=5554&amp;t%5B112%5D%5B%5D=5578&amp;t%5B112%5D%5B%5D=5550&amp;t%5B119%5D%5B%5D=5543&amp;t%5B277%5D%5B%5D=5595&amp;version=2">DevOps Diagram Generator | XebiaLabs</a><br /><br />相關連結：<br /><span style="color: #ffdb00;">★</span> <a href="https://coscup.org/2019/" target="_blank">COSCUP 2019 | Conference for Open Source Coders, Users, and Promoters</a><br /><span style="color: #ffdb00;">★</span> <a href="https://coscup.org/2019/programs/74c5eaa3-e026-4290-86aa-334653923c27/" target="_blank">Infra / DevOps 的養成之路與開源工具 by Max Huang x 凍仁翔 | COSCUP 2019</a><br /><span style="color: #ffdb00;">★</span> <a href="https://hackmd.io/Yhf8ByscR2-oIifd9c2IBQ" target="_blank">Infra / DevOps 的養成之路與開源工具 by Max Huang x 凍仁翔 | HackMD</a><br /><span style="color: #ffdb00;">★</span> <a href="https://speakerdeck.com/chusiang/my-devops-tour-0-dot-1" target="_blank">系統工程師的打怪升級之旅 / My DevOps Tour 0.1 | Speaker Deck</a><br /><span style="color: #ffdb00;">★</span> <a href="https://www.slideshare.net/freezejonny/my-devops-tour-01" target="_blank">系統工程師的打怪升級之旅 / My DevOps Tour 0.1 | SlideShare</a><br /><span style="color: #ffdb00;">★</span> <a href="https://www.facebook.com/groups/DevOpsTaiwan/permalink/2349958978424468/">簡報釋出時，於 DevOps Taiwan 社團的宣傳文 | Facebook</a><br /><span style="color: #ffdb00;">★</span> <a href="https://docs.google.com/presentation/d/1wF1gA_Q-cZ33nXf1YhqGIWuLy_iMcC_1XllEHEkMgAc/edit#slide=id.i0" target="_blank">2019/08/17 開源與職涯 - Infra 的養成之路與開源工具 by SakanaMax | Google 簡報</a><br /><span style="color: #ffdb00;">★</span> <a href="https://github.com/chusiang/books2read">chusiang/books2read: To read lists from my bookcases | GitHub</a><br /><span style="color: #ffdb00;">★</span> <a href="https://medium.com/kkstream/%E5%A5%BD%E6%96%87%E7%BF%BB%E8%AD%AF-%E4%BD%A0%E5%9C%A8%E6%89%BE%E7%9A%84%E6%98%AF-sre-%E9%82%84%E6%98%AF-devops-2ded43c2852" target="_blank">[好文翻譯] 你在找的是 SRE 還是 DevOps？ | KKStream</a><br /></code><br /></p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190917_my-devops-tour-0.1.html%2f&amp;text=%e7%b3%bb%e7%b5%b1%e5%b7%a5%e7%a8%8b%e5%b8%ab%e7%9a%84%e6%89%93%e6%80%aa%e5%8d%87%e7%b4%9a%e4%b9%8b%e6%97%85&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190917_my-devops-tour-0.1.html%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190917_my-devops-tour-0.1.html%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190917_my-devops-tour-0.1.html%2f&amp;title=%e7%b3%bb%e7%b5%b1%e5%b7%a5%e7%a8%8b%e5%b8%ab%e7%9a%84%e6%89%93%e6%80%aa%e5%8d%87%e7%b4%9a%e4%b9%8b%e6%97%85" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190917_my-devops-tour-0.1.html%2f&amp;title=%e7%b3%bb%e7%b5%b1%e5%b7%a5%e7%a8%8b%e5%b8%ab%e7%9a%84%e6%89%93%e6%80%aa%e5%8d%87%e7%b4%9a%e4%b9%8b%e6%97%85" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190917_my-devops-tour-0.1.html%2f&amp;title=%e7%b3%bb%e7%b5%b1%e5%b7%a5%e7%a8%8b%e5%b8%ab%e7%9a%84%e6%89%93%e6%80%aa%e5%8d%87%e7%b4%9a%e4%b9%8b%e6%97%85" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fchusiang%2f20190917_my-devops-tour-0.1.html%2f&amp;description=%e7%b3%bb%e7%b5%b1%e5%b7%a5%e7%a8%8b%e5%b8%ab%e7%9a%84%e6%89%93%e6%80%aa%e5%8d%87%e7%b4%9a%e4%b9%8b%e6%97%85" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20190907_upload-docker-image-to-github-registry-using-drone/" data-toggle="tooltip" data-placement="top" title="用 Drone 自動化上傳 Docker Image 到 GitHub Docker Registry">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://kalug.linux.org.tw/planet/slat-tw/20190926_joinup-osor.html/" data-toggle="tooltip" data-placement="top" title="Joinup OSOR 報導：台灣政府推動開放文件格式標準化">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "kalug-linux-org-tw" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://www.facebook.com/groups/kalug.tw" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalug" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/joinchat/KBcnM0F9EuVT54cda-t-yg" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://kalug.linux.org.tw/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2019
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/main.js"></script>
+<script src="https://kalug.linux.org.tw/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

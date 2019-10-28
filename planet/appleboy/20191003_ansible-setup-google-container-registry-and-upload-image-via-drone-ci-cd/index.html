@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Ansible 設定 Google Container Registry 搭配 Drone 自動上傳</title>
+  <meta property="og:title" content="Ansible 設定 Google Container Registry 搭配 Drone 自動上傳" />
+  <meta name="twitter:title" content="Ansible 設定 Google Container Registry 搭配 Drone 自動上傳" />
+  <meta name="description" content="最近剛好有需求要串接 GCR (Google Container Registry)，專案如果是搭配 GCP 服務，個人建議就直接用 GCR 了。本篇要教大家如何透過 Ansible 管理遠端機器直接登入 GCR，">
+  <meta property="og:description" content="最近剛好有需求要串接 GCR (Google Container Registry)，專案如果是搭配 GCP 服務，個人建議就直接用 GCR 了。本篇要教大家如何透過 Ansible 管理遠端機器直接登入 GCR，">
+  <meta name="twitter:description" content="最近剛好有需求要串接 GCR (Google Container Registry)，專案如果是搭配 GCP 服務，個人建議就直接用 GCR 了。本篇要教大家如何透過 Ansible 管理遠端機器直接登入 GCR，">
+  <meta name="author" content=""/>
+  <link href='https://kalug.linux.org.tw/img/kalug.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:image" content="https://kalug.linux.org.tw/img/kalug.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://kalug.linux.org.tw/planet/appleboy/20191003_ansible-setup-google-container-registry-and-upload-image-via-drone-ci-cd/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kaohsiung Linux User Group" />
+
+  <meta name="generator" content="Hugo 0.54.0" />
+  <link rel="canonical" href="https://kalug.linux.org.tw/planet/appleboy/20191003_ansible-setup-google-container-registry-and-upload-image-via-drone-ci-cd/" />
+  <link rel="alternate" href="https://kalug.linux.org.tw/index.xml" type="application/rss+xml" title="Kaohsiung Linux User Group">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://kalug.linux.org.tw/css/highlight.min.css" /><link rel="stylesheet" href="https://kalug.linux.org.tw/css/codeblock.css" />
+<script id="chatBroEmbedCode">
+ 
+function ChatbroLoader(chats,async){async=!1!==async;var params={embedChatsParameters:chats instanceof Array?chats:[chats],lang:navigator.language||navigator.userLanguage,needLoadCode:'undefined'==typeof Chatbro,embedParamsVersion:localStorage.embedParamsVersion,chatbroScriptVersion:localStorage.chatbroScriptVersion},xhr=new XMLHttpRequest;xhr.withCredentials=!0,xhr.onload=function(){eval(xhr.responseText)},xhr.onerror=function(){console.error('Chatbro loading error')},xhr.open('GET','//www.chatbro.com/embed.js?'+btoa(unescape(encodeURIComponent(JSON.stringify(params)))),async),xhr.send()}
+ 
+ChatbroLoader({encodedChatId: '62DdK'});
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=952825024850869&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-121574418-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Meetups" href="/meetups/">Meetups</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Planet" href="/planet/">Planet</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Pages</a>
+              <div class="navlinks-children">
+                
+                  <a href="/pages/sig">Special Interest Group</a>
+                
+                  <a href="/pages/devices">Useful Devices</a>
+                
+                  <a href="/pages/life">Kaohsiung Life</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">About</a>
+              <div class="navlinks-children">
+                
+                  <a href="/about/us">us</a>
+                
+                  <a href="/about/sponsors">Sponsors</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Kaohsiung Linux User Group" href="https://kalug.linux.org.tw">
+            <img class="avatar-img" src="https://kalug.linux.org.tw/img/kalug.png" alt="Kaohsiung Linux User Group" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="blog-heading">
+              <h1>Ansible 設定 Google Container Registry 搭配 Drone 自動上傳</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p><p><img src="https://lh3.googleusercontent.com/mese3VEnyNElOz7iL-z3w0nxM4PcNjC6lfPWxLbPrHTFr3PvKeyxGwIxTXoRztpidxN7gX8WlRtzBsfxkOVb_Pt-jEwCbZtYDD3l0DLeBger7XaC40XVyPUgAyT6yU_FdqJeAUCSQik=w1920-h1080" alt="blog logo" /></p><br />
+<p>最近剛好有需求要串接 <a href="https://cloud.google.com/container-registry/">GCR</a> (Google Container Registry)，專案如果是搭配 GCP 服務，個人建議就直接用 GCR 了。本篇要教大家如何透過 Ansible 管理遠端機器直接登入 GCR，透過特定的帳號可以直接拉 Image，接著用 <a href="https://docs.docker.com/compose/">docker-compose</a> 來重新起動服務，這算是最基本的部署流程，那該如何用 <a href="https://www.ansible.com/">Ansible</a> 登入呢？請看底下教學。</p><br />
+<span id="more-7474"></span><br />
+<h2>使用 ansible docker_login 模組</h2><br />
+<p>Google 提供了<a href="https://cloud.google.com/container-registry/docs/advanced-authentication?hl=zh-tw">好幾種方式</a>來登入 Docker Registry 服務，本篇使用『<a href="https://cloud.google.com/container-registry/docs/advanced-authentication?hl=zh-tw#json_key_file">JSON 金鑰檔案</a>』方式來長期登入專案，開發者會拿到一個 JSON 檔案，在本機電腦可以透過底下指令登入:</p><br />
+<pre><code class="language-bash">cat keyfile.json | docker login <br />
+  -u _json_key <br />
+  &ndash;password-stdin <br />
+  https://[HOSTNAME]</code></pre><br />
+<p>如果沒有支援 <code>password-stdin</code> 則可以使用底下:</p><br />
+<pre><code class="language-bash">docker login -u _json_key <br />
+  -p &quot;$(cat keyfile.json)&quot; <br />
+  https://[HOSTNAME]</code></pre><br />
+<p>請注意這邊的使用者帳號統一都是使用 <code>_json_key</code>，而在 Ansible 則是使用 <a href="https://docs.ansible.com/ansible/latest/modules/docker_login_module.html">docker_login</a> 模組</p><br />
+<pre><code class="language-yaml">- name: Log into GCR private registry and force re-authorization<br />
+  docker_login:<br />
+    registry: &quot;<a href="https://asia.gcr.io&quot;">https://asia.gcr.io&quot;</a><br />
+    username: &quot;_json_key&quot;<br />
+    password: &quot;{{ lookup(&#039;template&#039;, &#039;gcr.json&#039;, convert_data=False) | string }}&quot;<br />
+    config_path: &quot;{{ deploy_home_dir }}/.docker/config.json&quot;<br />
+    reauthorize: yes</code></pre><br />
+<p>注意 <code>password</code> 欄位，請將 <code>gcr.json</code> 放置在 <code>role/templates</code> 目錄，透過 lookup 方式並轉成 string 才可以正常登入，網路上有解法說需要在 <code>password</code> 前面加上一個空白才可以登入成功，詳細情況可以<a href="https://stackoverflow.com/questions/57260374/docker-login-to-gce-using-ansible-docker-login-and-json-key">參考這篇</a>。</p><br />
+<h2>使用 Drone 自動化上傳 Image</h2><br />
+<p>講 Drone 之前，我們先來看看 GitLab 怎麼上傳，其實也不難:</p><br />
+<pre><code class="language-yaml">cloudbuild:<br />
+  stage: deploy<br />
+  image: google/cloud-sdk<br />
+  services:<br />
+    - docker:dind<br />
+  dependencies:<br />
+    - build<br />
+  script:<br />
+    - echo &quot;$GCP_SERVICE_KEY&quot; &gt; gcloud-service-key.json<br />
+    - gcloud auth activate-service-account &ndash;key-file gcloud-service-key.json<br />
+    - gcloud config set project $GCP_PROJECT_ID<br />
+    - gcloud builds submit . &ndash;config=cloudbuild.yaml &ndash;substitutions _IMAGE_NAME=$PROJECT_NAME,_VERSION=$VERSION<br />
+  only:<br />
+    - release</code></pre><br />
+<p>透過 <a href="https://cloud.google.com/sdk/gcloud/?hl=zh-tw">gcloud</a> 就可以快速自動上傳。而使用 Drone 設定也是很簡單:</p><br />
+<pre><code class="language-yaml">- name: publish<br />
+  pull: always<br />
+  image: plugins/docker<br />
+  settings:<br />
+    auto_tag: true<br />
+    auto_tag_suffix: linux-amd64<br />
+    registry: asia.gcr.io<br />
+    cache_from: asia.gcr.io/project_id/image_name<br />
+    daemon_off: false<br />
+    dockerfile: docker/ponyo/Dockerfile.linux.amd64<br />
+    repo: asia.gcr.io/project_id/image_name<br />
+    username:<br />
+      from_secret: docker_username<br />
+    password:<br />
+      from_secret: docker_password<br />
+  when:<br />
+    event:<br />
+      exclude:<br />
+      - pull_request</code></pre><br />
+<p>其中 <code>password</code> 可以透過後台將 json 資料寫入。這邊有幾個重要功能列給大家參考</p><br />
+<ul><br />
+<li>使用 <code>cache_from</code> 加速</li><br />
+<li>使用 <code>auto_tag</code> 快速部署標籤</li><br />
+</ul><br />
+<p>這兩項分別用在什麼地方，<code>cache_from</code> 可以直接看我之前寫過的一篇『<a href="https://blog.wu-boy.com/2019/02/using-cache-from-can-speed-up-your-docker-builds">在 docker-in-docker 環境中使用 cache-from 提升編譯速度</a>』裡面蠻詳細介紹，並且有影片。而 auto_tag 最大的好處是在 release 開源專案 Image，只要你的 tag 有按照標準格式，像是如果是打 <code>v1.0.1</code> 這時候 Drone 會分別產生三個 Image: <code>1</code>, <code>1.0</code>, <code>1.0.1</code>，下次又 release <code>v1.0.2</code>，這時候 <code>1.0</code> 就會指向 <code>1.0.2</code>，類似這樣以此類推，方便其他使用者抓取 Image。這是在其他像是 GitLab 無法做到，應該說不是無法做到，而是變成要自己寫 script 才能做到。</p><br />
+<h2>教學影片</h2><br />
+<p>底下是教您如何使用 docker cache 機制，如果你的 Image 特別大，像是有包含 Linux SDK 之類的，就真的用 cache 會比較快喔。</p><br />
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Taa6QkStg78" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br />
+<p>歡迎訂閱我的 Youtube 頻道: <a href="http://bit.ly/youtube-boy">http://bit.ly/youtube-boy</a></p><br />
+<p>更多實戰影片可以參考我的 Udemy 教學系列</p><br />
+<ul><br />
+<li>Go 語言實戰課程: <a href="http://bit.ly/golang-2019">http://bit.ly/golang-2019</a></li><br />
+<li>Drone CI/CD 自動化課程: <a href="http://bit.ly/drone-2019">http://bit.ly/drone-2019</a></li><br />
+</ul><br />
+<div class="wp_rp_wrap  wp_rp_plain" ><div class="wp_rp_content"><h3 class="related_post_title">Related View</h3><ul class="related_post wp_rp"><li data-position="0" data-poid="in-7263" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/02/using-cache-from-can-speed-up-your-docker-builds/" class="wp_rp_title">在 docker-in-docker 環境中使用 cache-from 提升編譯速度</a><small class="wp_rp_comments_count"> (5)</small><br /></li><li data-position="1" data-poid="in-6745" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/06/trigger-gitlab-ci-or-jenkins-using-drone/" class="wp_rp_title">Drone 自動觸發 GitLab CI 或 Jenkins 任務</a><small class="wp_rp_comments_count"> (4)</small><br /></li><li data-position="2" data-poid="in-7458" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/09/upload-docker-image-to-github-registry-using-drone/" class="wp_rp_title">用 Drone 自動化上傳 Docker Image 到 GitHub Docker Registry</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="3" data-poid="in-7446" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/08/install-drone-with-gitlab-in-10-minutes/" class="wp_rp_title">用 10 分鐘安裝好 Drone 搭配 GitLab</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="4" data-poid="in-6945" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/01/introduction-to-drone-cicd/" class="wp_rp_title">Drone CI/CD 系統簡介</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="5" data-poid="in-7120" data-post-type="none" ><a href="https://blog.wu-boy.com/2018/11/install-drone-in-single-machine/" class="wp_rp_title">Drone 支援單機版安裝 (內附影片)</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="6" data-poid="in-6739" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/06/how-to-schedule-builds-in-drone/" class="wp_rp_title">Cronjob 搭配 Drone 服務</a><small class="wp_rp_comments_count"> (1)</small><br /></li><li data-position="7" data-poid="in-7298" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/03/setup-traefik-with-drone-ci-cd-in-ten-minutes/" class="wp_rp_title">10 分鐘內用 Traefik 架設 Drone 搭配 GitHub 服務</a><small class="wp_rp_comments_count"> (0)</small><br /></li><li data-position="8" data-poid="in-6804" data-post-type="none" ><a href="https://blog.wu-boy.com/2017/09/why-i-choose-drone-as-ci-cd-tool/" class="wp_rp_title">為什麼我用 Drone 取代 Jenkins 及 GitLab CI</a><small class="wp_rp_comments_count"> (10)</small><br /></li><li data-position="9" data-poid="in-7193" data-post-type="none" ><a href="https://blog.wu-boy.com/2019/01/deploy-service-using-traefik-and-docker/" class="wp_rp_title">用 Traefik 搭配 Docker 快速架設服務</a><small class="wp_rp_comments_count"> (1)</small><br /></li></ul></div></div></p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20191003_ansible-setup-google-container-registry-and-upload-image-via-drone-ci-cd%2f&amp;text=Ansible%20%e8%a8%ad%e5%ae%9a%20Google%20Container%20Registry%20%e6%90%ad%e9%85%8d%20Drone%20%e8%87%aa%e5%8b%95%e4%b8%8a%e5%82%b3&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20191003_ansible-setup-google-container-registry-and-upload-image-via-drone-ci-cd%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20191003_ansible-setup-google-container-registry-and-upload-image-via-drone-ci-cd%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20191003_ansible-setup-google-container-registry-and-upload-image-via-drone-ci-cd%2f&amp;title=Ansible%20%e8%a8%ad%e5%ae%9a%20Google%20Container%20Registry%20%e6%90%ad%e9%85%8d%20Drone%20%e8%87%aa%e5%8b%95%e4%b8%8a%e5%82%b3" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20191003_ansible-setup-google-container-registry-and-upload-image-via-drone-ci-cd%2f&amp;title=Ansible%20%e8%a8%ad%e5%ae%9a%20Google%20Container%20Registry%20%e6%90%ad%e9%85%8d%20Drone%20%e8%87%aa%e5%8b%95%e4%b8%8a%e5%82%b3" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20191003_ansible-setup-google-container-registry-and-upload-image-via-drone-ci-cd%2f&amp;title=Ansible%20%e8%a8%ad%e5%ae%9a%20Google%20Container%20Registry%20%e6%90%ad%e9%85%8d%20Drone%20%e8%87%aa%e5%8b%95%e4%b8%8a%e5%82%b3" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkalug.linux.org.tw%2fplanet%2fappleboy%2f20191003_ansible-setup-google-container-registry-and-upload-image-via-drone-ci-cd%2f&amp;description=Ansible%20%e8%a8%ad%e5%ae%9a%20Google%20Container%20Registry%20%e6%90%ad%e9%85%8d%20Drone%20%e8%87%aa%e5%8b%95%e4%b8%8a%e5%82%b3" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://kalug.linux.org.tw/planet/slat-tw/20190928_koha-library-system.html/" data-toggle="tooltip" data-placement="top" title="新台幣三千元左右就能建置一套圖書館管理系統">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20191010_three-ways-to-setup-docker-user-and-group/" data-toggle="tooltip" data-placement="top" title="在 Docker 內設定使用者及群組權限的三種方式">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "kalug-linux-org-tw" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://www.facebook.com/groups/kalug.tw" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalug" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/joinchat/KBcnM0F9EuVT54cda-t-yg" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://kalug.linux.org.tw/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;
+          2019
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://kalug.linux.org.tw">Kaohsiung Linux User Group</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/main.js"></script>
+<script src="https://kalug.linux.org.tw/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://kalug.linux.org.tw/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+
