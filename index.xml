@@ -5,10 +5,235 @@
     <link>https://kalug.linux.org.tw/</link>
     <description>Recent content on Kaohsiung Linux User Group</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 02 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 20 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kalug.linux.org.tw/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Drone CI/CD 支援 Auto cancellation 機制</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20191020_auto-cancellation-in-drone-ci-cd/</link>
+      <pubDate>Sun, 20 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20191020_auto-cancellation-in-drone-ci-cd/</guid>
+      <description>大家一定會問什麼是『Auto cancellation』呢？中文翻作自動取消，這機制會用在 CI/CD 的哪個流程或步驟呢？我們先來探討一個情境，不知道大</description>
+    </item>
+    
+    <item>
+      <title>用 Go 語言實作 Job Queue 機制</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20191019_job-queue-in-golang/</link>
+      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20191019_job-queue-in-golang/</guid>
+      <description>很高興可以在 Mopcon 分享『用 Go 語言實現 Job Queue 機制』，透過簡單的 goroutine 跟 channel 就可以實現簡單 Queue 機制，並且限制同時可以執行多少個 Job，才不會讓系統超載。最後透</description>
+    </item>
+    
+    <item>
+      <title>Kobo 社群小聚 1st x Kobo Libra H2O 介紹</title>
+      <link>https://kalug.linux.org.tw/planet/chusiang/20191010_kobo-meetup-1st-x-kobo-libra-h2o-intro.html/</link>
+      <pubDate>Thu, 10 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/chusiang/20191010_kobo-meetup-1st-x-kobo-libra-h2o-intro.html/</guid>
+      <description>2019/10/07 是凍仁受邀 Kobo 台灣公司 (底下簡稱 K 社) 三週年開辦第 1 屆 Kobo 社群小聚的日子，也是團隊週期性上版 (release) 的日子。感謝團隊伙伴和家人，讓在下可以安心地參加</description>
+    </item>
+    
+    <item>
+      <title>在 Docker 內設定使用者及群組權限的三種方式</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20191010_three-ways-to-setup-docker-user-and-group/</link>
+      <pubDate>Thu, 10 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20191010_three-ways-to-setup-docker-user-and-group/</guid>
+      <description>如果平常本身有在玩 Docker 的開發者肯定知道透過 docker command 啟動的容器預設是使用 root 來當作預設使用者及群組，這邊會遇到一個問題，當 Host 環境你有 root 權限就沒有此問題</description>
+    </item>
+    
+    <item>
+      <title>Ansible 設定 Google Container Registry 搭配 Drone 自動上傳</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20191003_ansible-setup-google-container-registry-and-upload-image-via-drone-ci-cd/</link>
+      <pubDate>Thu, 03 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20191003_ansible-setup-google-container-registry-and-upload-image-via-drone-ci-cd/</guid>
+      <description>最近剛好有需求要串接 GCR (Google Container Registry)，專案如果是搭配 GCP 服務，個人建議就直接用 GCR 了。本篇要教大家如何透過 Ansible 管理遠端機器直接登入 GCR，</description>
+    </item>
+    
+    <item>
+      <title>新台幣三千元左右就能建置一套圖書館管理系統</title>
+      <link>https://kalug.linux.org.tw/planet/slat-tw/20190928_koha-library-system.html/</link>
+      <pubDate>Sat, 28 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/slat-tw/20190928_koha-library-system.html/</guid>
+      <description>今日自由軟體社群前輩，已退休的毛慶禎教授分享了這一個案例，滿值得大家參考。當然不是要大家都去建一套圖書館管理系統；但是這個案例也跟協會理事長</description>
+    </item>
+    
+    <item>
+      <title>Joinup OSOR 報導：台灣政府推動開放文件格式標準化</title>
+      <link>https://kalug.linux.org.tw/planet/slat-tw/20190926_joinup-osor.html/</link>
+      <pubDate>Thu, 26 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/slat-tw/20190926_joinup-osor.html/</guid>
+      <description>前言：Joinup 是由歐盟委員會所建立的協作平台，由歐盟透過ISA2 計劃提供資金運作。主要內容包括針對歐盟運作提供觀察、批評與建議。其中「開</description>
+    </item>
+    
+    <item>
+      <title>系統工程師的打怪升級之旅</title>
+      <link>https://kalug.linux.org.tw/planet/chusiang/20190917_my-devops-tour-0.1.html/</link>
+      <pubDate>Tue, 17 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/chusiang/20190917_my-devops-tour-0.1.html/</guid>
+      <description>從大學畢業、進入職場，經歷 SI、IT、RD &amp;hellip; 等許多角色，凍仁目前最喜歡的是「系統工程師 (System Engineer)」這個稱號，而〈系統工程師的打怪升</description>
+    </item>
+    
+    <item>
+      <title>用 Drone 自動化上傳 Docker Image 到 GitHub Docker Registry</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20190907_upload-docker-image-to-github-registry-using-drone/</link>
+      <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20190907_upload-docker-image-to-github-registry-using-drone/</guid>
+      <description>很高興收到 GitHub 的 Beta 邀請函來開始試用 GitHub Package Registry 相關功能，從說明文件可以知道目前 Registry 支援了好幾種 Package 像是 npm, gem, docker, mvn 及 nuget，這篇主要跟大家介紹如何用 Drone 快</description>
+    </item>
+    
+    <item>
+      <title>Go 語言目錄結構與實踐</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20190831_golang-project-layout-and-practice/</link>
+      <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20190831_golang-project-layout-and-practice/</guid>
+      <description>很高興今年錄取 Modernweb 講師，又有機會去宣傳 Go 語言，這次的議程最主要跟大家介紹 Go 專案的目錄該如何設計，一個基本的專案該需要有哪些功能，以及如何實現。</description>
+    </item>
+    
+    <item>
+      <title>用 10 分鐘安裝好 Drone 搭配 GitLab</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20190823_install-drone-with-gitlab-in-10-minutes/</link>
+      <pubDate>Fri, 23 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20190823_install-drone-with-gitlab-in-10-minutes/</guid>
+      <description>如果你沒在使用 GitLab CI，那可以來嘗試看看 Drone CI/CD，用不到 10 分鐘就可以快速架設好 Drone，並且上傳一個 .drone.yml 並且開啟第一個部署或測試流程，安裝</description>
+    </item>
+    
+    <item>
+      <title>【2019 LibreOffice 亞洲論壇報導】第一篇：不用錢的自由軟體，如何默默耕耘出商業生態系</title>
+      <link>https://kalug.linux.org.tw/planet/slat-tw/20190820_2019-libreoffice-asia-conf-report1.html/</link>
+      <pubDate>Tue, 20 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/slat-tw/20190820_2019-libreoffice-asia-conf-report1.html/</guid>
+      <description>前言：2019 年五月底，史上第一次以亞洲區國家為主的 LibreOffice 亞洲論壇在東京舉行。目前就讀台大，同時也任職於開放文化基金會擔任記者的林冠廷，受邀參加</description>
+    </item>
+    
+    <item>
+      <title>【2019 LibreOffice 亞洲論壇報導】第二篇：你電腦裝的軟體，為什麼可以影響國家主體性？</title>
+      <link>https://kalug.linux.org.tw/planet/slat-tw/20190820_2019-libreoffice-asia-conf-report2.html/</link>
+      <pubDate>Tue, 20 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/slat-tw/20190820_2019-libreoffice-asia-conf-report2.html/</guid>
+      <description>前言：2019 年五月底，史上第一次以亞洲區國家為主的 LibreOffice 亞洲論壇在東京舉行。目前就讀台大，同時也任職於開放文化基金會擔任記者的林冠廷，受邀參加</description>
+    </item>
+    
+    <item>
+      <title>Minio 從 Docker 容器移除 healthcheck 腳本</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20190818_minio-remove-healthcheck-script-for-docker-image/</link>
+      <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20190818_minio-remove-healthcheck-script-for-docker-image/</guid>
+      <description>Minio 是一套開源專案的 Object 儲存容器，如果你有使用 AWS S3，相信要找一套代替 S3 的替代品，一定會想到這套用 Go 語言開發的 Minio 專案。讓您在公司內部也可以享有 S3</description>
+    </item>
+    
+    <item>
+      <title>[Drone] 將單一 Job 分配到多台機器，降低部署執行時間</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20190805_drone-multiple-machine/</link>
+      <pubDate>Mon, 05 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20190805_drone-multiple-machine/</guid>
+      <description>在傳統 CI/CD 流程，都是會在同一台機器上進行，所以當有一個 Job 吃了很大的資源時，其他工作都必須等待該 Job 執行完畢，釋放出資源後，才可以繼續進行。現在 Drone</description>
+    </item>
+    
+    <item>
+      <title>從「計畫外工作」看 PDCA</title>
+      <link>https://kalug.linux.org.tw/planet/chusiang/20190804_see-pdca-from-recovery-work.html/</link>
+      <pubDate>Sun, 04 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/chusiang/20190804_see-pdca-from-recovery-work.html/</guid>
+      <description>計畫外工作 (recovery work)，源自《鳳凰專案》一書的四種工作類型，又稱之為例外 (outage) 和救火工作。它是四種工作中最容易被忽視，且殺傷力最強的。一旦計畫外</description>
+    </item>
+    
+    <item>
+      <title>透過 Drone CLI 手動觸發 CI/CD 流程</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20190730_trigger-the-drone-job-via-promotion/</link>
+      <pubDate>Tue, 30 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20190730_trigger-the-drone-job-via-promotion/</guid>
+      <description>相信大家對於 Drone 並不陌生，這次來介紹 Drone 1.0 的新功能 (更多的 1.0 功能會陸續介紹，也可以參考之前的文章)，叫做 promotion，為什麼作者會推出這功</description>
+    </item>
+    
+    <item>
+      <title>架設 Go Proxy 服務加速 go module 下載速度</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20190710_speed-up-go-module-download-using-go-proxy-athens/</link>
+      <pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20190710_speed-up-go-module-download-using-go-proxy-athens/</guid>
+      <description>Go 語言在 1.11 推出 go module 來統一市面上不同管理 Go 套件的工具，像是 dep 或 govendor 等，還不知道如何使用 go module，可以參考之前寫的一篇文章『Go Module 導入到專案</description>
+    </item>
+    
+    <item>
+      <title>用 Ansible 安裝 Drone CI/CD 開源專案</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20190617_install-drone-ci-cd-using-ansible/</link>
+      <pubDate>Mon, 17 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20190617_install-drone-ci-cd-using-ansible/</guid>
+      <description>相信大家對於 Drone 開源專案並不陌生，如果對於 Drone 不了解的朋友們，可以直接看之前寫的系列文章，本篇要教大家如何使用 Ansible 來安裝 Drone CI/CD 開源專案。目前 Drone 可以支</description>
+    </item>
+    
+    <item>
+      <title>Go Module 如何發佈 v2 以上版本</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20190607_how-to-release-the-v2-or-higher-version-in-go-module/</link>
+      <pubDate>Fri, 07 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20190607_how-to-release-the-v2-or-higher-version-in-go-module/</guid>
+      <description>Go Module 是 Golang 推出的一套件管理系統，在 Go 1.11 推出後，許多 Package 也都陸續支援 Go Module 取代舊有的套件管理系統，像是 govendor 或 dep 等，而再過不久之後，保留 vendor 的方式也會被移</description>
+    </item>
+    
+    <item>
+      <title>見樹又見林的系統思考</title>
+      <link>https://kalug.linux.org.tw/planet/chusiang/20190530_systems-thinking-the-forest-and-the-tree.html/</link>
+      <pubDate>Thu, 30 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/chusiang/20190530_systems-thinking-the-forest-and-the-tree.html/</guid>
+      <description>正式入門系統思考 (Systems Thinking) 不到一年的凍仁，在 05/16-17 的 Agile Summit 2019，投了場閃電秀，用超過 5 分鐘的時間簡單地介紹何為系統思考。 系統思考，又稱之為系統思維和</description>
+    </item>
+    
+    <item>
+      <title>從台鐵售票系統看 Public Money Public Code 的必要性</title>
+      <link>https://kalug.linux.org.tw/planet/slat-tw/20190523_public-money-public-code.html/</link>
+      <pubDate>Thu, 23 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/slat-tw/20190523_public-money-public-code.html/</guid>
+      <description>*Public Money, Public Code (PMPC):&amp;nbsp;用納稅人的錢所製作的軟體系統，應該要開放源碼供大眾檢驗並再利用。 五月份是報綜合所得稅的季節，每逢這時期想必</description>
+    </item>
+    
+    <item>
+      <title>GitHub 推出 CI/CD 服務 Actions 之踩雷經驗</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20190521_introduction-to-github-actions/</link>
+      <pubDate>Tue, 21 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20190521_introduction-to-github-actions/</guid>
+      <description>今年很高興又去 Cloud Summit 研討會給一場議程『初探 GitHub 自動化流程工具 Actions』，這場議程沒有講很多如何使用 GitHub Actions，反倒是講了很多設計上的</description>
+    </item>
+    
+    <item>
+      <title>15 分鐘學習 Go 語言如何處理多個 Channel 通道</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20190513_handle-multiple-channel-in-15-minutes/</link>
+      <pubDate>Mon, 13 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20190513_handle-multiple-channel-in-15-minutes/</guid>
+      <description>大家在初學 Go 語言時，肯定很少用到 Go Channel，也不太確定使用的時機點，其實在官方 Blog 有提供一篇不錯的文章『Go Concurrency Patterns: Pipelines and cancellati</description>
+    </item>
+    
+    <item>
+      <title>[Go 語言教學影片] 在 struct 內的 pointers 跟 values 差異</title>
+      <link>https://kalug.linux.org.tw/planet/appleboy/20190506_what-is-different-between-pointer-and-value-in-golang/</link>
+      <pubDate>Mon, 06 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/planet/appleboy/20190506_what-is-different-between-pointer-and-value-in-golang/</guid>
+      <description>Struct Method 在 Go 語言開發上是一個很重大的功能，而新手在接觸這塊時，通常會搞混為什麼會在 function 內的 struct name 前面多一個 * pointer 符號，而有時候又沒有看到呢？以及如何用</description>
+    </item>
     
     <item>
       <title>〈系統思考培訓工作坊 Lv1〉與「中級學徒」</title>
@@ -533,12 +758,12 @@
     </item>
     
     <item>
-      <title>Install the Vim 8.0 and YouCompleteMe with Make on CentOS 7.4</title>
+      <title>Install the Vim 8.0 and YouCompleteMe with Make on CentOS 7.3</title>
       <link>https://kalug.linux.org.tw/planet/chusiang/20180319_install-vim-80-and-youcompleteme-with.html/</link>
       <pubDate>Mon, 19 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kalug.linux.org.tw/planet/chusiang/20180319_install-vim-80-and-youcompleteme-with.html/</guid>
-      <description>As a vimmer, I want to complete and install the Vim 7.4.1578+ at ~/.local , so than I can use the YouCompleteMe plugin on CentOS 7.4. ▲ The Vim 8.0.1522 on CentOS 7.4.1611. Install the Vim 8.0 with Make1. Install the necessary package. [ jonny@centos7 ~ ] $ sudo yum install gcc-c++ ncurses-devel python-devel 2. Get the source code of Vim. [ jonny@centos7 ~ ] $ git clone https://github.com/vim/vim.git 3.</description>
+      <description>As a vimmer, I want to complete and install the Vim 7.4.1578+ at ~/.local , so than I can use the YouCompleteMe plugin on CentOS 7.3. ▲ The Vim 8.0.1522 on CentOS 7.3.1611. Install the Vim 8.0 with Make1. Install the necessary package. [ jonny@centos7 ~ ] $ sudo yum install gcc-c++ ncurses-devel python-devel 2. Get the source code of Vim. [ jonny@centos7 ~ ] $ git clone https://github.com/vim/vim.git 3.</description>
     </item>
     
     <item>
@@ -785,7 +1010,7 @@
     </item>
     
     <item>
-      <title>DevOps 人一定要知道的持續交付技巧 - Ansible &amp; GitLab CI 實戰演練</title>
+      <title>DevOps 人一定要知道的持續交付技巧 - Ansible &amp; GitLab CI 實戰演練工作坊</title>
       <link>https://kalug.linux.org.tw/planet/chusiang/20171112_continuous-delivery-workshop-with-ansible-x-gitlab-ci.html/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       

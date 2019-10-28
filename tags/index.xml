@@ -5,9 +5,19 @@
     <link>https://kalug.linux.org.tw/tags/</link>
     <description>Recent content in Tags on Kaohsiung Linux User Group</description>
     <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 20 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://kalug.linux.org.tw/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kalug</title>
+      <link>https://kalug.linux.org.tw/tags/kalug/</link>
+      <pubDate>Sun, 20 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://kalug.linux.org.tw/tags/kalug/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

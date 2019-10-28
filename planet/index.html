@@ -209,8 +209,8 @@ if (!doNotTrack) {
         <div class="posts-list">
           
             <article class="post-preview">
-              <a href="https://kalug.linux.org.tw/planet/chusiang/20190402_systems-thinking-training-lv1-intermediate-apprentice.html/">
-                <h2 class="post-title">〈系統思考培訓工作坊 Lv1〉與「中級學徒」</h2>
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20191020_auto-cancellation-in-drone-ci-cd/">
+                <h2 class="post-title">Drone CI/CD 支援 Auto cancellation 機制</h2>
 
                 
               </a>
@@ -219,10 +219,10 @@ if (!doNotTrack) {
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp; 凍仁翔 Posted on April 2, 2019
+  <i class="fa fa-calendar-o"></i>&nbsp; AppleBoy Posted on October 20, 2019
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 6 minutes (2976 words)
+  <i class="fa fa-clock-o"></i> 2 minutes (724 words)
   
   
 </span>
@@ -231,18 +231,16 @@ if (!doNotTrack) {
               </p>
               <div class="post-entry">
                 
-                  知曉系統思考 (Systems Thinking) 至今兩年的凍仁，雖早在半年前入門這項技藝，但為了更快、更有效地的學習，在敏捷老司機 James Wang 的介紹，報名了 2019/03/15-16 的〈系統思考培訓工作坊
-                  <a href="https://kalug.linux.org.tw/planet/chusiang/20190402_systems-thinking-training-lv1-intermediate-apprentice.html/" class="post-read-more">[Read More]</a>
+                  大家一定會問什麼是『Auto cancellation』呢？中文翻作自動取消，這機制會用在 CI/CD 的哪個流程或步驟呢？我們先來探討一個情境，不知道大
+                  <a href="https://kalug.linux.org.tw/planet/appleboy/20191020_auto-cancellation-in-drone-ci-cd/" class="post-read-more">[Read More]</a>
                 
               </div>
-
-              
 
             </article>
           
             <article class="post-preview">
-              <a href="https://kalug.linux.org.tw/planet/appleboy/20190322_setup-traefik-with-drone-ci-cd-in-ten-minutes/">
-                <h2 class="post-title">10 分鐘內用 Traefik 架設 Drone 搭配 GitHub 服務</h2>
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20191019_job-queue-in-golang/">
+                <h2 class="post-title">用 Go 語言實作 Job Queue 機制</h2>
 
                 
               </a>
@@ -251,7 +249,97 @@ if (!doNotTrack) {
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp; AppleBoy Posted on March 22, 2019
+  <i class="fa fa-calendar-o"></i>&nbsp; AppleBoy Posted on October 19, 2019
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (436 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  很高興可以在 Mopcon 分享『用 Go 語言實現 Job Queue 機制』，透過簡單的 goroutine 跟 channel 就可以實現簡單 Queue 機制，並且限制同時可以執行多少個 Job，才不會讓系統超載。最後透
+                  <a href="https://kalug.linux.org.tw/planet/appleboy/20191019_job-queue-in-golang/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://kalug.linux.org.tw/planet/chusiang/20191010_kobo-meetup-1st-x-kobo-libra-h2o-intro.html/">
+                <h2 class="post-title">Kobo 社群小聚 1st x Kobo Libra H2O 介紹</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp; 凍仁翔 Posted on October 10, 2019
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 6 minutes (2886 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  2019/10/07 是凍仁受邀 Kobo 台灣公司 (底下簡稱 K 社) 三週年開辦第 1 屆 Kobo 社群小聚的日子，也是團隊週期性上版 (release) 的日子。感謝團隊伙伴和家人，讓在下可以安心地參加
+                  <a href="https://kalug.linux.org.tw/planet/chusiang/20191010_kobo-meetup-1st-x-kobo-libra-h2o-intro.html/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20191010_three-ways-to-setup-docker-user-and-group/">
+                <h2 class="post-title">在 Docker 內設定使用者及群組權限的三種方式</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp; AppleBoy Posted on October 10, 2019
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 2 minutes (624 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  如果平常本身有在玩 Docker 的開發者肯定知道透過 docker command 啟動的容器預設是使用 root 來當作預設使用者及群組，這邊會遇到一個問題，當 Host 環境你有 root 權限就沒有此問題
+                  <a href="https://kalug.linux.org.tw/planet/appleboy/20191010_three-ways-to-setup-docker-user-and-group/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20191003_ansible-setup-google-container-registry-and-upload-image-via-drone-ci-cd/">
+                <h2 class="post-title">Ansible 設定 Google Container Registry 搭配 Drone 自動上傳</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp; AppleBoy Posted on October 3, 2019
   
   &nbsp;|&nbsp;
   <i class="fa fa-clock-o"></i> 2 minutes (992 words)
@@ -263,18 +351,16 @@ if (!doNotTrack) {
               </p>
               <div class="post-entry">
                 
-                  這標題也許有點誇張，但是如果實際操作一次，肯定可以在 10 分鐘內操作完成。本篇來教大家如何用 Traefik 當作前端 Proxy，後端搭配 Drone 服務接 GitHub，
-                  <a href="https://kalug.linux.org.tw/planet/appleboy/20190322_setup-traefik-with-drone-ci-cd-in-ten-minutes/" class="post-read-more">[Read More]</a>
+                  最近剛好有需求要串接 GCR (Google Container Registry)，專案如果是搭配 GCP 服務，個人建議就直接用 GCR 了。本篇要教大家如何透過 Ansible 管理遠端機器直接登入 GCR，
+                  <a href="https://kalug.linux.org.tw/planet/appleboy/20191003_ansible-setup-google-container-registry-and-upload-image-via-drone-ci-cd/" class="post-read-more">[Read More]</a>
                 
               </div>
-
-              
 
             </article>
           
             <article class="post-preview">
-              <a href="https://kalug.linux.org.tw/planet/appleboy/20190309_gitea-support-oauth-provider/">
-                <h2 class="post-title">開源專案 Gitea 支援 OAuth Provider</h2>
+              <a href="https://kalug.linux.org.tw/planet/slat-tw/20190928_koha-library-system.html/">
+                <h2 class="post-title">新台幣三千元左右就能建置一套圖書館管理系統</h2>
 
                 
               </a>
@@ -283,10 +369,10 @@ if (!doNotTrack) {
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp; AppleBoy Posted on March 9, 2019
+  <i class="fa fa-calendar-o"></i>&nbsp; 軟體自由運動部落格 Posted on September 28, 2019
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (712 words)
+  <i class="fa fa-clock-o"></i> 2 minutes (602 words)
   
   
 </span>
@@ -295,18 +381,16 @@ if (!doNotTrack) {
               </p>
               <div class="post-entry">
                 
-                  很高興看到 Gitea 正式支援 OAuth Provider 了，此功能經歷了四個月終於正式合併進 master 分支，預計會在 1.8 版本釋出，由於此功能已經進 master，這樣我們就可以把原本 Drone
-                  <a href="https://kalug.linux.org.tw/planet/appleboy/20190309_gitea-support-oauth-provider/" class="post-read-more">[Read More]</a>
+                  今日自由軟體社群前輩，已退休的毛慶禎教授分享了這一個案例，滿值得大家參考。當然不是要大家都去建一套圖書館管理系統；但是這個案例也跟協會理事長
+                  <a href="https://kalug.linux.org.tw/planet/slat-tw/20190928_koha-library-system.html/" class="post-read-more">[Read More]</a>
                 
               </div>
-
-              
 
             </article>
           
             <article class="post-preview">
-              <a href="https://kalug.linux.org.tw/planet/chusiang/20190226_fixed-boshiamy-ime-v2.6.4-oops-error-on-android-8.0.html/">
-                <h2 class="post-title">解決「嘸蝦米輸入法 v2.6.4」未預期中止問題 on Android 8.0</h2>
+              <a href="https://kalug.linux.org.tw/planet/slat-tw/20190926_joinup-osor.html/">
+                <h2 class="post-title">Joinup OSOR 報導：台灣政府推動開放文件格式標準化</h2>
 
                 
               </a>
@@ -315,10 +399,10 @@ if (!doNotTrack) {
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp; 凍仁翔 Posted on February 26, 2019
+  <i class="fa fa-calendar-o"></i>&nbsp; 軟體自由運動部落格 Posted on September 26, 2019
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (965 words)
+  <i class="fa fa-clock-o"></i> 8 minutes (3550 words)
   
   
 </span>
@@ -327,18 +411,16 @@ if (!doNotTrack) {
               </p>
               <div class="post-entry">
                 
-                  嘸蝦米 (Boshiamy IME) Android 版，自從 2019/02/18 釋出 v2.6.4 後，除造成不少 Android 用戶無法正常使用嘸蝦米，還會一直跳出「未預期中止的錯誤訊息」視窗阻礙操作。相信部份使用者，正因如
-                  <a href="https://kalug.linux.org.tw/planet/chusiang/20190226_fixed-boshiamy-ime-v2.6.4-oops-error-on-android-8.0.html/" class="post-read-more">[Read More]</a>
+                  前言：Joinup 是由歐盟委員會所建立的協作平台，由歐盟透過ISA2 計劃提供資金運作。主要內容包括針對歐盟運作提供觀察、批評與建議。其中「開
+                  <a href="https://kalug.linux.org.tw/planet/slat-tw/20190926_joinup-osor.html/" class="post-read-more">[Read More]</a>
                 
               </div>
-
-              
 
             </article>
           
             <article class="post-preview">
-              <a href="https://kalug.linux.org.tw/planet/appleboy/20190224_using-cache-from-can-speed-up-your-docker-builds/">
-                <h2 class="post-title">在 docker-in-docker 環境中使用 cache-from 提升編譯速度</h2>
+              <a href="https://kalug.linux.org.tw/planet/chusiang/20190917_my-devops-tour-0.1.html/">
+                <h2 class="post-title">系統工程師的打怪升級之旅</h2>
 
                 
               </a>
@@ -347,10 +429,10 @@ if (!doNotTrack) {
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp; AppleBoy Posted on February 24, 2019
+  <i class="fa fa-calendar-o"></i>&nbsp; 凍仁翔 Posted on September 17, 2019
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 3 minutes (1253 words)
+  <i class="fa fa-clock-o"></i> 6 minutes (2612 words)
   
   
 </span>
@@ -359,18 +441,16 @@ if (!doNotTrack) {
               </p>
               <div class="post-entry">
                 
-                  在現代 CI/CD 的環境流程中，使用 Docker In Docker 來編譯容器已經相當流行了，像是 GitLab CI 或 Drone 都是全走 Docker 環境，然而有很多人建議盡量不要在 CI 環境使用 Docker In Docker，
-                  <a href="https://kalug.linux.org.tw/planet/appleboy/20190224_using-cache-from-can-speed-up-your-docker-builds/" class="post-read-more">[Read More]</a>
+                  從大學畢業、進入職場，經歷 SI、IT、RD &hellip; 等許多角色，凍仁目前最喜歡的是「系統工程師 (System Engineer)」這個稱號，而〈系統工程師的打怪升
+                  <a href="https://kalug.linux.org.tw/planet/chusiang/20190917_my-devops-tour-0.1.html/" class="post-read-more">[Read More]</a>
                 
               </div>
-
-              
 
             </article>
           
             <article class="post-preview">
-              <a href="https://kalug.linux.org.tw/planet/appleboy/20190218_deploy-golang-app-to-heroku/">
-                <h2 class="post-title">快速部署網站到 Heroku 雲平台</h2>
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20190907_upload-docker-image-to-github-registry-using-drone/">
+                <h2 class="post-title">用 Drone 自動化上傳 Docker Image 到 GitHub Docker Registry</h2>
 
                 
               </a>
@@ -379,10 +459,10 @@ if (!doNotTrack) {
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp; AppleBoy Posted on February 18, 2019
+  <i class="fa fa-calendar-o"></i>&nbsp; AppleBoy Posted on September 7, 2019
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 3 minutes (1490 words)
+  <i class="fa fa-clock-o"></i> 2 minutes (721 words)
   
   
 </span>
@@ -391,18 +471,16 @@ if (!doNotTrack) {
               </p>
               <div class="post-entry">
                 
-                  大家在寫開源專案時，一定需要一個免費的雲空間來放置網站，方便其他開發者在 GitHub 看到時，可以先點選 Demo 網站來試用，也許開發者可以使用 GitHub 提供的免費靜態
-                  <a href="https://kalug.linux.org.tw/planet/appleboy/20190218_deploy-golang-app-to-heroku/" class="post-read-more">[Read More]</a>
+                  很高興收到 GitHub 的 Beta 邀請函來開始試用 GitHub Package Registry 相關功能，從說明文件可以知道目前 Registry 支援了好幾種 Package 像是 npm, gem, docker, mvn 及 nuget，這篇主要跟大家介紹如何用 Drone 快
+                  <a href="https://kalug.linux.org.tw/planet/appleboy/20190907_upload-docker-image-to-github-registry-using-drone/" class="post-read-more">[Read More]</a>
                 
               </div>
-
-              
 
             </article>
           
             <article class="post-preview">
-              <a href="https://kalug.linux.org.tw/planet/slat-tw/20190218_2019-3-23-slat-general-assembly.html/">
-                <h2 class="post-title">軟體自由協會 2019 年度會員大會將在 3 月 23 日舉行</h2>
+              <a href="https://kalug.linux.org.tw/planet/appleboy/20190831_golang-project-layout-and-practice/">
+                <h2 class="post-title">Go 語言目錄結構與實踐</h2>
 
                 
               </a>
@@ -411,10 +489,10 @@ if (!doNotTrack) {
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp; 軟體自由運動部落格 Posted on February 18, 2019
+  <i class="fa fa-calendar-o"></i>&nbsp; AppleBoy Posted on August 31, 2019
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (68 words)
+  <i class="fa fa-clock-o"></i> 2 minutes (745 words)
   
   
 </span>
@@ -423,108 +501,10 @@ if (!doNotTrack) {
               </p>
               <div class="post-entry">
                 
-                  <p><div class="separator" style="clear: both; text-align: center;"><a href="https://2.bp.blogspot.com/-J6tMesos_Kg/XGavoa7nwdI/AAAAAAAAAKw/Vu1e1ss2rmYt527_KeDO6KajzoABOL7xwCLcBGAs/s1600/%25E6%259C%2583%25E5%2593%25A1%25E5%25A4%25A7%25E6%259C%2583%25EF%25BC%2593.png" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><img border="0" data-original-height="1600" data-original-width="900" height="640" src="https://2.bp.blogspot.com/-J6tMesos_Kg/XGavoa7nwdI/AAAAAAAAAKw/Vu1e1ss2rmYt527_KeDO6KajzoABOL7xwCLcBGAs/s640/%25E6%259C%2583%25E5%2593%25A1%25E5%25A4%25A7%25E6%259C%2583%25EF%25BC%2593.png" width="356" /></a></div><span style="font-size: x-large;"><br /><br /><br />軟體自由協會</span><br /><span style="font-size: x-large;">2019 年<br />年度會員大會<br /><br />3 月 23 日下午二時<br />於 A+A Space 舉行</span><br /><span style="font-size: large;"><span style="font-size: xx-small;">地圖：<a href="https://www.openstreetmap.org/node/6285676790" target="_blank">Open Street Map</a>、<a href="https://www.google.com/maps/place/A%2BA+space+%E5%85%B1%E5%89%B5%E5%85%B1%E4%BA%AB%E7%A9%BA%E9%96%93/@25.0525677,121.5622685,16.25z/data=!4m5!3m4!1s0x0:0x5c2409de771dee5c!8m2!3d25.0517002!4d121.5640095" target="_blank">Google Map</a></span><br /></span><br /><span style="font-size: x-large;">本次會員大會</span><br /><span style="font-size: x-large;">將改選</span><br /><span style="font-size: x-large;">第十屆理監事會<br /><br />敬請出席參與</span><br /><br /><br /><br /></p>
-
+                  很高興今年錄取 Modernweb 講師，又有機會去宣傳 Go 語言，這次的議程最主要跟大家介紹 Go 專案的目錄該如何設計，一個基本的專案該需要有哪些功能，以及如何實現。
+                  <a href="https://kalug.linux.org.tw/planet/appleboy/20190831_golang-project-layout-and-practice/" class="post-read-more">[Read More]</a>
                 
               </div>
-
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://kalug.linux.org.tw/planet/appleboy/20190125_converts-a-jsonnet-configuration-file-to-a-yaml-in-drone/">
-                <h2 class="post-title">有效率的用 jsonnet 撰寫  Drone CI/CD 設定檔</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp; AppleBoy Posted on January 25, 2019
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 4 minutes (1542 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  Drone 在 1.0 版本推出了用 jsonnet 來撰寫 YAML 設定檔，方便開發者可以維護多個專案設定。不知道大家有無遇過在啟動新的專案後，需要從舊的專案複製設定到新專案，或者
-                  <a href="https://kalug.linux.org.tw/planet/appleboy/20190125_converts-a-jsonnet-configuration-file-to-a-yaml-in-drone/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://kalug.linux.org.tw/planet/appleboy/20190120_costco-seagate-usb-hard-disk-2699/">
-                <h2 class="post-title">Seagate 2.5吋 4TB 外接硬碟 好市多 2699 元</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp; AppleBoy Posted on January 20, 2019
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (369 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  本週 Costco 正在特價 Seagate 4TB 外接硬碟特價 2699 元，本來只有 3TB 特價 2699 元活動，後來廠商供應數量不夠，只好拿 4TB 一起來特價 2699 元，所以我去賣場發現一樣價錢，但是足足
-                  <a href="https://kalug.linux.org.tw/planet/appleboy/20190120_costco-seagate-usb-hard-disk-2699/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://kalug.linux.org.tw/planet/appleboy/20190120_traefik-docker-and-lets-encrypt/">
-                <h2 class="post-title">Traefik 搭配 Docker 自動更新 Let’s Encrypt 憑證</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp; AppleBoy Posted on January 20, 2019
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (888 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  之前寫過蠻多篇 Let&#8217;s Encrypt 的使用教學，但是這次要跟大家介紹一套非常好用的工具 Traefik 搭配自動化更新 Let&#8217;s Encrypt 憑證，為什麼會推薦 Traefik 呢，原因在於 Traefik 可以自動偵測 Docker 容器
-                  <a href="https://kalug.linux.org.tw/planet/appleboy/20190120_traefik-docker-and-lets-encrypt/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
 
             </article>
           
@@ -566,7 +546,7 @@ if (!doNotTrack) {
                 </a>
               </li>
               <li>
-                <a href="https://telegram.me/joinchat/Bqbim0F9EuW-GMUbYg9geA" title="Telegram">
+                <a href="https://telegram.me/joinchat/KBcnM0F9EuVT54cda-t-yg" title="Telegram">
                   <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
